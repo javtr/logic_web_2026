@@ -6,6 +6,7 @@ import { Footer } from './components/Footer';
 
 import { Home } from './pages/Home';
 import { Login } from './pages/Login'; 
+import { Dashboard } from './pages/Dashboard';
 import { IndicatorPage } from './pages/IndicatorPage';
 
 import { Indicators } from './pages/Indicators';
@@ -33,8 +34,9 @@ function App() {
             <Route path="/indicators/:slug" element={<IndicatorPage />} /> 
           </Route>
           
-          {/* RUTA DE LOGIN */}
+          {/* RUTAS PRIVADAS (Zona de Miembros) */}
           <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
     </LanguageProvider>

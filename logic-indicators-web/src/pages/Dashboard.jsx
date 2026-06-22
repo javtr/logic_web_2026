@@ -73,9 +73,9 @@ export const Dashboard = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 gap-8">
         {/* Gestión de Machine ID */}
-        <div className="lg:col-span-1 bg-dark-800 border border-dark-700 p-8 rounded-3xl h-fit">
+        <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl h-fit">
           <div className="flex items-center gap-3 mb-6 text-accent-blue">
             <Monitor size={24} />
             <h2 className="text-xl font-bold text-text-main">NinjaTrader ID</h2>
@@ -106,7 +106,7 @@ export const Dashboard = () => {
         </div>
 
         {/* Listado de Productos */}
-        <div className="lg:col-span-2 bg-dark-800 border border-dark-700 p-8 rounded-3xl">
+        <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl">
           <div className="flex items-center gap-3 mb-8 text-accent-green">
             <Package size={24} />
             <h2 className="text-xl font-bold text-text-main">Tus Indicadores</h2>
