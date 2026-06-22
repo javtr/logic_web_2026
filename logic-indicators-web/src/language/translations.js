@@ -4,7 +4,11 @@ export const translations = {
     nav: { 
       indicators: "Indicators", 
       resources: "Resources", 
-      login: "Member Zone" 
+      login: "Member Zone",
+      resourcesDropdown: {
+        docs: "Documentation",
+        freeIndicators: "Free Indicators"
+      }
     },
     hero: { 
       title: "Advanced Order Flow Trading", 
@@ -94,13 +98,27 @@ export const translations = {
     },
     indicatorPage: {
       back: "Back to Indicators"
+    },
+    docs: {
+      title: "Documentation",
+      subtitle: "Everything you need to master Logic Indicators.",
+      content: "Welcome to the Logic Indicators documentation center. Here you'll find comprehensive guides, tutorials, and references for all our NinjaTrader 8 tools. Whether you're a beginner learning order flow concepts or an experienced trader looking to fine-tune your setup, our documentation walks you through installation, configuration, and advanced usage patterns. Each indicator comes with detailed explanations of its inputs, recommended settings for different market conditions, and practical examples to help you get the most out of every feature."
+    },
+    freeIndicators: {
+      title: "Free Indicators",
+      subtitle: "Download our free tools and start trading smarter today.",
+      content: "Explore our collection of free indicators built with the same quality and precision as our premium suite. These tools are perfect for getting started with order flow analysis, testing our development standards, or complementing your existing setup. Each free indicator includes basic documentation and is fully compatible with NinjaTrader 8. Download as many as you want — no registration required. If you have questions or want to upgrade to a more powerful version, our team is just one click away."
     }
   },
   es: {
     nav: { 
       indicators: "Indicadores", 
       resources: "Recursos", 
-      login: "Zona de Miembros" 
+      login: "Zona de Miembros",
+      resourcesDropdown: {
+        docs: "Documentación",
+        freeIndicators: "Indicadores Gratuitos"
+      }
     },
     hero: { 
       title: "Trading Avanzado con Order Flow", 
@@ -190,6 +208,16 @@ export const translations = {
     },
     indicatorPage: {
       back: "Volver a Indicadores"
+    },
+    docs: {
+      title: "Documentación",
+      subtitle: "Todo lo que necesitas para dominar Logic Indicators.",
+      content: "Bienvenido al centro de documentación de Logic Indicators. Aquí encontrarás guías completas, tutoriales y referencias para todas nuestras herramientas de NinjaTrader 8. Ya seas un principiante aprendiendo conceptos de order flow o un trader experimentado buscando afinar tu configuración, nuestra documentación te acompaña paso a paso en la instalación, configuración y patrones de uso avanzado. Cada indicador incluye explicaciones detalladas de sus inputs, configuraciones recomendadas para diferentes condiciones de mercado, y ejemplos prácticos para ayudarte a aprovechar al máximo cada función."
+    },
+    freeIndicators: {
+      title: "Indicadores Gratuitos",
+      subtitle: "Descarga nuestras herramientas gratuitas y empieza a operar más inteligente hoy.",
+      content: "Explora nuestra colección de indicadores gratuitos construidos con la misma calidad y precisión que nuestra suite premium. Estas herramientas son perfectas para iniciarte en el análisis de order flow, probar nuestros estándares de desarrollo, o complementar tu configuración actual. Cada indicador gratuito incluye documentación básica y es totalmente compatible con NinjaTrader 8. Descarga tantos como quieras — sin registro. Si tienes preguntas o quieres actualizar a una versión más potente, nuestro equipo está a un solo clic de distancia."
     }
-  }
+  },
 };

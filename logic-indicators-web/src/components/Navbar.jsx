@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { Button } from './Button';
+import { ResourcesDropdown } from './ResourcesDropdown';
 import { Globe, Menu } from 'lucide-react';
 
 export const Navbar = () => {
@@ -18,7 +19,7 @@ export const Navbar = () => {
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-text-muted">
           <Link to="/indicators" className="hover:text-accent-green transition-colors">{t('nav.indicators')}</Link>
-          <Link to="/resources" className="hover:text-accent-green transition-colors">{t('nav.resources')}</Link>
+          <ResourcesDropdown />
           <button 
             onClick={toggleLanguage}
             className="flex items-center gap-2 px-3 py-1 rounded-full bg-dark-700 hover:text-text-main transition-all"

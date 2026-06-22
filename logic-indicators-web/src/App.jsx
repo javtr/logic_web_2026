@@ -8,6 +8,8 @@ import { Home } from './pages/Home';
 import { Login } from './pages/Login'; 
 import { Dashboard } from './pages/Dashboard';
 import { IndicatorPage } from './pages/IndicatorPage';
+import { Docs } from './pages/Docs';
+import { FreeIndicators } from './pages/FreeIndicators';
 
 import { Indicators } from './pages/Indicators';
 
@@ -32,6 +34,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/indicators" element={<Indicators />} />
             <Route path="/indicators/:slug" element={<IndicatorPage />} /> 
+            <Route path="/resources/docs" element={<Docs />} />
+            <Route path="/resources/free-indicators" element={<FreeIndicators />} />
           </Route>
           
           {/* RUTAS PRIVADAS (Zona de Miembros) */}
