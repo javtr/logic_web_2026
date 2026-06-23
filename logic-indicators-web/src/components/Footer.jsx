@@ -21,9 +21,32 @@ export const Footer = () => {
               {t('footer.description')}
             </p>
             <div className="flex gap-4 mt-6">
-              <a href="#" className="text-text-muted hover:text-accent-blue transition-colors"><MessageCircle size={20} /></a>
-              <a href="#" className="text-text-muted hover:text-accent-blue transition-colors"><MonitorPlay size={20} /></a>
-              <a href="#" className="text-text-muted hover:text-accent-blue transition-colors"><Mail size={20} /></a>
+              {/* TODO: Reemplazar estos <button> por <a href={url} target="_blank" rel="noopener noreferrer"> */}
+              {/*       cuando se conecten los links reales a Discord, YouTube y email. */}
+              <button
+                type="button"
+                onClick={() => console.log('[Footer] Discord link not connected yet')}
+                aria-label="Discord"
+                className="text-text-muted hover:text-accent-blue transition-colors"
+              >
+                <MessageCircle size={20} />
+              </button>
+              <button
+                type="button"
+                onClick={() => console.log('[Footer] YouTube link not connected yet')}
+                aria-label="YouTube"
+                className="text-text-muted hover:text-accent-blue transition-colors"
+              >
+                <MonitorPlay size={20} />
+              </button>
+              <button
+                type="button"
+                onClick={() => console.log('[Footer] Email link not connected yet')}
+                aria-label="Email"
+                className="text-text-muted hover:text-accent-blue transition-colors"
+              >
+                <Mail size={20} />
+              </button>
             </div>
           </div>
 

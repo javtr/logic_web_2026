@@ -1,10 +1,15 @@
 // src/language/translations.js
 export const translations = {
   en: {
-    nav: { 
-      indicators: "Indicators", 
-      resources: "Resources", 
+    nav: {
+      indicators: "Indicators",
+      resources: "Resources",
+      contact: "Contact",
       login: "Member Zone",
+      openMenu: "Open menu",
+      closeMenu: "Close menu",
+      menu: "Menu",
+      switchLanguage: "Switch language",
       resourcesDropdown: {
         docs: "Documentation",
         freeIndicators: "Free Indicators"
@@ -108,13 +113,65 @@ export const translations = {
       title: "Free Indicators",
       subtitle: "Download our free tools and start trading smarter today.",
       content: "Explore our collection of free indicators built with the same quality and precision as our premium suite. These tools are perfect for getting started with order flow analysis, testing our development standards, or complementing your existing setup. Each free indicator includes basic documentation and is fully compatible with NinjaTrader 8. Download as many as you want — no registration required. If you have questions or want to upgrade to a more powerful version, our team is just one click away."
+    },
+    contact: {
+      title: "Get in Touch",
+      subtitle: "Questions about our indicators, licensing, or partnerships? Pick the channel that works best for you.",
+      form: {
+        title: "Send us a message",
+        subtitle: "Fill out the form and we'll get back to you within 24 hours.",
+        name: "Full name",
+        namePlaceholder: "John Doe",
+        email: "Email address",
+        emailPlaceholder: "you@example.com",
+        message: "Message",
+        messagePlaceholder: "Tell us a bit more about what you need...",
+        submit: "Send message",
+        sending: "Sending...",
+        success: "Thanks! We received your message and will be in touch within 24 hours.",
+        errors: {
+          required: "This field is required",
+          email: "Please enter a valid email address",
+          messageMinLength: "Message must be at least 10 characters",
+          generic: "Something went wrong. Please try again."
+        }
+      },
+      channels: {
+        title: "Other ways to reach us",
+        subtitle: "Find us on your favorite platform.",
+        discord: {
+          name: "Discord",
+          handle: "Logic Indicators Community",
+          description: "Join our community of traders for real-time support and discussions."
+        },
+        telegram: {
+          name: "Telegram",
+          handle: "@logicindicators",
+          description: "Direct line to our support team. Fastest response for urgent questions."
+        },
+        email: {
+          name: "Email",
+          handle: "support@logicindicators.com",
+          description: "For licensing, partnerships, and detailed inquiries."
+        },
+        twitter: {
+          name: "Twitter / X",
+          handle: "@logicindicators",
+          description: "Latest product updates, market commentary, and announcements."
+        }
+      }
     }
   },
   es: {
-    nav: { 
-      indicators: "Indicadores", 
-      resources: "Recursos", 
+    nav: {
+      indicators: "Indicadores",
+      resources: "Recursos",
+      contact: "Contacto",
       login: "Zona de Miembros",
+      openMenu: "Abrir menú",
+      closeMenu: "Cerrar menú",
+      menu: "Menú",
+      switchLanguage: "Cambiar idioma",
       resourcesDropdown: {
         docs: "Documentación",
         freeIndicators: "Indicadores Gratuitos"
@@ -218,6 +275,53 @@ export const translations = {
       title: "Indicadores Gratuitos",
       subtitle: "Descarga nuestras herramientas gratuitas y empieza a operar más inteligente hoy.",
       content: "Explora nuestra colección de indicadores gratuitos construidos con la misma calidad y precisión que nuestra suite premium. Estas herramientas son perfectas para iniciarte en el análisis de order flow, probar nuestros estándares de desarrollo, o complementar tu configuración actual. Cada indicador gratuito incluye documentación básica y es totalmente compatible con NinjaTrader 8. Descarga tantos como quieras — sin registro. Si tienes preguntas o quieres actualizar a una versión más potente, nuestro equipo está a un solo clic de distancia."
+    },
+    contact: {
+      title: "Ponte en Contacto",
+      subtitle: "¿Preguntas sobre nuestros indicadores, licencias o alianzas? Elige el canal que mejor te funcione.",
+      form: {
+        title: "Envíanos un mensaje",
+        subtitle: "Completa el formulario y te responderemos en menos de 24 horas.",
+        name: "Nombre completo",
+        namePlaceholder: "Juan Pérez",
+        email: "Correo electrónico",
+        emailPlaceholder: "tu@correo.com",
+        message: "Mensaje",
+        messagePlaceholder: "Cuéntanos un poco más sobre lo que necesitas...",
+        submit: "Enviar mensaje",
+        sending: "Enviando...",
+        success: "¡Gracias! Recibimos tu mensaje y te contactaremos en menos de 24 horas.",
+        errors: {
+          required: "Este campo es obligatorio",
+          email: "Por favor ingresa un correo electrónico válido",
+          messageMinLength: "El mensaje debe tener al menos 10 caracteres",
+          generic: "Algo salió mal. Por favor intenta de nuevo."
+        }
+      },
+      channels: {
+        title: "Otras formas de contactarnos",
+        subtitle: "Encuéntranos en tu plataforma favorita.",
+        discord: {
+          name: "Discord",
+          handle: "Logic Indicators Community",
+          description: "Únete a nuestra comunidad de traders para soporte y discusiones en tiempo real."
+        },
+        telegram: {
+          name: "Telegram",
+          handle: "@logicindicators",
+          description: "Línea directa con nuestro equipo de soporte. Respuesta más rápida para preguntas urgentes."
+        },
+        email: {
+          name: "Correo",
+          handle: "soporte@logicindicators.com",
+          description: "Para licencias, alianzas y consultas detalladas."
+        },
+        twitter: {
+          name: "Twitter / X",
+          handle: "@logicindicators",
+          description: "Últimas actualizaciones, análisis de mercado y anuncios."
+        }
+      }
     }
   },
 };
