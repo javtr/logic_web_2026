@@ -5,6 +5,7 @@ import { Button } from '../components/Button';
 import { IndicatorCard } from '../components/IndicatorCard';
 import { ToggleSwitch } from '../components/ToggleSwitch';
 import { Accordion } from '../components/Accordion';
+import sampleImage from '../assets/indicators/sample_image.png';
 import { ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export const Home = () => {
@@ -40,6 +41,15 @@ export const Home = () => {
             </Button>
           </div>
         </div>
+      </section>
+
+      {/* 1.5 BANNER — preview image full-bleed entre hero y suite */}
+      <section className="w-full">
+        <img
+          src={sampleImage}
+          alt="Logic Indicators — NinjaTrader 8 dashboard preview"
+          className="w-full h-auto block"
+        />
       </section>
 
       {/* 2. SECCIÓN DE INDICADORES */}
