@@ -1,0 +1,8 @@
+{
+  "q1": "¿Es compatible con NinjaTrader 8?",
+  "a1": "Sí, todos nuestros indicadores están construidos y compilados exclusivamente para la plataforma NinjaTrader 8, utilizando las últimas capacidades de C# NinjaScript para un rendimiento óptimo.",
+  "q2": "¿Recibo actualizaciones si compro el plan De por vida?",
+  "a2": "Absolutamente. El plan 'De por vida' incluye todas las actualizaciones futuras y mejoras de funciones para los indicadores que compres, sin cargos recurrentes.",
+  "q3": "¿Puedo usar los indicadores en varias computadoras?",
+  "a3": "Tu licencia está vinculada a tu Machine ID de NinjaTrader. Puedes transferirla a una nueva máquina si es necesario, pero solo puede estar activa en una máquina a la vez."
+}

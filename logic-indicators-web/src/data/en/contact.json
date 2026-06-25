@@ -1,0 +1,47 @@
+{
+  "title": "Get in Touch",
+  "subtitle": "Questions about our indicators, licensing, or partnerships? Pick the channel that works best for you.",
+  "form": {
+    "title": "Send us a message",
+    "subtitle": "Fill out the form and we'll get back to you within 24 hours.",
+    "name": "Full name",
+    "namePlaceholder": "John Doe",
+    "email": "Email address",
+    "emailPlaceholder": "you@example.com",
+    "message": "Message",
+    "messagePlaceholder": "Tell us a bit more about what you need...",
+    "submit": "Send message",
+    "sending": "Sending...",
+    "success": "Thanks! We received your message and will be in touch within 24 hours.",
+    "errors": {
+      "required": "This field is required",
+      "email": "Please enter a valid email address",
+      "messageMinLength": "Message must be at least 10 characters",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "channels": {
+    "title": "Other ways to reach us",
+    "subtitle": "Find us on your favorite platform.",
+    "discord": {
+      "name": "Discord",
+      "handle": "Logic Indicators Community",
+      "description": "Join our community of traders for real-time support and discussions."
+    },
+    "telegram": {
+      "name": "Telegram",
+      "handle": "@logicindicators",
+      "description": "Direct line to our support team. Fastest response for urgent questions."
+    },
+    "email": {
+      "name": "Email",
+      "handle": "support@logicindicators.com",
+      "description": "For licensing, partnerships, and detailed inquiries."
+    },
+    "twitter": {
+      "name": "Twitter / X",
+      "handle": "@logicindicators",
+      "description": "Latest product updates, market commentary, and announcements."
+    }
+  }
+}

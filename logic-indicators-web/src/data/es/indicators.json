@@ -1,0 +1,83 @@
+{
+  "footprint": {
+    "id": "footprint",
+    "slug": "logic-footprint",
+    "imageKey": "sample_indicator",
+    "name": "Logic Footprint",
+    "tagline": "Volumen en Cada Nivel de Precio",
+    "shortDescription": "Visualiza el volumen ejecutado en cada nivel de precio para identificar zonas de alta liquidez y absorción.",
+    "longDescription": "Logic Footprint revoluciona la forma en que ves la distribución del volumen a través de los niveles de precio. A diferencia de los indicadores tradicionales de volumen que muestran el volumen total, Logic Footprint revela exactamente dónde se concentró la presión compradora y vendedora en cada nivel de precio. Esta vista granular te permite identificar zonas de alta liquidez donde las instituciones acumulan posiciones, así como áreas de absorción donde se llenaron órdenes grandes. Al entender el volumen en cada nivel, puedes detectar potenciales zonas de soporte y resistencia con notable precisión. La visualización en tiempo real facilita detectar anomalías y actividad inusual que precede a movimientos mayores de precio."
+  },
+  "footer": {
+    "id": "footer",
+    "slug": "logic-footer",
+    "imageKey": "sample_indicator",
+    "name": "Logic Footer",
+    "tagline": "Flujo de Órdenes al Cierre",
+    "shortDescription": "Sigue el order flow al cierre de cada vela para identificar dónde se libra la verdadera batalla entre compradores y vendedores.",
+    "longDescription": "Logic Footer revela las dinámicas del order flow en la base de cada vela de precio, mostrándote exactamente dónde chocaron compradores y vendedores agresivos al cierre. Al hacer zoom en los momentos finales de la acción del precio, puedes detectar patrones de absorción, movimientos de agotamiento y cambios de momentum que son invisibles en gráficos estándar. Logic Footer complementa cualquier estrategia basada en volumen al resaltar las operaciones que más importan: las que cerraron la vela. Ya sea que busques confirmación de un retroceso o validación de un breakout, el footprint al pie de cada vela cuenta la verdadera historia de quién ganó la ronda."
+  },
+  "profile": {
+    "id": "profile",
+    "slug": "logic-profile",
+    "imageKey": "sample_indicator",
+    "name": "Logic Profile",
+    "tagline": "Perfiles de Volumen Avanzados",
+    "shortDescription": "Perfiles de volumen avanzados para mapear las áreas de valor y los nodos de alto/bajo volumen.",
+    "longDescription": "Logic Profile lleva el análisis de perfil de volumen al siguiente nivel mapeando áreas de valor, nodos de alto volumen y nodos de bajo volumen con precisión. Este indicador te ayuda a entender la estructura del mercado revelando dónde el precio pasó más tiempo operando y dónde se movió rápidamente. Al analizar estos patrones, puedes medir la psicología del trader y el posicionamiento institucional. Los límites del Área de Valor Alta y Baja actúan como niveles dinámicos de soporte y resistencia, mientras que las líneas POC (Punto de Control) muestran dónde ocurrió la negociación más pesada. Usa esta información para anticipar posibles reversiones y confirmar la fuerza de la tendencia."
+  },
+  "composite": {
+    "id": "composite",
+    "slug": "logic-composite",
+    "imageKey": "sample_indicator",
+    "name": "Logic Composite",
+    "tagline": "Vista Combinada de Order Flow",
+    "shortDescription": "Unifica múltiples flujos de datos de order flow en una sola vista compuesta para una imagen completa del mercado.",
+    "longDescription": "Logic Composite reúne múltiples indicadores de order flow en una vista unificada, eliminando la necesidad de alternar entre gráficos y herramientas. Al agregar datos de footprint, delta, perfil de volumen y otras fuentes, Composite te ofrece la imagen completa del mercado en una sola pantalla. El peso personalizable te permite priorizar las señales que más importan para tu estrategia, mientras que el sistema de puntuación compuesta resalta zonas de confluencia donde múltiples puntos de datos coinciden. Este es el indicador para traders que quieren la imagen grande sin sacrificar el detalle. Detecta configuraciones de alta probabilidad más rápido y opera con la confianza de verlo todo a la vez."
+  },
+  "bigtrades": {
+    "id": "bigtrades",
+    "slug": "logic-bigtrades",
+    "imageKey": "sample_indicator",
+    "name": "Logic BigTrades",
+    "tagline": "Detección de Operaciones Grandes",
+    "shortDescription": "Detecta operaciones institucionales grandes en tiempo real para seguir dónde se posicionan los grandes jugadores.",
+    "longDescription": "Logic BigTrades resalta las órdenes significativas de tamaño institucional en el momento en que llegan al mercado, brindándote una ventana en tiempo real a la actividad de los jugadores más grandes. Cada operación detectada se grafica en tu chart con información de tamaño, dirección y timing, facilitando seguir el rastro del flujo institucional. Filtra por tamaño mínimo de operación, configura alertas para actividad inusual y analiza patrones históricos para entender cómo se comportan típicamente los grandes jugadores en diferentes condiciones de mercado. Ya seas un scalper buscando momentum inmediato o un swing trader rastreando acumulación, BigTrades te mantiene informado sobre las operaciones que mueven los mercados."
+  },
+  "analytics": {
+    "id": "analytics",
+    "slug": "logic-analytics",
+    "imageKey": "sample_indicator",
+    "name": "Logic Analytics",
+    "tagline": "Panel de Rendimiento de Trading",
+    "shortDescription": "Analíticas de rendimiento completas para hacer seguimiento a tu edge, identificar patrones y refinar tu estrategia.",
+    "longDescription": "Logic Analytics es tu coach personal de trading, proporcionando insights profundos sobre tu rendimiento en cada operación que tomas. Haz seguimiento de win rate, profit factor, R:R promedio y docenas de otras métricas desglosadas por hora del día, día de la semana, instrumento y condición de mercado. Visualiza tu curva de capital, períodos de drawdown y rachas para entender el ritmo de tu trading. El motor de reconocimiento de patrones identifica qué setups te funcionan mejor y cuáles drenan silenciosamente tu cuenta. Usa estos insights para duplicar tus fortalezas, eliminar tus debilidades y evolucionar como trader en cada sesión."
+  },
+  "algorithms": {
+    "id": "algorithms",
+    "slug": "logic-algorithms",
+    "imageKey": "sample_indicator",
+    "name": "Logic Algorithms",
+    "tagline": "Detección Automatizada de Señales",
+    "shortDescription": "Reconocimiento automatizado de patrones y detección de señales impulsado por algoritmos avanzados.",
+    "longDescription": "Logic Algorithms escanea el mercado en tiempo real usando una biblioteca de patrones de trading probados y modelos estadísticos, mostrando configuraciones de alta probabilidad directamente en tu chart. Cada señal detectada viene con un puntaje de confianza, contexto sobre la condición del mercado y tasa de éxito histórica, para que decidas si actuar con toda la información. Personaliza la biblioteca de algoritmos para que coincida con tu estilo, agrega tus propios patrones y haz backtesting de ideas contra años de datos históricos. Ya sea que operes breakouts, reversión a la media o setups de order flow, Algorithms hace el trabajo pesado de reconocimiento de patrones para que puedas enfocarte en la ejecución."
+  },
+  "deepchart": {
+    "id": "deepchart",
+    "slug": "logic-deepchart",
+    "imageKey": "sample_indicator",
+    "name": "Logic DeepChart",
+    "tagline": "Análisis Profundo de Gráficos",
+    "shortDescription": "Visualización multi-capa de gráficos para analizar estructuras complejas del mercado y patrones ocultos.",
+    "longDescription": "Logic DeepChart lleva tu experiencia de gráficos a una nueva dimensión al superponer múltiples capas analíticas en una sola vista intuitiva. Combina perfiles de volumen, datos de footprint, divergencias de delta y niveles de estructura de mercado sin saturar tu espacio de trabajo. Cada capa es interactiva: profundiza en cualquier zona para ver las operaciones subyacentes, pasa el cursor sobre niveles clave para contexto histórico y alterna capas sobre la marcha a medida que evolucionan las condiciones del mercado. DeepChart está construido para traders que quieren profundidad sin complejidad, convirtiendo datos densos en una narrativa clara de lo que el mercado está haciendo realmente ahora mismo."
+  },
+  "deeplive": {
+    "id": "deeplive",
+    "slug": "logic-deeplive",
+    "imageKey": "sample_indicator",
+    "name": "Logic DeepLive",
+    "tagline": "Inteligencia de Mercado en Tiempo Real",
+    "shortDescription": "Inteligencia de mercado en vivo con flujos de datos en tiempo real y alertas instantáneas para operaciones sensibles al timing.",
+    "longDescription": "Logic DeepLive te mantiene conectado al pulso del mercado con actualizaciones de datos en milisegundos y alertas inteligentes que cortan el ruido. Rastrea imbalances de order flow, anomalías de volumen y cambios de momentum en tiempo real a medida que ocurren, con alertas personalizables entregadas directamente a tu chart. El motor de inteligencia aprende tu estilo de trading y muestra solo las señales que te importan — se acabó la fatiga de alertas. Ya sea que estés gestionando múltiples posiciones o esperando el setup perfecto, DeepLive asegura que nunca te pierdas el momento que importa."
+  }
+}

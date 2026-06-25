@@ -1,0 +1,14 @@
+{
+  "indicators": "Indicators",
+  "resources": "Resources",
+  "contact": "Contact",
+  "login": "Member Zone",
+  "openMenu": "Open menu",
+  "closeMenu": "Close menu",
+  "menu": "Menu",
+  "switchLanguage": "Switch language",
+  "resourcesDropdown": {
+    "docs": "Documentation",
+    "freeIndicators": "Free Indicators"
+  }
+}

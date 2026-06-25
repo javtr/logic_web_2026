@@ -1,0 +1,47 @@
+{
+  "title": "Ponte en Contacto",
+  "subtitle": "¿Preguntas sobre nuestros indicadores, licencias o alianzas? Elige el canal que mejor te funcione.",
+  "form": {
+    "title": "Envíanos un mensaje",
+    "subtitle": "Completa el formulario y te responderemos en menos de 24 horas.",
+    "name": "Nombre completo",
+    "namePlaceholder": "Juan Pérez",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "tu@correo.com",
+    "message": "Mensaje",
+    "messagePlaceholder": "Cuéntanos un poco más sobre lo que necesitas...",
+    "submit": "Enviar mensaje",
+    "sending": "Enviando...",
+    "success": "¡Gracias! Recibimos tu mensaje y te contactaremos en menos de 24 horas.",
+    "errors": {
+      "required": "Este campo es obligatorio",
+      "email": "Por favor ingresa un correo electrónico válido",
+      "messageMinLength": "El mensaje debe tener al menos 10 caracteres",
+      "generic": "Algo salió mal. Por favor intenta de nuevo."
+    }
+  },
+  "channels": {
+    "title": "Otras formas de contactarnos",
+    "subtitle": "Encuéntranos en tu plataforma favorita.",
+    "discord": {
+      "name": "Discord",
+      "handle": "Logic Indicators Community",
+      "description": "Únete a nuestra comunidad de traders para soporte y discusiones en tiempo real."
+    },
+    "telegram": {
+      "name": "Telegram",
+      "handle": "@logicindicators",
+      "description": "Línea directa con nuestro equipo de soporte. Respuesta más rápida para preguntas urgentes."
+    },
+    "email": {
+      "name": "Correo",
+      "handle": "soporte@logicindicators.com",
+      "description": "Para licencias, alianzas y consultas detalladas."
+    },
+    "twitter": {
+      "name": "Twitter / X",
+      "handle": "@logicindicators",
+      "description": "Últimas actualizaciones, análisis de mercado y anuncios."
+    }
+  }
+}

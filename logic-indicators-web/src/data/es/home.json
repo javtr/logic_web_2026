@@ -1,0 +1,41 @@
+{
+  "suiteTitle": "Nuestra Suite Premium",
+  "suiteSubtitle": "Construida específicamente para NinjaTrader 8.",
+  "testimonialsTitle": "La Confianza de los Traders",
+  "testimonial1": {
+    "quote": "Since incorporating Logic Imprint into my daily routine, my understanding of absorption at key levels has completely changed. Essential tool for NT8.",
+    "author": "Michael R., Prop Trader"
+  },
+  "testimonial2": {
+    "quote": "The footprint charts are incredibly lightweight compared to others I've used. It doesn't bog down my NinjaTrader even during high volatility.",
+    "author": "David S., Retail Trader"
+  },
+  "pricingTitle": "Precios Simples y Transparentes",
+  "pricingBestValue": "Mejor Opción",
+  "singlePlan": {
+    "name": "Indicador Individual",
+    "description": "Perfecto para traders enfocados.",
+    "features": [
+      "Elige un indicador",
+      "1 Machine ID",
+      "Soporte estándar"
+    ]
+  },
+  "suitePlan": {
+    "name": "Suite Completa",
+    "description": "Todas las herramientas para una ventaja institucional.",
+    "features": [
+      "Logic Imprint Pro",
+      "Todos los indicadores actuales y futuros",
+      "2 Machine IDs",
+      "Soporte prioritario"
+    ]
+  },
+  "trustBadge": "Pago seguro vía Lemon Squeezy",
+  "getStarted": "Comenzar Ahora",
+  "faqTitle": "Preguntas Frecuentes",
+  "ctaTitle": "¿Listo para elevar tu trading?",
+  "ctaSubtitle": "Únete a la comunidad de traders que usan Logic Indicators para obtener una ventaja en los mercados.",
+  "exploreAll": "Explorar Funciones",
+  "choosePlan": "Elegir un Plan"
+}

@@ -1,0 +1,8 @@
+{
+  "q1": "Is this compatible with NinjaTrader 8?",
+  "a1": "Yes, all our indicators are built and compiled exclusively for the NinjaTrader 8 platform, utilizing the latest C# NinjaScript capabilities for optimal performance.",
+  "q2": "Do I get updates if I buy the Lifetime plan?",
+  "a2": "Absolutely. The Lifetime plan includes all future updates and feature enhancements for the indicators you purchase, with no recurring fees.",
+  "q3": "Can I use the indicators on multiple computers?",
+  "a3": "Your license is tied to your NinjaTrader Machine ID. You can transfer it to a new machine if needed, but it can only be active on one machine at a time."
+}

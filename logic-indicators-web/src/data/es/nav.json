@@ -1,0 +1,14 @@
+{
+  "indicators": "Indicadores",
+  "resources": "Recursos",
+  "contact": "Contacto",
+  "login": "Zona de Miembros",
+  "openMenu": "Abrir menú",
+  "closeMenu": "Cerrar menú",
+  "menu": "Menú",
+  "switchLanguage": "Cambiar idioma",
+  "resourcesDropdown": {
+    "docs": "Documentación",
+    "freeIndicators": "Indicadores Gratuitos"
+  }
+}

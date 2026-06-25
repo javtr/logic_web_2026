@@ -1,5 +1,7 @@
+// src/pages/Indicators.jsx
 import { useLanguage } from '../context/LanguageContext';
-import indicatorsData from '../data/indicators';
+import { INDICATOR_ORDER } from '../data';
+import { resolveImage } from '../data/imageResolver';
 import { IndicatorInfo } from '../components/Indicators/IndicatorInfo';
 
 export const Indicators = () => {
@@ -14,19 +16,21 @@ export const Indicators = () => {
 
       <section className="px-6 container mx-auto pb-24">
         <div className="grid grid-cols-1 gap-8 max-w-7xl mx-auto">
-          {indicatorsData.map((ind) => {
-            // Resolver traducciones usando el translationKey
-            const translatedTitle = t(`indicators.${ind.translationKey}.title`);
-            const translatedSubtitle = t(`indicators.${ind.translationKey}.subtitle`);
+          {INDICATOR_ORDER.map((id) => {
+            const name = t(`indicators.${id}.name`);
+            const tagline = t(`indicators.${id}.tagline`);
+            const shortDescription = t(`indicators.${id}.shortDescription`);
+            const slug = t(`indicators.${id}.slug`);
+            const imageKey = t(`indicators.${id}.imageKey`);
             return (
               <IndicatorInfo
-                key={ind.id}
-                title={translatedTitle}
-                subtitle={translatedSubtitle}
-                description={ind.description}
-                image={ind.image}
+                key={id}
+                title={name}
+                subtitle={tagline}
+                description={shortDescription}
+                image={resolveImage(imageKey)}
                 buttonText={t('indicatorsPage.readMore')}
-                slug={ind.slug}
+                slug={slug}
               />
             );
           })}
