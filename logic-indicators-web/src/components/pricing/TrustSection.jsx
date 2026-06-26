@@ -1,0 +1,74 @@
+// src/components/pricing/TrustSection.jsx
+// Sección de seguridad + medios de pago. Lee TODO desde pricing.trust.* en el JSON.
+//
+// Los íconos de cada medio de pago están mapeados por nombre. Si más adelante
+// quieres SVGs de marca reales (Visa azul, PayPal azul, etc.), solo cambias el
+// `methodIcons`. No hace falta tocar el JSON ni el resto del componente.
+import { useLanguage } from '../../context/LanguageContext';
+import { Lock, ShieldCheck, CreditCard, Wallet } from 'lucide-react';
+
+// Mapeo de método de pago → ícono. Si el método no está acá, fallback a CreditCard.
+const methodIcons = {
+  'Lemon Squeezy': CreditCard,
+  'Visa': CreditCard,
+  'Mastercard': CreditCard,
+  'American Express': CreditCard,
+  'PayPal': Wallet,
+};
+
+export const TrustSection = () => {
+  const { t } = useLanguage();
+  const trust = t('pricing.trust');
+  const methods = trust.paymentMethods.methods;
+
+  return (
+    <section className="px-6 container mx-auto">
+      <div className="bg-dark-800/50 border border-dark-700 rounded-3xl p-10 md:p-12">
+        {/* Header */}
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4">
+            {trust.title}
+          </h2>
+          <p className="text-text-muted text-lg max-w-2xl mx-auto leading-relaxed">
+            {trust.subtitle}
+          </p>
+        </div>
+
+        {/* SSL Badge centrado */}
+        <div className="flex justify-center mb-10">
+          <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-accent-green/10 border border-accent-green/30">
+            <Lock size={20} className="text-accent-green" />
+            <span className="font-semibold text-text-main">{trust.sslBadge}</span>
+          </div>
+        </div>
+
+        {/* Payment Methods */}
+        <div className="text-center">
+          <h3 className="text-sm uppercase tracking-wider text-text-muted font-semibold mb-5">
+            {trust.paymentMethods.title}
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3">
+            {methods.map((method) => {
+              const Icon = methodIcons[method] || CreditCard;
+              return (
+                <div
+                  key={method}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dark-900 border border-dark-700"
+                >
+                  <Icon size={16} className="text-text-muted" />
+                  <span className="text-sm font-medium text-text-main">{method}</span>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Trust reinforcement (visual cue) */}
+          <div className="mt-8 inline-flex items-center gap-2 text-text-muted text-sm">
+            <ShieldCheck size={16} className="text-accent-green" />
+            <span>{trust.sslBadge}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};

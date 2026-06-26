@@ -16,6 +16,7 @@ import enHome from './en/home.json';
 import enIndicators from './en/indicators.json';
 import enIndicatorsPage from './en/indicatorsPage.json';
 import enIndicatorPage from './en/indicatorPage.json';
+import enPricing from './en/pricing.json';
 import enDocs from './en/docs.json';
 import enFreeIndicators from './en/freeIndicators.json';
 import enContact from './en/contact.json';
@@ -28,6 +29,7 @@ import esHome from './es/home.json';
 import esIndicators from './es/indicators.json';
 import esIndicatorsPage from './es/indicatorsPage.json';
 import esIndicatorPage from './es/indicatorPage.json';
+import esPricing from './es/pricing.json';
 import esDocs from './es/docs.json';
 import esFreeIndicators from './es/freeIndicators.json';
 import esContact from './es/contact.json';
@@ -60,6 +62,7 @@ const dictionaries = {
     indicators: enIndicators,
     indicatorsPage: enIndicatorsPage,
     indicatorPage: enIndicatorPage,
+    pricing: enPricing,
     docs: enDocs,
     freeIndicators: enFreeIndicators,
     contact: enContact,
@@ -73,6 +76,7 @@ const dictionaries = {
     indicators: esIndicators,
     indicatorsPage: esIndicatorsPage,
     indicatorPage: esIndicatorPage,
+    pricing: esPricing,
     docs: esDocs,
     freeIndicators: esFreeIndicators,
     contact: esContact,

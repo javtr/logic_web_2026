@@ -1,12 +1,18 @@
 // src/components/ToggleSwitch.jsx
-export const ToggleSwitch = ({ isLifetime, onToggle }) => {
+// Toggle Yearly ⇄ Lifetime. Las etiquetas vienen del JSON vía la prop `labels`.
+// Defaults en inglés para mantener compatibilidad con usos que no necesitan i18n.
+export const ToggleSwitch = ({
+  isLifetime,
+  onToggle,
+  labels = { yearly: 'Yearly', lifetime: 'Lifetime', bestValue: 'Best Value' },
+}) => {
   return (
     <div className="flex items-center justify-center gap-5 my-8">
       {/* Texto Yearly */}
       <span className={`text-lg font-semibold transition-colors duration-300 ${!isLifetime ? 'text-text-main' : 'text-text-muted'}`}>
-        Yearly
+        {labels.yearly}
       </span>
-      
+
       {/* Switch Botón */}
       <button
         onClick={onToggle}
@@ -21,9 +27,9 @@ export const ToggleSwitch = ({ isLifetime, onToggle }) => {
 
       {/* Texto Lifetime con Badge */}
       <span className={`flex items-center gap-3 text-lg font-semibold transition-colors duration-300 ${isLifetime ? 'text-text-main' : 'text-text-muted'}`}>
-        Lifetime
+        {labels.lifetime}
         <span className="px-2.5 py-1 rounded-md text-[11px] tracking-wider uppercase font-bold bg-accent-blue/10 text-accent-blue border border-accent-blue/20">
-          Best Value
+          {labels.bestValue}
         </span>
       </span>
     </div>

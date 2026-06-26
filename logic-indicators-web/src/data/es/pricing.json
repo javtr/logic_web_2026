@@ -1,0 +1,65 @@
+{
+  "pageTitle": "Precios",
+  "pageSubtitle": "Elige el plan que se ajusta a tu estilo de trading. De por vida es la mejor opción.",
+
+  "promotion": {
+    "enabled": false,
+    "badge": "Tiempo Limitado",
+    "title": "Ahorra 30% en la Suite Completa",
+    "subtitle": "Usa el código LOGIC30 al pagar. La oferta termina el 31 de julio.",
+    "ctaText": "Reclamar Descuento",
+    "ctaLink": "#"
+  },
+
+  "sectionTitle": "Precios Simples y Transparentes",
+  "bestValueBadge": "Mejor Opción",
+
+  "billingToggle": {
+    "yearly": "Anual",
+    "lifetime": "De por vida",
+    "bestValue": "Mejor Opción"
+  },
+
+  "singlePlan": {
+    "name": "Indicador Individual",
+    "description": "Perfecto para traders enfocados.",
+    "priceYearly": 99,
+    "priceLifetime": 249,
+    "billingPeriodYearly": "año",
+    "billingPeriodLifetime": "pago único",
+    "features": [
+      "Elige un indicador",
+      "1 Machine ID",
+      "Soporte estándar"
+    ],
+    "cta": "Comenzar Ahora",
+    "highlighted": false
+  },
+
+  "suitePlan": {
+    "name": "Suite Completa",
+    "description": "Todas las herramientas para una ventaja institucional.",
+    "priceYearly": 299,
+    "priceLifetime": 699,
+    "billingPeriodYearly": "año",
+    "billingPeriodLifetime": "pago único",
+    "features": [
+      "Logic Imprint Pro",
+      "Todos los indicadores actuales y futuros",
+      "2 Machine IDs",
+      "Soporte prioritario"
+    ],
+    "cta": "Comenzar Ahora",
+    "highlighted": true
+  },
+
+  "trust": {
+    "title": "Pago Rápido y Seguro",
+    "subtitle": "Tu información de pago está encriptada y procesada de forma segura. Cada transacción está protegida con seguridad de grado industrial.",
+    "sslBadge": "Encriptación SSL de 256 bits",
+    "paymentMethods": {
+      "title": "Medios de Pago Aceptados",
+      "methods": ["Lemon Squeezy", "Visa", "Mastercard", "American Express", "PayPal"]
+    }
+  }
+}

@@ -13,6 +13,7 @@ import { FreeIndicators } from './pages/FreeIndicators';
 import { Contact } from './pages/Contact';
 
 import { Indicators } from './pages/Indicators';
+import { Pricing } from './pages/Pricing';
 
 const MainLayout = () => {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/indicators" element={<Indicators />} />
             <Route path="/indicators/:slug" element={<IndicatorPage />} />
+            <Route path="/pricing" element={<Pricing />} />
             <Route path="/resources/docs" element={<Docs />} />
             <Route path="/resources/free-indicators" element={<FreeIndicators />} />
             <Route path="/contact" element={<Contact />} />

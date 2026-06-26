@@ -5,7 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { Button } from './Button';
 import { ResourcesDropdown } from './ResourcesDropdown';
 import { MobileMenu } from './MobileMenu';
-import { Globe, Menu } from 'lucide-react';
+import { Globe, Menu, Tag } from 'lucide-react';
 
 export const Navbar = () => {
   const { t, toggleLanguage, language } = useLanguage();
@@ -35,6 +35,10 @@ export const Navbar = () => {
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-text-muted">
             <Link to="/indicators" className="hover:text-accent-green transition-colors">{t('nav.indicators')}</Link>
+            <Link to="/pricing" className="hover:text-accent-green transition-colors flex items-center gap-1">
+              <Tag size={14} className="text-accent-green" />
+              {t('nav.pricing')}
+            </Link>
             <ResourcesDropdown />
             <Link to="/contact" className="hover:text-accent-green transition-colors">{t('nav.contact')}</Link>
             <button

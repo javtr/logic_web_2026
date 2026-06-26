@@ -1,23 +1,14 @@
 // src/pages/Home.jsx
-import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Button } from '../components/Button';
 import { HomeIndicatorCard } from '../components/HomeIndicatorCard';
-import { ToggleSwitch } from '../components/ToggleSwitch';
-import { Accordion } from '../components/Accordion';
+import { PricingSection } from '../components/pricing/PricingSection';
+import { FAQSection } from '../components/FAQSection';
 import { resolveImage } from '../data/imageResolver';
 import { INDICATOR_ORDER } from '../data';
-import { ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export const Home = () => {
   const { t } = useLanguage();
-  const [isLifetime, setIsLifetime] = useState(true);
-
-  const faqItems = [
-    { title: t('faq.q1'), content: t('faq.a1') },
-    { title: t('faq.q2'), content: t('faq.a2') },
-    { title: t('faq.q3'), content: t('faq.a3') },
-  ];
 
   // Indicadores que se muestran en la Home. Usamos el mismo orden que en /indicators
   // para que agregar un indicador nuevo en data/index.js (INDICATOR_ORDER) y en los JSON
@@ -96,69 +87,11 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* 4. PRECIOS (Pricing) */}
-      <section className="px-6 container mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4">{t('home.pricingTitle')}</h2>
-          <ToggleSwitch
-            isLifetime={isLifetime}
-            onToggle={() => setIsLifetime(!isLifetime)}
-          />
-        </div>
+      {/* 4. PRECIOS (Pricing) — componente reusable compartido con /pricing */}
+      <PricingSection />
 
-        <div className="flex flex-col md:flex-row justify-center items-stretch gap-8 max-w-5xl mx-auto">
-          {/* Tarjeta Plan Individual */}
-          <div className="flex-1 p-8 rounded-3xl bg-dark-800 border border-dark-700 flex flex-col">
-            <h3 className="text-2xl font-bold text-text-main mb-2">{t('home.singlePlan.name')}</h3>
-            <p className="text-text-muted mb-6">{t('home.singlePlan.description')}</p>
-            <div className="text-4xl font-extrabold text-text-main mb-8">
-              {isLifetime ? "$249" : "$99"} <span className="text-lg text-text-muted font-normal">/ {isLifetime ? 'once' : 'yr'}</span>
-            </div>
-            <ul className="space-y-4 mb-8 flex-grow text-text-muted">
-              {t('home.singlePlan.features').map((feature, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <CheckCircle2 size={18} className="text-accent-blue" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-            <Button variant="outline" className="w-full">{t('home.getStarted')}</Button>
-          </div>
-
-          {/* Tarjeta Plan Suite Completa (Destacada) */}
-          <div className="flex-1 p-8 rounded-3xl bg-dark-800 border-2 border-accent-green relative flex flex-col shadow-[0_0_30px_rgba(0,230,118,0.1)]">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent-green text-dark-900 font-bold px-4 py-1 rounded-full text-sm uppercase tracking-wider">
-              {t('home.pricingBestValue')}
-            </div>
-            <h3 className="text-2xl font-bold text-text-main mb-2">{t('home.suitePlan.name')}</h3>
-            <p className="text-text-muted mb-6">{t('home.suitePlan.description')}</p>
-            <div className="text-4xl font-extrabold text-text-main mb-8">
-              {isLifetime ? "$699" : "$299"} <span className="text-lg text-text-muted font-normal">/ {isLifetime ? 'once' : 'yr'}</span>
-            </div>
-            <ul className="space-y-4 mb-8 flex-grow text-text-main">
-              {t('home.suitePlan.features').map((feature, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <CheckCircle2 size={18} className="text-accent-green" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-            <Button variant="primary" className="w-full">{t('home.getStarted')}</Button>
-          </div>
-        </div>
-
-        {/* Banner de Confianza */}
-        <div className="mt-12 flex justify-center items-center gap-3 text-text-muted text-sm">
-          <ShieldCheck size={18} className="text-accent-green" />
-          <span>{t('home.trustBadge')}</span>
-        </div>
-      </section>
-
-      {/* 5. PREGUNTAS FRECUENTES (FAQ) */}
-      <section className="px-6 container mx-auto">
-        <h2 className="text-3xl font-bold text-center text-text-main mb-12">{t('home.faqTitle')}</h2>
-        <Accordion items={faqItems} />
-      </section>
+      {/* 5. PREGUNTAS FRECUENTES (FAQ) — componente reusable compartido con /pricing */}
+      <FAQSection />
 
       {/* 6. CTA FINAL */}
       <section className="px-6 container mx-auto mb-12">

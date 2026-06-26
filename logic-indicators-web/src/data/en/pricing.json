@@ -1,0 +1,65 @@
+{
+  "pageTitle": "Pricing",
+  "pageSubtitle": "Choose the plan that fits your trading style. Lifetime is the best value.",
+
+  "promotion": {
+    "enabled": false,
+    "badge": "Limited Time",
+    "title": "Save 30% on the Full Suite",
+    "subtitle": "Use code LOGIC30 at checkout. Offer ends July 31.",
+    "ctaText": "Claim Discount",
+    "ctaLink": "#"
+  },
+
+  "sectionTitle": "Simple, Transparent Pricing",
+  "bestValueBadge": "Best Value",
+
+  "billingToggle": {
+    "yearly": "Yearly",
+    "lifetime": "Lifetime",
+    "bestValue": "Best Value"
+  },
+
+  "singlePlan": {
+    "name": "Single Indicator",
+    "description": "Perfect for focused traders.",
+    "priceYearly": 99,
+    "priceLifetime": 249,
+    "billingPeriodYearly": "yr",
+    "billingPeriodLifetime": "once",
+    "features": [
+      "Choose one indicator",
+      "1 Machine ID",
+      "Standard Support"
+    ],
+    "cta": "Get Started Now",
+    "highlighted": false
+  },
+
+  "suitePlan": {
+    "name": "Full Suite",
+    "description": "All tools for institutional edge.",
+    "priceYearly": 299,
+    "priceLifetime": 699,
+    "billingPeriodYearly": "yr",
+    "billingPeriodLifetime": "once",
+    "features": [
+      "Logic Imprint Pro",
+      "All current & future indicators",
+      "2 Machine IDs",
+      "Priority Support"
+    ],
+    "cta": "Get Started Now",
+    "highlighted": true
+  },
+
+  "trust": {
+    "title": "Fast and Secure Checkout",
+    "subtitle": "Your payment information is encrypted and processed securely. Every transaction is protected by industry-standard security.",
+    "sslBadge": "256-bit SSL Encrypted",
+    "paymentMethods": {
+      "title": "Accepted Payment Methods",
+      "methods": ["Lemon Squeezy", "Visa", "Mastercard", "American Express", "PayPal"]
+    }
+  }
+}

@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronDown, BookOpen, Gift, BarChart3, MessageCircle } from 'lucide-react';
+import { X, ChevronDown, BookOpen, Gift, BarChart3, MessageCircle, Tag } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { Button } from './Button';
 
@@ -116,6 +116,18 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                   >
                     <BarChart3 size={18} />
                     <span className="font-medium">{t('nav.indicators')}</span>
+                  </Link>
+                </li>
+
+                {/* Precios */}
+                <li>
+                  <Link
+                    to="/pricing"
+                    onClick={handleLinkClick}
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-dark-700 hover:text-accent-green transition-colors"
+                  >
+                    <Tag size={18} />
+                    <span className="font-medium">{t('nav.pricing')}</span>
                   </Link>
                 </li>
 
