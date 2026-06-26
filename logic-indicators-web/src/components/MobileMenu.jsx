@@ -119,30 +119,6 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                   </Link>
                 </li>
 
-                {/* Precios */}
-                <li>
-                  <Link
-                    to="/pricing"
-                    onClick={handleLinkClick}
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-dark-700 hover:text-accent-green transition-colors"
-                  >
-                    <Tag size={18} />
-                    <span className="font-medium">{t('nav.pricing')}</span>
-                  </Link>
-                </li>
-
-                {/* Contacto */}
-                <li>
-                  <Link
-                    to="/contact"
-                    onClick={handleLinkClick}
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-dark-700 hover:text-accent-green transition-colors"
-                  >
-                    <MessageCircle size={18} />
-                    <span className="font-medium">{t('nav.contact')}</span>
-                  </Link>
-                </li>
-
                 {/* Recursos (acordeón) */}
                 <li>
                   <button
@@ -187,6 +163,30 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                       </motion.ul>
                     )}
                   </AnimatePresence>
+                </li>
+
+                {/* Precios */}
+                <li>
+                  <Link
+                    to="/pricing"
+                    onClick={handleLinkClick}
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-dark-700 hover:text-accent-green transition-colors"
+                  >
+                    <Tag size={18} />
+                    <span className="font-medium">{t('nav.pricing')}</span>
+                  </Link>
+                </li>
+
+                {/* Contacto */}
+                <li>
+                  <Link
+                    to="/contact"
+                    onClick={handleLinkClick}
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-dark-700 hover:text-accent-green transition-colors"
+                  >
+                    <MessageCircle size={18} />
+                    <span className="font-medium">{t('nav.contact')}</span>
+                  </Link>
                 </li>
               </ul>
             </nav>

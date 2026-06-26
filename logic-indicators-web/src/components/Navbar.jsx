@@ -35,11 +35,11 @@ export const Navbar = () => {
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-text-muted">
             <Link to="/indicators" className="hover:text-accent-green transition-colors">{t('nav.indicators')}</Link>
+            <ResourcesDropdown />
             <Link to="/pricing" className="hover:text-accent-green transition-colors flex items-center gap-1">
               <Tag size={14} className="text-accent-green" />
               {t('nav.pricing')}
             </Link>
-            <ResourcesDropdown />
             <Link to="/contact" className="hover:text-accent-green transition-colors">{t('nav.contact')}</Link>
             <button
               onClick={toggleLanguage}
