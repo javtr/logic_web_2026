@@ -2,7 +2,7 @@
   "footprint": {
     "id": "footprint",
     "slug": "logic-footprint",
-    "imageKey": "sample_indicator",
+    "imageKey": "footprint",
     "name": "Logic Footprint",
     "tagline": "Volumen en Cada Nivel de Precio",
     "shortDescription": "Visualiza el volumen ejecutado en cada nivel de precio para identificar zonas de alta liquidez y absorción.",
@@ -11,7 +11,7 @@
   "footer": {
     "id": "footer",
     "slug": "logic-footer",
-    "imageKey": "sample_indicator",
+    "imageKey": "footer",
     "name": "Logic Footer",
     "tagline": "Flujo de Órdenes al Cierre",
     "shortDescription": "Sigue el order flow al cierre de cada vela para identificar dónde se libra la verdadera batalla entre compradores y vendedores.",
@@ -20,7 +20,7 @@
   "profile": {
     "id": "profile",
     "slug": "logic-profile",
-    "imageKey": "sample_indicator",
+    "imageKey": "profile",
     "name": "Logic Profile",
     "tagline": "Perfiles de Volumen Avanzados",
     "shortDescription": "Perfiles de volumen avanzados para mapear las áreas de valor y los nodos de alto/bajo volumen.",
@@ -29,7 +29,7 @@
   "composite": {
     "id": "composite",
     "slug": "logic-composite",
-    "imageKey": "sample_indicator",
+    "imageKey": "composite",
     "name": "Logic Composite",
     "tagline": "Vista Combinada de Order Flow",
     "shortDescription": "Unifica múltiples flujos de datos de order flow en una sola vista compuesta para una imagen completa del mercado.",
@@ -38,7 +38,7 @@
   "bigtrades": {
     "id": "bigtrades",
     "slug": "logic-bigtrades",
-    "imageKey": "sample_indicator",
+    "imageKey": "bigtrades",
     "name": "Logic BigTrades",
     "tagline": "Detección de Operaciones Grandes",
     "shortDescription": "Detecta operaciones institucionales grandes en tiempo real para seguir dónde se posicionan los grandes jugadores.",
@@ -47,7 +47,7 @@
   "analytics": {
     "id": "analytics",
     "slug": "logic-analytics",
-    "imageKey": "sample_indicator",
+    "imageKey": "analytics",
     "name": "Logic Analytics",
     "tagline": "Panel de Rendimiento de Trading",
     "shortDescription": "Analíticas de rendimiento completas para hacer seguimiento a tu edge, identificar patrones y refinar tu estrategia.",
@@ -56,7 +56,7 @@
   "algorithms": {
     "id": "algorithms",
     "slug": "logic-algorithms",
-    "imageKey": "sample_indicator",
+    "imageKey": "algorithms",
     "name": "Logic Algorithms",
     "tagline": "Detección Automatizada de Señales",
     "shortDescription": "Reconocimiento automatizado de patrones y detección de señales impulsado por algoritmos avanzados.",

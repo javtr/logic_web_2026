@@ -20,8 +20,10 @@ export const IndicatorInfo = ({ title, subtitle, description, image, buttonText,
     </div>
 
     {/* Image */}
-    <div className="h-56 w-full">
-      <img src={image} alt={title} className="w-full h-full object-cover" />
+    <div className="px-10 md:px-16 pb-8">
+      <div className="h-80 w-full">
+        <img src={image} alt={title} className="w-full h-full object-cover rounded-2xl" />
+      </div>
     </div>
   </div>
 );

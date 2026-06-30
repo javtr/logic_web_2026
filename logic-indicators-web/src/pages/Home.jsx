@@ -42,7 +42,7 @@ export const Home = () => {
       {/* 1.5 BANNER — preview image full-bleed entre hero y suite */}
       <section className="w-full">
         <img
-          src={resolveImage('sample_indicator')}
+          src={resolveImage('suite')}
           alt="Logic Indicators — NinjaTrader 8 dashboard preview"
           className="w-full h-auto block"
         />

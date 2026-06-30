@@ -2,7 +2,7 @@
   "footprint": {
     "id": "footprint",
     "slug": "logic-footprint",
-    "imageKey": "sample_indicator",
+    "imageKey": "footprint",
     "name": "Logic Footprint",
     "tagline": "Volume at Each Price Level",
     "shortDescription": "Visualize executed volume at each price level to identify high liquidity and absorption zones.",
@@ -11,7 +11,7 @@
   "footer": {
     "id": "footer",
     "slug": "logic-footer",
-    "imageKey": "sample_indicator",
+    "imageKey": "footer",
     "name": "Logic Footer",
     "tagline": "Trade Flow at Bar Close",
     "shortDescription": "Track order flow at the close of each bar to identify where the real battle between buyers and sellers unfolds.",
@@ -20,7 +20,7 @@
   "profile": {
     "id": "profile",
     "slug": "logic-profile",
-    "imageKey": "sample_indicator",
+    "imageKey": "profile",
     "name": "Logic Profile",
     "tagline": "Advanced Volume Profiles",
     "shortDescription": "Advanced volume profiles to map value areas and high/low volume nodes.",
@@ -29,7 +29,7 @@
   "composite": {
     "id": "composite",
     "slug": "logic-composite",
-    "imageKey": "sample_indicator",
+    "imageKey": "composite",
     "name": "Logic Composite",
     "tagline": "Combined Order Flow View",
     "shortDescription": "Unify multiple order flow data streams into a single composite view for a complete market picture.",
@@ -38,7 +38,7 @@
   "bigtrades": {
     "id": "bigtrades",
     "slug": "logic-bigtrades",
-    "imageKey": "sample_indicator",
+    "imageKey": "bigtrades",
     "name": "Logic BigTrades",
     "tagline": "Large Trade Detection",
     "shortDescription": "Spot large institutional trades in real-time to follow where the big players are positioning.",
@@ -47,7 +47,7 @@
   "analytics": {
     "id": "analytics",
     "slug": "logic-analytics",
-    "imageKey": "sample_indicator",
+    "imageKey": "analytics",
     "name": "Logic Analytics",
     "tagline": "Trading Performance Dashboard",
     "shortDescription": "Comprehensive performance analytics to track your edge, identify patterns, and refine your strategy.",
@@ -56,7 +56,7 @@
   "algorithms": {
     "id": "algorithms",
     "slug": "logic-algorithms",
-    "imageKey": "sample_indicator",
+    "imageKey": "algorithms",
     "name": "Logic Algorithms",
     "tagline": "Automated Signal Detection",
     "shortDescription": "Automated pattern recognition and signal detection powered by advanced algorithms.",

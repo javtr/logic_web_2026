@@ -8,9 +8,28 @@
 //   2. Agregar la entrada al imageMap
 //   3. En el JSON usar el imageKey correspondiente
 import sampleIndicatorImage from '../assets/indicators/sample_image.png';
+import suiteImage from '../assets/indicators/suite.png';
+import footprintImage from '../assets/indicators/footprint.png';
+import footerImage from '../assets/indicators/footer.png';
+import profileImage from '../assets/indicators/profile.png';
+import compositeImage from '../assets/indicators/composite.png';
+import bigtradesImage from '../assets/indicators/bigtrades.png';
+import analyticsImage from '../assets/indicators/analytics.png';
+import algorithmsImage from '../assets/indicators/algorithms.png';
 
 export const imageMap = {
+  // Fallback / placeholder (también usado por deepchart y deeplive hasta tener imagen propia)
   sample_indicator: sampleIndicatorImage,
+  // Banner de Home (entre hero y la grilla de la suite premium)
+  suite: suiteImage,
+  // Indicadores con imagen propia
+  footprint: footprintImage,
+  footer: footerImage,
+  profile: profileImage,
+  composite: compositeImage,
+  bigtrades: bigtradesImage,
+  analytics: analyticsImage,
+  algorithms: algorithmsImage,
 };
 
 export const resolveImage = (imageKey) => {
@@ -18,7 +37,8 @@ export const resolveImage = (imageKey) => {
   if (!image) {
     // eslint-disable-next-line no-console
     console.warn(`[imageResolver] Unknown imageKey: "${imageKey}". Available: ${Object.keys(imageMap).join(', ')}`);
-    return imageMap.sample_indicator; // fallback seguro
+    // Importación directa: Vite tree-shakea el imageMap pero este asset sigue en el bundle.
+    return sampleIndicatorImage; // fallback seguro
   }
   return image;
 };
