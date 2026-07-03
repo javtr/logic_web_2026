@@ -1,0 +1,1 @@
+{"function": "() => { const buttons = Array.from(document.querySelectorAll('[aria-roledescription=carousel] button')); const next = buttons.find(b => b.getAttribute('aria-label') === 'Next testimonial'); next.click(); return 'clicked next'; }"}

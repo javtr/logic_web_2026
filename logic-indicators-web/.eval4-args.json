@@ -1,0 +1,1 @@
+{"function": "() => { const region = document.querySelector('[aria-roledescription=carousel]'); const viewport = region.querySelector('.overflow-hidden'); const track = viewport.firstElementChild; return JSON.stringify({ inlineTransform: track.style.transform, computedTransform: getComputedStyle(track).transform, inlineStyle: track.getAttribute('style') }); }"}

@@ -2,14 +2,32 @@
   "suiteTitle": "Nuestra Suite Premium",
   "suiteSubtitle": "Construida específicamente para NinjaTrader 8.",
   "testimonialsTitle": "La Confianza de los Traders",
-  "testimonial1": {
-    "quote": "Since incorporating Logic Imprint into my daily routine, my understanding of absorption at key levels has completely changed. Essential tool for NT8.",
-    "author": "Michael R., Prop Trader"
-  },
-  "testimonial2": {
-    "quote": "The footprint charts are incredibly lightweight compared to others I've used. It doesn't bog down my NinjaTrader even during high volatility.",
-    "author": "David S., Retail Trader"
-  },
+  "testimonials": [
+    {
+      "quote": "Desde que incorporé Logic Imprint a mi rutina diaria, mi lectura de absorción en niveles clave cambió por completo. Herramienta esencial para NT8.",
+      "author": "Michael R., Prop Trader"
+    },
+    {
+      "quote": "Los footprint son increíblemente ligeros comparados con otros que he probado. No me traba NinjaTrader ni en momentos de alta volatilidad.",
+      "author": "David S., Trader Minorista"
+    },
+    {
+      "quote": "Corro tres indicadores de Logic en seis gráficos al mismo tiempo y la plataforma se mantiene fluida. La mejor relación rendimiento-precio que encontré en el ecosistema NT8.",
+      "author": "Sarah K., Day Trader de Futuros"
+    },
+    {
+      "quote": "Logic Profile me cambió por completo cómo leo order flow. Detecto absorción y agotamiento en segundos, cosas que antes se me pasaban por horas.",
+      "author": "Anthony P., Swing Trader"
+    },
+    {
+      "quote": "Solo el soporte al cliente ya vale la suscripción. El equipo realmente entiende de trading, no solo de código. Combinación poco común.",
+      "author": "Carlos M., Trader Independiente"
+    }
+  ],
+  "carouselPrev": "Testimonio anterior",
+  "carouselNext": "Testimonio siguiente",
+  "carouselPause": "Pausar carrusel",
+  "carouselPlay": "Reproducir carrusel",
   "faqTitle": "Preguntas Frecuentes",
   "ctaTitle": "¿Listo para elevar tu trading?",
   "ctaSubtitle": "Únete a la comunidad de traders que usan Logic Indicators para obtener una ventaja en los mercados.",

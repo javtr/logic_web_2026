@@ -2,14 +2,32 @@
   "suiteTitle": "Our Premium Suite",
   "suiteSubtitle": "Built specifically for NinjaTrader 8.",
   "testimonialsTitle": "Trusted by Traders",
-  "testimonial1": {
-    "quote": "Since incorporating Logic Imprint into my daily routine, my understanding of absorption at key levels has completely changed. Essential tool for NT8.",
-    "author": "Michael R., Prop Trader"
-  },
-  "testimonial2": {
-    "quote": "The footprint charts are incredibly lightweight compared to others I've used. It doesn't bog down my NinjaTrader even during high volatility.",
-    "author": "David S., Retail Trader"
-  },
+  "testimonials": [
+    {
+      "quote": "Since incorporating Logic Imprint into my daily routine, my understanding of absorption at key levels has completely changed. Essential tool for NT8.",
+      "author": "Michael R., Prop Trader"
+    },
+    {
+      "quote": "The footprint charts are incredibly lightweight compared to others I've used. It doesn't bog down my NinjaTrader even during high volatility.",
+      "author": "David S., Retail Trader"
+    },
+    {
+      "quote": "I run three Logic indicators on six charts simultaneously and the platform stays smooth. Best performance-per-dollar I've found in the NT8 ecosystem.",
+      "author": "Sarah K., Futures Day Trader"
+    },
+    {
+      "quote": "Logic Profile completely changed how I read order flow. I can spot absorption and exhaustion in seconds — things I used to miss for hours.",
+      "author": "Anthony P., Swing Trader"
+    },
+    {
+      "quote": "The customer support alone is worth the subscription. The team actually understands trading, not just code. Rare combo.",
+      "author": "Carlos M., Independent Trader"
+    }
+  ],
+  "carouselPrev": "Previous testimonial",
+  "carouselNext": "Next testimonial",
+  "carouselPause": "Pause carousel",
+  "carouselPlay": "Play carousel",
   "faqTitle": "Frequently Asked Questions",
   "ctaTitle": "Ready to elevate your trading?",
   "ctaSubtitle": "Join the community of traders using Logic Indicators to gain an edge in the markets.",

@@ -4,6 +4,7 @@ import { Button } from '../components/Button';
 import { HomeIndicatorCard } from '../components/HomeIndicatorCard';
 import { PricingSection } from '../components/pricing/PricingSection';
 import { FAQSection } from '../components/FAQSection';
+import { TestimonialsCarousel } from '../components/TestimonialsCarousel';
 import { resolveImage } from '../data/imageResolver';
 import { INDICATOR_ORDER } from '../data';
 
@@ -74,16 +75,7 @@ export const Home = () => {
       <section className="bg-dark-800/50 py-20 px-6 border-y border-dark-700">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold text-text-main mb-12">{t('home.testimonialsTitle')}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="p-8 rounded-2xl bg-dark-900 border border-dark-700">
-              <p className="text-text-muted italic mb-6">"{t('home.testimonial1.quote')}"</p>
-              <h4 className="font-bold text-text-main">- {t('home.testimonial1.author')}</h4>
-            </div>
-            <div className="p-8 rounded-2xl bg-dark-900 border border-dark-700">
-              <p className="text-text-muted italic mb-6">"{t('home.testimonial2.quote')}"</p>
-              <h4 className="font-bold text-text-main">- {t('home.testimonial2.author')}</h4>
-            </div>
-          </div>
+          <TestimonialsCarousel />
         </div>
       </section>
 
