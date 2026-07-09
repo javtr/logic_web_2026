@@ -51,15 +51,5 @@
     ],
     "cta": "Comenzar Ahora",
     "highlighted": true
-  },
-
-  "trust": {
-    "title": "Pago Rápido y Seguro",
-    "subtitle": "Tu información de pago está encriptada y procesada de forma segura. Cada transacción está protegida con seguridad de grado industrial.",
-    "sslBadge": "Encriptación SSL de 256 bits",
-    "paymentMethods": {
-      "title": "Medios de Pago Aceptados",
-      "methods": ["Lemon Squeezy", "Visa", "Mastercard", "American Express", "PayPal"]
-    }
   }
 }

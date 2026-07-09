@@ -29,6 +29,15 @@
   "carouselPause": "Pausar carrusel",
   "carouselPlay": "Reproducir carrusel",
   "faqTitle": "Preguntas Frecuentes",
+  "trust": {
+    "title": "Pago Rápido y Seguro",
+    "subtitle": "Tu información de pago está encriptada y procesada de forma segura. Cada transacción está protegida con seguridad de grado industrial.",
+    "sslBadge": "Encriptación SSL de 256 bits",
+    "paymentMethods": {
+      "title": "Medios de Pago Aceptados",
+      "methods": ["Lemon Squeezy", "Visa", "Mastercard", "American Express", "PayPal"]
+    }
+  },
   "ctaTitle": "¿Listo para elevar tu trading?",
   "ctaSubtitle": "Únete a la comunidad de traders que usan Logic Indicators para obtener una ventaja en los mercados.",
   "exploreAll": "Explorar Funciones",

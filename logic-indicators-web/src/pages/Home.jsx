@@ -3,6 +3,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { Button } from '../components/Button';
 import { HomeIndicatorCard } from '../components/HomeIndicatorCard';
 import { PricingSection } from '../components/pricing/PricingSection';
+import { TrustSection } from '../components/pricing/TrustSection';
 import { FAQSection } from '../components/FAQSection';
 import { TestimonialsCarousel } from '../components/TestimonialsCarousel';
 import { resolveImage } from '../data/imageResolver';
@@ -81,6 +82,9 @@ export const Home = () => {
 
       {/* 4. PRECIOS (Pricing) — componente reusable compartido con /pricing */}
       <PricingSection />
+
+      {/* 4.5 TRUST — "Pago rápido y seguro" — mismo componente reusado por /pricing */}
+      <TrustSection />
 
       {/* 5. PREGUNTAS FRECUENTES (FAQ) — componente reusable compartido con /pricing */}
       <FAQSection />

@@ -1,72 +1,95 @@
 // src/pages/Dashboard.jsx
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '../components/Button';
-import { LogOut, Package, Key, Monitor } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../components/Button";
+import { LogOut, Package, Monitor } from "lucide-react";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
-  const [newMachineId, setNewMachineId] = useState('');
+  const [newMachineId, setNewMachineId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [status, setStatus] = useState({ type: '', msg: '' });
+  const [status, setStatus] = useState({ type: "", msg: "" });
 
-  const userEmail = localStorage.getItem('logic_user_email');
+  const userEmail = localStorage.getItem("logic_user_email");
+  const token = localStorage.getItem("logic_token"); // Obtenemos el token aquí para usarlo en todo el componente
 
   useEffect(() => {
-    if (!userEmail) {
-      navigate('/login');
+    if (!userEmail || !token) {
+      navigate("/login");
       return;
     }
 
-    fetch(`https://admin.logicindicators.com/api/v1/members/portfolio/${userEmail}`)
-      .then(res => {
-        if (!res.ok) throw new Error();
-        return res.json();
+    // EL FIX: Añadir .then(res => res.json())
+    fetch(`https://admin.logicindicators.com/api/v1/members/portfolio/${userEmail}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Error en la respuesta del servidor");
+        return res.json(); // <--- ESTO FALTABA
       })
-      .then(data => {
+      .then((data) => {
         setUserData(data);
-        setNewMachineId(data.machine_id_actual || '');
+        setNewMachineId(data.machine_id_actual || "");
         setIsLoading(false);
       })
-      .catch(() => navigate('/login'));
-  }, [userEmail, navigate]);
+      .catch((err) => {
+        console.error("Error cargando dashboard:", err);
+        navigate("/login");
+      });
+  }, [userEmail, token, navigate]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    setStatus({ type: 'loading', msg: 'Actualizando...' });
+    setStatus({ type: "loading", msg: "Actualizando..." });
 
     try {
-      const response = await fetch('https://admin.logicindicators.com/api/v1/members/machine-id', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("https://admin.logicindicators.com/api/v1/members/machine-id", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // El token ya está definido arriba
+        },
         body: JSON.stringify({
           email: userEmail,
-          nuevo_machine_id: newMachineId
-        })
+          nuevo_machine_id: newMachineId,
+        }),
       });
 
+      const result = await response.json();
+
       if (response.ok) {
-        setStatus({ type: 'success', msg: 'Machine ID actualizado con éxito' });
+        setStatus({ type: "success", msg: result.message || "ID actualizado con éxito" });
       } else {
-        throw new Error('Error al actualizar');
+        throw new Error(result.detail || "Error al actualizar");
       }
     } catch (err) {
-      setStatus({ type: 'error', msg: 'Hubo un problema al guardar los cambios' });
+      setStatus({ type: "error", msg: err.message });
     }
   };
 
-  if (isLoading) return <div className="min-h-screen bg-dark-900 flex items-center justify-center text-text-muted">Cargando...</div>;
+  if (isLoading || !userData)
+    return (
+      <div className="min-h-screen bg-dark-900 flex items-center justify-center text-text-muted">
+        Cargando datos del perfil...
+      </div>
+    );
 
   return (
     <div className="container mx-auto py-16 px-6 max-w-5xl">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12 bg-dark-800 p-8 rounded-3xl border border-dark-700">
         <div>
-          <h1 className="text-3xl font-bold text-text-main mb-1">Bienvenido, {userData.nombre}</h1>
+          <h1 className="text-3xl font-bold text-text-main mb-1">
+            Bienvenido, {userData.nombre}
+          </h1>
           <p className="text-text-muted">{userData.mail}</p>
         </div>
-        <button 
-          onClick={() => { localStorage.removeItem('logic_user_email'); navigate('/login'); }}
+        <button
+          onClick={() => {
+            localStorage.removeItem("logic_user_email");
+            localStorage.removeItem("logic_token");
+            navigate("/login");
+          }}
           className="flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors font-medium"
         >
           <LogOut size={20} /> Cerrar Sesión
@@ -80,10 +103,12 @@ export const Dashboard = () => {
             <Monitor size={24} />
             <h2 className="text-xl font-bold text-text-main">NinjaTrader ID</h2>
           </div>
-          
+
           <form onSubmit={handleUpdate} className="space-y-5">
             <div>
-              <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">Machine ID Actual</label>
+              <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
+                Machine ID Actual
+              </label>
               <input
                 type="text"
                 value={newMachineId}
@@ -94,7 +119,7 @@ export const Dashboard = () => {
             </div>
 
             {status.msg && (
-              <p className={`text-sm font-medium ${status.type === 'success' ? 'text-green-400' : status.type === 'error' ? 'text-red-400' : 'text-text-muted'}`}>
+              <p className={`text-sm font-medium ${status.type === "success" ? "text-green-400" : "text-red-400"}`}>
                 {status.msg}
               </p>
             )}
@@ -111,14 +136,23 @@ export const Dashboard = () => {
             <Package size={24} />
             <h2 className="text-xl font-bold text-text-main">Tus Indicadores</h2>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {userData.productos_activos.map((prod, i) => (
-              <div key={i} className="p-5 bg-dark-900 border border-dark-600 rounded-2xl flex items-center justify-between group hover:border-accent-green/50 transition-all">
-                <span className="text-text-main font-semibold">{prod.nombre_producto}</span>
-                <div className="h-2 w-2 rounded-full bg-accent-green shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
-              </div>
-            ))}
+            {userData.productos_activos && userData.productos_activos.length > 0 ? (
+              userData.productos_activos.map((prod, i) => (
+                <div key={i} className="p-5 bg-dark-900 border border-dark-600 rounded-2xl flex items-center justify-between group hover:border-accent-blue/50 transition-all">
+                  <span className="text-text-main font-semibold">{prod.nombre_producto}</span>
+                  <a 
+                    href={`https://r2.logicindicators.com/dl/${prod.codigo_producto}.zip`} 
+                    className="text-xs bg-accent-blue/20 text-accent-blue px-4 py-2 rounded-full hover:bg-accent-blue hover:text-white transition-all font-bold"
+                  >
+                    Descargar V18
+                  </a>
+                </div>
+              ))
+            ) : (
+              <p className="text-text-muted col-span-2">No tienes productos activos asociados.</p>
+            )}
           </div>
         </div>
       </div>

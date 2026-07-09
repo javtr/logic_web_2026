@@ -1,5 +1,15 @@
 // src/components/pricing/TrustSection.jsx
-// Sección de seguridad + medios de pago. Lee TODO desde pricing.trust.* en el JSON.
+// Sección de seguridad + medios de pago. Lee TODO desde home.trust.* en el JSON.
+//
+// NOTA sobre el namespace: aunque el archivo vive en src/components/pricing/,
+// los textos viven en home.json (no en pricing.json). La razón es que la
+// sección "nace" en Home y Pricing la reusa; Home es la fuente de la verdad.
+// Mantener el namespace estable evita romper /pricing cuando se reorganiza
+// home.json, y deja claro de dónde vienen los textos.
+//
+// Reusado en:
+//   - Home (`/`) — justo debajo de <PricingSection />.
+//   - Pricing (`/pricing`) — debajo de las tarjetas de precio.
 //
 // Los íconos de cada medio de pago están mapeados por nombre. Si más adelante
 // quieres SVGs de marca reales (Visa azul, PayPal azul, etc.), solo cambias el
@@ -18,7 +28,7 @@ const methodIcons = {
 
 export const TrustSection = () => {
   const { t } = useLanguage();
-  const trust = t('pricing.trust');
+  const trust = t('home.trust');
   const methods = trust.paymentMethods.methods;
 
   return (
