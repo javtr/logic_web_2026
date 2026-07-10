@@ -190,7 +190,7 @@ export const Dashboard = () => {
           </p>
 
           <a
-            href="https://example.com/placeholder-indicators-bundle.zip"
+            href="https://pub-dae211f37c2b49448acb81600156089f.r2.dev/LOF_Suite_Beta_04.zip"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 w-full bg-accent-green text-dark-900 font-bold py-4 px-6 rounded-2xl hover:brightness-110 transition-all"
