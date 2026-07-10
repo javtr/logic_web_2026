@@ -130,8 +130,25 @@ export const Dashboard = () => {
           </form>
         </div>
 
-        {/* Listado de Productos */}
-        <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl">
+        {/* ============================================================
+            Listado de Productos — DESHABILITADO TEMPORALMENTE
+            ------------------------------------------------------------
+            Esta sección muestra los productos activos del usuario con su
+            botón de descarga individual desde R2. YA FUNCIONA en producción:
+              - Consume userData.productos_activos (viene del backend).
+              - Descarga desde https://r2.logicindicators.com/dl/<codigo>.zip
+              - Estilos y UX ya probados.
+
+            ESTÁ COMENTADA porque durante la prueba actual los usuarios
+            reciben TODOS los indicadores en un único archivo ZIP, no por
+            producto individual.
+
+            CUANDO TERMINEN LAS PRUEBAS - restaurar:
+              1. Borrar el bloque "Descarga única (PLACEHOLDER)" de abajo.
+              2. Descomentar este bloque (quitar las marcas de comentario).
+              3. Verificar que los estilos del grid md:grid-cols-2 siguen OK.
+            ============================================================ */}
+        {/* <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl">
           <div className="flex items-center gap-3 mb-8 text-accent-green">
             <Package size={24} />
             <h2 className="text-xl font-bold text-text-main">Tus Indicadores</h2>
@@ -142,8 +159,8 @@ export const Dashboard = () => {
               userData.productos_activos.map((prod, i) => (
                 <div key={i} className="p-5 bg-dark-900 border border-dark-600 rounded-2xl flex items-center justify-between group hover:border-accent-blue/50 transition-all">
                   <span className="text-text-main font-semibold">{prod.nombre_producto}</span>
-                  <a 
-                    href={`https://r2.logicindicators.com/dl/${prod.codigo_producto}.zip`} 
+                  <a
+                    href={`https://r2.logicindicators.com/dl/${prod.codigo_producto}.zip`}
                     className="text-xs bg-accent-blue/20 text-accent-blue px-4 py-2 rounded-full hover:bg-accent-blue hover:text-white transition-all font-bold"
                   >
                     Descargar V18
@@ -154,6 +171,33 @@ export const Dashboard = () => {
               <p className="text-text-muted col-span-2">No tienes productos activos asociados.</p>
             )}
           </div>
+        </div> */}
+
+        {/* ============================================================
+            Descarga única (PLACEHOLDER para pruebas)
+            ------------------------------------------------------------
+            Reemplaza temporalmente la lista de productos individuales.
+            URL placeholder — AJUSTAR a la real antes de pasarles el link.
+            ============================================================ */}
+        <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl">
+          <div className="flex items-center gap-3 mb-6 text-accent-green">
+            <Package size={24} />
+            <h2 className="text-xl font-bold text-text-main">Tus Indicadores</h2>
+          </div>
+
+          <p className="text-text-muted mb-6 leading-relaxed">
+            Durante esta prueba, todos los indicadores se entregan en un único archivo ZIP.
+          </p>
+
+          <a
+            href="https://example.com/placeholder-indicators-bundle.zip"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 w-full bg-accent-green text-dark-900 font-bold py-4 px-6 rounded-2xl hover:brightness-110 transition-all"
+          >
+            <Package size={20} />
+            Descargar paquete completo de indicadores
+          </a>
         </div>
       </div>
     </div>

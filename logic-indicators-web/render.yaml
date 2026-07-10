@@ -1,0 +1,36 @@
+# render.yaml — Configuración de deploy para Render.com
+# Documentación: https://render.com/docs/yaml-spec
+#
+# Esto configura un "Static Site" — perfecto para una SPA Vite/React.
+# No necesita Node server porque el backend vive en admin.logicindicators.com.
+
+services:
+  - type: static
+    name: logic-indicators-web
+    runtime: static
+    repo: https://github.com/javtr/logic_web_2026
+    branch: main
+    # Comando de build: instala dependencias y compila la SPA a dist/
+    buildCommand: npm install && npm run build
+    # Directorio que Render debe servir (output de vite build)
+    staticPublishPath: ./dist
+    # CRÍTICO para SPA: todas las rutas que no sean archivos físicos
+    # (como /dashboard) deben reescribirse a /index.html para que
+    # BrowserRouter funcione correctamente. Sin esto, /dashboard da 404.
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      # Cache largo para assets con hash en el nombre (Vite los nombra
+      # con hash: index-AB12CD34.js). Cuando cambia el código, cambia
+      # el hash, así que es seguro.
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      # Para el index.html NUNCA se debe cachear, porque referencia
+      # los assets por hash y queremos que el navegador siempre
+      # obtenga la versión más reciente.
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
