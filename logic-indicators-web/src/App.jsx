@@ -1,30 +1,23 @@
 // src/App.jsx
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+// Versión "solo zona de miembros" para la prueba con Render.
+// Se ocultan todas las rutas públicas (Home, Indicadores, Pricing, etc.)
+// y solo quedan: /, /login, /dashboard y un 404.
+// Los componentes públicos (Home, Indicators, ...) y MainLayout (Navbar+Footer)
+// NO se eliminan — solo se dejan de referenciar. Si después se quiere
+// recuperar la web pública, basta con restaurar los imports y las rutas.
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
-import { Navbar } from './components/Navbar';
-import { Footer } from './components/Footer';
 
-import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
-import { IndicatorPage } from './pages/IndicatorPage';
-import { Docs } from './pages/Docs';
-import { FreeIndicators } from './pages/FreeIndicators';
-import { Contact } from './pages/Contact';
+import { NotFound } from './pages/NotFound';
 
-import { Indicators } from './pages/Indicators';
-import { Pricing } from './pages/Pricing';
-
-const MainLayout = () => {
-  return (
-    <div className="flex flex-col min-h-screen bg-dark-900 text-text-main font-sans">
-      <Navbar />
-      <main className="flex-grow">
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
-  );
+// Componente que decide a dónde enviar al usuario cuando entra a "/".
+//   - Sin sesión (no hay token en localStorage) → /login
+//   - Con sesión                               → /dashboard
+const RootRedirect = () => {
+  const hasSession = Boolean(localStorage.getItem('logic_token'));
+  return <Navigate to={hasSession ? '/dashboard' : '/login'} replace />;
 };
 
 function App() {
@@ -32,19 +25,15 @@ function App() {
     <LanguageProvider>
       <Router>
         <Routes>
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/indicators" element={<Indicators />} />
-            <Route path="/indicators/:slug" element={<IndicatorPage />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/resources/docs" element={<Docs />} />
-            <Route path="/resources/free-indicators" element={<FreeIndicators />} />
-            <Route path="/contact" element={<Contact />} />
-          </Route>
-          
-          {/* RUTAS PRIVADAS (Zona de Miembros) */}
+          {/* Raíz: redirige según sesión */}
+          <Route path="/" element={<RootRedirect />} />
+
+          {/* Zona de miembros */}
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+
+          {/* Cualquier otra URL → 404 */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </LanguageProvider>
