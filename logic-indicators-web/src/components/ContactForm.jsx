@@ -1,19 +1,50 @@
 // src/components/ContactForm.jsx
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { Button } from './Button';
 import { Send, CheckCircle2, AlertCircle, Mail, User, MessageSquare } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MESSAGE_MIN_LENGTH = 10;
+
+// Variables de entorno o constantes de EmailJS y ReCAPTCHA
+const EMAILJS_SERVICE_ID = "service_g9gfwit";
+const EMAILJS_TEMPLATE_ID = "template_7vyrf6s";
+const EMAILJS_PUBLIC_KEY = "QyQP72Hg4ObCGjDYM";
+const RECAPTCHA_SITE_KEY = "6LdmJucpAAAAAPN--0vzj_7NuxLvMHqsRDrOkpxO";
+
+// ---------------------------------------------------------
+// ⚠️ MODO DESARROLLO: Cambia a 'false' antes de subir a producción
+const IS_LOCAL_TESTING = true;
+// ---------------------------------------------------------
 
 export const ContactForm = () => {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
-  const [status, setStatus] = useState('idle'); // idle | submitting | success
+  const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+  
+  const [captchaValue, setCaptchaValue] = useState(null);
+  const [bannedEmails, setBannedEmails] = useState([]);
+  const recaptchaRef = useRef(null);
+
+  useEffect(() => {
+    const fetchBannedEmails = async () => {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/javtr/Vba/main/rcd.ob');
+        const data = await response.text();
+        const banned = data.trim().split(',');
+        setBannedEmails(banned);
+      } catch (error) {
+        console.error('Error fetching banned emails:', error);
+      }
+    };
+    fetchBannedEmails();
+  }, []);
 
   const validate = (data) => {
     const newErrors = {};
@@ -41,7 +72,6 @@ export const ContactForm = () => {
     const { name, value } = e.target;
     const newData = { ...formData, [name]: value };
     setFormData(newData);
-    // Re-valida en vivo solo si el campo ya fue tocado (UX amable, no molestar al inicio)
     if (touched[name]) {
       setErrors(validate(newData));
     }
@@ -53,9 +83,40 @@ export const ContactForm = () => {
     setErrors(validate(formData));
   };
 
+  const onCaptchaChange = (value) => {
+    setCaptchaValue(value);
+    if (value) {
+      setErrors((prev) => {
+        const newE = { ...prev };
+        delete newE.captcha;
+        return newE;
+      });
+    }
+  };
+
+  const handleSuccess = () => {
+    setStatus('success');
+    setFormData({ name: '', email: '', message: '' });
+    setTouched({});
+    setCaptchaValue(null);
+    if (recaptchaRef.current) recaptchaRef.current.reset();
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    setTimeout(() => {
+      setStatus('idle');
+    }, 6000);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = validate(formData);
+    
+    // Validación de ReCAPTCHA (Se salta si estamos probando en local)
+    if (!captchaValue && !IS_LOCAL_TESTING) {
+      newErrors.captcha = "Please complete the reCAPTCHA"; 
+    }
+
     setErrors(newErrors);
     setTouched({ name: true, email: true, message: true });
 
@@ -63,18 +124,24 @@ export const ContactForm = () => {
 
     setStatus('submitting');
 
-    // TODO: Reemplazar con llamada real al backend cuando esté disponible.
-    // Por ahora solo simula un envío para poder probar visualmente el front.
-    setTimeout(() => {
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTouched({});
-
-      // Vuelve a idle después de unos segundos para permitir otro envío
+    // Validación Blacklist (silenciosa)
+    if (bannedEmails.includes(formData.email.trim())) {
+      console.log("Filtro mail: Email bloqueado");
       setTimeout(() => {
-        setStatus('idle');
-      }, 6000);
-    }, 1200);
+        handleSuccess();
+      }, 1500);
+      return;
+    }
+
+    // Envío real con EmailJS
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formData, EMAILJS_PUBLIC_KEY)
+      .then(() => {
+        handleSuccess();
+      })
+      .catch((error) => {
+        console.error("Error EmailJS:", error);
+        setStatus('error');
+      });
   };
 
   const isSubmitting = status === 'submitting';
@@ -120,7 +187,13 @@ export const ContactForm = () => {
             noValidate
             className="space-y-5"
           >
-            {/* Honeypot anti-spam: oculto a usuarios reales, visible a bots */}
+            {status === 'error' && (
+              <div className="p-3 mb-2 rounded-lg bg-red-500/10 border border-red-500/50 text-red-400 text-sm flex items-center gap-2">
+                <AlertCircle size={16} />
+                {t('contact.form.errors.generic')}
+              </div>
+            )}
+
             <input
               type="text"
               name="bot-field"
@@ -148,8 +221,6 @@ export const ContactForm = () => {
                   onBlur={handleBlur}
                   disabled={isSubmitting}
                   placeholder={t('contact.form.namePlaceholder')}
-                  aria-invalid={!!errors.name}
-                  aria-describedby={errors.name ? 'contact-name-error' : undefined}
                   className={`w-full bg-dark-900 border text-text-main text-sm rounded-lg pl-10 pr-3 py-3 outline-none transition-colors ${
                     errors.name
                       ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/50'
@@ -158,7 +229,7 @@ export const ContactForm = () => {
                 />
               </div>
               {errors.name && (
-                <p id="contact-name-error" className="mt-1.5 text-xs text-red-400 flex items-center gap-1.5">
+                <p className="mt-1.5 text-xs text-red-400 flex items-center gap-1.5">
                   <AlertCircle size={12} />
                   {errors.name}
                 </p>
@@ -183,8 +254,6 @@ export const ContactForm = () => {
                   onBlur={handleBlur}
                   disabled={isSubmitting}
                   placeholder={t('contact.form.emailPlaceholder')}
-                  aria-invalid={!!errors.email}
-                  aria-describedby={errors.email ? 'contact-email-error' : undefined}
                   className={`w-full bg-dark-900 border text-text-main text-sm rounded-lg pl-10 pr-3 py-3 outline-none transition-colors ${
                     errors.email
                       ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/50'
@@ -193,7 +262,7 @@ export const ContactForm = () => {
                 />
               </div>
               {errors.email && (
-                <p id="contact-email-error" className="mt-1.5 text-xs text-red-400 flex items-center gap-1.5">
+                <p className="mt-1.5 text-xs text-red-400 flex items-center gap-1.5">
                   <AlertCircle size={12} />
                   {errors.email}
                 </p>
@@ -218,8 +287,6 @@ export const ContactForm = () => {
                   disabled={isSubmitting}
                   placeholder={t('contact.form.messagePlaceholder')}
                   rows={5}
-                  aria-invalid={!!errors.message}
-                  aria-describedby={errors.message ? 'contact-message-error' : undefined}
                   className={`w-full bg-dark-900 border text-text-main text-sm rounded-lg pl-10 pr-3 py-3 outline-none transition-colors resize-none ${
                     errors.message
                       ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/50'
@@ -228,12 +295,35 @@ export const ContactForm = () => {
                 />
               </div>
               {errors.message && (
-                <p id="contact-message-error" className="mt-1.5 text-xs text-red-400 flex items-center gap-1.5">
+                <p className="mt-1.5 text-xs text-red-400 flex items-center gap-1.5">
                   <AlertCircle size={12} />
                   {errors.message}
                 </p>
               )}
             </div>
+
+            {/* Sección dinámica de ReCAPTCHA */}
+            {IS_LOCAL_TESTING ? (
+              <div className="p-3 text-center text-xs text-accent-blue bg-accent-blue/10 rounded-lg border border-accent-blue/20">
+                🛠️ <strong>Modo Local:</strong> ReCAPTCHA está deshabilitado para pruebas. Cambiar <code>IS_LOCAL_TESTING = false</code> en producción.
+              </div>
+            ) : (
+              <div className="flex flex-col items-center pt-2">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  onChange={onCaptchaChange}
+                  size={typeof window !== 'undefined' && window.innerWidth < 640 ? "compact" : "normal"}
+                  theme="dark"
+                />
+                {errors.captcha && (
+                  <p className="mt-2 text-xs text-red-400 flex items-center gap-1.5">
+                    <AlertCircle size={12} />
+                    {errors.captcha}
+                  </p>
+                )}
+              </div>
+            )}
 
             <Button
               type="submit"
