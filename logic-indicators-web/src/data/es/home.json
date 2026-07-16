@@ -1,7 +1,7 @@
 {
-  "suiteTitle": "Nuestra Suite Premium",
-  "suiteSubtitle": "Construida específicamente para NinjaTrader 8.",
-  "testimonialsTitle": "La Confianza de los Traders",
+  "suiteTitle": "El Arsenal Definitivo: Análisis de Volumen y Estructura de Mercado",
+  "suiteSubtitle": "Ve más allá de los indicadores tradicionales basados únicamente en el precio; adquiere un ecosistema de nivel institucional. Desde perfiles de volumen de alta fidelidad hasta algoritmos de ejecución. Todo es fácil de configurar gracias a nuestro sistema de plantillas preestablecidas listas para usar. Pasa tu tiempo operando, no configurando.",
+  "testimonialsTitle": "Lo que dicen quienes ya no operan a ciegas",
   "testimonials": [
     {
       "quote": "Desde que incorporé Logic Imprint a mi rutina diaria, mi lectura de absorción en niveles clave cambió por completo. Herramienta esencial para NT8.",
@@ -30,16 +30,17 @@
   "carouselPlay": "Reproducir carrusel",
   "faqTitle": "Preguntas Frecuentes",
   "trust": {
-    "title": "Pago Rápido y Seguro",
-    "subtitle": "Tu información de pago está encriptada y procesada de forma segura. Cada transacción está protegida con seguridad de grado industrial.",
-    "sslBadge": "Encriptación SSL de 256 bits",
+    "title": "Transacción 100% Segura",
+    "subtitle": "Tu información financiera está completamente protegida. Procesamos todas nuestras transacciones a través de Lemon Squeezy, una de las plataformas de pago más reconocidas y seguras a nivel mundial, garantizando un cifrado de grado bancario (AES-256). Nosotros no almacenamos los datos de tu tarjeta ni tu información financiera en ningún momento.",
+    "sslBadge": "Pago cifrado de extremo a extremo.",
+    "sslBadge2": "Transacción 100% segura y encriptada.",
     "paymentMethods": {
       "title": "Medios de Pago Aceptados",
       "methods": ["Lemon Squeezy", "Visa", "Mastercard", "American Express", "PayPal"]
     }
   },
   "ctaTitle": "¿Listo para elevar tu trading?",
-  "ctaSubtitle": "Únete a la comunidad de traders que usan Logic Indicators para obtener una ventaja en los mercados.",
-  "exploreAll": "Explorar Funciones",
-  "choosePlan": "Elegir un Plan"
+  "ctaSubtitle": "Toma el control hoy mismo. Instala nuestra suite y comienza a rastrear las huellas institucionales con el mejor rendimiento que NinjaTrader 8 puede ofrecer.",
+  "choosePlan": "Comprar Ahora",
+  "exploreAll": "Hablar con Soporte"
 }

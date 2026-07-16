@@ -75,7 +75,7 @@ export const TrustSection = () => {
           {/* Trust reinforcement (visual cue) */}
           <div className="mt-8 inline-flex items-center gap-2 text-text-muted text-sm">
             <ShieldCheck size={16} className="text-accent-green" />
-            <span>{trust.sslBadge}</span>
+            <span>{trust.sslBadge2}</span>
           </div>
         </div>
       </div>

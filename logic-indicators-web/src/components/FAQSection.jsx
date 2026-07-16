@@ -1,23 +1,32 @@
 // src/components/FAQSection.jsx
-// Sección de FAQ reusable. Lee las preguntas/respuestas desde JSON vía el namespace
-// pasado por prop (default: 'faq'). El título se controla con `titleKey` para que la
-// página /pricing pueda usar un título distinto al de Home si quiere.
+// Sección de FAQ reusable. Lee las preguntas/respuestas desde el JSON del namespace
+// pasado por prop (default: 'homeFaq'). El título se controla con `titleKey`.
 //
-// Estructura JSON esperada:
-//   { "q1": "...", "a1": "...", "q2": "...", "a2": "...", "q3": "...", "a3": "..." }
+// Estructura JSON esperada (en src/data/{en,es}/<namespace>.json):
+//   {
+//     "items": [
+//       { "q": "Pregunta 1", "a": "Respuesta 1" },
+//       { "q": "Pregunta 2", "a": "Respuesta 2" },
+//       ...
+//     ]
+//   }
 //
-// Si en el futuro hay más preguntas, refactorizamos a un array `items` en el JSON.
+// Ejemplo de uso:
+//   <FAQSection />                                       ← Home: namespace 'homeFaq', título 'home.faqTitle'
+//   <FAQSection namespace="pricingFaq" titleKey="pricing.faqTitle" />
 import { useLanguage } from '../context/LanguageContext';
 import { Accordion } from './Accordion';
 
-export const FAQSection = ({ titleKey = 'home.faqTitle', namespace = 'faq' }) => {
+export const FAQSection = ({ titleKey = 'home.faqTitle', namespace = 'homeFaq' }) => {
   const { t } = useLanguage();
 
-  const items = [
-    { title: t(`${namespace}.q1`), content: t(`${namespace}.a1`) },
-    { title: t(`${namespace}.q2`), content: t(`${namespace}.a2`) },
-    { title: t(`${namespace}.q3`), content: t(`${namespace}.a3`) },
-  ];
+  // t(namespace) devuelve el objeto completo del namespace actual (resuelto por idioma).
+  // De ahí tomamos el array `items` y lo mapeamos al shape que espera <Accordion />.
+  const data = t(namespace);
+  const items = (Array.isArray(data?.items) ? data.items : []).map((it) => ({
+    title: it.q,
+    content: it.a,
+  }));
 
   return (
     <section className="px-6 container mx-auto">

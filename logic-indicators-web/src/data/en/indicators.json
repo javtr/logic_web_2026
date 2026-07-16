@@ -6,7 +6,18 @@
     "name": "Logic Footprint",
     "tagline": "Volume at Each Price Level",
     "shortDescription": "Visualize executed volume at each price level to identify high liquidity and absorption zones.",
-    "longDescription": "Logic Footprint revolutionizes how you see volume distribution across price levels. Unlike traditional volume indicators that show total volume, Logic Footprint reveals exactly where buying and selling pressure concentrated at each price point. This granular view allows you to identify high liquidity zones where institutions accumulate positions, as well as areas of absorption where large orders were filled. By understanding volume at each level, you can spot potential support and resistance zones with remarkable accuracy. The real-time visualization makes it easy to spot anomalies and unusual activity that precede major price movements."
+    "longDescription": "Logic Footprint revolutionizes how you see volume distribution across price levels. Unlike traditional volume indicators that show total volume, Logic Footprint reveals exactly where buying and selling pressure concentrated at each price point. This granular view allows you to identify high liquidity zones where institutions accumulate positions, as well as areas of absorption where large orders were filled. By understanding volume at each level, you can spot potential support and resistance zones with remarkable accuracy. The real-time visualization makes it easy to spot anomalies and unusual activity that precede major price movements.",
+    "paragraphs": [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    ],
+    "contentImages": [
+      "footprint",
+      "footprint",
+      "footprint"
+    ]
   },
   "footer": {
     "id": "footer",
@@ -15,7 +26,18 @@
     "name": "Logic Footer",
     "tagline": "Trade Flow at Bar Close",
     "shortDescription": "Track order flow at the close of each bar to identify where the real battle between buyers and sellers unfolds.",
-    "longDescription": "Logic Footer reveals the order flow dynamics at the bottom of each price bar, showing you exactly where aggressive buyers and sellers clashed as the candle closed. By zooming into the final moments of price action, you can spot absorption patterns, exhaustion moves, and momentum shifts that are invisible on standard charts. Logic Footer complements any volume-based strategy by highlighting the trades that matter most — the ones that closed the bar. Whether you're looking for confirmation of a reversal or validation of a breakout, the footprint at the bottom of each bar tells the real story of who won the round."
+    "longDescription": "Logic Footer reveals the order flow dynamics at the bottom of each price bar, showing you exactly where aggressive buyers and sellers clashed as the candle closed. By zooming into the final moments of price action, you can spot absorption patterns, exhaustion moves, and momentum shifts that are invisible on standard charts. Logic Footer complements any volume-based strategy by highlighting the trades that matter most — the ones that closed the bar. Whether you're looking for confirmation of a reversal or validation of a breakout, the footprint at the bottom of each bar tells the real story of who won the round.",
+    "paragraphs": [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    ],
+    "contentImages": [
+      "footer",
+      "footer",
+      "footer"
+    ]
   },
   "profile": {
     "id": "profile",
@@ -24,7 +46,18 @@
     "name": "Logic Profile",
     "tagline": "Advanced Volume Profiles",
     "shortDescription": "Advanced volume profiles to map value areas and high/low volume nodes.",
-    "longDescription": "Logic Profile takes volume profile analysis to the next level by mapping value areas, high volume nodes, and low volume nodes with precision. This indicator helps you understand the market structure by revealing where price spent the most time trading and where it moved quickly through. By analyzing these patterns, you can gauge trader psychology and institutional positioning. The Value Area High and Low boundaries act as dynamic support and resistance levels, while POC (Point of Control) lines show where the heaviest trading occurred. Use this insight to anticipate potential reversals and confirm trend strength."
+    "longDescription": "Logic Profile takes volume profile analysis to the next level by mapping value areas, high volume nodes, and low volume nodes with precision. This indicator helps you understand the market structure by revealing where price spent the most time trading and where it moved quickly through. By analyzing these patterns, you can gauge trader psychology and institutional positioning. The Value Area High and Low boundaries act as dynamic support and resistance levels, while POC (Point of Control) lines show where the heaviest trading occurred. Use this insight to anticipate potential reversals and confirm trend strength.",
+    "paragraphs": [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    ],
+    "contentImages": [
+      "profile",
+      "profile",
+      "profile"
+    ]
   },
   "composite": {
     "id": "composite",
@@ -33,7 +66,18 @@
     "name": "Logic Composite",
     "tagline": "Combined Order Flow View",
     "shortDescription": "Unify multiple order flow data streams into a single composite view for a complete market picture.",
-    "longDescription": "Logic Composite brings together multiple order flow indicators into one unified view, eliminating the need to switch between charts and tools. By aggregating data from footprint, delta, volume profile, and other sources, Composite gives you the full market picture on a single screen. Customizable weighting lets you prioritize the signals that matter most to your strategy, while the composite scoring system highlights confluence zones where multiple data points agree. This is the indicator for traders who want the big picture without sacrificing the detail. Spot high-probability setups faster and trade with the confidence that comes from seeing everything at once."
+    "longDescription": "Logic Composite brings together multiple order flow indicators into one unified view, eliminating the need to switch between charts and tools. By aggregating data from footprint, delta, volume profile, and other sources, Composite gives you the full market picture on a single screen. Customizable weighting lets you prioritize the signals that matter most to your strategy, while the composite scoring system highlights confluence zones where multiple data points agree. This is the indicator for traders who want the big picture without sacrificing the detail. Spot high-probability setups faster and trade with the confidence that comes from seeing everything at once.",
+    "paragraphs": [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    ],
+    "contentImages": [
+      "composite",
+      "composite",
+      "composite"
+    ]
   },
   "bigtrades": {
     "id": "bigtrades",
@@ -42,7 +86,18 @@
     "name": "Logic BigTrades",
     "tagline": "Large Trade Detection",
     "shortDescription": "Spot large institutional trades in real-time to follow where the big players are positioning.",
-    "longDescription": "Logic BigTrades highlights significant institutional-sized orders as they hit the market, giving you a real-time window into the activity of the biggest players. Each detected trade is plotted on your chart with size, direction, and timing information, making it easy to follow the footprints of institutional flow. Filter by minimum trade size, set alerts for unusual activity, and analyze historical patterns to understand how large players typically behave in different market conditions. Whether you're a scalper looking for immediate momentum or a swing trader tracking accumulation, BigTrades keeps you informed about the trades that move markets."
+    "longDescription": "Logic BigTrades highlights significant institutional-sized orders as they hit the market, giving you a real-time window into the activity of the biggest players. Each detected trade is plotted on your chart with size, direction, and timing information, making it easy to follow the footprints of institutional flow. Filter by minimum trade size, set alerts for unusual activity, and analyze historical patterns to understand how large players typically behave in different market conditions. Whether you're a scalper looking for immediate momentum or a swing trader tracking accumulation, BigTrades keeps you informed about the trades that move markets.",
+    "paragraphs": [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    ],
+    "contentImages": [
+      "bigtrades",
+      "bigtrades",
+      "bigtrades"
+    ]
   },
   "analytics": {
     "id": "analytics",
@@ -51,7 +106,18 @@
     "name": "Logic Analytics",
     "tagline": "Trading Performance Dashboard",
     "shortDescription": "Comprehensive performance analytics to track your edge, identify patterns, and refine your strategy.",
-    "longDescription": "Logic Analytics is your personal trading coach, providing deep insights into your performance across every trade you take. Track win rate, profit factor, average R:R, and dozens of other metrics broken down by time of day, day of week, instrument, and market condition. Visualize your equity curve, drawdown periods, and streaks to understand the rhythm of your trading. The pattern recognition engine identifies which setups work best for you and which ones quietly drain your account. Use these insights to double down on your strengths, eliminate your weaknesses, and evolve as a trader with every session."
+    "longDescription": "Logic Analytics is your personal trading coach, providing deep insights into your performance across every trade you take. Track win rate, profit factor, average R:R, and dozens of other metrics broken down by time of day, day of week, instrument, and market condition. Visualize your equity curve, drawdown periods, and streaks to understand the rhythm of your trading. The pattern recognition engine identifies which setups work best for you and which ones quietly drain your account. Use these insights to double down on your strengths, eliminate your weaknesses, and evolve as a trader with every session.",
+    "paragraphs": [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    ],
+    "contentImages": [
+      "analytics",
+      "analytics",
+      "analytics"
+    ]
   },
   "algorithms": {
     "id": "algorithms",
@@ -60,24 +126,17 @@
     "name": "Logic Algorithms",
     "tagline": "Automated Signal Detection",
     "shortDescription": "Automated pattern recognition and signal detection powered by advanced algorithms.",
-    "longDescription": "Logic Algorithms scans the market in real-time using a library of proven trading patterns and statistical models, surfacing high-probability setups directly on your chart. Each detected signal comes with a confidence score, context about the market condition, and historical win rate, so you can decide whether to act with full information. Customize the algorithm library to match your style, add your own patterns, and backtest ideas against years of historical data. Whether you trade breakouts, mean reversion, or order flow setups, Algorithms does the heavy lifting of pattern recognition so you can focus on execution."
-  },
-  "deepchart": {
-    "id": "deepchart",
-    "slug": "logic-deepchart",
-    "imageKey": "sample_indicator",
-    "name": "Logic DeepChart",
-    "tagline": "In-Depth Chart Analysis",
-    "shortDescription": "Multi-layered chart visualization for analyzing complex market structures and hidden patterns.",
-    "longDescription": "Logic DeepChart takes your charting experience to a new dimension by overlaying multiple analytical layers on a single, intuitive view. Combine volume profiles, footprint data, delta divergences, and market structure levels without cluttering your workspace. Each layer is interactive — drill down into any zone to see the underlying trades, hover over key levels for historical context, and toggle layers on the fly as market conditions evolve. DeepChart is built for traders who want depth without complexity, turning dense data into a clear narrative of what the market is actually doing right now."
-  },
-  "deeplive": {
-    "id": "deeplive",
-    "slug": "logic-deeplive",
-    "imageKey": "sample_indicator",
-    "name": "Logic DeepLive",
-    "tagline": "Real-Time Market Intelligence",
-    "shortDescription": "Live market intelligence with real-time data streams and instant alerts for time-sensitive trades.",
-    "longDescription": "Logic DeepLive keeps you connected to the market pulse with sub-second data updates and intelligent alerting that cuts through the noise. Track real-time order flow imbalances, volume anomalies, and momentum shifts as they happen, with customizable alerts delivered straight to your chart. The intelligence engine learns your trading style and surfaces only the signals that matter to you — no more alert fatigue. Whether you're managing multiple positions or waiting for the perfect setup, DeepLive ensures you never miss the moment that matters."
+    "longDescription": "Logic Algorithms scans the market in real-time using a library of proven trading patterns and statistical models, surfacing high-probability setups directly on your chart. Each detected signal comes with a confidence score, context about the market condition, and historical win rate, so you can decide whether to act with full information. Customize the algorithm library to match your style, add your own patterns, and backtest ideas against years of historical data. Whether you trade breakouts, mean reversion, or order flow setups, Algorithms does the heavy lifting of pattern recognition so you can focus on execution.",
+    "paragraphs": [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    ],
+    "contentImages": [
+      "algorithms",
+      "algorithms",
+      "algorithms"
+    ]
   }
 }

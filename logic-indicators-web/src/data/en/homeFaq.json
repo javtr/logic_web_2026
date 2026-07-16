@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "q": "What is Logic Indicators?",
+      "a": "Logic Indicators is a professional indicator suite for NinjaTrader 8, built for traders who use order flow, footprint, and volume analysis in their daily trading. We combine high-performance development with a focus on reading absorption, exhaustion, and delta."
+    },
+    {
+      "q": "Do I need prior trading experience?",
+      "a": "The indicators are designed for intermediate or advanced traders. If you already trade with order flow and understand concepts like delta, volume, and absorption, you'll get the most out of them from day one."
+    },
+    {
+      "q": "Which platforms are the indicators compatible with?",
+      "a": "Our indicators are compiled exclusively for NinjaTrader 8 (NinjaScript, C#). They are not compatible with NinjaTrader 7, TradingView, MetaTrader, or any other platform."
+    },
+    {
+      "q": "Can I try the indicators for free before buying?",
+      "a": "Yes. We offer several free downloadable indicators in the Free Indicators section. They are real tools, with the same technical quality as the paid suite, so you can evaluate our standard before purchasing."
+    },
+    {
+      "q": "What kind of technical support do you offer?",
+      "a": "We offer email support and a documentation center with guides, videos, and frequently asked questions. Full Suite plan users get priority support with faster response times."
+    }
+  ]
+}

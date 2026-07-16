@@ -1,4 +1,6 @@
 {
   "title": "Indicators",
+  "subtitle": "Every Logic indicator is built for NinjaTrader 8 with a focus on order flow, footprint, and volume analysis.",
+  "heroImage": "suite",
   "readMore": "Read more"
 }

@@ -7,15 +7,16 @@ import { TrustSection } from '../components/pricing/TrustSection';
 import { FAQSection } from '../components/FAQSection';
 import { TestimonialsCarousel } from '../components/TestimonialsCarousel';
 import { resolveImage } from '../data/imageResolver';
-import { INDICATOR_ORDER } from '../data';
+import { getActiveIndicatorIds } from '../data';
 
 export const Home = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
-  // Indicadores que se muestran en la Home. Usamos el mismo orden que en /indicators
-  // para que agregar un indicador nuevo en data/index.js (INDICATOR_ORDER) y en los JSON
-  // de en/ y es/ lo haga aparecer automáticamente tanto aquí como en /indicators.
-  const featuredIndicators = INDICATOR_ORDER;
+  // Indicadores que se muestran en la Home. Usa getActiveIndicatorIds para que
+  // solo aparezcan los que están definidos en el JSON del idioma actual.
+  // Si agregás un indicador en INDICATOR_ORDER y en los JSONs, aparece solo.
+  // Si lo borrás del JSON, se oculta solo.
+  const featuredIndicators = getActiveIndicatorIds(language);
 
   return (
     <div className="flex flex-col gap-24 pb-24">

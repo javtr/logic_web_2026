@@ -20,7 +20,8 @@ import enPricing from './en/pricing.json';
 import enDocs from './en/docs.json';
 import enFreeIndicators from './en/freeIndicators.json';
 import enContact from './en/contact.json';
-import enFaq from './en/faq.json';
+import enHomeFaq from './en/homeFaq.json';
+import enPricingFaq from './en/pricingFaq.json';
 import enFooter from './en/footer.json';
 
 import esNav from './es/nav.json';
@@ -33,15 +34,19 @@ import esPricing from './es/pricing.json';
 import esDocs from './es/docs.json';
 import esFreeIndicators from './es/freeIndicators.json';
 import esContact from './es/contact.json';
-import esFaq from './es/faq.json';
+import esHomeFaq from './es/homeFaq.json';
+import esPricingFaq from './es/pricingFaq.json';
 import esFooter from './es/footer.json';
 
 export const SUPPORTED_LANGUAGES = ['en', 'es'];
 export const DEFAULT_LANGUAGE = 'en';
 
-// Orden de aparición de los indicadores en listas (Home, /indicators, etc.).
-// Para agregar un indicador nuevo: agregarlo aquí Y en cada indicators.json bajo en/ y es/.
-// El id debe coincidir con la clave en indicators.json.
+// Orden de aparición PREFERIDO de los indicadores en listas (Home, /indicators, etc.).
+// Para "ocultar" un indicador sin perder su posición en el orden, simplemente elimínalo
+// de los JSONs de en/ y es/; getActiveIndicatorIds() lo va a filtrar automáticamente.
+// Para volver a mostrarlo, agregalo de nuevo en los JSONs (con el mismo id) y aparecerá
+// en esta misma posición.
+// El id debe coincidir con la clave en cada indicators.json.
 export const INDICATOR_ORDER = [
   'footprint',
   'footer',
@@ -53,6 +58,28 @@ export const INDICATOR_ORDER = [
   'deepchart',
   'deeplive',
 ];
+
+// Single source of truth para la lista de indicadores que se renderizan.
+// Devuelve SOLO los IDs de INDICATOR_ORDER que existen en el JSON del idioma actual.
+// Las páginas (Home, /indicators, /indicators/:slug) iteran sobre esto en lugar de
+// hacerlo sobre INDICATOR_ORDER directo, así no renderizan tarjetas rotas con
+// strings tipo "indicators.deepchart.name".
+export const getActiveIndicatorIds = (lang) => {
+  const dict = getDictionary(lang);
+  const indicators = dict?.indicators || {};
+  const active = INDICATOR_ORDER.filter((id) => indicators[id] != null);
+
+  // Aviso en consola si hay drift entre INDICATOR_ORDER y el JSON (solo dev).
+  const missing = INDICATOR_ORDER.filter((id) => !(id in indicators));
+  if (missing.length > 0) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      `[i18n] ${missing.length} indicator(s) in INDICATOR_ORDER are missing from "${lang}/indicators.json": ${missing.join(', ')}. They will be hidden. Add them to the JSON or remove from INDICATOR_ORDER.`
+    );
+  }
+
+  return active;
+};
 
 const dictionaries = {
   en: {
@@ -66,7 +93,8 @@ const dictionaries = {
     docs: enDocs,
     freeIndicators: enFreeIndicators,
     contact: enContact,
-    faq: enFaq,
+    homeFaq: enHomeFaq,
+    pricingFaq: enPricingFaq,
     footer: enFooter,
   },
   es: {
@@ -80,7 +108,8 @@ const dictionaries = {
     docs: esDocs,
     freeIndicators: esFreeIndicators,
     contact: esContact,
-    faq: esFaq,
+    homeFaq: esHomeFaq,
+    pricingFaq: esPricingFaq,
     footer: esFooter,
   },
 };
