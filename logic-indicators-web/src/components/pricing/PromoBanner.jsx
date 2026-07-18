@@ -18,18 +18,18 @@ export const PromoBanner = () => {
 
   return (
     <section className="px-6 container mx-auto mt-28">
-      <div className="relative overflow-hidden rounded-3xl border border-accent-green/30 bg-gradient-to-r from-accent-green/10 via-accent-blue/10 to-accent-green/10 p-8 md:p-10">
+      <div className="relative overflow-hidden rounded-3xl border border-accent-primary/30 bg-gradient-to-r from-accent-primary/10 via-accent-secondary/10 to-accent-primary/10 p-8 md:p-10">
         {/* Decoración de fondo */}
-        <div className="absolute -top-20 -right-20 w-64 h-64 bg-accent-green/20 blur-[100px] rounded-full pointer-events-none" />
-        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-accent-blue/20 blur-[100px] rounded-full pointer-events-none" />
+        <div className="absolute -top-20 -right-20 w-64 h-64 bg-accent-primary/20 blur-[100px] rounded-full pointer-events-none" />
+        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-accent-secondary/20 blur-[100px] rounded-full pointer-events-none" />
 
         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div className="flex-1">
             {/* Badge */}
             {promo.badge && (
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-green/20 border border-accent-green/40 mb-3">
-                <Sparkles size={14} className="text-accent-green" />
-                <span className="text-xs font-bold uppercase tracking-wider text-accent-green">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-primary/20 border border-accent-primary/40 mb-3">
+                <Sparkles size={14} className="text-accent-primary" />
+                <span className="text-xs font-bold uppercase tracking-wider text-accent-primary">
                   {promo.badge}
                 </span>
               </div>

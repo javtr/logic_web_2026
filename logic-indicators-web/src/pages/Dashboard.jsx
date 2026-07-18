@@ -99,7 +99,7 @@ export const Dashboard = () => {
       <div className="grid grid-cols-1 gap-8">
         {/* Gestión de Machine ID */}
         <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl h-fit">
-          <div className="flex items-center gap-3 mb-6 text-accent-blue">
+          <div className="flex items-center gap-3 mb-6 text-accent-secondary">
             <Monitor size={24} />
             <h2 className="text-xl font-bold text-text-main">NinjaTrader ID</h2>
           </div>
@@ -113,7 +113,7 @@ export const Dashboard = () => {
                 type="text"
                 value={newMachineId}
                 onChange={(e) => setNewMachineId(e.target.value)}
-                className="w-full bg-dark-900 border border-dark-600 text-text-main p-4 rounded-xl focus:border-accent-blue outline-none transition-all"
+                className="w-full bg-dark-900 border border-dark-600 text-text-main p-4 rounded-xl focus:border-accent-secondary outline-none transition-all"
                 placeholder="Pega tu ID aquí"
               />
             </div>
@@ -132,7 +132,7 @@ export const Dashboard = () => {
 
         {/* Listado de Productos */}
         <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl">
-          <div className="flex items-center gap-3 mb-8 text-accent-green">
+          <div className="flex items-center gap-3 mb-8 text-accent-primary">
             <Package size={24} />
             <h2 className="text-xl font-bold text-text-main">Tus Indicadores</h2>
           </div>
@@ -140,11 +140,11 @@ export const Dashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {userData.productos_activos && userData.productos_activos.length > 0 ? (
               userData.productos_activos.map((prod, i) => (
-                <div key={i} className="p-5 bg-dark-900 border border-dark-600 rounded-2xl flex items-center justify-between group hover:border-accent-blue/50 transition-all">
+                <div key={i} className="p-5 bg-dark-900 border border-dark-600 rounded-2xl flex items-center justify-between group hover:border-accent-secondary/50 transition-all">
                   <span className="text-text-main font-semibold">{prod.nombre_producto}</span>
                   <a 
                     href={`https://r2.logicindicators.com/dl/${prod.codigo_producto}.zip`} 
-                    className="text-xs bg-accent-blue/20 text-accent-blue px-4 py-2 rounded-full hover:bg-accent-blue hover:text-white transition-all font-bold"
+                    className="text-xs bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full hover:bg-accent-secondary hover:text-white transition-all font-bold"
                   >
                     Descargar V18
                   </a>

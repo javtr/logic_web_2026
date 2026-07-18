@@ -170,8 +170,8 @@ export const ContactForm = () => {
             aria-live="polite"
             className="flex flex-col items-center text-center py-8"
           >
-            <div className="w-16 h-16 rounded-full bg-accent-green/10 border border-accent-green/30 flex items-center justify-center mb-4">
-              <CheckCircle2 size={32} className="text-accent-green" />
+            <div className="w-16 h-16 rounded-full bg-accent-primary/10 border border-accent-primary/30 flex items-center justify-center mb-4">
+              <CheckCircle2 size={32} className="text-accent-primary" />
             </div>
             <p className="text-text-main font-medium max-w-sm">
               {t('contact.form.success')}
@@ -224,7 +224,7 @@ export const ContactForm = () => {
                   className={`w-full bg-dark-900 border text-text-main text-sm rounded-lg pl-10 pr-3 py-3 outline-none transition-colors ${
                     errors.name
                       ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/50'
-                      : 'border-dark-700 focus:border-accent-blue focus:ring-1 focus:ring-accent-blue'
+                      : 'border-dark-700 focus:border-accent-secondary focus:ring-1 focus:ring-accent-secondary'
                   }`}
                 />
               </div>
@@ -257,7 +257,7 @@ export const ContactForm = () => {
                   className={`w-full bg-dark-900 border text-text-main text-sm rounded-lg pl-10 pr-3 py-3 outline-none transition-colors ${
                     errors.email
                       ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/50'
-                      : 'border-dark-700 focus:border-accent-blue focus:ring-1 focus:ring-accent-blue'
+                      : 'border-dark-700 focus:border-accent-secondary focus:ring-1 focus:ring-accent-secondary'
                   }`}
                 />
               </div>
@@ -290,7 +290,7 @@ export const ContactForm = () => {
                   className={`w-full bg-dark-900 border text-text-main text-sm rounded-lg pl-10 pr-3 py-3 outline-none transition-colors resize-none ${
                     errors.message
                       ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/50'
-                      : 'border-dark-700 focus:border-accent-blue focus:ring-1 focus:ring-accent-blue'
+                      : 'border-dark-700 focus:border-accent-secondary focus:ring-1 focus:ring-accent-secondary'
                   }`}
                 />
               </div>
@@ -304,7 +304,7 @@ export const ContactForm = () => {
 
             {/* Sección dinámica de ReCAPTCHA */}
             {IS_LOCAL_TESTING ? (
-              <div className="p-3 text-center text-xs text-accent-blue bg-accent-blue/10 rounded-lg border border-accent-blue/20">
+              <div className="p-3 text-center text-xs text-accent-secondary bg-accent-secondary/10 rounded-lg border border-accent-secondary/20">
                 🛠️ <strong>Modo Local:</strong> ReCAPTCHA está deshabilitado para pruebas. Cambiar <code>IS_LOCAL_TESTING = false</code> en producción.
               </div>
             ) : (

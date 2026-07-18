@@ -60,7 +60,7 @@ export const ResourcesDropdown = () => {
       {/* Botón trigger */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1 hover:text-accent-green transition-colors"
+        className="flex items-center gap-1 hover:text-accent-primary transition-colors"
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
@@ -88,7 +88,7 @@ export const ResourcesDropdown = () => {
                   <Link
                     key={option.to}
                     to={option.to}
-                    className="flex items-center gap-3 px-4 py-3 text-sm text-text-muted hover:bg-dark-700 hover:text-accent-green transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 text-sm text-text-muted hover:bg-dark-700 hover:text-accent-primary transition-colors"
                   >
                     <Icon size={16} />
                     <span>{option.label}</span>

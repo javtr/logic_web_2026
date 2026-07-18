@@ -51,12 +51,12 @@ export const PricingSection = ({ defaultIsLifetime = true, titleKey = 'pricing.s
               key={key}
               className={`flex-1 p-8 rounded-3xl bg-dark-800 flex flex-col relative ${
                 highlighted
-                  ? 'border-2 border-accent-green shadow-[0_0_30px_rgba(0,230,118,0.1)]'
+                  ? 'border-2 border-accent-primary shadow-[0_0_30px_theme(colors.accent.primary/10%)]'
                   : 'border border-dark-700'
               }`}
             >
               {highlighted && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent-green text-dark-900 font-bold px-4 py-1 rounded-full text-sm uppercase tracking-wider">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent-primary text-dark-900 font-bold px-4 py-1 rounded-full text-sm uppercase tracking-wider">
                   {bestValueText}
                 </div>
               )}
@@ -73,7 +73,7 @@ export const PricingSection = ({ defaultIsLifetime = true, titleKey = 'pricing.s
                   <li key={i} className="flex items-center gap-3">
                     <CheckCircle2
                       size={18}
-                      className={highlighted ? 'text-accent-green' : 'text-accent-blue'}
+                      className={highlighted ? 'text-accent-primary' : 'text-accent-secondary'}
                     />
                     {feature}
                   </li>

@@ -11,7 +11,7 @@ export const AccordionItem = ({ title, content, isOpen, onClick }) => {
       >
         <span className="font-semibold text-lg text-text-main">{title}</span>
         <ChevronDown
-          className={`text-accent-blue transition-transform duration-300 ${
+          className={`text-accent-secondary transition-transform duration-300 ${
             isOpen ? 'rotate-180' : ''
           }`}
         />

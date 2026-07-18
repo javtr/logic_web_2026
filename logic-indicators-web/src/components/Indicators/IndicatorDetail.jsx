@@ -39,7 +39,7 @@ export const IndicatorDetail = ({
     <section className="max-w-3xl mx-auto px-4 md:px-6 py-8 md:py-12 text-text-main">
       {/* 1. Título + subtítulo */}
       <h1 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4">{title}</h1>
-      <h2 className="text-xl md:text-2xl text-accent-green mb-3 md:mb-4">{subtitle}</h2>
+      <h2 className="text-xl md:text-2xl text-accent-primary mb-3 md:mb-4">{subtitle}</h2>
 
       {/* 2. Imagen de cabecera */}
       <img

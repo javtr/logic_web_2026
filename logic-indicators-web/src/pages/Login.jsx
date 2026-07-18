@@ -103,7 +103,7 @@ export const Login = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     placeholder="ejemplo@correo.com"
-                    className="w-full bg-dark-900 border border-dark-700 text-text-main text-sm rounded-lg focus:ring-1 focus:ring-accent-blue focus:border-accent-blue block pl-10 p-3 outline-none"
+                    className="w-full bg-dark-900 border border-dark-700 text-text-main text-sm rounded-lg focus:ring-1 focus:ring-accent-secondary focus:border-accent-secondary block pl-10 p-3 outline-none"
                   />
                 </div>
               </div>
@@ -130,7 +130,7 @@ export const Login = () => {
                     required
                     maxLength={6}
                     placeholder="000000"
-                    className="w-full bg-dark-900 border border-dark-700 text-text-main text-xl tracking-[1em] text-center rounded-lg focus:ring-1 focus:ring-accent-blue focus:border-accent-blue block p-3 outline-none"
+                    className="w-full bg-dark-900 border border-dark-700 text-text-main text-xl tracking-[1em] text-center rounded-lg focus:ring-1 focus:ring-accent-secondary focus:border-accent-secondary block p-3 outline-none"
                   />
                 </div>
               </div>
