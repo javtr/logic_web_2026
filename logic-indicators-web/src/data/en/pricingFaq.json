@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "q": "What payment methods do you accept?",
+      "a": "We accept credit and debit card payments (Visa, Mastercard, American Express) through Lemon Squeezy, as well as PayPal. All transactions are processed with 256-bit SSL encryption."
+    },
+    {
+      "q": "What does the 'Lifetime' plan include?",
+      "a": "The Lifetime plan is a one-time payment that gives you permanent access to the indicators included in your plan, plus all future updates and any new indicators we add to the suite, with no recurring charges."
+    },
+    {
+      "q": "What is the difference between the annual and lifetime plans?",
+      "a": "The annual plan renews every 12 months and includes all updates during that period. The Lifetime plan is a one-time payment with permanent access to updates and new indicators. In the long run, the Lifetime plan offers the best value."
+    },
+    {
+      "q": "Can I use the license on multiple computers?",
+      "a": "Your license is tied to your NinjaTrader Machine ID. The Individual plan includes 1 Machine ID; the Complete Suite plan includes 2. If you change computers, you can transfer the license by deactivating it on the previous machine."
+    },
+    {
+      "q": "Do you offer refunds?",
+      "a": "We offer refunds within 14 days of purchase, provided the indicator has not been used on a live or simulated account. To request a refund, please contact us via email."
+    },
+    {
+      "q": "How does plan renewal or upgrading work?",
+      "a": "The annual plan renews automatically every year. You can switch between the Individual and Complete Suite plans at any time; the change is prorated and applied to the next billing cycle."
+    }
+  ]
+}

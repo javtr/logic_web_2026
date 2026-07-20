@@ -112,7 +112,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                   <Link
                     to="/indicators"
                     onClick={handleLinkClick}
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-dark-700 hover:text-accent-green transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-dark-700 hover:text-accent-primary transition-colors"
                   >
                     <BarChart3 size={18} />
                     <span className="font-medium">{t('nav.indicators')}</span>
@@ -124,7 +124,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                   <button
                     onClick={() => setResourcesOpen(!resourcesOpen)}
                     aria-expanded={resourcesOpen}
-                    className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-text-muted hover:bg-dark-700 hover:text-accent-green transition-colors"
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-text-muted hover:bg-dark-700 hover:text-accent-primary transition-colors"
                   >
                     <span className="flex items-center gap-3 font-medium">
                       <BookOpen size={18} />
@@ -152,7 +152,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                               <Link
                                 to={link.to}
                                 onClick={handleLinkClick}
-                                className="flex items-center gap-3 pl-4 pr-3 py-2.5 text-sm text-text-muted hover:text-accent-green transition-colors"
+                                className="flex items-center gap-3 pl-4 pr-3 py-2.5 text-sm text-text-muted hover:text-accent-primary transition-colors"
                               >
                                 <Icon size={15} />
                                 <span>{link.label}</span>
@@ -170,7 +170,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                   <Link
                     to="/pricing"
                     onClick={handleLinkClick}
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-dark-700 hover:text-accent-green transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-dark-700 hover:text-accent-primary transition-colors"
                   >
                     <Tag size={18} />
                     <span className="font-medium">{t('nav.pricing')}</span>
@@ -182,7 +182,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                   <Link
                     to="/contact"
                     onClick={handleLinkClick}
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-dark-700 hover:text-accent-green transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-dark-700 hover:text-accent-primary transition-colors"
                   >
                     <MessageCircle size={18} />
                     <span className="font-medium">{t('nav.contact')}</span>

@@ -15,7 +15,7 @@ export const Footer = () => {
           {/* Columna 1: Branding */}
           <div className="col-span-1 md:col-span-1">
             <Link to="/" className="text-xl font-bold tracking-tighter text-text-main">
-              LOGIC<span className="text-accent-green">INDICATORS</span>
+              LOGIC<span className="text-accent-primary">INDICATORS</span>
             </Link>
             <p className="mt-4 text-text-muted text-sm leading-relaxed">
               {t('footer.description')}
@@ -27,7 +27,7 @@ export const Footer = () => {
                 type="button"
                 onClick={() => console.log('[Footer] Discord link not connected yet')}
                 aria-label="Discord"
-                className="text-text-muted hover:text-accent-blue transition-colors"
+                className="text-text-muted hover:text-accent-secondary transition-colors"
               >
                 <MessageCircle size={20} />
               </button>
@@ -35,7 +35,7 @@ export const Footer = () => {
                 type="button"
                 onClick={() => console.log('[Footer] YouTube link not connected yet')}
                 aria-label="YouTube"
-                className="text-text-muted hover:text-accent-blue transition-colors"
+                className="text-text-muted hover:text-accent-secondary transition-colors"
               >
                 <MonitorPlay size={20} />
               </button>
@@ -43,7 +43,7 @@ export const Footer = () => {
                 type="button"
                 onClick={() => console.log('[Footer] Email link not connected yet')}
                 aria-label="Email"
-                className="text-text-muted hover:text-accent-blue transition-colors"
+                className="text-text-muted hover:text-accent-secondary transition-colors"
               >
                 <Mail size={20} />
               </button>
@@ -54,9 +54,9 @@ export const Footer = () => {
           <div>
             <h4 className="text-text-main font-bold mb-6">{t('footer.products')}</h4>
             <ul className="space-y-4 text-sm text-text-muted">
-              <li><Link to="/indicators" className="hover:text-accent-green transition-colors">Logic Imprint</Link></li>
-              <li><Link to="/indicators" className="hover:text-accent-green transition-colors">Logic Footprint</Link></li>
-              <li><Link to="/indicators" className="hover:text-accent-green transition-colors">Logic Profile</Link></li>
+              <li><Link to="/indicators" className="hover:text-accent-primary transition-colors">Logic Imprint</Link></li>
+              <li><Link to="/indicators" className="hover:text-accent-primary transition-colors">Logic Footprint</Link></li>
+              <li><Link to="/indicators" className="hover:text-accent-primary transition-colors">Logic Profile</Link></li>
             </ul>
           </div>
 
@@ -64,9 +64,9 @@ export const Footer = () => {
           <div>
             <h4 className="text-text-main font-bold mb-6">{t('footer.support')}</h4>
             <ul className="space-y-4 text-sm text-text-muted">
-              <li><Link to="/resources" className="hover:text-accent-green transition-colors">{t('nav.resources')}</Link></li>
-              <li><Link to="/contact" className="hover:text-accent-green transition-colors">{t('footer.contact')}</Link></li>
-              <li><Link to="/faq" className="hover:text-accent-green transition-colors">FAQ</Link></li>
+              <li><Link to="/resources" className="hover:text-accent-primary transition-colors">{t('nav.resources')}</Link></li>
+              <li><Link to="/contact" className="hover:text-accent-primary transition-colors">{t('footer.contact')}</Link></li>
+              <li><Link to="/faq" className="hover:text-accent-primary transition-colors">FAQ</Link></li>
             </ul>
           </div>
 
@@ -78,7 +78,7 @@ export const Footer = () => {
               <li><a href="#" className="hover:text-text-main transition-colors">Terms of Service</a></li>
             </ul>
             <div className="mt-6 p-4 rounded-lg bg-dark-800 border border-dark-700 flex items-center gap-3">
-              <ShieldCheck className="text-accent-green" size={24} />
+              <ShieldCheck className="text-accent-primary" size={24} />
               <span className="text-[10px] text-text-muted uppercase font-bold tracking-wider">
                 Secure SSL Encryption
               </span>

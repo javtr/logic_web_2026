@@ -8,10 +8,10 @@ import { ContactForm } from '../components/ContactForm';
 // los links reales más adelante. Cada card es un <button> en vez de <a> para
 // que NO naveguen a ningún lado y sea explícito que no hacen nada todavía.
 const channelKeys = [
-  { id: 'discord', icon: MessageCircle, accent: 'text-indigo-400', glow: 'hover:border-indigo-400/40 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)]' },
-  { id: 'telegram', icon: Send, accent: 'text-sky-400', glow: 'hover:border-sky-400/40 hover:shadow-[0_0_20px_rgba(56,189,248,0.15)]' },
-  { id: 'email', icon: Mail, accent: 'text-accent-green', glow: 'hover:border-accent-green/40 hover:shadow-[0_0_20px_rgba(0,230,118,0.15)]' },
-  { id: 'twitter', icon: AtSign, accent: 'text-text-main', glow: 'hover:border-text-muted/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.08)]' },
+  { id: 'discord', icon: MessageCircle, accent: 'text-indigo-400', glow: 'hover:border-indigo-400/40 hover:shadow-[0_0_20px_theme(colors.indigo.400/15%)]' },
+  { id: 'telegram', icon: Send, accent: 'text-sky-400', glow: 'hover:border-sky-400/40 hover:shadow-[0_0_20px_theme(colors.sky.400/15%)]' },
+  { id: 'email', icon: Mail, accent: 'text-accent-primary', glow: 'hover:border-accent-primary/40 hover:shadow-[0_0_20px_theme(colors.accent.primary/15%)]' },
+  { id: 'twitter', icon: AtSign, accent: 'text-text-main', glow: 'hover:border-text-muted/40 hover:shadow-[0_0_20px_theme(colors.text.main/8%)]' },
 ];
 
 const ChannelCard = ({ icon: Icon, name, handle, description, accent, glow, onClick }) => {
@@ -22,7 +22,7 @@ const ChannelCard = ({ icon: Icon, name, handle, description, accent, glow, onCl
       whileHover={{ y: -2 }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
       aria-label={`${name} — ${handle}`}
-      className={`w-full text-left bg-dark-800 border border-dark-700 rounded-xl p-4 transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue ${glow}`}
+      className={`w-full text-left bg-dark-800 border border-dark-700 rounded-xl p-4 transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-secondary ${glow}`}
     >
       <div className="flex items-start gap-4">
         <div className={`shrink-0 w-10 h-10 rounded-lg bg-dark-900 border border-dark-700 flex items-center justify-center ${accent} group-hover:scale-110 transition-transform`}>
@@ -30,7 +30,7 @@ const ChannelCard = ({ icon: Icon, name, handle, description, accent, glow, onCl
         </div>
         <div className="min-w-0 flex-1">
           <h3 className="font-semibold text-text-main text-sm mb-0.5">{name}</h3>
-          <p className="text-xs text-accent-blue font-medium mb-1.5 truncate">{handle}</p>
+          <p className="text-xs text-accent-secondary font-medium mb-1.5 truncate">{handle}</p>
           <p className="text-xs text-text-muted leading-relaxed">{description}</p>
         </div>
       </div>
@@ -53,7 +53,7 @@ export const Contact = () => {
     <div className="min-h-screen bg-dark-900">
       {/* HERO */}
       <section className="relative pt-32 pb-12 px-6 text-center overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-accent-blue/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-accent-secondary/10 blur-[120px] rounded-full pointer-events-none" />
         <div className="relative z-10 max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-text-main tracking-tight mb-4">
             {t('contact.title')}

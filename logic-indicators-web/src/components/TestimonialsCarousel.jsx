@@ -152,7 +152,7 @@ export const TestimonialsCarousel = () => {
           type="button"
           onClick={retreat}
           aria-label={t('home.carouselPrev')}
-          className="p-2 rounded-lg border border-dark-700 hover:border-dark-600 text-text-muted hover:text-text-main transition-colors focus:outline-none focus:ring-2 focus:ring-accent-blue/50"
+          className="p-2 rounded-lg border border-dark-700 hover:border-dark-600 text-text-muted hover:text-text-main transition-colors focus:outline-none focus:ring-2 focus:ring-accent-secondary/50"
         >
           <ChevronLeft size={20} aria-hidden="true" />
         </button>
@@ -160,7 +160,7 @@ export const TestimonialsCarousel = () => {
           type="button"
           onClick={togglePause}
           aria-label={userPaused ? t('home.carouselPlay') : t('home.carouselPause')}
-          className="p-2 rounded-lg border border-dark-700 hover:border-dark-600 text-text-muted hover:text-text-main transition-colors focus:outline-none focus:ring-2 focus:ring-accent-blue/50"
+          className="p-2 rounded-lg border border-dark-700 hover:border-dark-600 text-text-muted hover:text-text-main transition-colors focus:outline-none focus:ring-2 focus:ring-accent-secondary/50"
         >
           {userPaused ? <Play size={20} aria-hidden="true" /> : <Pause size={20} aria-hidden="true" />}
         </button>
@@ -168,7 +168,7 @@ export const TestimonialsCarousel = () => {
           type="button"
           onClick={advance}
           aria-label={t('home.carouselNext')}
-          className="p-2 rounded-lg border border-dark-700 hover:border-dark-600 text-text-muted hover:text-text-main transition-colors focus:outline-none focus:ring-2 focus:ring-accent-blue/50"
+          className="p-2 rounded-lg border border-dark-700 hover:border-dark-600 text-text-muted hover:text-text-main transition-colors focus:outline-none focus:ring-2 focus:ring-accent-secondary/50"
         >
           <ChevronRight size={20} aria-hidden="true" />
         </button>
@@ -183,9 +183,9 @@ export const TestimonialsCarousel = () => {
             onClick={() => goTo(i)}
             aria-label={`Go to slide ${i + 1}`}
             aria-current={i === safeIndex ? 'true' : undefined}
-            className={`h-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-accent-blue/50 ${
+            className={`h-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-accent-secondary/50 ${
               i === safeIndex
-                ? 'w-6 bg-accent-blue'
+                ? 'w-6 bg-accent-secondary'
                 : 'w-2 bg-dark-700 hover:bg-dark-600'
             }`}
           />

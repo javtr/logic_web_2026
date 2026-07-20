@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { Button } from '../components/Button';
@@ -14,14 +14,26 @@ export const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // PASO 1: Solicitar el código al servidor
+
+// AUTO-LOGIN: Si el usuario ya tiene token, lo enviamos directo al Dashboard
+  useEffect(() => {
+    const existingToken = localStorage.getItem('logic_token');
+    const existingEmail = localStorage.getItem('logic_user_email');
+    
+    if (existingToken && existingEmail) {
+      navigate('/dashboard');
+    }
+  }, [navigate]);
+
+// PASO 1: Solicitar el código al servidor
   const handleRequestOTP = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
 
     try {
-      const response = await fetch('https://admin.logicindicators.com/api/v1/members/request-otp', {
+      // Ajusta la URL al nuevo dominio o puerto del microservicio de miembros
+      const response = await fetch('https://members.logicindicators.com/api/v1/members/request-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email })
@@ -47,8 +59,15 @@ export const Login = () => {
     setError('');
 
     try {
-      const response = await fetch(`https://admin.logicindicators.com/api/v1/members/verify-otp?email=${email}&codigo=${otp}`, {
-        method: 'POST'
+      // EL FIX DE SEGURIDAD: El código y email ya no viajan en la URL. 
+      // Se envían de forma segura en el Body del POST.
+      const response = await fetch('https://members.logicindicators.com/api/v1/members/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          email: email, 
+          codigo: otp 
+        })
       });
       
       const data = await response.json();
@@ -69,6 +88,7 @@ export const Login = () => {
       setIsLoading(false);
     }
   };
+
 
   return (
     <div className="min-h-screen bg-dark-900 flex flex-col justify-center items-center relative overflow-hidden px-6">
@@ -103,7 +123,7 @@ export const Login = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     placeholder="ejemplo@correo.com"
-                    className="w-full bg-dark-900 border border-dark-700 text-text-main text-sm rounded-lg focus:ring-1 focus:ring-accent-blue focus:border-accent-blue block pl-10 p-3 outline-none"
+                    className="w-full bg-dark-900 border border-dark-700 text-text-main text-sm rounded-lg focus:ring-1 focus:ring-accent-secondary focus:border-accent-secondary block pl-10 p-3 outline-none"
                   />
                 </div>
               </div>
@@ -130,7 +150,7 @@ export const Login = () => {
                     required
                     maxLength={6}
                     placeholder="000000"
-                    className="w-full bg-dark-900 border border-dark-700 text-text-main text-xl tracking-[1em] text-center rounded-lg focus:ring-1 focus:ring-accent-blue focus:border-accent-blue block p-3 outline-none"
+                    className="w-full bg-dark-900 border border-dark-700 text-text-main text-xl tracking-[1em] text-center rounded-lg focus:ring-1 focus:ring-accent-secondary focus:border-accent-secondary block p-3 outline-none"
                   />
                 </div>
               </div>

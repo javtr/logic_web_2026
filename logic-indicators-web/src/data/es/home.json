@@ -1,27 +1,27 @@
 {
-  "suiteTitle": "Nuestra Suite Premium",
-  "suiteSubtitle": "Construida específicamente para NinjaTrader 8.",
-  "testimonialsTitle": "La Confianza de los Traders",
+  "suiteTitle": "El Arsenal Definitivo: Análisis de Volumen y Estructura de Mercado",
+  "suiteSubtitle": "Ve más allá de los indicadores tradicionales basados únicamente en el precio; adquiere un ecosistema de nivel institucional. Desde perfiles de volumen de alta fidelidad hasta algoritmos de ejecución. Todo es fácil de configurar gracias a nuestro sistema de plantillas preestablecidas listas para usar. Pasa tu tiempo operando, no configurando.",
+  "testimonialsTitle": "Lo que dicen quienes ya no operan a ciegas",
   "testimonials": [
     {
-      "quote": "Desde que incorporé Logic Imprint a mi rutina diaria, mi lectura de absorción en niveles clave cambió por completo. Herramienta esencial para NT8.",
-      "author": "Michael R., Prop Trader"
+      "quote": "Mi operativa dio un giro al apoyarme en el indicador Big Trades para detectar el momentum exacto del mercado. Las herramientas estándar son demasiado discrecionales, pero la precisión que ofrece esta suite para ver la agresión institucional no tiene comparación. A esto se le suma un servicio de soporte técnico que siempre está dispuesto a responder y ayudar.",
+      "author": "Thomas Johnsen, Prop Trader"
     },
     {
-      "quote": "Los footprint son increíblemente ligeros comparados con otros que he probado. No me traba NinjaTrader ni en momentos de alta volatilidad.",
-      "author": "David S., Trader Minorista"
+      "quote": "La herramienta es excelente. Venía de usar otras opciones en el mercado para el volumen y las grandes transacciones, pero el lag me hacía perder operaciones. Su indicador es muy suave, no ralentiza el equipo y detecta todo con total exactitud. Definitivamente me quedo con ustedes.",
+      "author": "Alvaro Correa Q., Trader Minorista"
     },
     {
-      "quote": "Corro tres indicadores de Logic en seis gráficos al mismo tiempo y la plataforma se mantiene fluida. La mejor relación rendimiento-precio que encontré en el ecosistema NT8.",
-      "author": "Sarah K., Day Trader de Futuros"
+      "quote": "Esta suite de indicadores ha transformado por completo mi forma de operar. Anteriormente, evitaba modificar parámetros o cambiar de marcos temporales durante la sesión, ya que el proceso de carga tardaba minutos y congelaba mi gráfico. Ahora, la plataforma responde de forma instantánea a cualquier ajuste. Poder cambiar toda la configuración en tiempo real y sin latencia es una ventaja extraordinaria.",
+      "author": "Crystal Ziemann, Day Trader de Futuros"
     },
     {
-      "quote": "Logic Profile me cambió por completo cómo leo order flow. Detecto absorción y agotamiento en segundos, cosas que antes se me pasaban por horas.",
-      "author": "Anthony P., Swing Trader"
+      "quote": "Adquirí el paquete completo de herramientas hace casi un año y la evolución de mi operativa ha sido impresionante. Contar con toda la suite analítica integrada me ha brindado la claridad necesaria para mantener una consistencia impecable y unos resultados de rentabilidad excepcionales a lo largo del tiempo. Es una tecnología que realmente marca la diferencia en el rendimiento diario.",
+      "author": "Ivan Mantilla, Trader Minorista"
     },
     {
-      "quote": "Solo el soporte al cliente ya vale la suscripción. El equipo realmente entiende de trading, no solo de código. Combinación poco común.",
-      "author": "Carlos M., Trader Independiente"
+      "quote": "El impacto de estos indicadores en mi trading ha sido absoluto. Antes, la lentitud de procesamiento me disuadía de hacer ajustes clave, como cambiar de marco temporal, lo que limitaba seriamente mi capacidad de análisis. Ahora, la plataforma procesa cualquier modificación al instante. Esta agilidad técnica me permite adaptar mi operativa en tiempo real sin dudarlo, lo cual es una verdadera maravilla.",
+      "author": "William Lawler, Trader Independiente"
     }
   ],
   "carouselPrev": "Testimonio anterior",
@@ -30,16 +30,17 @@
   "carouselPlay": "Reproducir carrusel",
   "faqTitle": "Preguntas Frecuentes",
   "trust": {
-    "title": "Pago Rápido y Seguro",
-    "subtitle": "Tu información de pago está encriptada y procesada de forma segura. Cada transacción está protegida con seguridad de grado industrial.",
-    "sslBadge": "Encriptación SSL de 256 bits",
+    "title": "Transacción 100% Segura",
+    "subtitle": "Tu información financiera está completamente protegida. Procesamos todas nuestras transacciones a través de Lemon Squeezy, una de las plataformas de pago más reconocidas y seguras a nivel mundial, garantizando un cifrado de grado bancario (AES-256). Nosotros no almacenamos los datos de tu tarjeta ni tu información financiera en ningún momento.",
+    "sslBadge": "Pago cifrado de extremo a extremo.",
+    "sslBadge2": "Transacción 100% segura y encriptada.",
     "paymentMethods": {
       "title": "Medios de Pago Aceptados",
       "methods": ["Lemon Squeezy", "Visa", "Mastercard", "American Express", "PayPal"]
     }
   },
   "ctaTitle": "¿Listo para elevar tu trading?",
-  "ctaSubtitle": "Únete a la comunidad de traders que usan Logic Indicators para obtener una ventaja en los mercados.",
-  "exploreAll": "Explorar Funciones",
-  "choosePlan": "Elegir un Plan"
+  "ctaSubtitle": "Toma el control hoy mismo. Instala nuestra suite y comienza a rastrear las huellas institucionales con el mejor rendimiento que NinjaTrader 8 puede ofrecer.",
+  "choosePlan": "Comprar Ahora",
+  "exploreAll": "Hablar con Soporte"
 }

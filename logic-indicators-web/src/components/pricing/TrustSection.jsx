@@ -46,8 +46,8 @@ export const TrustSection = () => {
 
         {/* SSL Badge centrado */}
         <div className="flex justify-center mb-10">
-          <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-accent-green/10 border border-accent-green/30">
-            <Lock size={20} className="text-accent-green" />
+          <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-accent-primary/10 border border-accent-primary/30">
+            <Lock size={20} className="text-accent-primary" />
             <span className="font-semibold text-text-main">{trust.sslBadge}</span>
           </div>
         </div>
@@ -74,8 +74,8 @@ export const TrustSection = () => {
 
           {/* Trust reinforcement (visual cue) */}
           <div className="mt-8 inline-flex items-center gap-2 text-text-muted text-sm">
-            <ShieldCheck size={16} className="text-accent-green" />
-            <span>{trust.sslBadge}</span>
+            <ShieldCheck size={16} className="text-accent-primary" />
+            <span>{trust.sslBadge2}</span>
           </div>
         </div>
       </div>

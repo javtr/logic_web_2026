@@ -7,22 +7,23 @@ import { TrustSection } from '../components/pricing/TrustSection';
 import { FAQSection } from '../components/FAQSection';
 import { TestimonialsCarousel } from '../components/TestimonialsCarousel';
 import { resolveImage } from '../data/imageResolver';
-import { INDICATOR_ORDER } from '../data';
+import { getActiveIndicatorIds } from '../data';
 
 export const Home = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
-  // Indicadores que se muestran en la Home. Usamos el mismo orden que en /indicators
-  // para que agregar un indicador nuevo en data/index.js (INDICATOR_ORDER) y en los JSON
-  // de en/ y es/ lo haga aparecer automáticamente tanto aquí como en /indicators.
-  const featuredIndicators = INDICATOR_ORDER;
+  // Indicadores que se muestran en la Home. Usa getActiveIndicatorIds para que
+  // solo aparezcan los que están definidos en el JSON del idioma actual.
+  // Si agregás un indicador en INDICATOR_ORDER y en los JSONs, aparece solo.
+  // Si lo borrás del JSON, se oculta solo.
+  const featuredIndicators = getActiveIndicatorIds(language);
 
   return (
     <div className="flex flex-col gap-24 pb-24">
 
       {/* 1. HERO SECTION */}
       <section className="relative pt-32 pb-20 px-6 text-center overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent-green/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent-primary/10 blur-[120px] rounded-full pointer-events-none" />
         <div className="relative z-10 max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-extrabold text-text-main tracking-tight mb-8">
             {t('hero.title')}
@@ -92,7 +93,7 @@ export const Home = () => {
       {/* 6. CTA FINAL */}
       <section className="px-6 container mx-auto mb-12">
         <div className="bg-gradient-to-r from-dark-800 to-dark-700 p-12 rounded-3xl border border-dark-600 text-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-accent-blue/10 blur-[80px] rounded-full pointer-events-none" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-accent-secondary/10 blur-[80px] rounded-full pointer-events-none" />
           <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4 relative z-10">{t('home.ctaTitle')}</h2>
           <p className="text-text-muted text-lg mb-8 max-w-2xl mx-auto relative z-10">{t('home.ctaSubtitle')}</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">

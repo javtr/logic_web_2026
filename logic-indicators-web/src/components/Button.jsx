@@ -1,7 +1,7 @@
 // src/components/Button.jsx
 const variants = {
-  primary: "bg-accent-green text-dark-900 hover:shadow-[0_0_20px_rgba(0,230,118,0.5)]",
-  secondary: "border border-accent-blue text-accent-blue hover:bg-accent-blue/10",
+  primary: "bg-accent-primary text-dark-900 hover:shadow-[0_0_20px_theme(colors.accent.primary/50%)]",
+  secondary: "border border-accent-secondary text-accent-secondary hover:bg-accent-secondary/10",
   outline: "border border-dark-700 text-text-muted hover:text-text-main hover:border-text-muted"
 };
 

@@ -29,25 +29,25 @@ export const Navbar = () => {
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="text-xl font-bold tracking-tighter text-text-main">
-            LOGIC<span className="text-accent-green">INDICATORS</span>
+            LOGIC<span className="text-accent-primary">INDICATORS</span>
           </Link>
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted whitespace-nowrap">
-            <Link to="/indicators" className="hover:text-accent-green transition-colors">{t('nav.indicators')}</Link>
+            <Link to="/indicators" className="hover:text-accent-primary transition-colors">{t('nav.indicators')}</Link>
             <ResourcesDropdown />
             <Link
               to="/resources/free-indicators"
-              className="hover:text-accent-green transition-colors flex items-center gap-1"
+              className="hover:text-accent-primary transition-colors flex items-center gap-1"
             >
-              <Gift size={14} className="text-accent-green" />
+              <Gift size={14} className="text-accent-primary" />
               {t('nav.freeIndicators')}
             </Link>
-            <Link to="/pricing" className="hover:text-accent-green transition-colors flex items-center gap-1">
-              <Tag size={14} className="text-accent-green" />
+            <Link to="/pricing" className="hover:text-accent-primary transition-colors flex items-center gap-1">
+              <Tag size={14} className="text-accent-primary" />
               {t('nav.pricing')}
             </Link>
-            <Link to="/contact" className="hover:text-accent-green transition-colors">{t('nav.contact')}</Link>
+            <Link to="/contact" className="hover:text-accent-primary transition-colors">{t('nav.contact')}</Link>
             <button
               onClick={toggleLanguage}
               aria-label={t('nav.switchLanguage')}

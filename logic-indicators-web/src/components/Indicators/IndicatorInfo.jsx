@@ -1,30 +1,74 @@
+// src/components/Indicators/IndicatorInfo.jsx
+// Card de indicador para la página /indicators.
+//
+// Estructura del source order (también es el orden visual en mobile):
+//   1. Título + subtítulo
+//   2. Imagen
+//   3. Descripción + botón
+//
+// En mobile se renderiza en ese orden natural (grid de 1 columna).
+// En desktop (md+) se reorganiza con CSS Grid para que se vea:
+//   ┌────────────────┬────────────────┐
+//   │ Título         │ Descripción    │  ← fila 1
+//   │ Subtítulo      │ [ Botón ]      │
+//   ├────────────────┴────────────────┤  ← border-t sobre la imagen
+//   │            Imagen              │  ← fila 2 (col-span-2)
+//   └─────────────────────────────────┘
+//
+// Accesibilidad: el orden del DOM es siempre título → imagen → descripción.
+// En mobile coincide con el orden visual. En desktop el orden de lectura
+// para screen readers difiere levemente del visual, pero para una card de
+// listado el impacto es bajo.
 import { Button } from '../Button';
 import { Link } from 'react-router-dom';
 
 export const IndicatorInfo = ({ title, subtitle, description, image, buttonText, slug }) => (
   <div className="bg-dark-800 border border-dark-700 rounded-3xl overflow-hidden">
-    {/* Header */}
-    <div className="flex items-center justify-between p-8 pb-4 border-b border-dark-700">
-      <div className="flex-shrink-0 w-1/2">
+    <div className="
+      grid
+      grid-cols-1
+      md:grid-cols-2
+      gap-y-4
+      md:gap-x-8
+      p-4 md:p-8
+    ">
+      {/* 1. Título + subtítulo
+            - mobile: fila 1 (auto-place)
+            - desktop: col 1, fila 1 */}
+      <div className="w-full md:col-start-1 md:row-start-1">
         <h3 className="text-3xl font-bold text-text-main">{title}</h3>
         <h4 className="text-xl font-semibold text-text-muted mt-2">{subtitle}</h4>
       </div>
-      <div className="flex flex-col items-start w-1/2 gap-3">
+
+      {/* 2. Imagen
+            - mobile: fila 2 (auto-place)  ← orden mobile
+            - desktop: fila 2, col-span-2 (full width) */}
+      <div className="
+        md:col-span-2
+        md:row-start-2
+        sm:px-4 md:px-8
+        md:pt-4 md:border-t md:border-dark-700
+      ">
+        <div className="h-48 sm:h-64 md:h-80 w-full">
+          <img src={image} alt={title} className="w-full h-full object-cover rounded-2xl" />
+        </div>
+      </div>
+
+      {/* 3. Descripción + botón
+            - mobile: fila 3 (auto-place)  ← orden mobile
+            - desktop: col 2, fila 1 */}
+      <div className="
+        w-full
+        flex flex-col items-start gap-3
+        md:col-start-2 md:row-start-1
+      ">
         <p className="text-lg font-medium text-text-muted">{description}</p>
         <Link to={`/indicators/${slug}`} className="inline-block w-full">
-            <Button variant="primary" className="text-sm px-4 py-1.5">
-              {buttonText}
-            </Button>
-          </Link>
-      </div>
-    </div>
-
-    {/* Image */}
-    <div className="px-10 md:px-16 pb-8">
-      <div className="h-80 w-full">
-        <img src={image} alt={title} className="w-full h-full object-cover rounded-2xl" />
+          <Button variant="primary" className="text-sm px-4 py-1.5">
+            {buttonText}
+          </Button>
+        </Link>
       </div>
     </div>
   </div>
 );
-

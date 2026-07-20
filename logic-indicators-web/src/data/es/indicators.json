@@ -4,80 +4,139 @@
     "slug": "logic-footprint",
     "imageKey": "footprint",
     "name": "Logic Footprint",
-    "tagline": "Volumen en Cada Nivel de Precio",
-    "shortDescription": "Visualiza el volumen ejecutado en cada nivel de precio para identificar zonas de alta liquidez y absorción.",
-    "longDescription": "Logic Footprint revoluciona la forma en que ves la distribución del volumen a través de los niveles de precio. A diferencia de los indicadores tradicionales de volumen que muestran el volumen total, Logic Footprint revela exactamente dónde se concentró la presión compradora y vendedora en cada nivel de precio. Esta vista granular te permite identificar zonas de alta liquidez donde las instituciones acumulan posiciones, así como áreas de absorción donde se llenaron órdenes grandes. Al entender el volumen en cada nivel, puedes detectar potenciales zonas de soporte y resistencia con notable precisión. La visualización en tiempo real facilita detectar anomalías y actividad inusual que precede a movimientos mayores de precio."
+    "tagline": "Radiografía del volumen y la agresividad del mercado.",
+    "shortDescription": "Observa la verdadera interacción entre oferta y demanda. Detecta absorciones y desequilibrios con gráficos de clústeres de máxima claridad visual. Rendimiento sin latencia y plantillas preestablecidas listas para operar al instante.",
+    "longDescription": "Observa la interacción exacta entre oferta y demanda dentro de cada vela. Nuestro Footprint desglosa el volumen por nivel de precio para detectar absorciones y desequilibrios en tiempo real. Disfruta de gráficos de clústeres con estética premium y máxima claridad, impulsados por un motor que soporta alta volatilidad sin congelar tu plataforma. Configúralo en segundos con nuestras plantillas preestablecidas.",
+    "paragraphs": [
+      "El Interior de la Acción del Precio: A diferencia de las velas japonesas tradicionales que solo muestran aperturas, cierres y extremos, el gráfico de clústeres (Footprint) expone la verdadera mecánica de la subasta. Al desglosar el volumen operado en cada nivel de precio específico, separando las órdenes agresivas de compra (Ask) y venta (Bid), esta herramienta te permite ver exactamente dónde están ocurriendo las batallas por el control. Podrás identificar zonas de absorción, desequilibrios en el flujo de órdenes y los nodos de mayor volumen, dándote la ventaja analítica necesaria para operar futuros con precisión milimétrica.",
+      "Claridad Visual y Versatilidad sin Precedentes: Hemos llevado las capacidades gráficas de las plataformas de Order Flow más prestigiosas directamente a NinjaTrader 8. Nuestro Footprint destaca por una claridad visual excepcional, construida sobre el uso de hasta tres columnas totalmente configurables por vela. Tienes el control absoluto: personaliza perfiles de volumen internos, aplica mapas de calor (heatmaps) para destacar instantáneamente las zonas de alta liquidez, y ajusta opacidades y colores a tu medida. Esta versatilidad te permite filtrar el ruido del mercado y adaptar el gráfico exactamente a tu estilo visual.",
+      "Rendimiento Extremo para Alta Volatilidad: El mayor cuello de botella del análisis de volumen en NinjaTrader 8 es la latencia. Para solucionar esto, nuestro Footprint ha sido desarrollado con un motor de rendimiento optimizado que procesa la entrada completa de datos de manera ultraeficiente. Esto garantiza que el indicador soporte sin problemas las aperturas de sesiones y los momentos de extrema volatilidad. Tu gráfico y tus lecturas de clústeres fluirán en tiempo real, sin retrasos ni bloqueos en la plataforma.",
+      "Pasa a la Acción en Segundos: Toda esta potencia analítica y gráfica no tiene por qué ser difícil de implementar. Hemos eliminado la frustración de las configuraciones complejas para que pases tu tiempo operando. El indicador incluye plantillas preestablecidas (presets) precargadas, diseñadas para diferentes estilos de lectura. Además, puedes descargar y aplicar nuevos presets directamente desde nuestra web con un par de clics, logrando una configuración profesional e inmediata."
+    ],
+    "contentImages": [
+      "footprint_d1",
+      "footprint_d2",
+      "footprint_d3"
+    ]
   },
   "footer": {
     "id": "footer",
     "slug": "logic-footer",
     "imageKey": "footer",
-    "name": "Logic Footer",
-    "tagline": "Flujo de Órdenes al Cierre",
-    "shortDescription": "Sigue el order flow al cierre de cada vela para identificar dónde se libra la verdadera batalla entre compradores y vendedores.",
-    "longDescription": "Logic Footer revela las dinámicas del order flow en la base de cada vela de precio, mostrándote exactamente dónde chocaron compradores y vendedores agresivos al cierre. Al hacer zoom en los momentos finales de la acción del precio, puedes detectar patrones de absorción, movimientos de agotamiento y cambios de momentum que son invisibles en gráficos estándar. Logic Footer complementa cualquier estrategia basada en volumen al resaltar las operaciones que más importan: las que cerraron la vela. Ya sea que busques confirmación de un retroceso o validación de un breakout, el footprint al pie de cada vela cuenta la verdadera historia de quién ganó la ronda."
+    "name": "Footer",
+    "tagline": "Estadísticas clave y resumen del flujo de órdenes por vela.",
+    "shortDescription": "Complemento esencial del Footprint con 23 métricas por vela, incluyendo Delta y Volumen. Cuenta con mapas de calor, modo Data Box interactivo, rendimiento sin latencia y plantillas listas para usar.",
+    "longDescription": "Complemento esencial del Footprint con 23 métricas por vela, incluyendo Delta y Volumen. Cuenta con mapas de calor, modo Data Box interactivo, rendimiento sin latencia y plantillas listas para usar.",
+    "paragraphs": [
+      "El Resumen Estadístico de la Subasta: En las plataformas de trading de nivel institucional, el análisis de clústeres no está completo sin un panel estadístico preciso en la base de cada vela. El indicador Footer actúa como el veredicto final de la batalla entre compradores y vendedores. Al resumir matemáticamente la interacción del Order Flow, proporcionando el delta neto, divergencias y el volumen total de la rotación, esta herramienta convierte los datos microscópicos brutos en información procesable. Es el filtro definitivo para confirmar el agotamiento o la agresión direccional al cierre de cada barra.",
+      "Análisis Exhaustivo con 23 Métricas: Hemos diseñado nuestro Footer para ser el complemento más grande y robusto de tu gráfico Footprint en NinjaTrader 8. Te entregamos un panel analítico masivo que cuenta con alrededor de 23 métricas y parámetros complementarios para evaluar cada vela. Tendrás acceso inmediato a variables críticas como el delta máximo y mínimo, volumen operado, secuencias y desgloses precisos de la presión de mercado. Esto te otorga una ventaja absoluta al permitirte auditar estadísticamente el comportamiento del precio con una profundidad inigualable.",
+      "Modo Data Box y Mapas de Calor: La agilidad visual es indispensable en el trading. Para evitar que desvíes la mirada hacia la parte inferior del gráfico constantemente, hemos integrado un modo Data Box que te permite visualizar esta información crítica directamente junto a la acción del precio. Adicionalmente, este indicador incorpora opciones gráficas de vanguardia, destacando el uso de mapas de calor (Heatmaps). Esta función colorea dinámicamente las estadísticas, permitiéndote identificar picos de volumen, anomalías en el delta o extremos de liquidez en fracciones de segundo.",
+      "Cálculo Óptimo y Configuración Inmediata: Procesar hasta 23 puntos de datos estadísticos por cada vela de forma simultánea es una tarea computacional exigente, pero nuestro motor de rendimiento optimizado asegura que tu plataforma NinjaTrader 8 no sufra retrasos. La extracción de datos se realiza de forma fluida, manteniendo tus gráficos en estricto tiempo real. Además, conservarás la practicidad de nuestra suite: gracias al sistema de presets integrados, puedes cargar configuraciones preestablecidas o descargar plantillas desde la web, logrando un entorno de trabajo profesional al instante sin configuraciones tediosas."
+    ],
+    "contentImages": [
+      "footer_d01",
+      "footer_d02",
+      "footer_d03"
+    ]
   },
   "profile": {
     "id": "profile",
     "slug": "logic-profile",
     "imageKey": "profile",
-    "name": "Logic Profile",
-    "tagline": "Perfiles de Volumen Avanzados",
-    "shortDescription": "Perfiles de volumen avanzados para mapear las áreas de valor y los nodos de alto/bajo volumen.",
-    "longDescription": "Logic Profile lleva el análisis de perfil de volumen al siguiente nivel mapeando áreas de valor, nodos de alto volumen y nodos de bajo volumen con precisión. Este indicador te ayuda a entender la estructura del mercado revelando dónde el precio pasó más tiempo operando y dónde se movió rápidamente. Al analizar estos patrones, puedes medir la psicología del trader y el posicionamiento institucional. Los límites del Área de Valor Alta y Baja actúan como niveles dinámicos de soporte y resistencia, mientras que las líneas POC (Punto de Control) muestran dónde ocurrió la negociación más pesada. Usa esta información para anticipar posibles reversiones y confirmar la fuerza de la tendencia."
+    "name": "Volume Profile",
+    "tagline": "Mapa de liquidez y aceptación del precio en la subasta.",
+    "shortDescription": "Analiza la subasta con perfiles de volumen avanzados. Combina métricas de Delta y TPO en dos columnas, proyecta niveles clave como el POC y opera sin latencia usando plantillas listas.",
+    "longDescription": "Analiza la subasta con perfiles de volumen avanzados. Combina métricas de Delta y TPO en dos columnas, proyecta niveles clave como el POC y opera sin latencia usando plantillas listas.",
+    "paragraphs": [
+      "El Mapa de la Subasta del Mercado: El Volume Profile es la herramienta fundamental para entender la verdadera estructura del mercado a través de la Teoría de la Subasta. A diferencia de un gráfico temporal tradicional, este indicador organiza la actividad operativa basándose en el precio, revelando visualmente dónde se está construyendo el volumen institucional. Al identificar el Punto de Control (POC) y el Área de Valor (Value Area), obtienes una radiografía clara de las zonas de aceptación y rechazo, lo que te permite anticipar las áreas clave de soporte, resistencia y rotación del precio con una lógica profesional.",
+      "Análisis Dual y Versatilidad Gráfica: Hemos diseñado una arquitectura visual altamente adaptable que incluye una estructura de doble columna. Esta característica te permite un nivel de personalización sin precedentes: en cada columna puedes configurar de manera independiente el tipo de información que deseas ver, eligiendo entre Volumen puro, Delta, TPO (Time Price Opportunity), o combinaciones de Volumen y Delta al mismo tiempo. Todo esto está respaldado por un inmenso arsenal de opciones gráficas que garantizan una lectura estética, limpia y adaptada a tus exigencias visuales.",
+      "Proyección de Niveles y Métricas Exactas: Mantener el rastro de las zonas estructurales es vital para la toma de decisiones. Por ello, nuestro indicador incluye opciones únicas y dinámicas para el seguimiento del Value Area y el POC. Puedes configurar la extensión de estas líneas importantes de varias formas: en modo Naked (hasta que el precio las ponga a prueba en el futuro), hasta el inicio del siguiente perfil, o con una proyección infinita. Además, la herramienta te proporciona un panel de métricas completo que desglosa todos los datos estadísticos del perfil, entregándote el contexto matemático preciso de la sesión.",
+      "Máximo Rendimiento y Despliegue Inmediato: Calcular y renderizar múltiples perfiles, deltas y líneas extendidas suele ser el principal causante de la congestión en las plataformas de trading. Sin embargo, este indicador comparte el mismo motor de rendimiento de nuestra suite, asegurando un procesamiento de datos sin latencia y una navegación fluida en NinjaTrader 8, incluso en los días de mayor volatilidad. Y para facilitar tu flujo de trabajo, cuenta con el sistema de presets integrados: elige entre nuestras plantillas preestablecidas o descárgalas de la web para tener tu espacio de trabajo configurado como un profesional en cuestión de clics."
+    ],
+    "contentImages": [
+      "profile_d01",
+      "profile_d02",
+      "profile_d03"
+    ]
   },
   "composite": {
     "id": "composite",
     "slug": "logic-composite",
     "imageKey": "composite",
     "name": "Logic Composite",
-    "tagline": "Vista Combinada de Order Flow",
-    "shortDescription": "Unifica múltiples flujos de datos de order flow en una sola vista compuesta para una imagen completa del mercado.",
-    "longDescription": "Logic Composite reúne múltiples indicadores de order flow en una vista unificada, eliminando la necesidad de alternar entre gráficos y herramientas. Al agregar datos de footprint, delta, perfil de volumen y otras fuentes, Composite te ofrece la imagen completa del mercado en una sola pantalla. El peso personalizable te permite priorizar las señales que más importan para tu estrategia, mientras que el sistema de puntuación compuesta resalta zonas de confluencia donde múltiples puntos de datos coinciden. Este es el indicador para traders que quieren la imagen grande sin sacrificar el detalle. Detecta configuraciones de alta probabilidad más rápido y opera con la confianza de verlo todo a la vez."
+    "tagline": "Visión macro de la subasta y distribución de liquidez.",
+    "shortDescription": "Construye perfiles a medida dibujando manualmente sobre el gráfico. Anclado a los laterales, conserva el análisis dual de columnas, máximo rendimiento y plantillas preestablecidas para una lectura macro sin latencia.",
+    "longDescription": "Construye perfiles a medida dibujando manualmente sobre el gráfico. Anclado a los laterales, conserva el análisis dual de columnas, máximo rendimiento y plantillas preestablecidas para una lectura macro sin latencia.",
+    "paragraphs": [
+      "La Visión Macro de la Estructura del Mercado: Mientras que los perfiles de sesión muestran la actividad diaria, el Composite Profile te permite comprender la distribución del volumen a nivel macro. En las plataformas de análisis avanzado, esta herramienta es fundamental para agrupar múltiples días, semanas o ciclos en un solo perfil estructural. Al fusionar estos datos, el Composite revela las zonas históricas de equilibrio, los nodos de alto volumen (HVN) y los vacíos de liquidez (LVN), brindándote las coordenadas exactas de las áreas de soporte y resistencia estructurales a largo plazo.",
+      "Control Total con Trazado Manual y Anclaje: Para ofrecerte una flexibilidad analítica absoluta, hemos dotado a nuestro indicador Composite de un modo de trazado manual directamente sobre el gráfico. Esto significa que puedes seleccionar con precisión cualquier rango de la acción del precio para construir tu perfil a medida al instante. Además, el indicador se ancla de forma limpia a la parte derecha o izquierda de tu pantalla, permitiéndote mantener el contexto macro siempre a la vista sin obstruir la lectura de las velas o el flujo de órdenes en tiempo real.",
+      "Análisis Dual y Máxima Personalización: El Composite hereda toda la potencia visual y analítica de nuestro Volume Profile estelar. Mantienes la arquitectura de doble columna, lo que te permite configurar de manera independiente y simultánea métricas avanzadas como el Volumen puro, el Delta o el TPO (Time Price Opportunity) dentro de tu panorama macro. Sumado a esto, cuentas con un extenso catálogo de configuraciones gráficas que te permitirán adaptar colores, opacidades y detalles estéticos para que la lectura de la liquidez sea extremadamente limpia.",
+      "Procesamiento Masivo sin Latencia: Agrupar y calcular el volumen de cientos de miles de velas históricas es la prueba de fuego para cualquier plataforma. Nuestro Composite está impulsado por el mismo motor de rendimiento nativo del resto de la suite, garantizando que puedas cargar áreas de análisis masivas sin experimentar bloqueos ni retrasos en tu entorno de NinjaTrader 8. Y para que pases directamente a la acción, el indicador se integra con nuestro sistema de plantillas preestablecidas (presets), listas para ser aplicadas o descargadas desde la web con un solo clic."
+    ],
+    "contentImages": [
+      "composite_d01",
+      "composite_d02",
+      "composite_d03"
+    ]
   },
   "bigtrades": {
     "id": "bigtrades",
     "slug": "logic-bigtrades",
     "imageKey": "bigtrades",
     "name": "Logic BigTrades",
-    "tagline": "Detección de Operaciones Grandes",
-    "shortDescription": "Detecta operaciones institucionales grandes en tiempo real para seguir dónde se posicionan los grandes jugadores.",
-    "longDescription": "Logic BigTrades resalta las órdenes significativas de tamaño institucional en el momento en que llegan al mercado, brindándote una ventana en tiempo real a la actividad de los jugadores más grandes. Cada operación detectada se grafica en tu chart con información de tamaño, dirección y timing, facilitando seguir el rastro del flujo institucional. Filtra por tamaño mínimo de operación, configura alertas para actividad inusual y analiza patrones históricos para entender cómo se comportan típicamente los grandes jugadores en diferentes condiciones de mercado. Ya seas un scalper buscando momentum inmediato o un swing trader rastreando acumulación, BigTrades te mantiene informado sobre las operaciones que mueven los mercados."
+    "tagline": "Detección precisa de agresión institucional y grandes transacciones.",
+    "shortDescription": "Rastrea transacciones masivas con extrema precisión. Incluye agrupación magnética, escáner de burbujas, trazado de niveles y filtros en tiempo real. Rendimiento sin latencia y plantillas listas para operar al instante.",
+    "longDescription": "Rastrea transacciones masivas con extrema precisión. Incluye agrupación magnética, escáner de burbujas, trazado de niveles y filtros en tiempo real. Rendimiento sin latencia y plantillas listas para operar al instante.",
+    "paragraphs": [
+      "El Rastro de la Agresión en la Cinta: En el trading profesional, leer la cinta (Time and Sales) es crucial, pero interpretar esos datos crudos y rápidos es visualmente agotador. El indicador Big Trades traduce esta información filtrando el ruido del mercado e identificando exclusivamente las órdenes ejecutadas de gran volumen. Al revelar dónde están ocurriendo transacciones masivas e inyecciones agresivas de capital, puedes anticipar roturas estructurales, zonas de fuerte absorción y puntos de agotamiento direccional con una precisión que las velas tradicionales ocultan por completo.",
+      "Innovación Visual y Agrupación Magnética: Para mantener tu gráfico limpio y legible en momentos de alta volatilidad, hemos desarrollado modos visuales únicos. Destaca nuestra 'agrupación magnética', un algoritmo de visualización que condensa inteligentemente múltiples órdenes grandes en zonas de alta densidad, evitando el desorden visual. Además, cuenta con características gráficas avanzadas como mapas de calor (Heatmaps) y modos de escala personalizados, permitiéndote diferenciar visualmente el impacto y tamaño de cada transacción con absoluta claridad estética.",
+      "Arsenal de Análisis y Trazado de Niveles: Este indicador va mucho más allá de dibujar simples círculos o burbujas en el gráfico. Hemos incorporado un escáner de datos para inspeccionar detalladamente cada burbuja, un histograma de volumen integrado y un sistema de alertas sonoras para que nunca te pierdas una inyección de liquidez importante. Sumado a esto, la herramienta te permite crear líneas de niveles de forma automática o manual a partir de estas transacciones, convirtiendo cada agresión masiva en una referencia técnica exacta para el futuro.",
+      "Filtros Dinámicos y Rendimiento Óptimo: Identificar y procesar la actividad de alta frecuencia requiere una eficiencia extrema. Nuestro Big Trades está diseñado para ser altamente óptimo, permitiendo la modificación y configuración de filtros de volumen en estricto tiempo real sin congelar NinjaTrader 8. Mantén tu plataforma rápida, estable y sin latencia, y aprovecha nuestro ecosistema de plantillas preestablecidas (presets) para cargar tus configuraciones y comenzar a rastrear las operaciones institucionales en cuestión de segundos."
+    ],
+    "contentImages": [
+      "bigtrades_d01",
+      "bigtrades_d02",
+      "bigtrades_d03"
+    ]
   },
   "analytics": {
     "id": "analytics",
     "slug": "logic-analytics",
     "imageKey": "analytics",
     "name": "Logic Analytics",
-    "tagline": "Panel de Rendimiento de Trading",
-    "shortDescription": "Analíticas de rendimiento completas para hacer seguimiento a tu edge, identificar patrones y refinar tu estrategia.",
-    "longDescription": "Logic Analytics es tu coach personal de trading, proporcionando insights profundos sobre tu rendimiento en cada operación que tomas. Haz seguimiento de win rate, profit factor, R:R promedio y docenas de otras métricas desglosadas por hora del día, día de la semana, instrumento y condición de mercado. Visualiza tu curva de capital, períodos de drawdown y rachas para entender el ritmo de tu trading. El motor de reconocimiento de patrones identifica qué setups te funcionan mejor y cuáles drenan silenciosamente tu cuenta. Usa estos insights para duplicar tus fortalezas, eliminar tus debilidades y evolucionar como trader en cada sesión."
+    "tagline": "Análisis estadístico profundo por segmentos de mercado.",
+    "shortDescription": "Aísla y analiza porciones del mercado con precisión estadística. Obtén histogramas de volumen, delta acumulado y desviaciones estándar en cajas configurables. Rendimiento óptimo y plantillas preestablecidas listas para operar.",
+    "longDescription": "Aísla y analiza porciones del mercado con precisión estadística. Obtén histogramas de volumen, delta acumulado y desviaciones estándar en cajas configurables. Rendimiento óptimo y plantillas preestablecidas listas para operar.",
+    "paragraphs": [
+      "Escrutinio Estadístico del Mercado: En el trading profesional, no todas las fases de la sesión tienen la misma relevancia. El indicador Analytics te permite aislar áreas específicas de la acción del precio para someterlas a un escrutinio estadístico profundo. Al encerrar un conjunto de velas dentro de una caja de estudio, la herramienta extrae instantáneamente la verdad matemática de ese segmento. Esto te proporciona una visión absoluta sobre el comportamiento del volumen y la fuerza direccional de esa zona, eliminando por completo el ruido externo del resto del gráfico.",
+      "Métricas Matemáticas y Delta Acumulado: Una vez definida el área, Analytics despliega un ecosistema de datos avanzado en su interior. Genera automáticamente un histograma de volumen y una curva de delta acumulado para evaluar la presión constante de la subasta. Además, extrae los datos vitales de las velas encerradas (volumen, delta positivo, delta negativo y rango temporal) y les aplica un rigor estadístico institucional: calcula el promedio, la desviación estándar y el valor máximo esperado (promedio más desviación). Todos estos datos precisos se reflejan visualmente sobre el histograma para una lectura rápida.",
+      "Control Dinámico: Modo Automático y Manual: La versatilidad de esta herramienta se adapta a cualquier plan de trading. Si buscas un análisis sistemático de la jornada, el modo automático traza las cajas por sí solo basándose en rangos de tiempo de sesión que tú definas, ideal para comparar la volatilidad de la apertura frente al cierre. Si prefieres un enfoque táctico, el modo manual te da la libertad de dibujar y ajustar cada caja directamente sobre el gráfico, permitiéndote diseccionar lateralizaciones, retrocesos o zonas de consolidación bajo tus propios términos.",
+      "Cálculos Complejos sin Latencia: Calcular promedios, curvas de delta y desviaciones estándar al instante requiere una potencia de procesamiento superior. Analytics está respaldado por el mismo motor de rendimiento nativo del resto de nuestra suite, garantizando que estos cálculos matemáticos profundos se ejecuten en tiempo real sin generar latencia ni bloqueos en NinjaTrader 8. Y para agilizar tu flujo de análisis, mantiene la compatibilidad con nuestro ecosistema de plantillas preestablecidas (presets), permitiéndote cargar tu configuración visual y estadística favorita con un solo clic."
+    ],
+    "contentImages": [
+      "analytics_d01",
+      "analytics_d02",
+      "analytics_d03"
+    ]
   },
   "algorithms": {
     "id": "algorithms",
     "slug": "logic-algorithms",
     "imageKey": "algorithms",
-    "name": "Logic Algorithms",
-    "tagline": "Detección Automatizada de Señales",
-    "shortDescription": "Reconocimiento automatizado de patrones y detección de señales impulsado por algoritmos avanzados.",
-    "longDescription": "Logic Algorithms escanea el mercado en tiempo real usando una biblioteca de patrones de trading probados y modelos estadísticos, mostrando configuraciones de alta probabilidad directamente en tu chart. Cada señal detectada viene con un puntaje de confianza, contexto sobre la condición del mercado y tasa de éxito histórica, para que decidas si actuar con toda la información. Personaliza la biblioteca de algoritmos para que coincida con tu estilo, agrega tus propios patrones y haz backtesting de ideas contra años de datos históricos. Ya sea que operes breakouts, reversión a la media o setups de order flow, Algorithms hace el trabajo pesado de reconocimiento de patrones para que puedas enfocarte en la ejecución."
-  },
-  "deepchart": {
-    "id": "deepchart",
-    "slug": "logic-deepchart",
-    "imageKey": "sample_indicator",
-    "name": "Logic DeepChart",
-    "tagline": "Análisis Profundo de Gráficos",
-    "shortDescription": "Visualización multi-capa de gráficos para analizar estructuras complejas del mercado y patrones ocultos.",
-    "longDescription": "Logic DeepChart lleva tu experiencia de gráficos a una nueva dimensión al superponer múltiples capas analíticas en una sola vista intuitiva. Combina perfiles de volumen, datos de footprint, divergencias de delta y niveles de estructura de mercado sin saturar tu espacio de trabajo. Cada capa es interactiva: profundiza en cualquier zona para ver las operaciones subyacentes, pasa el cursor sobre niveles clave para contexto histórico y alterna capas sobre la marcha a medida que evolucionan las condiciones del mercado. DeepChart está construido para traders que quieren profundidad sin complejidad, convirtiendo datos densos en una narrativa clara de lo que el mercado está haciendo realmente ahora mismo."
-  },
-  "deeplive": {
-    "id": "deeplive",
-    "slug": "logic-deeplive",
-    "imageKey": "sample_indicator",
-    "name": "Logic DeepLive",
-    "tagline": "Inteligencia de Mercado en Tiempo Real",
-    "shortDescription": "Inteligencia de mercado en vivo con flujos de datos en tiempo real y alertas instantáneas para operaciones sensibles al timing.",
-    "longDescription": "Logic DeepLive te mantiene conectado al pulso del mercado con actualizaciones de datos en milisegundos y alertas inteligentes que cortan el ruido. Rastrea imbalances de order flow, anomalías de volumen y cambios de momentum en tiempo real a medida que ocurren, con alertas personalizables entregadas directamente a tu chart. El motor de inteligencia aprende tu estilo de trading y muestra solo las señales que te importan — se acabó la fatiga de alertas. Ya sea que estés gestionando múltiples posiciones o esperando el setup perfecto, DeepLive asegura que nunca te pierdas el momento que importa."
+    "name": "Algorithms",
+    "tagline": "Detección automatizada de microestructura y eventos críticos del Order Flow.",
+    "shortDescription": "Detecta de manera automática absorciones, desequilibrios, traders atrapados y otros eventos clave. Activa múltiples algoritmos con un solo clic, disfruta un rendimiento sin latencia y carga plantillas listas para operar.",
+    "longDescription": "Detecta de manera automática absorciones, desequilibrios, traders atrapados y otros eventos clave. Activa múltiples algoritmos con un solo clic, disfruta un rendimiento sin latencia y carga plantillas listas para operar.",
+    "paragraphs": [
+      "Automatización Avanzada del Order Flow: El análisis de la microestructura del mercado exige identificar patrones complejos en fracciones de segundo. El indicador Algorithms actúa como tu asistente analítico avanzado, escaneando el flujo de órdenes incesantemente para encontrar los eventos direccionales más críticos. En lugar de buscar manualmente anomalías en los clústeres, el volumen o el delta, esta herramienta agrupa 11 cálculos algorítmicos que detectan de forma mecánica las huellas institucionales, entregándote confirmaciones precisas justo cuando la oportunidad de ejecución se presenta.",
+      "El Arsenal de Detección: 11 Algoritmos: Tu gráfico se convierte en un radar institucional de alta precisión. La herramienta integra un conjunto de detecciones que incluye zonas de Desequilibrio (Imbalance), clústeres avanzados, Agotamientos (Exhaustions) y Absorciones agresivas. Identifica niveles técnicos críticos mediante Subastas Incompletas (Unfinished Auctions), Nodos Cero y Picos de Volumen aislados. Además, localiza el impacto de los participantes clave revelando Bloques Ballena (órdenes masivas), Traders Atrapados, y evalúa la presión del mercado a través de Reversiones y Divergencias de Delta.",
+      "Control Interactivo y Claridad Visual: Entendemos que la acción del precio es dinámica y tu pantalla no debe saturarse de señales innecesarias. Por ello, hemos dotado a este indicador de un sistema interactivo con botones de acceso rápido que te permiten activar o desactivar la visualización de cualquier algoritmo sobre la marcha. Sumado a esto, cada uno de los 11 cálculos cuenta con opciones gráficas totalmente independientes, otorgándote la libertad de personalizar alertas visuales, figuras y colores específicos para cada tipo de evento.",
+      "Procesamiento Simultáneo y Despliegue Inmediato: Ejecutar 11 algoritmos matemáticos simultáneamente sobre los datos en vivo es un desafío técnico severo para cualquier plataforma. No obstante, nuestro motor de rendimiento optimizado absorbe esta carga computacional masiva, garantizando que NinjaTrader 8 se mantenga estable, rápido y libre de latencia, incluso si decides mantener todas las detecciones encendidas al mismo tiempo. Y para mantener un flujo de trabajo ágil, el indicador incluye nuestro sistema de plantillas preestablecidas (presets), permitiéndote cargar configuraciones profesionales en cuestión de segundos."
+    ],
+    "contentImages": [
+      "algorithms_d01",
+      "algorithms_d02",
+      "algorithms_d03"
+    ]
   }
 }

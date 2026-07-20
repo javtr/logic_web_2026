@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "q": "Do these indicators cause lag or freeze NinjaTrader 8 during moments of high volatility?",
+      "a": "Logic Indicators is a suite of professional indicators for NinjaTrader 8, designed for traders who use order flow, footprint, and volume analysis in their daily trading. We combine high-performance development with a focus on analyzing absorption, exhaustion, and delta."
+    },
+    {
+      "q": "Is it difficult to configure the Footprint and volume profiles?",
+      "a": "Not at all. We have developed an intuitive user interface. You don't need to navigate complicated menus; you can load our preset templates with a couple of clicks or save your own custom configurations to use instantly on any chart."
+    },
+    {
+      "q": "Do I get the same visual capabilities as platforms like ATAS or Sierra Chart?",
+      "a": "Yes. We have brought the most advanced and clean graphical options on the market directly to the NinjaTrader 8 ecosystem. You will be able to filter visual noise and detect imbalances, absorptions, and liquidity with institutional-grade clarity."
+    },
+    {
+      "q": "What markets can I trade with this suite?",
+      "a": "Any market that provides Level 1 data (Tick data) in NinjaTrader 8. Our suite is ideal for futures (ES, NQ, YM, Crude Oil), centralized forex, and cryptocurrencies, as long as your data provider (Rithmic, CQG, etc.) delivers volume information."
+    },
+    {
+      "q": "Is the Big Trades indicator included?",
+      "a": "Yes, our suite is a complete ecosystem. We don't sell the pieces separately. You will have access to our auction tools (Profile, Composite), tape reading tools (Footprint, Footer), and liquidity and algorithm detection (Big Trades, Analytics, Algorithms)."
+    }
+  ]
+}

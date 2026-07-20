@@ -1,4 +1,23 @@
 /** @type {import('tailwindcss').Config} */
+// =============================================================================
+// SISTEMA DE COLORES — fuente única de verdad
+// =============================================================================
+// Todos los colores de la app se definen acá. Para usarlos en clases
+// estándar de Tailwind: bg-accent-primary, text-accent-secondary, etc.
+//
+// Para usarlos en arbitrary values (shadow-[...], bg-[...], text-[...]):
+//   NUNCA hardcodear hex/rgba. Usar theme() para que siga al theme:
+//
+//     ❌  shadow-[0_0_20px_rgba(0,230,118,0.5)]
+//     ✅  shadow-[0_0_20px_theme(colors.accent.primary/50%)]
+//
+// Cuando cambies un color acá, TODO lo que lo use se actualiza solo:
+//   - bg-accent-primary, text-accent-secondary, border-accent-primary
+//   - Cualquier arbitrary value con theme(colors.accent.primary/...)
+//
+// Nombres semánticos (primary/secondary) en vez de por color, para que
+// se puedan reasignar los valores hex sin tocar código de componentes.
+// =============================================================================
 export default {
   content: [
     "./index.html",
@@ -14,9 +33,11 @@ export default {
           700: '#222A38', // Hover en tarjetas o bordes sutiles
         },
         // Colores de acento (Tecnológicos/Trading)
+        // primary   = CTA principal, badges "best value", glows destacados
+        // secondary = links, acentos secundarios, highlights de cards
         accent: {
-          green: '#00E676', // Verde brillante para CTAs principales (compras, subidas)
-          blue: '#2979FF',  // Azul tecnológico para enlaces o acentos secundarios
+          primary:   '#0163f1', // magenta vibrante — CTAs principales
+          secondary: '#05fde4', // amarillo eléctrico — acentos secundarios
         },
         text: {
           main: '#F3F4F6',  // Texto principal (casi blanco)
@@ -29,4 +50,4 @@ export default {
     },
   },
   plugins: [],
-}
+};
