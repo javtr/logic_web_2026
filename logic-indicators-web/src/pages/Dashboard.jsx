@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
-import { LogOut, Package, Monitor } from "lucide-react";
+import { LogOut, Package, Monitor, Home } from "lucide-react";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -20,13 +20,15 @@ export const Dashboard = () => {
       return;
     }
 
-    // EL FIX: Añadir .then(res => res.json())
-    fetch(`https://admin.logicindicators.com/api/v1/members/portfolio/${userEmail}`, {
+    // EL FIX DE SEGURIDAD: El email ya no viaja en la URL (Evita el IDOR).
+    // Nota: Ajusta el puerto a 8004 o el dominio de tu proxy inverso
+    fetch(`https://members.logicindicators.com/api/v1/members/portfolio`, {
+      method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
         if (!res.ok) throw new Error("Error en la respuesta del servidor");
-        return res.json(); // <--- ESTO FALTABA
+        return res.json();
       })
       .then((data) => {
         setUserData(data);
@@ -44,22 +46,28 @@ export const Dashboard = () => {
     setStatus({ type: "loading", msg: "Actualizando..." });
 
     try {
-      const response = await fetch("https://admin.logicindicators.com/api/v1/members/machine-id", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // El token ya está definido arriba
+      // Nota: Ajusta la URL al nuevo dominio/puerto del microservicio de miembros
+      const response = await fetch(
+        "https://members.logicindicators.com/api/v1/members/machine-id",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            nuevo_machine_id: newMachineId, // Ya no enviamos el email. El backend confía solo en el Token.
+          }),
         },
-        body: JSON.stringify({
-          email: userEmail,
-          nuevo_machine_id: newMachineId,
-        }),
-      });
+      );
 
       const result = await response.json();
 
       if (response.ok) {
-        setStatus({ type: "success", msg: result.message || "ID actualizado con éxito" });
+        setStatus({
+          type: "success",
+          msg: result.message || "ID actualizado con éxito",
+        });
       } else {
         throw new Error(result.detail || "Error al actualizar");
       }
@@ -84,16 +92,27 @@ export const Dashboard = () => {
           </h1>
           <p className="text-text-muted">{userData.mail}</p>
         </div>
-        <button
-          onClick={() => {
-            localStorage.removeItem("logic_user_email");
-            localStorage.removeItem("logic_token");
-            navigate("/login");
-          }}
-          className="flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors font-medium"
-        >
-          <LogOut size={20} /> Cerrar Sesión
-        </button>
+        
+        {/* Contenedor de Botones de Navegación */}
+        <div className="flex items-center gap-6">
+          <button
+            onClick={() => navigate("/")}
+            className="flex items-center gap-2 text-text-muted hover:text-text-main transition-colors font-medium"
+          >
+            <Home size={20} /> Volver al Inicio
+          </button>
+
+          <button
+            onClick={() => {
+              localStorage.removeItem("logic_user_email");
+              localStorage.removeItem("logic_token");
+              navigate("/login");
+            }}
+            className="flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors font-medium"
+          >
+            <LogOut size={20} /> Cerrar Sesión
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 gap-8">
@@ -119,7 +138,9 @@ export const Dashboard = () => {
             </div>
 
             {status.msg && (
-              <p className={`text-sm font-medium ${status.type === "success" ? "text-green-400" : "text-red-400"}`}>
+              <p
+                className={`text-sm font-medium ${status.type === "success" ? "text-green-400" : "text-red-400"}`}
+              >
                 {status.msg}
               </p>
             )}
@@ -134,16 +155,24 @@ export const Dashboard = () => {
         <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl">
           <div className="flex items-center gap-3 mb-8 text-accent-primary">
             <Package size={24} />
-            <h2 className="text-xl font-bold text-text-main">Tus Indicadores</h2>
+            <h2 className="text-xl font-bold text-text-main">
+              Tus Indicadores
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {userData.productos_activos && userData.productos_activos.length > 0 ? (
+            {userData.productos_activos &&
+            userData.productos_activos.length > 0 ? (
               userData.productos_activos.map((prod, i) => (
-                <div key={i} className="p-5 bg-dark-900 border border-dark-600 rounded-2xl flex items-center justify-between group hover:border-accent-secondary/50 transition-all">
-                  <span className="text-text-main font-semibold">{prod.nombre_producto}</span>
-                  <a 
-                    href={`https://r2.logicindicators.com/dl/${prod.codigo_producto}.zip`} 
+                <div
+                  key={i}
+                  className="p-5 bg-dark-900 border border-dark-600 rounded-2xl flex items-center justify-between group hover:border-accent-secondary/50 transition-all"
+                >
+                  <span className="text-text-main font-semibold">
+                    {prod.nombre_producto}
+                  </span>
+                  <a
+                    href={`https://r2.logicindicators.com/dl/${prod.codigo_producto}.zip`}
                     className="text-xs bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full hover:bg-accent-secondary hover:text-white transition-all font-bold"
                   >
                     Descargar V18
@@ -151,7 +180,9 @@ export const Dashboard = () => {
                 </div>
               ))
             ) : (
-              <p className="text-text-muted col-span-2">No tienes productos activos asociados.</p>
+              <p className="text-text-muted col-span-2">
+                No tienes productos activos asociados.
+              </p>
             )}
           </div>
         </div>
