@@ -9,6 +9,16 @@ import { useLanguage } from '../context/LanguageContext';
 import { getActiveIndicatorIds } from '../data';
 import { MessageCircle, Mail, ShieldCheck } from 'lucide-react';
 
+// Handler para los links externos (social, mailto, etc.). Usa window.open en
+// lugar de depender solo de target="_blank", porque algunos navegadores no
+// respetan target="_blank" en mailto: y reemplazan la pestaña actual.
+// El `e.preventDefault()` evita que el click navegue la pestaña actual antes
+// de que window.open abra la nueva.
+const handleExternalClick = (e, url) => {
+  e.preventDefault();
+  window.open(url, '_blank', 'noopener,noreferrer');
+};
+
 // Redes sociales: si agregás una red nueva, agregás una entrada acá.
 // `url` se lee desde el JSON de contacto para mantener una sola fuente de verdad.
 const socialLinks = [
@@ -55,6 +65,7 @@ export const Footer = () => {
                   href={urlKey}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={(e) => handleExternalClick(e, urlKey)}
                   aria-label={label}
                   className="text-text-muted hover:text-accent-secondary transition-colors"
                 >

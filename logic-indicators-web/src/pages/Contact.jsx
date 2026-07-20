@@ -32,12 +32,23 @@ const channelKeys = [
 // Todas las cards apuntan a URLs externas (http/https o mailto:), así que se
 // renderizan como <a target="_blank" rel="noopener noreferrer">. Si en el
 // futuro se agrega un canal interno, se puede condicionar el render por tipo.
+//
+// El onClick usa window.open en lugar de depender solo de target="_blank",
+// porque algunos navegadores no respetan target="_blank" en mailto: y reemplazan
+// la pestaña actual. El preventDefault evita el comportamiento default antes
+// de que window.open abra la nueva ventana.
 const ChannelCard = ({ icon: Icon, name, handle, description, accent, glow, url }) => {
+  const handleClick = (e) => {
+    e.preventDefault();
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <motion.a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={handleClick}
       whileHover={{ y: -2 }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
       aria-label={`${name} — ${handle}`}
