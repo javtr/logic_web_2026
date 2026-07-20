@@ -1,0 +1,39 @@
+{
+  "pageTitle": "Política de Privacidad",
+  "lastUpdated": "Julio 2026",
+  "intro": "En Logic Indicators respetamos tu privacidad y nos comprometemos a proteger la información personal que compartís con nosotros. Esta política describe qué datos recopilamos, cómo los usamos y cuáles son tus derechos.",
+  "sections": [
+    {
+      "title": "1. Información que recopilamos",
+      "content": "Recopilamos la información que nos proporcionás directamente al crear una cuenta, suscribirte a nuestro newsletter o contactarnos por correo. Esto puede incluir tu nombre, dirección de correo electrónico, información de pago (procesada de forma segura por nuestro proveedor de pagos) y cualquier contenido que nos envíes a través de formularios. También recopilamos datos técnicos de forma automática cuando visitás nuestro sitio, como tu dirección IP, tipo de navegador, páginas visitadas y tiempos de respuesta."
+    },
+    {
+      "title": "2. Cómo usamos tu información",
+      "content": "Usamos la información que recopilamos para: (a) procesar y entregar tus compras; (b) enviarte comunicaciones relacionadas con tu cuenta, actualizaciones de productos y soporte técnico; (c) mejorar nuestros productos, servicios y la experiencia del sitio; (d) cumplir con obligaciones legales y fiscales; (e) prevenir fraude y garantizar la seguridad de la plataforma. Nunca vendemos tu información personal a terceros."
+    },
+    {
+      "title": "3. Cookies y tecnologías similares",
+      "content": "Usamos cookies y tecnologías similares para recordar tus preferencias, mantener tu sesión iniciada, analizar el tráfico del sitio y personalizar contenido. Podés configurar tu navegador para rechazar todas las cookies, pero esto puede afectar el funcionamiento de ciertas partes del sitio."
+    },
+    {
+      "title": "4. Servicios de terceros",
+      "content": "Para operar nuestro servicio utilizamos proveedores externos de confianza que pueden procesar datos personales en nuestro nombre: Lemon Squeezy (procesamiento de pagos), el proveedor de infraestructura de hosting y servicios de analítica. Todos estos proveedores cumplen con estándares de seguridad reconocidos y solo procesan los datos necesarios para prestar su servicio."
+    },
+    {
+      "title": "5. Tus derechos",
+      "content": "Tenés derecho a acceder, rectificar o eliminar tu información personal en cualquier momento. También podés solicitar la portabilidad de tus datos o limitar su procesamiento. Para ejercer cualquiera de estos derechos, contactanos por correo electrónico a la dirección indicada al final de esta política. Respondemos a todas las solicitudes en un plazo máximo de 30 días."
+    },
+    {
+      "title": "6. Retención de datos",
+      "content": "Conservamos tu información personal solo durante el tiempo necesario para cumplir con los fines descritos en esta política, salvo que la ley exija o permita un período de retención más prolongado. Los datos de cuentas inactivas se eliminan automáticamente después de 3 años sin actividad."
+    },
+    {
+      "title": "7. Cambios a esta política",
+      "content": "Podemos actualizar esta política de privacidad periódicamente. Te notificaremos cualquier cambio significativo por correo electrónico o mediante un aviso visible en el sitio. La fecha de la última actualización se indica al inicio de este documento."
+    },
+    {
+      "title": "8. Contacto",
+      "content": "Si tenés preguntas sobre esta política de privacidad o sobre cómo tratamos tus datos personales, escribinos a info@logicindicators.com. Responderemos en un plazo máximo de 30 días."
+    }
+  ]
+}

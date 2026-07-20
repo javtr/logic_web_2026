@@ -1,0 +1,50 @@
+{
+  "pageTitle": "Frequently Asked Questions",
+  "pageSubtitle": "Everything you need to know about Logic Indicators. If you can't find your answer here, reach out to us.",
+  "items": [
+    {
+      "q": "What is Logic Indicators?",
+      "a": "Logic Indicators is a professional indicator suite for NinjaTrader 8, built for traders who use order flow, footprint, and volume analysis in their daily trading. We combine high-performance development with a focus on reading absorption, exhaustion, and delta."
+    },
+    {
+      "q": "Do I need prior trading experience?",
+      "a": "The indicators are designed for intermediate or advanced traders. If you already trade with order flow and understand concepts like delta, volume, and absorption, you'll get the most out of them from day one."
+    },
+    {
+      "q": "Which platforms are the indicators compatible with?",
+      "a": "Our indicators are compiled exclusively for NinjaTrader 8 (NinjaScript, C#). They are not compatible with NinjaTrader 7, TradingView, MetaTrader, or any other platform."
+    },
+    {
+      "q": "Can I try the indicators for free before buying?",
+      "a": "Yes. We offer several free downloadable indicators in the Free Indicators section. They are real tools, with the same technical quality as the paid suite, so you can evaluate our standard before purchasing."
+    },
+    {
+      "q": "What kind of technical support do you offer?",
+      "a": "We offer email support and a documentation center with guides, videos, and frequently asked questions. Full Suite plan users get priority support with faster response times."
+    },
+    {
+      "q": "What payment methods do you accept?",
+      "a": "We accept credit and debit card payments (Visa, Mastercard, American Express) through Lemon Squeezy, and PayPal. All transactions are processed with 256-bit SSL encryption."
+    },
+    {
+      "q": "What does the Lifetime plan include?",
+      "a": "The Lifetime plan is a one-time payment that gives you permanent access to the indicators included in your plan, plus all future updates and new indicators we add to the suite, with no recurring charges."
+    },
+    {
+      "q": "What's the difference between the annual and lifetime plans?",
+      "a": "The annual plan renews every 12 months and includes all updates during that period. The Lifetime plan is a one-time payment with permanent access to updates and new indicators. In the long run, the Lifetime plan offers the best value."
+    },
+    {
+      "q": "Can I use my license on multiple computers?",
+      "a": "Your license is tied to your NinjaTrader Machine ID. The Individual plan includes 1 Machine ID; the Full Suite plan includes 2. If you switch computers, you can transfer your license by deactivating it on the previous machine."
+    },
+    {
+      "q": "Do you offer refunds?",
+      "a": "We offer refunds within 14 days of purchase, provided the indicator has not been used on a live or simulated account. To request one, contact us by email."
+    },
+    {
+      "q": "How does renewal or plan switching work?",
+      "a": "The annual plan renews automatically every year. You can switch between Individual and Full Suite at any time; the change is prorated and applied to the next billing cycle."
+    }
+  ]
+}

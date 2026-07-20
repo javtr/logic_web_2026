@@ -19,6 +19,9 @@ import { IndicatorPage } from './pages/IndicatorPage';
 import { Docs } from './pages/Docs';
 import { FreeIndicators } from './pages/FreeIndicators';
 import { Contact } from './pages/Contact';
+import { Faq } from './pages/Faq';
+import { Privacy } from './pages/Privacy';
+import { Terms } from './pages/Terms';
 
 import { Indicators } from './pages/Indicators';
 import { Pricing } from './pages/Pricing';
@@ -49,6 +52,9 @@ function App() {
             <Route path="/resources/docs" element={<Docs />} />
             <Route path="/resources/free-indicators" element={<FreeIndicators />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
           </Route>
 
           {/* RUTAS PRIVADAS (Zona de Miembros, sin layout público) */}

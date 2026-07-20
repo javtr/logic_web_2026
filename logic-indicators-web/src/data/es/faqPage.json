@@ -1,0 +1,50 @@
+{
+  "pageTitle": "Preguntas Frecuentes",
+  "pageSubtitle": "Todo lo que necesitás saber sobre Logic Indicators. Si no encontrás tu respuesta acá, escribinos.",
+  "items": [
+    {
+      "q": "¿Qué es Logic Indicators?",
+      "a": "Logic Indicators es una suite de indicadores profesionales para NinjaTrader 8, diseñada para traders que usan order flow, footprint y análisis de volumen en su operativa diaria. Combinamos desarrollo de alto rendimiento con un enfoque en la lectura de absorción, agotamiento y delta."
+    },
+    {
+      "q": "¿Necesito experiencia previa en trading?",
+      "a": "Los indicadores están diseñados para traders con experiencia intermedia o avanzada. Si ya operás con order flow y comprendés conceptos como delta, volumen y absorción, vas a sacar el máximo provecho desde el primer día."
+    },
+    {
+      "q": "¿En qué plataformas funcionan los indicadores?",
+      "a": "Nuestros indicadores están compilados exclusivamente para NinjaTrader 8 (NinjaScript, C#). No son compatibles con NinjaTrader 7, TradingView, MetaTrader ni otras plataformas."
+    },
+    {
+      "q": "¿Puedo probar los indicadores gratis antes de comprar?",
+      "a": "Sí. Ofrecemos varios indicadores gratuitos descargables desde la sección de Indicadores Gratuitos. Son herramientas reales, con la misma calidad técnica que la suite paga, para que evalúes nuestro estándar antes de comprar."
+    },
+    {
+      "q": "¿Qué tipo de soporte técnico ofrecen?",
+      "a": "Ofrecemos soporte por correo electrónico y un centro de documentación con guías, videos y preguntas frecuentes. Los usuarios del plan Suite Completa tienen soporte prioritario con tiempos de respuesta más rápidos."
+    },
+    {
+      "q": "¿Qué métodos de pago aceptan?",
+      "a": "Aceptamos pagos con tarjeta de crédito y débito (Visa, Mastercard, American Express) a través de Lemon Squeezy, y PayPal. Todas las transacciones se procesan con encriptación SSL de 256 bits."
+    },
+    {
+      "q": "¿Qué incluye el plan \"De por vida\"?",
+      "a": "El plan De por vida es un pago único que te da acceso permanente a los indicadores incluidos en tu plan, más todas las actualizaciones futuras y nuevos indicadores que agreguemos a la suite, sin cargos recurrentes."
+    },
+    {
+      "q": "¿Cuál es la diferencia entre el plan anual y el de por vida?",
+      "a": "El plan anual se renueva cada 12 meses e incluye todas las actualizaciones durante ese período. El plan De por vida es un pago único con acceso permanente a las actualizaciones y nuevos indicadores. A largo plazo, el plan De por vida ofrece el mejor valor."
+    },
+    {
+      "q": "¿Puedo usar la licencia en varias computadoras?",
+      "a": "Tu licencia está vinculada a tu Machine ID de NinjaTrader. El plan Individual incluye 1 Machine ID; el plan Suite Completa incluye 2. Si cambiás de equipo, podés transferir la licencia desactivándola en el equipo anterior."
+    },
+    {
+      "q": "¿Ofrecen reembolsos?",
+      "a": "Ofrecemos reembolsos dentro de los 14 días posteriores a la compra, siempre que el indicador no haya sido utilizado en cuenta real o simulada. Para solicitarlo, contactanos por correo electrónico."
+    },
+    {
+      "q": "¿Cómo funciona la renovación o el cambio de plan?",
+      "a": "El plan anual se renueva automáticamente cada año. Podés cambiar entre Individual y Suite Completa en cualquier momento; el cambio se prorratea y se aplica al siguiente ciclo de facturación."
+    }
+  ]
+}

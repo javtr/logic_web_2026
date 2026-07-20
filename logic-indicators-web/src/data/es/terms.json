@@ -1,0 +1,47 @@
+{
+  "pageTitle": "Términos de Servicio",
+  "lastUpdated": "Julio 2026",
+  "intro": "Estos términos rigen el uso de los productos y servicios de Logic Indicators. Al adquirir una licencia o utilizar nuestro sitio, aceptás estos términos en su totalidad. Te recomendamos leerlos con atención.",
+  "sections": [
+    {
+      "title": "1. Aceptación de los términos",
+      "content": "Al crear una cuenta, comprar una licencia o utilizar cualquier servicio de Logic Indicators, confirmás que leíste, entendés y aceptás estos Términos de Servicio. Si no estás de acuerdo con alguna parte, no podés utilizar nuestros servicios."
+    },
+    {
+      "title": "2. Licencia de uso",
+      "content": "Al adquirir un plan, se te otorga una licencia personal, intransferible y no exclusiva para usar los indicadores en las computadoras autorizadas por tu plan (1 Machine ID para el plan Individual, 2 Machine IDs para el plan Suite Completa). La licencia es para tu uso personal o comercial de trading, no para revender, redistribuir o compartir los indicadores con terceros."
+    },
+    {
+      "title": "3. Restricciones de uso",
+      "content": "No podés: (a) revender, redistribuir o compartir los archivos de los indicadores; (b) modificar, descompilar o realizar ingeniería inversa del código; (c) usar los indicadores para crear productos competidores; (d) compartir tu licencia o Machine ID con terceros. El incumplimiento de estas restricciones puede resultar en la terminación inmediata de tu licencia sin reembolso."
+    },
+    {
+      "title": "4. Pagos y reembolsos",
+      "content": "Los precios están expresados en dólares estadounidenses y se procesan a través de nuestro proveedor de pagos (Lemon Squeezy). Ofrecemos reembolsos completos dentro de los 14 días posteriores a la compra, siempre que el indicador no haya sido utilizado en una cuenta real o simulada. Pasado ese período, no se procesan reembolsos, salvo que la ley local lo exija."
+    },
+    {
+      "title": "5. Propiedad intelectual",
+      "content": "Todos los indicadores, marcas, logos, diseños y contenido del sitio son propiedad de Logic Indicators y están protegidos por las leyes de propiedad intelectual. La licencia que adquirís te autoriza a usar los indicadores, pero no te transfiere la propiedad sobre ellos."
+    },
+    {
+      "title": "6. Exención de responsabilidad",
+      "content": "Los indicadores son herramientas de análisis técnico. NO constituyen asesoría financiera, de inversión ni una garantía de resultados. El trading implica riesgo de pérdida significativa. Logic Indicators no se hace responsable por pérdidas derivadas del uso de los indicadores. Sos el único responsable de tus decisiones de trading."
+    },
+    {
+      "title": "7. Limitación de responsabilidad",
+      "content": "En la máxima extensión permitida por la ley, Logic Indicators no será responsable por daños indirectos, incidentales, especiales o consecuentes derivados del uso o la imposibilidad de usar nuestros productos, incluso si fuimos advertidos de la posibilidad de tales daños. Nuestra responsabilidad total no excederá el monto que pagaste por el producto en los 12 meses anteriores."
+    },
+    {
+      "title": "8. Modificaciones",
+      "content": "Nos reservamos el derecho de modificar estos términos en cualquier momento. Te notificaremos los cambios significativos por correo electrónico o mediante un aviso en el sitio. El uso continuado del servicio después de la notificación constituye tu aceptación de los nuevos términos."
+    },
+    {
+      "title": "9. Ley aplicable y jurisdicción",
+      "content": "Estos términos se rigen por las leyes del país donde Logic Indicators tiene su sede operativa. Cualquier disputa será resuelta por los tribunales competentes de dicha jurisdicción, salvo que la ley local del usuario disponga lo contrario."
+    },
+    {
+      "title": "10. Contacto",
+      "content": "Si tenés preguntas sobre estos Términos de Servicio, escribinos a info@logicindicators.com. Responderemos a la brevedad."
+    }
+  ]
+}

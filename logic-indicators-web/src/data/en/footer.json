@@ -3,5 +3,11 @@
   "products": "Products",
   "support": "Support",
   "contact": "Contact Us",
-  "legal": "Legal"
+  "legal": "Legal",
+  "resources": "Resources",
+  "faq": "Frequently Asked Questions",
+  "privacy": "Privacy Policy",
+  "terms": "Terms of Service",
+  "copyright": "© {year} Logic Indicators. All rights reserved.",
+  "tagline": "Handcrafted for NinjaTrader 8 traders."
 }
