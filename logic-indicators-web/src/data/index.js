@@ -22,6 +22,9 @@ import enFreeIndicators from './en/freeIndicators.json';
 import enContact from './en/contact.json';
 import enHomeFaq from './en/homeFaq.json';
 import enPricingFaq from './en/pricingFaq.json';
+import enFaqPage from './en/faqPage.json';
+import enPrivacy from './en/privacy.json';
+import enTerms from './en/terms.json';
 import enFooter from './en/footer.json';
 
 import esNav from './es/nav.json';
@@ -36,6 +39,9 @@ import esFreeIndicators from './es/freeIndicators.json';
 import esContact from './es/contact.json';
 import esHomeFaq from './es/homeFaq.json';
 import esPricingFaq from './es/pricingFaq.json';
+import esFaqPage from './es/faqPage.json';
+import esPrivacy from './es/privacy.json';
+import esTerms from './es/terms.json';
 import esFooter from './es/footer.json';
 
 export const SUPPORTED_LANGUAGES = ['en', 'es'];
@@ -95,6 +101,9 @@ const dictionaries = {
     contact: enContact,
     homeFaq: enHomeFaq,
     pricingFaq: enPricingFaq,
+    faqPage: enFaqPage,
+    privacy: enPrivacy,
+    terms: enTerms,
     footer: enFooter,
   },
   es: {
@@ -110,6 +119,9 @@ const dictionaries = {
     contact: esContact,
     homeFaq: esHomeFaq,
     pricingFaq: esPricingFaq,
+    faqPage: esFaqPage,
+    privacy: esPrivacy,
+    terms: esTerms,
     footer: esFooter,
   },
 };
