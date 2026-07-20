@@ -1,24 +1,43 @@
 // src/pages/Contact.jsx
 import { motion } from 'framer-motion';
-import { MessageCircle, Send, Mail, AtSign } from 'lucide-react';
+import { MessageCircle, AtSign, Mail } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { ContactForm } from '../components/ContactForm';
 
-// Mapeo de canales. Los href quedan vacíos a propósito: el usuario conectará
-// los links reales más adelante. Cada card es un <button> en vez de <a> para
-// que NO naveguen a ningún lado y sea explícito que no hacen nada todavía.
+// Mapeo de canales. Cada uno tiene un icon, color (accent), glow de hover y url
+// (leída desde contact.json para que sea traducible/editable).
+// Discord e Instagram abren en nueva pestaña; Email abre el cliente de correo
+// (mailto:). El componente ChannelCard detecta el tipo de url y renderiza <a>.
 const channelKeys = [
-  { id: 'discord', icon: MessageCircle, accent: 'text-indigo-400', glow: 'hover:border-indigo-400/40 hover:shadow-[0_0_20px_theme(colors.indigo.400/15%)]' },
-  { id: 'telegram', icon: Send, accent: 'text-sky-400', glow: 'hover:border-sky-400/40 hover:shadow-[0_0_20px_theme(colors.sky.400/15%)]' },
-  { id: 'email', icon: Mail, accent: 'text-accent-primary', glow: 'hover:border-accent-primary/40 hover:shadow-[0_0_20px_theme(colors.accent.primary/15%)]' },
-  { id: 'twitter', icon: AtSign, accent: 'text-text-main', glow: 'hover:border-text-muted/40 hover:shadow-[0_0_20px_theme(colors.text.main/8%)]' },
+  {
+    id: 'discord',
+    icon: MessageCircle,
+    accent: 'text-indigo-400',
+    glow: 'hover:border-indigo-400/40 hover:shadow-[0_0_20px_theme(colors.indigo.400/15%)]',
+  },
+  {
+    id: 'instagram',
+    icon: AtSign,
+    accent: 'text-pink-400',
+    glow: 'hover:border-pink-400/40 hover:shadow-[0_0_20px_theme(colors.pink.400/15%)]',
+  },
+  {
+    id: 'email',
+    icon: Mail,
+    accent: 'text-accent-primary',
+    glow: 'hover:border-accent-primary/40 hover:shadow-[0_0_20px_theme(colors.accent.primary/15%)]',
+  },
 ];
 
-const ChannelCard = ({ icon: Icon, name, handle, description, accent, glow, onClick }) => {
+// Todas las cards apuntan a URLs externas (http/https o mailto:), así que se
+// renderizan como <a target="_blank" rel="noopener noreferrer">. Si en el
+// futuro se agrega un canal interno, se puede condicionar el render por tipo.
+const ChannelCard = ({ icon: Icon, name, handle, description, accent, glow, url }) => {
   return (
-    <motion.button
-      type="button"
-      onClick={onClick}
+    <motion.a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
       whileHover={{ y: -2 }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
       aria-label={`${name} — ${handle}`}
@@ -34,20 +53,12 @@ const ChannelCard = ({ icon: Icon, name, handle, description, accent, glow, onCl
           <p className="text-xs text-text-muted leading-relaxed">{description}</p>
         </div>
       </div>
-    </motion.button>
+    </motion.a>
   );
 };
 
 export const Contact = () => {
   const { t } = useLanguage();
-
-  // TODO: Reemplazar con window.open(url, '_blank', 'noopener,noreferrer') o
-  // <a href={url} target="_blank" rel="noopener noreferrer"> cuando se conecten
-  // los links reales. Por ahora solo registra el click en consola.
-  const handleChannelClick = (channelId) => {
-    // eslint-disable-next-line no-console
-    console.log(`[Contact] Channel clicked: ${channelId} (link not connected yet)`);
-  };
 
   return (
     <div className="min-h-screen bg-dark-900">
@@ -93,7 +104,7 @@ export const Contact = () => {
                   name={t(`contact.channels.${id}.name`)}
                   handle={t(`contact.channels.${id}.handle`)}
                   description={t(`contact.channels.${id}.description`)}
-                  onClick={() => handleChannelClick(id)}
+                  url={t(`contact.channels.${id}.url`)}
                 />
               ))}
             </div>

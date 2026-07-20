@@ -80,12 +80,19 @@ export const PricingSection = ({ defaultIsLifetime = true, titleKey = 'pricing.s
                 ))}
               </ul>
 
-              <Button
-                variant={highlighted ? 'primary' : 'outline'}
-                className="w-full"
+              <a
+                href={plan.ctaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
               >
-                {plan.cta}
-              </Button>
+                <Button
+                  variant={highlighted ? 'primary' : 'outline'}
+                  className="w-full"
+                >
+                  {plan.cta}
+                </Button>
+              </a>
             </div>
           );
         })}

@@ -26,22 +26,20 @@
     "discord": {
       "name": "Discord",
       "handle": "Logic Indicators Community",
-      "description": "Únete a nuestra comunidad de traders para soporte y discusiones en tiempo real."
+      "description": "Únete a nuestra comunidad de traders para soporte y discusiones en tiempo real.",
+      "url": "https://discord.gg/EWFehJ9dFu"
     },
-    "telegram": {
-      "name": "Telegram",
-      "handle": "@logicindicators",
-      "description": "Línea directa con nuestro equipo de soporte. Respuesta más rápida para preguntas urgentes."
+    "instagram": {
+      "name": "Instagram",
+      "handle": "@logic_indicators",
+      "description": "Síguenos para ver análisis de mercado, actualizaciones y novedades de la suite.",
+      "url": "https://www.instagram.com/logic_indicators"
     },
     "email": {
       "name": "Correo",
-      "handle": "soporte@logicindicators.com",
-      "description": "Para licencias, alianzas y consultas detalladas."
-    },
-    "twitter": {
-      "name": "Twitter / X",
-      "handle": "@logicindicators",
-      "description": "Últimas actualizaciones, análisis de mercado y anuncios."
+      "handle": "info@logicindicators.com",
+      "description": "Para licencias, alianzas y consultas detalladas.",
+      "url": "mailto:info@logicindicators.com"
     }
   }
 }

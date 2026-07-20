@@ -1,4 +1,5 @@
 // src/pages/Home.jsx
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { Button } from '../components/Button';
 import { HomeIndicatorCard } from '../components/HomeIndicatorCard';
@@ -32,12 +33,16 @@ export const Home = () => {
             {t('hero.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-            <Button variant="primary" className="w-full sm:w-auto text-lg px-8 py-3">
-              {t('hero.cta')}
-            </Button>
-            <Button variant="outline" className="w-full sm:w-auto text-lg px-8 py-3">
-              {t('hero.explore')}
-            </Button>
+            <Link to="/pricing" className="w-full sm:w-auto">
+              <Button variant="primary" className="w-full text-lg px-8 py-3">
+                {t('hero.cta')}
+              </Button>
+            </Link>
+            <Link to="/indicators" className="w-full sm:w-auto">
+              <Button variant="outline" className="w-full text-lg px-8 py-3">
+                {t('hero.explore')}
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -97,8 +102,12 @@ export const Home = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4 relative z-10">{t('home.ctaTitle')}</h2>
           <p className="text-text-muted text-lg mb-8 max-w-2xl mx-auto relative z-10">{t('home.ctaSubtitle')}</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
-            <Button variant="primary">{t('home.choosePlan')}</Button>
-            <Button variant="outline">{t('home.exploreAll')}</Button>
+            <Link to="/pricing">
+              <Button variant="primary">{t('home.buyNow')}</Button>
+            </Link>
+            <Link to="/contact">
+              <Button variant="outline">{t('home.contactUs')}</Button>
+            </Link>
           </div>
         </div>
       </section>

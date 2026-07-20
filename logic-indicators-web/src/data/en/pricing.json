@@ -34,6 +34,7 @@
       "Standard Support"
     ],
     "cta": "Get Started Now",
+    "ctaUrl": "https://example.com/checkout/single",
     "highlighted": false
   },
 
@@ -51,6 +52,7 @@
       "Priority Support"
     ],
     "cta": "Get Started Now",
+    "ctaUrl": "https://example.com/checkout/suite",
     "highlighted": true
   }
 }
