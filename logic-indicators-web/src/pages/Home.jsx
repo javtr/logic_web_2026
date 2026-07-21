@@ -32,7 +32,13 @@ export const Home = () => {
             usuarios con "reducir movimiento" activo en el OS/browser. Como el
             grid ES el detalle visual de fondo que da personalidad al hero, lo
             dejamos correr siempre. Si en el futuro se cambia a algo más
-            prominente, reintroducir motion-reduce:animate-none. */}
+            prominente, reintroducir motion-reduce:animate-none.
+
+            mask-image: radial-gradient para que el grid se difumine hacia los
+            bordes del hero. El centro queda visible, los extremos se desvanecen.
+            GPU-composited, costo despreciable (0.3-0.5ms/frame). Si el fade
+            se siente muy fuerte o muy débil, ajustar los dos stops del
+            radial-gradient (black N% / transparent M%). */}
         <div
           aria-hidden="true"
           className="absolute inset-0 text-text-main opacity-[0.12] animate-grid-drift pointer-events-none"
@@ -40,6 +46,8 @@ export const Home = () => {
             backgroundImage:
               'linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)',
             backgroundSize: '60px 60px',
+            maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 80%)',
           }}
         />
         {/* Glow existente (conservado) */}
