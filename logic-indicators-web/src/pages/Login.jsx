@@ -1,13 +1,32 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { Button } from '../components/Button';
 import { ArrowLeft, Mail, Key } from 'lucide-react';
 
+// Valida que el `next` param sea un path interno seguro.
+// Sin esto, un atacante podría hacer /login?next=https://evil.com
+// y el usuario sería redirigido a un sitio de phishing después de
+// autenticarse (open redirect). Solo aceptamos paths que empiecen
+// con "/" pero NO con "//" (que es una URL absoluta sin protocolo).
+const FALLBACK_AFTER_LOGIN = '/dashboard';
+const getSafeNext = (raw) => {
+  if (!raw || typeof raw !== 'string') return FALLBACK_AFTER_LOGIN;
+  if (!raw.startsWith('/')) return FALLBACK_AFTER_LOGIN;
+  if (raw.startsWith('//')) return FALLBACK_AFTER_LOGIN;   // //evil.com
+  if (raw.startsWith('/\\')) return FALLBACK_AFTER_LOGIN;  // /\evil.com (algunos browsers lo interpretan raro)
+  return raw;
+};
+
 export const Login = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  
+  const [searchParams] = useSearchParams();
+
+  // next param: a dónde ir después del login. Lo sanitizamos para
+  // evitar open-redirect (ver getSafeNext arriba).
+  const next = getSafeNext(searchParams.get('next'));
+
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
   const [step, setStep] = useState(1); // Paso 1: Email, Paso 2: Código OTP
@@ -15,15 +34,16 @@ export const Login = () => {
   const [error, setError] = useState('');
 
 
-// AUTO-LOGIN: Si el usuario ya tiene token, lo enviamos directo al Dashboard
+// AUTO-LOGIN: Si el usuario ya tiene token, lo enviamos a `next`
+// (o al Dashboard por defecto).
   useEffect(() => {
     const existingToken = localStorage.getItem('logic_token');
     const existingEmail = localStorage.getItem('logic_user_email');
-    
+
     if (existingToken && existingEmail) {
-      navigate('/dashboard');
+      navigate(next, { replace: true });
     }
-  }, [navigate]);
+  }, [navigate, next]);
 
 // PASO 1: Solicitar el código al servidor
   const handleRequestOTP = async (e) => {
@@ -79,8 +99,13 @@ export const Login = () => {
       // Guardamos el TOKEN de seguridad y el email
       localStorage.setItem('logic_token', data.access_token);
       localStorage.setItem('logic_user_email', email);
-      
-      navigate('/dashboard');
+
+      // Disparamos el evento custom para que useAuth() sincronice
+      // su estado en componentes que ya estén montados.
+      window.dispatchEvent(new Event('logic-auth-change'));
+
+      // Navegamos al `next` sanitizado (Dashboard por defecto)
+      navigate(next, { replace: true });
 
     } catch (err) {
       setError(err.message);
