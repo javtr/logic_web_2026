@@ -33,7 +33,7 @@ import { DocsSearch } from './DocsSearch';
 import { DocsPagination } from './DocsPagination';
 import { useDocs } from '../../context/DocsContext';
 
-export const DocsLayout = ({ doc }) => {
+export const DocsLayout = ({ doc, showHomeButton = false }) => {
   const { getDocsLabel, findDocInStructure, getAdjacentDocs, basePath } = useDocs();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
@@ -72,6 +72,20 @@ export const DocsLayout = ({ doc }) => {
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-8 md:py-12">
+      {/* Botón "Volver al inicio" — solo en la docs privada (zona de miembros).
+          La docs pública ya tiene el Navbar completo con su link a home. */}
+      {showHomeButton && (
+        <div className="mb-4">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-accent-primary transition-colors group"
+          >
+            <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-0.5" />
+            {getDocsLabel('docs.ui.breadcrumb.home')}
+          </Link>
+        </div>
+      )}
+
       {/* Top bar: breadcrumb + search */}
       <div className="flex items-center justify-between gap-4 mb-6 md:mb-10">
         <nav aria-label="Breadcrumb" className="text-sm text-text-muted flex items-center gap-2 flex-wrap min-w-0">

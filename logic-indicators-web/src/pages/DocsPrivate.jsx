@@ -32,7 +32,9 @@ const DocsPrivateInner = () => {
   // Captura el resto del path después de /dashboard/docs/
   const slug = params['*'] || 'getting-started';
   const doc = getDocFromCtx(slug, language);
-  return <DocsLayout doc={doc} />;
+  // showHomeButton=true → la docs privada está en zona de miembros
+  // (sin Navbar público), mostramos un link "Volver al inicio" arriba
+  return <DocsLayout doc={doc} showHomeButton={true} />;
 };
 
 export const DocsPrivate = () => {
