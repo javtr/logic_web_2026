@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
-import { LogOut, Package, Monitor, Home } from "lucide-react";
+import { LogOut, Package, Monitor, Home, BookOpen } from "lucide-react";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -116,6 +116,29 @@ export const Dashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-8">
+        {/* Documentación completa (privada, requiere auth) */}
+        <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl">
+          <div className="flex items-center gap-3 mb-4 text-accent-secondary">
+            <BookOpen size={24} />
+            <h2 className="text-xl font-bold text-text-main">
+              Documentación completa
+            </h2>
+          </div>
+
+          <p className="text-text-muted mb-6 leading-relaxed">
+            Accedé al manual técnico detallado de cada indicator: configuración completa, parámetros, mejores prácticas y troubleshooting.
+          </p>
+
+          <Button
+            variant="primary"
+            onClick={() => navigate("/dashboard/docs")}
+            className="w-full"
+          >
+            <BookOpen size={18} />
+            Ir a la documentación
+          </Button>
+        </div>
+
         {/* Gestión de Machine ID */}
         <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl h-fit">
           <div className="flex items-center gap-3 mb-6 text-accent-secondary">
