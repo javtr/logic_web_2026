@@ -1,0 +1,10 @@
+{
+  "openMenu": "Abrir menú de ayuda",
+  "closeMenu": "Cerrar menú de ayuda",
+  "items": {
+    "faq": "Preguntas Frecuentes",
+    "docs": "Documentación",
+    "contact": "Contacto",
+    "whatsapp": "WhatsApp"
+  }
+}

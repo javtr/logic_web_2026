@@ -13,6 +13,7 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
 import { ScrollToTopButton } from './components/ScrollToTopButton';
+import { HelpWidget } from './components/HelpWidget';
 
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
@@ -46,6 +47,7 @@ function App() {
       <Router>
         <ScrollToTop />
         <ScrollToTopButton />
+        <HelpWidget />
         <Routes>
           {/* RUTAS PÚBLICAS (con navbar + footer) */}
           <Route element={<MainLayout />}>

@@ -25,6 +25,7 @@ import enPricingFaq from './en/pricingFaq.json';
 import enFaqPage from './en/faqPage.json';
 import enPrivacy from './en/privacy.json';
 import enTerms from './en/terms.json';
+import enHelp from './en/help.json';
 import enFooter from './en/footer.json';
 
 import esNav from './es/nav.json';
@@ -42,6 +43,7 @@ import esPricingFaq from './es/pricingFaq.json';
 import esFaqPage from './es/faqPage.json';
 import esPrivacy from './es/privacy.json';
 import esTerms from './es/terms.json';
+import esHelp from './es/help.json';
 import esFooter from './es/footer.json';
 
 export const SUPPORTED_LANGUAGES = ['en', 'es'];
@@ -104,6 +106,7 @@ const dictionaries = {
     faqPage: enFaqPage,
     privacy: enPrivacy,
     terms: enTerms,
+    help: enHelp,
     footer: enFooter,
   },
   es: {
@@ -122,6 +125,7 @@ const dictionaries = {
     faqPage: esFaqPage,
     privacy: esPrivacy,
     terms: esTerms,
+    help: esHelp,
     footer: esFooter,
   },
 };
