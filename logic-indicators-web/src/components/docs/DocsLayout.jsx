@@ -25,7 +25,7 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ArrowLeft } from 'lucide-react';
 import { DocsSidebar } from './DocsSidebar';
 import { DocsContent } from './DocsContent';
 import { DocsTOC } from './DocsTOC';
