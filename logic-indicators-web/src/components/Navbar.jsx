@@ -25,7 +25,10 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-dark-900/60 backdrop-blur-md">
+      {/* bg-dark-900/95 (sin backdrop-blur): el blur-filter era uno de los
+          principales responsables de saturar el GPU en mobile. Fondo casi
+          opaco da el mismo look visual sin compositing pesado. */}
+      <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-dark-900/95">
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="text-xl font-bold tracking-tighter text-text-main">

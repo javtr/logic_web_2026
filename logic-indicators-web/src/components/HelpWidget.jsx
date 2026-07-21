@@ -3,7 +3,7 @@
 // Widget de asistencia flotante. Botón en bottom-right (arriba del back-to-top)
 // que abre un panel con 4 opciones:
 //   1. FAQ             → /faq (link interno)
-//   2. Documentación   → /resources/docs (link interno)
+//   2. Documentación   → /docs (link interno)
 //   3. Contacto        → /contact (link interno)
 //   4. WhatsApp        → https://wa.me/573113006826 (link externo, nueva pestaña)
 //
@@ -34,7 +34,7 @@ const HELP_OPTIONS = [
     id: 'docs',
     icon: BookOpen,
     labelKey: 'help.items.docs',
-    to: '/resources/docs',
+    to: '/docs',
     external: false,
   },
   {
