@@ -53,7 +53,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
 
   const resourceLinks = [
     {
-      to: '/docs',
+      to: '/resources/docs',
       icon: BookOpen,
       label: t('nav.resourcesDropdown.docs'),
     },

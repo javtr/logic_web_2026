@@ -24,23 +24,24 @@ export const Home = () => {
 
       {/* 1. HERO SECTION */}
       <section className="relative pt-32 pb-10 px-6 text-center overflow-hidden">
-        {/* Grid sutil de fondo.
-            Mobile: grid de puntos estático (un solo radial-gradient, sin
-            mask, sin animación) — costo GPU despreciable, no satura el
-            compositor en dispositivos de gama media/baja.
-            Desktop: grid de líneas animado con mask radial, como antes.
-            Los dos divs coexisten; uno se oculta según el breakpoint. */}
+        {/* Grid sutil de fondo — animación barata (background-position, GPU-composited).
+            IMPORTANTE: NO usamos motion-reduce:animate-none acá a propósito.
+            Esta animación es tan sutil (60px en 3s = 20px/s, grid de fondo con
+            12% opacity) que no representa un riesgo de accesibilidad real, y el
+            respeto de prefers-reduced-motion la anulaba completamente para
+            usuarios con "reducir movimiento" activo en el OS/browser. Como el
+            grid ES el detalle visual de fondo que da personalidad al hero, lo
+            dejamos correr siempre. Si en el futuro se cambia a algo más
+            prominente, reintroducir motion-reduce:animate-none.
+
+            mask-image: radial-gradient para que el grid se difumine hacia los
+            bordes del hero. El centro queda visible, los extremos se desvanecen.
+            GPU-composited, costo despreciable (0.3-0.5ms/frame). Si el fade
+            se siente muy fuerte o muy débil, ajustar los dos stops del
+            radial-gradient (black N% / transparent M%). */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 text-text-main opacity-[0.18] md:hidden pointer-events-none"
-          style={{
-            backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1.5px)',
-            backgroundSize: '24px 24px',
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 text-text-main opacity-[0.12] animate-grid-drift pointer-events-none hidden md:block"
+          className="absolute inset-0 text-text-main opacity-[0.12] animate-grid-drift pointer-events-none"
           style={{
             backgroundImage:
               'linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)',
@@ -49,9 +50,8 @@ export const Home = () => {
             WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 80%)',
           }}
         />
-        {/* Glow decorativo. blur(120px) → blur(60px): misma sensación visual,
-            mitad de costo de compositing. Cero impacto en el look. */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent-primary/10 blur-[60px] rounded-full pointer-events-none" />
+        {/* Glow existente (conservado) */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent-primary/10 blur-[120px] rounded-full pointer-events-none" />
         <div className="relative z-10 max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-extrabold text-text-main tracking-tight mb-8">
             {t('hero.title')}
@@ -134,7 +134,7 @@ export const Home = () => {
       {/* 6. CTA FINAL */}
       <section className="px-6 container mx-auto mb-12">
         <div className="bg-gradient-to-r from-dark-800 to-dark-700 p-12 rounded-3xl border border-dark-600 text-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-accent-secondary/10 blur-[40px] rounded-full pointer-events-none" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-accent-secondary/10 blur-[80px] rounded-full pointer-events-none" />
           <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4 relative z-10">{t('home.ctaTitle')}</h2>
           <p className="text-text-muted text-lg mb-8 max-w-2xl mx-auto relative z-10">{t('home.ctaSubtitle')}</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
