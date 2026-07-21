@@ -1,14 +1,10 @@
 // src/data/docs-public/frontmatter.js
 // =============================================================================
-// FRONTMATTER PARSER (custom, liviano) — COPIA para el módulo público
+// FRONTMATTER PARSER + HEADING SLUGGER (custom, liviano) — MÓDULO PÚBLICO
 // =============================================================================
-// Idéntico a docs-private/frontmatter.js. Se duplica físicamente para
-// mantener cada módulo (público/privado) autocontenido — sin imports
-// cruzados, sin riesgo de que un cambio en el parser de un lado rompa
-// el otro.
-//
-// Si en el futuro se quiere un parser único compartido, mover a
-// src/data/docs-shared/frontmatter.js y re-importar.
+// Idéntico en estructura al de docs-private. Ver docs-private/frontmatter.js
+// para la documentación completa del algoritmo de slug (github-slugger
+// compatible con NFD + manejo de duplicados).
 // =============================================================================
 
 const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
@@ -49,8 +45,31 @@ export function parseFrontmatter(raw) {
   return { data, content: body };
 }
 
+// Slug-compatible con github-slugger (que usa rehype-slug internamente).
+// - lowercase + trim
+// - NFD normalize: separa diacríticos (á → a + ́, ñ → n + ̃, etc.)
+// - remueve las combining marks
+// - solo deja [a-z0-9] y espacios
+// - espacios → -
+// - colapsa guiones repetidos
+// - trim guiones al inicio/final
+//
+// Maneja duplicados con sufijo -1, -2, ... (igual que github-slugger).
+function slugify(text) {
+  return text
+    .toLowerCase()
+    .trim()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 export function extractHeadings(markdown) {
   const headings = [];
+  const seenSlugs = new Map(); // slug base → count
   const lines = markdown.split(/\r?\n/);
   let inCodeBlock = false;
 
@@ -66,12 +85,16 @@ export function extractHeadings(markdown) {
 
     const level = match[1].length;
     const text = match[2].replace(/[*_`]/g, '').trim();
-    const slug = text
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-|-$/g, '');
+    let slug = slugify(text);
+
+    // Manejo de duplicados: si ya existe, agregar sufijo numérico
+    if (seenSlugs.has(slug)) {
+      const count = seenSlugs.get(slug) + 1;
+      seenSlugs.set(slug, count);
+      slug = `${slug}-${count}`;
+    } else {
+      seenSlugs.set(slug, 1);
+    }
 
     headings.push({ level, text, slug });
   }

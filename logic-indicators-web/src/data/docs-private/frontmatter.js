@@ -1,6 +1,6 @@
-// src/data/docs/frontmatter.js
+// src/data/docs-private/frontmatter.js
 // =============================================================================
-// FRONTMATTER PARSER (custom, liviano)
+// FRONTMATTER PARSER + HEADING SLUGGER (custom, liviano)
 // =============================================================================
 // Parsea el bloque YAML al inicio de cada archivo .md entre líneas `---`.
 //
@@ -59,11 +59,34 @@ export function parseFrontmatter(raw) {
   return { data, content: body };
 }
 
-// Extrae los headings h2 y h3 del markdown (sin renderizar).
-// Útil para construir el TOC sin esperar al render.
-// Devuelve un array de { level, text, slug }.
+// Slug-compatible con github-slugger (que usa rehype-slug internamente).
+// - lowercase + trim
+// - NFD normalize: separa diacríticos (á → a + ́, ñ → n + ̃, etc.)
+// - remueve las combining marks
+// - solo deja [a-z0-9] y espacios
+// - espacios → -
+// - colapsa guiones repetidos
+// - trim guiones al inicio/final
+//
+// Maneja duplicados con sufijo -1, -2, ... (igual que github-slugger).
+// Esto garantiza que los slugs precalculados acá coincidan 1:1 con
+// los IDs que rehype-slug pone en el DOM, así el TOC clickeable
+// siempre lleva a la sección correcta.
+function slugify(text) {
+  return text
+    .toLowerCase()
+    .trim()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 export function extractHeadings(markdown) {
   const headings = [];
+  const seenSlugs = new Map(); // slug base → count
   const lines = markdown.split(/\r?\n/);
   let inCodeBlock = false;
 
@@ -80,14 +103,16 @@ export function extractHeadings(markdown) {
 
     const level = match[1].length;
     const text = match[2].replace(/[*_`]/g, '').trim();
-    // rehype-slug genera slugs en kebab-case. Replicamos esa lógica acá
-    // para que el TOC funcione antes del render.
-    const slug = text
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-|-$/g, '');
+    let slug = slugify(text);
+
+    // Manejo de duplicados: si ya existe, agregar sufijo numérico
+    if (seenSlugs.has(slug)) {
+      const count = seenSlugs.get(slug) + 1;
+      seenSlugs.set(slug, count);
+      slug = `${slug}-${count}`;
+    } else {
+      seenSlugs.set(slug, 1);
+    }
 
     headings.push({ level, text, slug });
   }

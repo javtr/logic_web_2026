@@ -65,7 +65,7 @@ export const DocsLayout = ({ doc, showHomeButton = false }) => {
     );
   }
 
-  const { frontmatter, slug } = doc;
+  const { frontmatter, slug, headings } = doc;
   const found = findDocInStructure(slug);
   const categoryLabel = found ? getDocsLabel(found.category.labelKey) : '';
   const articleLabel  = found ? getDocsLabel(found.item.labelKey)  : frontmatter.title;
@@ -143,7 +143,7 @@ export const DocsLayout = ({ doc, showHomeButton = false }) => {
         {/* TOC (sticky, solo lg+) */}
         <aside className="hidden lg:block">
           <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto">
-            <DocsTOC />
+            <DocsTOC headings={headings} />
           </div>
         </aside>
       </div>
