@@ -12,6 +12,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
+import { ScrollToTopButton } from './components/ScrollToTopButton';
 
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
@@ -44,6 +45,7 @@ function App() {
     <LanguageProvider>
       <Router>
         <ScrollToTop />
+        <ScrollToTopButton />
         <Routes>
           {/* RUTAS PÚBLICAS (con navbar + footer) */}
           <Route element={<MainLayout />}>
