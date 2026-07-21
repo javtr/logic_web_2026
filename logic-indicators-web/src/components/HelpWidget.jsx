@@ -85,8 +85,12 @@ export const HelpWidget = () => {
   return (
     <div
       ref={containerRef}
-      className="fixed bottom-24 right-6 md:bottom-28 z-40 flex flex-col items-end"
+      className={`
+        fixed bottom-24 right-6 md:bottom-28 z-40
+        ${!isOpen ? 'pointer-events-none' : ''}
+      `}
     >
+      <div className="flex flex-col items-end">
       {/* Panel — aparece arriba del botón cuando isOpen=true */}
       <div
         role="dialog"
@@ -142,23 +146,16 @@ export const HelpWidget = () => {
         </div>
       </div>
 
-      {/* Botón trigger — outlined para distinguirse del back-to-top (filled) */}
+      {/* Botón trigger — outlined para distinguirse del back-to-top (filled).
+          pointer-events-auto explícito: el contenedor padre tiene
+          pointer-events-none cuando isOpen=false, así que el botón
+          necesita sobreescribir para seguir siendo clickeable. */}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? t('help.closeMenu') : t('help.openMenu')}
         aria-expanded={isOpen}
-        className={`
-          w-12 h-12 md:w-14 md:h-14
-          rounded-full
-          bg-dark-800 border-2 border-accent-primary
-          text-accent-primary
-          shadow-[0_4px_20px_theme(colors.accent.primary/20%)]
-          hover:bg-accent-primary hover:text-dark-900
-          hover:scale-110
-          flex items-center justify-center
-          transition-all duration-300 ease-out
-        `}
+        className="pointer-events-auto w-12 h-12 md:w-14 md:h-14 rounded-full bg-dark-800 border-2 border-accent-primary text-accent-primary shadow-[0_4px_20px_theme(colors.accent.primary/20%)] hover:bg-accent-primary hover:text-dark-900 hover:scale-110 flex items-center justify-center transition-all duration-300 ease-out"
       >
         {isOpen ? (
           <X size={22} strokeWidth={2.5} />
@@ -166,6 +163,7 @@ export const HelpWidget = () => {
           <MessageCircle size={22} strokeWidth={2.5} />
         )}
       </button>
+      </div>
     </div>
   );
 };
