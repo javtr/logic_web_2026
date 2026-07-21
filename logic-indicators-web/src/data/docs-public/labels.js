@@ -36,6 +36,7 @@ export const DOCS_PUBLIC_LABELS = {
     'docs.ui.notFound.title':          'Page not found',
     'docs.ui.notFound.description':    'The documentation page you are looking for does not exist.',
     'docs.ui.notFound.back':           '← Back to documentation',
+    'docs.ui.notFound.home':           'Go to home',
   },
   es: {
     'docs.category.indicators':        'Indicadores',
@@ -60,6 +61,7 @@ export const DOCS_PUBLIC_LABELS = {
     'docs.ui.notFound.title':          'Página no encontrada',
     'docs.ui.notFound.description':    'La página de documentación que buscas no existe.',
     'docs.ui.notFound.back':           '← Volver a documentación',
+    'docs.ui.notFound.home':           'Ir al inicio',
   },
 };
 

@@ -39,19 +39,27 @@ export const DocsLayout = ({ doc }) => {
 
   if (!doc) {
     return (
-      <div className="container mx-auto px-6 py-24 text-center">
+      <div className="container mx-auto px-6 py-24 text-center max-w-xl">
         <h1 className="text-3xl font-bold text-text-main mb-3">
           {getDocsLabel('docs.ui.notFound.title')}
         </h1>
-        <p className="text-text-muted mb-6">
+        <p className="text-text-muted mb-8">
           {getDocsLabel('docs.ui.notFound.description')}
         </p>
-        <Link
-          to={basePath}
-          className="inline-block text-accent-primary hover:underline"
-        >
-          {getDocsLabel('docs.ui.notFound.back')}
-        </Link>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <Link
+            to={basePath}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent-primary text-dark-900 font-semibold hover:brightness-110 transition-all"
+          >
+            {getDocsLabel('docs.ui.notFound.back')}
+          </Link>
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-dark-700 text-text-main hover:border-dark-600 hover:bg-dark-800 transition-all"
+          >
+            {getDocsLabel('docs.ui.notFound.home') || 'Ir al inicio'}
+          </Link>
+        </div>
       </div>
     );
   }

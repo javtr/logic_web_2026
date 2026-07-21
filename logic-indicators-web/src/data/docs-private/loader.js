@@ -15,8 +15,8 @@ import { parseFrontmatter, extractHeadings } from './frontmatter';
 import { DOCS_STRUCTURE, findDocInStructure } from './structure';
 
 // Cargar todos los .md en build time. Vite resuelve los ?raw como strings.
-// Formato: { '/src/docs/en/getting-started.md': '...contenido...', ... }
-const RAW_DOCS = import.meta.glob('/src/docs/**/*.md', {
+// Formato: { '/src/docs-private/en/getting-started.md': '...contenido...', ... }
+const RAW_DOCS = import.meta.glob('/src/docs-private/**/*.md', {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -31,8 +31,8 @@ const INDEX = (() => {
   const cache = {};
 
   for (const [path, raw] of Object.entries(RAW_DOCS)) {
-    // path: '/src/docs/en/indicators/logic-footprint.md'
-    const match = path.match(/^\/src\/docs\/([^/]+)\/(.+)\.md$/);
+    // path: '/src/docs-private/en/indicators/logic-footprint.md'
+    const match = path.match(/^\/src\/docs-private\/([^/]+)\/(.+)\.md$/);
     if (!match) continue;
 
     const [, language, slugWithMaybeSubdir] = match;
