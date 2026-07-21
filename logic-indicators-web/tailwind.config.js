@@ -65,7 +65,7 @@ export default {
       animation: {
         // 3s por loop = 20px/s (60px / 3s). Lo bastante rápido para que el
         // ojo perciba el movimiento sin que distraiga del contenido.
-        'grid-drift': 'gridDrift 3s linear infinite',
+        'grid-drift': 'gridDrift 10s linear infinite',
       },
     },
   },
