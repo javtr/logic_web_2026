@@ -23,7 +23,7 @@ export const Home = () => {
     <div className="flex flex-col gap-24 pb-24">
 
       {/* 1. HERO SECTION */}
-      <section className="relative pt-32 pb-20 px-6 text-center overflow-hidden">
+      <section className="relative pt-32 pb-10 px-6 text-center overflow-hidden">
         {/* Grid sutil de fondo — animación barata (background-position, GPU-composited).
             IMPORTANTE: NO usamos motion-reduce:animate-none acá a propósito.
             Esta animación es tan sutil (60px en 3s = 20px/s, grid de fondo con
@@ -74,12 +74,21 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* 1.5 BANNER — preview image full-bleed entre hero y suite */}
+      {/* 1.5 BANNER — preview image full-bleed entre hero y suite.
+          mask-image: linear-gradient vertical para difuminar arriba y abajo
+          de la imagen (efecto fade en los extremos). El centro queda
+          totalmente visible. GPU-composited, costo despreciable.
+          Si se quiere más/menos fade, ajustar los stops (black 10%/90% son
+          el rango de transición). */}
       <section className="w-full">
         <img
           src={resolveImage('suite')}
           alt="Logic Indicators — NinjaTrader 8 dashboard preview"
           className="w-full h-auto block"
+          style={{
+            maskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
+          }}
         />
       </section>
 
