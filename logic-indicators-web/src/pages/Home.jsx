@@ -28,7 +28,7 @@ export const Home = () => {
             Respeta prefers-reduced-motion automáticamente vía motion-reduce:animate-none. */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 text-text-main opacity-[0.05] motion-reduce:animate-none animate-grid-drift pointer-events-none"
+          className="absolute inset-0 text-text-main opacity-[0.12] motion-reduce:animate-none animate-grid-drift pointer-events-none"
           style={{
             backgroundImage:
               'linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)',

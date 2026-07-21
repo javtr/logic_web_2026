@@ -57,7 +57,9 @@ export default {
         },
       },
       animation: {
-        'grid-drift': 'gridDrift 60s linear infinite',
+        // 20s por loop = 3px/s. Velocidad suficiente para que el ojo perciba
+        // el movimiento sin que distraiga del contenido.
+        'grid-drift': 'gridDrift 20s linear infinite',
       },
     },
   },
