@@ -2,20 +2,65 @@
 // =============================================================================
 // TOC — "On this page" + scroll-spy
 // =============================================================================
-// Lee getDocsLabel del DocsContext. El resto (headings, scroll-spy con
-// IntersectionObserver) sigue igual.
+// Lista los h2 y h3 del artículo actual. Resalta el heading que está
+// visible según el scroll, usando IntersectionObserver.
+//
+// Por qué leemos los headings del DOM en lugar de recibirlos por prop:
+//   Antes recibíamos `headings` desde el loader (vía extractHeadings),
+//   que generaba slugs con su propia lógica. Esos slugs NO siempre
+//   coincidían con los IDs que pone `rehype-slug` en el DOM, así que
+//   algunos clicks en el TOC llevaban a una sección que no existía.
+//
+//   Ahora scaneamos el DOM real con querySelector y usamos los IDs
+//   que efectivamente puso react-markdown. Garantiza 1:1 que el click
+//   siempre encuentra su target.
 // =============================================================================
 
 import { useEffect, useState, useRef } from 'react';
 import { useDocs } from '../../context/DocsContext';
 
-export const DocsTOC = ({ headings }) => {
-  const { getDocsLabel } = useDocs();
-  const [activeId, setActiveId] = useState(headings?.[0]?.slug || null);
+export const DocsTOC = () => {
+  const { getDocsLabel, doc } = useDocs();
+  const [headings, setHeadings] = useState([]);
+  const [activeId, setActiveId] = useState(null);
   const observerRef = useRef(null);
 
+  // Re-scan del DOM cuando cambia el doc (slug o content).
+  // Pequeño delay para asegurar que DocsContent (sibling anterior en el
+  // tree) ya haya renderizado los headings con sus IDs.
   useEffect(() => {
-    if (!headings || headings.length === 0) return;
+    if (!doc) {
+      setHeadings([]);
+      setActiveId(null);
+      return;
+    }
+
+    const timeoutId = setTimeout(() => {
+      const articleEl = document.querySelector('.docs-prose');
+      if (!articleEl) {
+        setHeadings([]);
+        return;
+      }
+
+      const elements = articleEl.querySelectorAll('h2, h3');
+      const found = Array.from(elements)
+        .map((el) => ({
+          level: el.tagName === 'H3' ? 3 : 2,
+          text: (el.textContent || '').replace(/[*_`]/g, '').trim(),
+          slug: el.id,
+        }))
+        .filter((h) => h.slug); // descartar los que no tienen id
+
+      setHeadings(found);
+      setActiveId(found[0]?.slug || null);
+    }, 50);
+
+    return () => clearTimeout(timeoutId);
+  }, [doc?.slug, doc?.content]);
+
+  // Scroll-spy: observer que resalta el heading visible
+  useEffect(() => {
+    if (headings.length === 0) return;
 
     setActiveId(headings[0]?.slug || null);
 
@@ -25,7 +70,7 @@ export const DocsTOC = ({ headings }) => {
       observerRef.current = new IntersectionObserver(
         (entries) => {
           const visibleEntries = entries
-            .filter(e => e.isIntersecting)
+            .filter((e) => e.isIntersecting)
             .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
 
           if (visibleEntries.length > 0) {
@@ -33,6 +78,8 @@ export const DocsTOC = ({ headings }) => {
           }
         },
         {
+          // El heading se considera "visible" cuando está en el
+          // 30% superior del viewport.
           rootMargin: '-20% 0% -70% 0%',
           threshold: 0,
         }
@@ -53,7 +100,7 @@ export const DocsTOC = ({ headings }) => {
     };
   }, [headings]);
 
-  if (!headings || headings.length === 0) return null;
+  if (headings.length === 0) return null;
 
   const handleClick = (e, slug) => {
     e.preventDefault();
