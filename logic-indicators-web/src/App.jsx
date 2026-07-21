@@ -7,7 +7,7 @@
 //       * /login     → si ya hay token, redirige a /dashboard (no re-pide código)
 //       * /dashboard → si no hay token, redirige a /login
 //   - El token vive en localStorage bajo la clave "logic_token".
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -55,7 +55,9 @@ function App() {
             <Route path="/indicators" element={<Indicators />} />
             <Route path="/indicators/:slug" element={<IndicatorPage />} />
             <Route path="/pricing" element={<Pricing />} />
-            <Route path="/resources/docs" element={<Docs />} />
+            <Route path="/docs" element={<Navigate to="/docs/getting-started" replace />} />
+            <Route path="/docs/*" element={<Docs />} />
+            <Route path="/resources/docs" element={<Navigate to="/docs/getting-started" replace />} />
             <Route path="/resources/free-indicators" element={<FreeIndicators />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<Faq />} />

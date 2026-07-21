@@ -1,0 +1,125 @@
+// src/components/docs/DocsLayout.jsx
+// =============================================================================
+// LAYOUT — grid de 3 columnas (sidebar + content + TOC) + responsive
+// =============================================================================
+// Estructura:
+//
+//   ┌────────────────────────────────────────────────────────────┐
+//   │  Breadcrumb + Search                                        │
+//   ├──────────┬──────────────────────────────┬───────────────┤
+//   │          │                              │               │
+//   │ Sidebar  │       Content                │      TOC      │
+//   │ (sticky) │       (max-w-3xl)            │    (sticky)   │
+//   │          │                              │               │
+//   └──────────┴──────────────────────────────┴───────────────┘
+//
+// Responsive:
+//   - lg+ (≥1024px): 3 columnas completas
+//   - md (768-1023px): sidebar colapsa en <details> arriba, TOC oculto
+//   - <md: solo content, sidebar en <details>, TOC oculto
+// =============================================================================
+
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ChevronDown } from 'lucide-react';
+import { DocsSidebar } from './DocsSidebar';
+import { DocsContent } from './DocsContent';
+import { DocsTOC } from './DocsTOC';
+import { DocsSearch } from './DocsSearch';
+import { DocsPagination } from './DocsPagination';
+import { useLanguage } from '../../context/LanguageContext';
+import { getDocsLabel, findDocInStructure, getAdjacentDocs } from '../../data/docs';
+
+export const DocsLayout = ({ doc }) => {
+  const { language } = useLanguage();
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
+  if (!doc) {
+    return (
+      <div className="container mx-auto px-6 py-24 text-center">
+        <h1 className="text-3xl font-bold text-text-main mb-3">
+          {getDocsLabel('docs.ui.notFound.title', language)}
+        </h1>
+        <p className="text-text-muted mb-6">
+          {getDocsLabel('docs.ui.notFound.description', language)}
+        </p>
+        <Link
+          to="/docs"
+          className="inline-block text-accent-primary hover:underline"
+        >
+          {getDocsLabel('docs.ui.notFound.back', language)}
+        </Link>
+      </div>
+    );
+  }
+
+  const { frontmatter, headings, slug } = doc;
+  const found = findDocInStructure(slug);
+  const categoryLabel = found ? getDocsLabel(found.category.labelKey, language) : '';
+  const articleLabel  = found ? getDocsLabel(found.item.labelKey, language)  : frontmatter.title;
+  const { prev, next } = getAdjacentDocs(slug, language);
+
+  return (
+    <div className="container mx-auto px-4 md:px-6 py-8 md:py-12">
+      {/* Top bar: breadcrumb + search */}
+      <div className="flex items-center justify-between gap-4 mb-6 md:mb-10">
+        <nav aria-label="Breadcrumb" className="text-sm text-text-muted flex items-center gap-2 flex-wrap min-w-0">
+          <Link to="/" className="hover:text-text-main transition-colors">
+            {getDocsLabel('docs.ui.breadcrumb.home', language)}
+          </Link>
+          <span>/</span>
+          <Link to="/docs" className="hover:text-text-main transition-colors">
+            {getDocsLabel('docs.ui.breadcrumb.docs', language)}
+          </Link>
+          {categoryLabel && (
+            <>
+              <span>/</span>
+              <span className="text-text-muted">{categoryLabel}</span>
+            </>
+          )}
+          {articleLabel && (
+            <>
+              <span>/</span>
+              <span className="text-text-main truncate">{articleLabel}</span>
+            </>
+          )}
+        </nav>
+        <DocsSearch />
+      </div>
+
+      {/* Mobile sidebar toggle (solo en <lg) */}
+      <details className="lg:hidden mb-6 group">
+        <summary className="docs-mobile-summary flex items-center justify-between px-4 py-2.5 bg-dark-800 border border-dark-700 rounded-md text-sm text-text-main cursor-pointer list-none">
+          <span className="font-medium">{getDocsLabel('docs.ui.tableOfContents', language)}</span>
+          <ChevronDown size={16} className="transition-transform group-open:rotate-180" />
+        </summary>
+        <div className="mt-2 p-2 bg-dark-800 border border-dark-700 rounded-md max-h-[60vh] overflow-y-auto">
+          <DocsSidebar />
+        </div>
+      </details>
+
+      {/* Grid 3 columnas */}
+      <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr_200px] gap-6 lg:gap-10">
+        {/* Sidebar (sticky, solo lg+) */}
+        <aside className="hidden lg:block">
+          <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2">
+            <DocsSidebar />
+          </div>
+        </aside>
+
+        {/* Content */}
+        <main className="min-w-0">
+          <DocsContent doc={doc} />
+          <DocsPagination prev={prev} next={next} />
+        </main>
+
+        {/* TOC (sticky, solo lg+) */}
+        <aside className="hidden lg:block">
+          <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto">
+            <DocsTOC headings={headings} />
+          </div>
+        </aside>
+      </div>
+    </div>
+  );
+};
