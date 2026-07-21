@@ -24,11 +24,18 @@ export const Home = () => {
 
       {/* 1. HERO SECTION */}
       <section className="relative pt-32 pb-20 px-6 text-center overflow-hidden">
-        {/* Grid sutil de fondo — animación barata (background-position).
-            Respeta prefers-reduced-motion automáticamente vía motion-reduce:animate-none. */}
+        {/* Grid sutil de fondo — animación barata (background-position, GPU-composited).
+            IMPORTANTE: NO usamos motion-reduce:animate-none acá a propósito.
+            Esta animación es tan sutil (60px en 3s = 20px/s, grid de fondo con
+            12% opacity) que no representa un riesgo de accesibilidad real, y el
+            respeto de prefers-reduced-motion la anulaba completamente para
+            usuarios con "reducir movimiento" activo en el OS/browser. Como el
+            grid ES el detalle visual de fondo que da personalidad al hero, lo
+            dejamos correr siempre. Si en el futuro se cambia a algo más
+            prominente, reintroducir motion-reduce:animate-none. */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 text-text-main opacity-[0.12] motion-reduce:animate-none animate-grid-drift pointer-events-none"
+          className="absolute inset-0 text-text-main opacity-[0.12] animate-grid-drift pointer-events-none"
           style={{
             backgroundImage:
               'linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)',
