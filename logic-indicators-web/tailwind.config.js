@@ -46,7 +46,19 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'], // Fuente limpia y moderna
-      }
+      },
+      keyframes: {
+        // Grid drift: anima background-position de un gradiente de cuadrícula.
+        // GPU-composited, no causa reflow ni repaint del contenido. Costo
+        // despreciable incluso en mobile.
+        'grid-drift': {
+          from: { 'background-position': '0 0' },
+          to: { 'background-position': '60px 60px' },
+        },
+      },
+      animation: {
+        'grid-drift': 'gridDrift 60s linear infinite',
+      },
     },
   },
   plugins: [],

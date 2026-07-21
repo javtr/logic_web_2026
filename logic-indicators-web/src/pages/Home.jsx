@@ -24,6 +24,18 @@ export const Home = () => {
 
       {/* 1. HERO SECTION */}
       <section className="relative pt-32 pb-20 px-6 text-center overflow-hidden">
+        {/* Grid sutil de fondo — animación barata (background-position).
+            Respeta prefers-reduced-motion automáticamente vía motion-reduce:animate-none. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 text-text-main opacity-[0.05] motion-reduce:animate-none animate-grid-drift pointer-events-none"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+          }}
+        />
+        {/* Glow existente (conservado) */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent-primary/10 blur-[120px] rounded-full pointer-events-none" />
         <div className="relative z-10 max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-extrabold text-text-main tracking-tight mb-8">
