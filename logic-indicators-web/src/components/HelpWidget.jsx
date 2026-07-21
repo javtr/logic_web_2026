@@ -15,7 +15,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { HelpCircle, X, FileQuestion, BookOpen, Mail, MessageCircle } from 'lucide-react';
+import { X, FileQuestion, BookOpen, Mail, MessageCircle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const WHATSAPP_URL = 'https://wa.me/573113006826';
@@ -85,7 +85,7 @@ export const HelpWidget = () => {
   return (
     <div
       ref={containerRef}
-      className="fixed bottom-24 right-6 md:bottom-28 md:right-8 z-40 flex flex-col items-end"
+      className="fixed bottom-24 right-6 md:bottom-28 z-40 flex flex-col items-end"
     >
       {/* Panel — aparece arriba del botón cuando isOpen=true */}
       <div
@@ -163,7 +163,7 @@ export const HelpWidget = () => {
         {isOpen ? (
           <X size={22} strokeWidth={2.5} />
         ) : (
-          <HelpCircle size={22} strokeWidth={2.5} />
+          <MessageCircle size={22} strokeWidth={2.5} />
         )}
       </button>
     </div>
