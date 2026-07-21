@@ -6,18 +6,24 @@
 // visible según el scroll, usando IntersectionObserver.
 //
 // Props:
-//   - headings: array de { level, text, slug } que viene del loader
-//     (extractHeadings en frontmatter.js). El algoritmo de slugify
-//     es compatible con github-slugger (que usa rehype-slug), así
-//     los slugs matchean 1:1 con los IDs del DOM.
+//   - headings: array de { level, text, slug } calculado por
+//     extractHeadings() en el loader. El slug es compatible con
+//     github-slugger (que usa rehype-slug), así matchea 1:1 con
+//     los IDs del DOM y los clicks siempre llevan a la sección.
+//
+// Por qué recibe headings por prop en vez de leer del context:
+//   DocsContext expone los helpers (getDoc, getAdjacentDocs) pero
+//   NO el doc actual. El doc solo lo tiene DocsLayout (por prop
+//   desde DocsPrivate/DocsPublic). Mantener el flow 'prop' es
+//   más simple y evita re-renders innecesarios cuando el context
+//   cambia por otros motivos.
 // =============================================================================
 
 import { useEffect, useState, useRef } from 'react';
 import { useDocs } from '../../context/DocsContext';
 
-export const DocsTOC = () => {
+export const DocsTOC = ({ headings = [] }) => {
   const { getDocsLabel, doc } = useDocs();
-  const headings = doc?.headings || [];
   const [activeId, setActiveId] = useState(headings[0]?.slug || null);
   const observerRef = useRef(null);
 
@@ -26,7 +32,7 @@ export const DocsTOC = () => {
     setActiveId(headings[0]?.slug || null);
   }, [doc?.slug]);
 
-  // Scroll-spy: observer que resalta el heading visible
+  // Scroll-spy: observer que resalta el heading visible según scroll
   useEffect(() => {
     if (headings.length === 0) return;
 
