@@ -5,10 +5,11 @@ import { useLanguage } from '../context/LanguageContext';
 import { Button } from './Button';
 import { ResourcesDropdown } from './ResourcesDropdown';
 import { MobileMenu } from './MobileMenu';
-import { Globe, Menu, Tag, Gift } from 'lucide-react';
+import { LanguageSwitcher } from './LanguageSwitcher';
+import { Menu, Tag, Gift } from 'lucide-react';
 
 export const Navbar = () => {
-  const { t, toggleLanguage, language } = useLanguage();
+  const { t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Cerrar el menú mobile si se redimensiona a desktop
@@ -48,14 +49,7 @@ export const Navbar = () => {
               {t('nav.pricing')}
             </Link>
             <Link to="/contact" className="hover:text-accent-primary transition-colors">{t('nav.contact')}</Link>
-            <button
-              onClick={toggleLanguage}
-              aria-label={t('nav.switchLanguage')}
-              className="flex items-center gap-2 px-3 py-1 rounded-full bg-dark-700 hover:text-text-main transition-all"
-            >
-              <Globe size={14} />
-              {language.toUpperCase()}
-            </button>
+            <LanguageSwitcher />
             <Link to="/login">
               <Button variant="secondary">{t('nav.login')}</Button>
             </Link>
@@ -63,14 +57,7 @@ export const Navbar = () => {
 
           {/* Mobile: Language + Burger */}
           <div className="md:hidden flex items-center gap-3">
-            <button
-              onClick={toggleLanguage}
-              aria-label={t('nav.switchLanguage')}
-              className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-dark-700 text-text-muted hover:text-text-main transition-all text-xs font-semibold"
-            >
-              <Globe size={13} />
-              {language.toUpperCase()}
-            </button>
+            <LanguageSwitcher />
             <button
               onClick={() => setIsMobileMenuOpen(true)}
               className="text-text-main p-1"

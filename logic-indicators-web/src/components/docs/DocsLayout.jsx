@@ -31,6 +31,7 @@ import { DocsContent } from './DocsContent';
 import { DocsTOC } from './DocsTOC';
 import { DocsSearch } from './DocsSearch';
 import { DocsPagination } from './DocsPagination';
+import { LanguageSwitcher } from '../LanguageSwitcher';
 import { useDocs } from '../../context/DocsContext';
 
 export const DocsLayout = ({ doc, showHomeButton = false }) => {
@@ -72,10 +73,10 @@ export const DocsLayout = ({ doc, showHomeButton = false }) => {
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-8 md:py-12">
-      {/* Botón "Volver al inicio" — solo en la docs privada (zona de miembros).
-          La docs pública ya tiene el Navbar completo con su link a home. */}
+      {/* Chrome de la docs privada: "Volver al inicio" + switcher de idioma.
+          La docs pública ya tiene el Navbar completo con ambos. */}
       {showHomeButton && (
-        <div className="mb-4">
+        <div className="flex items-center justify-between mb-4 gap-4">
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-accent-primary transition-colors group"
@@ -83,6 +84,7 @@ export const DocsLayout = ({ doc, showHomeButton = false }) => {
             <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-0.5" />
             {getDocsLabel('docs.ui.breadcrumb.home')}
           </Link>
+          <LanguageSwitcher />
         </div>
       )}
 
