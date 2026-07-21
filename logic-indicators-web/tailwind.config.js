@@ -51,15 +51,21 @@ export default {
         // Grid drift: anima background-position de un gradiente de cuadrícula.
         // GPU-composited, no causa reflow ni repaint del contenido. Costo
         // despreciable incluso en mobile.
-        'grid-drift': {
+        //
+        // IMPORTANTE: el nombre acá tiene que ser camelCase SIN guión para
+        // que coincida con la referencia en `animation:` más abajo. Si lo
+        // ponés con guión ('grid-drift'), Tailwind genera @keyframes
+        // grid-drift pero la animación referencia gridDrift, y el browser
+        // no encuentra el keyframe → la animación se ignora silenciosa.
+        gridDrift: {
           from: { 'background-position': '0 0' },
           to: { 'background-position': '60px 60px' },
         },
       },
       animation: {
-        // 20s por loop = 3px/s. Velocidad suficiente para que el ojo perciba
-        // el movimiento sin que distraiga del contenido.
-        'grid-drift': 'gridDrift 20s linear infinite',
+        // 3s por loop = 20px/s (60px / 3s). Lo bastante rápido para que el
+        // ojo perciba el movimiento sin que distraiga del contenido.
+        'grid-drift': 'gridDrift 3s linear infinite',
       },
     },
   },
