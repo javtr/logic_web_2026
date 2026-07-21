@@ -2,33 +2,26 @@
 // =============================================================================
 // SEARCH — búsqueda full-text con Fuse.js + modal
 // =============================================================================
-// Modal que se abre con Cmd+K / Ctrl+K (solo en la página de docs).
-// Busca sobre title + description + snippet + headings de todos los
-// artículos del idioma actual.
-//
-// Navegación por teclado:
-//   ↑/↓       → mover selección
-//   Enter     → ir al artículo seleccionado
-//   Esc       → cerrar
+// Lee getAllSlugsForSearch, getDocsLabel y basePath del DocsContext.
+// Los links de navegación usan el basePath del contexto para que las
+// búsquedas en la docs pública naveguen a /docs/... y las de la docs
+// privada naveguen a /dashboard/docs/....
 // =============================================================================
 
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Fuse from 'fuse.js';
 import { Search, X } from 'lucide-react';
-import { getAllSlugsForSearch } from '../../data/docs';
-import { useLanguage } from '../../context/LanguageContext';
-import { getDocsLabel } from '../../data/docs';
+import { useDocs } from '../../context/DocsContext';
 
 export const DocsSearch = () => {
-  const { language } = useLanguage();
+  const { language, getAllSlugsForSearch, getDocsLabel, basePath } = useDocs();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [selectedIdx, setSelectedIdx] = useState(0);
   const inputRef = useRef(null);
 
-  // Índice Fuse.js (memoizado por idioma)
   const fuse = useMemo(() => {
     const docs = getAllSlugsForSearch(language);
     return new Fuse(docs, {
@@ -38,27 +31,23 @@ export const DocsSearch = () => {
         { name: 'headings',    weight: 0.15 },
         { name: 'snippet',     weight: 0.05 },
       ],
-      threshold: 0.3,        // 0 = match exacto, 1 = match anything
-      ignoreLocation: true,  // buscar en todo el string, no desde el inicio
+      threshold: 0.3,
+      ignoreLocation: true,
       minMatchCharLength: 2,
     });
-  }, [language]);
+  }, [language, getAllSlugsForSearch]);
 
-  // Resultados
   const results = useMemo(() => {
     if (query.trim().length < 2) return [];
     return fuse.search(query).slice(0, 8);
   }, [query, fuse]);
 
-  // Atajo de teclado Cmd+K / Ctrl+K
   useEffect(() => {
     const handleKey = (e) => {
-      // Cmd+K (Mac) o Ctrl+K (Win/Linux)
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
         setIsOpen(true);
       }
-      // Esc para cerrar
       if (e.key === 'Escape' && isOpen) {
         setIsOpen(false);
       }
@@ -67,22 +56,18 @@ export const DocsSearch = () => {
     return () => window.removeEventListener('keydown', handleKey);
   }, [isOpen]);
 
-  // Focus en el input al abrir
   useEffect(() => {
     if (isOpen) {
       setQuery('');
       setSelectedIdx(0);
-      // pequeño delay para que el modal termine de animar
       setTimeout(() => inputRef.current?.focus(), 50);
     }
   }, [isOpen]);
 
-  // Reset selectedIdx cuando cambia query
   useEffect(() => {
     setSelectedIdx(0);
   }, [query]);
 
-  // Keyboard navigation
   const handleKeyDown = (e) => {
     if (e.key === 'ArrowDown') {
       e.preventDefault();
@@ -98,10 +83,9 @@ export const DocsSearch = () => {
 
   const goToResult = (result) => {
     setIsOpen(false);
-    navigate(`/docs/${result.item.slug}`);
+    navigate(`${basePath}/${result.item.slug}`);
   };
 
-  // Highlight de match en el texto (simple)
   const highlightMatch = (text, query) => {
     if (!query) return text;
     const idx = text.toLowerCase().indexOf(query.toLowerCase());
@@ -119,19 +103,17 @@ export const DocsSearch = () => {
 
   return (
     <>
-      {/* Trigger button (visible en la página de docs) */}
       <button
         onClick={() => setIsOpen(true)}
         className="docs-search-trigger inline-flex items-center gap-2 px-3 py-1.5 text-sm text-text-muted bg-dark-800 border border-dark-700 rounded-md hover:border-dark-600 hover:text-text-main transition-colors"
       >
         <Search size={14} />
-        <span className="hidden sm:inline">{getDocsLabel('docs.ui.search.placeholder', language)}</span>
+        <span className="hidden sm:inline">{getDocsLabel('docs.ui.search.placeholder')}</span>
         <kbd className="hidden md:inline-block ml-2 px-1.5 py-0.5 text-xs text-text-muted bg-dark-900 border border-dark-700 rounded">
           ⌘K
         </kbd>
       </button>
 
-      {/* Modal */}
       {isOpen && (
         <div
           className="fixed inset-0 z-50 flex items-start justify-center pt-[10vh] px-4 bg-dark-900/80 backdrop-blur-sm"
@@ -141,7 +123,6 @@ export const DocsSearch = () => {
             className="w-full max-w-2xl bg-dark-800 border border-dark-700 rounded-xl shadow-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Search input */}
             <div className="flex items-center gap-3 px-4 py-3 border-b border-dark-700">
               <Search size={18} className="text-text-muted flex-shrink-0" />
               <input
@@ -150,7 +131,7 @@ export const DocsSearch = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder={getDocsLabel('docs.ui.search.placeholder', language)}
+                placeholder={getDocsLabel('docs.ui.search.placeholder')}
                 className="flex-1 bg-transparent text-text-main placeholder-text-muted focus:outline-none"
               />
               <button
@@ -162,17 +143,16 @@ export const DocsSearch = () => {
               </button>
             </div>
 
-            {/* Results */}
             <div className="max-h-[60vh] overflow-y-auto">
               {query.trim().length < 2 && (
                 <div className="px-4 py-8 text-center text-text-muted text-sm">
-                  {getDocsLabel('docs.ui.search.shortcut', language)}
+                  {getDocsLabel('docs.ui.search.shortcut')}
                 </div>
               )}
 
               {query.trim().length >= 2 && results.length === 0 && (
                 <div className="px-4 py-8 text-center text-text-muted text-sm">
-                  {getDocsLabel('docs.ui.search.noResults', language)}
+                  {getDocsLabel('docs.ui.search.noResults')}
                 </div>
               )}
 
@@ -201,7 +181,6 @@ export const DocsSearch = () => {
               ))}
             </div>
 
-            {/* Footer con shortcuts */}
             <div className="flex items-center justify-between px-4 py-2 border-t border-dark-700 text-xs text-text-muted">
               <div className="flex items-center gap-3">
                 <span><kbd className="px-1.5 py-0.5 bg-dark-900 border border-dark-700 rounded">↑↓</kbd> navigate</span>

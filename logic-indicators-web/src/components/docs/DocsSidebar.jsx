@@ -2,40 +2,37 @@
 // =============================================================================
 // SIDEBAR — índice jerárquico de la documentación
 // =============================================================================
-// Lee DOCS_STRUCTURE y renderiza la jerarquía de categorías / artículos.
-// Las categorías son colapsables; el item activo (matching por URL) queda
-// highlighted y su categoría queda expandida por defecto.
-//
-// Comportamiento responsive: en mobile, este componente se renderiza dentro
-// de un <details> en DocsLayout (Fase 8). En desktop, es sticky en la izq.
+// Lee DOCS_STRUCTURE, getDocsLabel y basePath del DocsContext. El
+// basePath es importante para construir los links correctos: la
+// sidebar renderiza links a /docs/... o /dashboard/docs/... según
+// desde dónde se renderice.
 // =============================================================================
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { DOCS_STRUCTURE, getDocsLabel } from '../../data/docs';
-import { useLanguage } from '../../context/LanguageContext';
+import { useDocs } from '../../context/DocsContext';
 import { ChevronDown } from 'lucide-react';
 
 export const DocsSidebar = () => {
-  const { language } = useLanguage();
+  const { structure, getDocsLabel, basePath } = useDocs();
   const location = useLocation();
 
-  // Detectar qué categoría contiene el item activo
-  const activeSlug = location.pathname.replace(/^\/docs\/?/, '').replace(/\/$/, '');
-  const activeCategoryId = DOCS_STRUCTURE.find(cat =>
+  // Detectar slug activo según el basePath actual
+  const activeSlug = location.pathname
+    .replace(new RegExp(`^${basePath}/?`), '')
+    .replace(/\/$/, '');
+  const activeCategoryId = structure.find(cat =>
     cat.items.some(i => i.slug === activeSlug)
   )?.id;
 
-  // Estado de colapsados: por defecto la categoría activa está expandida
   const [collapsed, setCollapsed] = useState(() => {
     const initial = {};
-    DOCS_STRUCTURE.forEach(cat => {
+    structure.forEach(cat => {
       initial[cat.id] = cat.id !== activeCategoryId;
     });
     return initial;
   });
 
-  // Si cambia el slug activo, expandir su categoría
   useEffect(() => {
     if (activeCategoryId) {
       setCollapsed(prev => ({ ...prev, [activeCategoryId]: false }));
@@ -48,13 +45,12 @@ export const DocsSidebar = () => {
 
   return (
     <nav aria-label="Documentation navigation" className="docs-sidebar">
-      {DOCS_STRUCTURE.map((cat) => {
+      {structure.map((cat) => {
         const isCollapsed = collapsed[cat.id];
         const isActiveCategory = cat.id === activeCategoryId;
 
         return (
           <div key={cat.id} className="mb-6">
-            {/* Category header */}
             <button
               onClick={() => toggleCategory(cat.id)}
               className={`
@@ -66,14 +62,13 @@ export const DocsSidebar = () => {
               `}
               aria-expanded={!isCollapsed}
             >
-              <span>{getDocsLabel(cat.labelKey, language)}</span>
+              <span>{getDocsLabel(cat.labelKey)}</span>
               <ChevronDown
                 size={14}
                 className={`transition-transform duration-200 ${isCollapsed ? '-rotate-90' : ''}`}
               />
             </button>
 
-            {/* Items (collapsible) */}
             <ul
               className={`
                 space-y-0.5 pl-2 border-l border-dark-700
@@ -86,7 +81,7 @@ export const DocsSidebar = () => {
                 return (
                   <li key={item.slug}>
                     <Link
-                      to={`/docs/${item.slug}`}
+                      to={`${basePath}/${item.slug}`}
                       className={`
                         block px-3 py-1.5 text-sm rounded-md
                         transition-colors duration-150
@@ -96,7 +91,7 @@ export const DocsSidebar = () => {
                       `}
                       aria-current={isActive ? 'page' : undefined}
                     >
-                      {getDocsLabel(item.labelKey, language)}
+                      {getDocsLabel(item.labelKey)}
                     </Link>
                   </li>
                 );

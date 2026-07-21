@@ -2,6 +2,10 @@
 // =============================================================================
 // LAYOUT — grid de 3 columnas (sidebar + content + TOC) + responsive
 // =============================================================================
+// Lee del DocsContext: getDocsLabel, findDocInStructure, getAdjacentDocs,
+// basePath. Ya no importa de data/docs directamente — la página que lo
+// monta (DocsPublic o DocsPrivate) provee el contexto.
+//
 // Estructura:
 //
 //   ┌────────────────────────────────────────────────────────────┐
@@ -27,27 +31,26 @@ import { DocsContent } from './DocsContent';
 import { DocsTOC } from './DocsTOC';
 import { DocsSearch } from './DocsSearch';
 import { DocsPagination } from './DocsPagination';
-import { useLanguage } from '../../context/LanguageContext';
-import { getDocsLabel, findDocInStructure, getAdjacentDocs } from '../../data/docs';
+import { useDocs } from '../../context/DocsContext';
 
 export const DocsLayout = ({ doc }) => {
-  const { language } = useLanguage();
+  const { getDocsLabel, findDocInStructure, getAdjacentDocs, basePath } = useDocs();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   if (!doc) {
     return (
       <div className="container mx-auto px-6 py-24 text-center">
         <h1 className="text-3xl font-bold text-text-main mb-3">
-          {getDocsLabel('docs.ui.notFound.title', language)}
+          {getDocsLabel('docs.ui.notFound.title')}
         </h1>
         <p className="text-text-muted mb-6">
-          {getDocsLabel('docs.ui.notFound.description', language)}
+          {getDocsLabel('docs.ui.notFound.description')}
         </p>
         <Link
-          to="/docs"
+          to={basePath}
           className="inline-block text-accent-primary hover:underline"
         >
-          {getDocsLabel('docs.ui.notFound.back', language)}
+          {getDocsLabel('docs.ui.notFound.back')}
         </Link>
       </div>
     );
@@ -55,9 +58,9 @@ export const DocsLayout = ({ doc }) => {
 
   const { frontmatter, headings, slug } = doc;
   const found = findDocInStructure(slug);
-  const categoryLabel = found ? getDocsLabel(found.category.labelKey, language) : '';
-  const articleLabel  = found ? getDocsLabel(found.item.labelKey, language)  : frontmatter.title;
-  const { prev, next } = getAdjacentDocs(slug, language);
+  const categoryLabel = found ? getDocsLabel(found.category.labelKey) : '';
+  const articleLabel  = found ? getDocsLabel(found.item.labelKey)  : frontmatter.title;
+  const { prev, next } = getAdjacentDocs(slug, doc.language);
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-8 md:py-12">
@@ -65,11 +68,11 @@ export const DocsLayout = ({ doc }) => {
       <div className="flex items-center justify-between gap-4 mb-6 md:mb-10">
         <nav aria-label="Breadcrumb" className="text-sm text-text-muted flex items-center gap-2 flex-wrap min-w-0">
           <Link to="/" className="hover:text-text-main transition-colors">
-            {getDocsLabel('docs.ui.breadcrumb.home', language)}
+            {getDocsLabel('docs.ui.breadcrumb.home')}
           </Link>
           <span>/</span>
-          <Link to="/docs" className="hover:text-text-main transition-colors">
-            {getDocsLabel('docs.ui.breadcrumb.docs', language)}
+          <Link to={basePath} className="hover:text-text-main transition-colors">
+            {getDocsLabel('docs.ui.breadcrumb.docs')}
           </Link>
           {categoryLabel && (
             <>
@@ -90,7 +93,7 @@ export const DocsLayout = ({ doc }) => {
       {/* Mobile sidebar toggle (solo en <lg) */}
       <details className="lg:hidden mb-6 group">
         <summary className="docs-mobile-summary flex items-center justify-between px-4 py-2.5 bg-dark-800 border border-dark-700 rounded-md text-sm text-text-main cursor-pointer list-none">
-          <span className="font-medium">{getDocsLabel('docs.ui.tableOfContents', language)}</span>
+          <span className="font-medium">{getDocsLabel('docs.ui.tableOfContents')}</span>
           <ChevronDown size={16} className="transition-transform group-open:rotate-180" />
         </summary>
         <div className="mt-2 p-2 bg-dark-800 border border-dark-700 rounded-md max-h-[60vh] overflow-y-auto">

@@ -7,6 +7,13 @@
 //       * /login     → si ya hay token, redirige a /dashboard (no re-pide código)
 //       * /dashboard → si no hay token, redirige a /login
 //   - El token vive en localStorage bajo la clave "logic_token".
+//
+// DOCUMENTACIÓN (separada en dos paths):
+//   - /docs/*              → PÚBLICA (versión "media" de los 7 indicators,
+//                             accesible sin auth, optimizada para SEO/marketing)
+//   - /dashboard/docs/*    → PRIVADA (manual técnico completo con TODOS los
+//                             parámetros, configs, best practices — solo
+//                             usuarios logueados)
 import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
@@ -14,12 +21,14 @@ import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
 import { ScrollToTopButton } from './components/ScrollToTopButton';
 import { HelpWidget } from './components/HelpWidget';
+import { PrivateRoute } from './components/PrivateRoute';
 
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 import { IndicatorPage } from './pages/IndicatorPage';
-import { Docs } from './pages/Docs';
+import { DocsPublic } from './pages/DocsPublic';
+import { DocsPrivate } from './pages/DocsPrivate';
 import { FreeIndicators } from './pages/FreeIndicators';
 import { Contact } from './pages/Contact';
 import { Faq } from './pages/Faq';
@@ -55,9 +64,10 @@ function App() {
             <Route path="/indicators" element={<Indicators />} />
             <Route path="/indicators/:slug" element={<IndicatorPage />} />
             <Route path="/pricing" element={<Pricing />} />
-            <Route path="/docs" element={<Navigate to="/docs/getting-started" replace />} />
-            <Route path="/docs/*" element={<Docs />} />
-            <Route path="/resources/docs" element={<Navigate to="/docs/getting-started" replace />} />
+            {/* Docs PÚBLICA: /docs redirige al primer indicator, /docs/* renderiza */}
+            <Route path="/docs" element={<Navigate to="/docs/indicators/logic-footprint" replace />} />
+            <Route path="/docs/*" element={<DocsPublic />} />
+            <Route path="/resources/docs" element={<Navigate to="/docs/indicators/logic-footprint" replace />} />
             <Route path="/resources/free-indicators" element={<FreeIndicators />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<Faq />} />
@@ -68,6 +78,23 @@ function App() {
           {/* RUTAS PRIVADAS (Zona de Miembros, sin layout público) */}
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          {/* Docs PRIVADA: requiere token, redirige a /login si no hay */}
+          <Route
+            path="/dashboard/docs"
+            element={
+              <PrivateRoute>
+                <Navigate to="/dashboard/docs/getting-started" replace />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/dashboard/docs/*"
+            element={
+              <PrivateRoute>
+                <DocsPrivate />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </Router>
     </LanguageProvider>

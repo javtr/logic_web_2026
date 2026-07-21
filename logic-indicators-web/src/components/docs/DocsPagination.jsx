@@ -2,17 +2,17 @@
 // =============================================================================
 // PAGINATION — Previous / Next al final de cada artículo
 // =============================================================================
-// Navegación al artículo previo y siguiente según el orden de la
-// estructura. Si no hay (es el primero o el último), el botón se oculta.
+// Lee getDocsLabel y basePath del DocsContext. El basePath es importante
+// porque los links deben respetar la URL actual: /docs/... o
+// /dashboard/docs/... según si la página es pública o privada.
 // =============================================================================
 
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useLanguage } from '../../context/LanguageContext';
-import { getDocsLabel } from '../../data/docs';
+import { useDocs } from '../../context/DocsContext';
 
 export const DocsPagination = ({ prev, next }) => {
-  const { language } = useLanguage();
+  const { getDocsLabel, basePath } = useDocs();
 
   if (!prev && !next) return null;
 
@@ -24,29 +24,29 @@ export const DocsPagination = ({ prev, next }) => {
       {/* Previous */}
       {prev ? (
         <Link
-          to={`/docs/${prev.slug}`}
+          to={`${basePath}/${prev.slug}`}
           className="group flex flex-col p-4 rounded-lg border border-dark-700 hover:border-accent-primary bg-dark-800/50 hover:bg-dark-800 transition-all"
         >
           <span className="flex items-center gap-1 text-xs text-text-muted mb-1 group-hover:text-accent-primary transition-colors">
             <ChevronLeft size={14} />
-            {getDocsLabel('docs.ui.previous', language)}
+            {getDocsLabel('docs.ui.previous')}
           </span>
           <span className="text-sm font-semibold text-text-main">
             {prev.frontmatter.title || prev.slug}
           </span>
         </Link>
       ) : (
-        <div />  // espacio vacío para mantener el grid
+        <div />
       )}
 
       {/* Next */}
       {next ? (
         <Link
-          to={`/docs/${next.slug}`}
+          to={`${basePath}/${next.slug}`}
           className="group flex flex-col p-4 rounded-lg border border-dark-700 hover:border-accent-primary bg-dark-800/50 hover:bg-dark-800 transition-all text-right sm:col-start-2"
         >
           <span className="flex items-center justify-end gap-1 text-xs text-text-muted mb-1 group-hover:text-accent-primary transition-colors">
-            {getDocsLabel('docs.ui.next', language)}
+            {getDocsLabel('docs.ui.next')}
             <ChevronRight size={14} />
           </span>
           <span className="text-sm font-semibold text-text-main">
@@ -54,7 +54,7 @@ export const DocsPagination = ({ prev, next }) => {
           </span>
         </Link>
       ) : (
-        <div />  // espacio vacío
+        <div />
       )}
     </nav>
   );
