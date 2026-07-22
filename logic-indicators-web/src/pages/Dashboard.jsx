@@ -326,7 +326,8 @@ export const Dashboard = () => {
             <ul className="space-y-2 max-h-72 overflow-y-auto pr-1">
               {userData.productos_activos.map((prod, i) => {
                 // Resolver la URL vía el helper. Devuelve string | null.
-                const downloadUrl = getDownloadUrl(prod.codigo_producto);
+                // La key es prod.nombre_producto (lo que ve el usuario).
+                const downloadUrl = getDownloadUrl(prod.nombre_producto);
                 return (
                   <li
                     key={i}
