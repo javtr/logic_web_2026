@@ -28,7 +28,7 @@ export const HomeIndicatorCard = ({
 
       {/* 2. Subtítulo */}
       {subtitle && (
-        <p className="text-sm uppercase tracking-wider text-accent-secondary font-semibold mb-6">
+        <p className="text-sm uppercase tracking-wider text-text-main font-semibold mb-6">
           {subtitle}
         </p>
       )}
