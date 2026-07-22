@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2 } from "lucide-react";
+import { getDownloadUrl } from "../data/downloads";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -310,7 +311,9 @@ export const Dashboard = () => {
         {/* Tus Productos — top-right
             Lista los productos del usuario desde userData.productos_activos
             (devuelto por GET /api/v1/members/portfolio). Cada producto tiene
-            su botón de descarga individual desde R2.
+            su botón de descarga individual.
+            La URL se resuelve vía getDownloadUrl() desde src/data/downloads.js
+            (unica fuente de verdad para el mapping producto -> URL).
             Estructura esperada del array (defensivo: tolera campos faltantes):
               { nombre_producto: string, codigo_producto: string, ... } */}
         <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
@@ -321,36 +324,40 @@ export const Dashboard = () => {
 
           {userData.productos_activos && userData.productos_activos.length > 0 ? (
             <ul className="space-y-2 max-h-72 overflow-y-auto pr-1">
-              {userData.productos_activos.map((prod, i) => (
-                <li
-                  key={i}
-                  className="p-3 bg-dark-900 border border-dark-600 rounded-xl flex items-center justify-between gap-3 group hover:border-accent-secondary/50 transition-colors"
-                >
-                  <div className="min-w-0 flex-1">
-                    <p className="text-text-main font-semibold text-sm truncate">
-                      {prod.nombre_producto || `Producto ${i + 1}`}
-                    </p>
-                    {prod.codigo_producto && (
-                      <p
-                        className="text-xs text-text-muted font-mono truncate"
-                        title={prod.codigo_producto}
-                      >
-                        {prod.codigo_producto}
+              {userData.productos_activos.map((prod, i) => {
+                // Resolver la URL vía el helper. Devuelve string | null.
+                const downloadUrl = getDownloadUrl(prod.codigo_producto);
+                return (
+                  <li
+                    key={i}
+                    className="p-3 bg-dark-900 border border-dark-600 rounded-xl flex items-center justify-between gap-3 group hover:border-accent-secondary/50 transition-colors"
+                  >
+                    <div className="min-w-0 flex-1">
+                      <p className="text-text-main font-semibold text-sm truncate">
+                        {prod.nombre_producto || `Producto ${i + 1}`}
                       </p>
+                      {prod.codigo_producto && (
+                        <p
+                          className="text-xs text-text-muted font-mono truncate"
+                          title={prod.codigo_producto}
+                        >
+                          {prod.codigo_producto}
+                        </p>
+                      )}
+                    </div>
+                    {downloadUrl && (
+                      <a
+                        href={downloadUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs bg-accent-secondary/20 text-accent-secondary px-3 py-1.5 rounded-full hover:bg-accent-secondary hover:text-dark-900 transition-all font-bold whitespace-nowrap"
+                      >
+                        Descargar
+                      </a>
                     )}
-                  </div>
-                  {prod.codigo_producto && (
-                    <a
-                      href={`https://r2.logicindicators.com/dl/${prod.codigo_producto}.zip`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs bg-accent-secondary/20 text-accent-secondary px-3 py-1.5 rounded-full hover:bg-accent-secondary hover:text-dark-900 transition-all font-bold whitespace-nowrap"
-                    >
-                      Descargar
-                    </a>
-                  )}
-                </li>
-              ))}
+                  </li>
+                );
+              })}
             </ul>
           ) : (
             <p className="text-text-muted text-sm">
