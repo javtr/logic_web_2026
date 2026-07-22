@@ -155,7 +155,7 @@ export const HelpWidget = () => {
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? t('help.closeMenu') : t('help.openMenu')}
         aria-expanded={isOpen}
-        className="pointer-events-auto w-12 h-12 md:w-14 md:h-14 rounded-full bg-dark-800 border-2 border-accent-primary text-accent-primary shadow-[0_4px_20px_theme(colors.accent.primary/20%)] hover:bg-accent-primary hover:text-dark-900 hover:scale-110 flex items-center justify-center transition-all duration-300 ease-out"
+        className="pointer-events-auto w-12 h-12 md:w-14 md:h-14 rounded-full bg-dark-800 border-2 border-accent-primary text-accent-primary shadow-[0_4px_20px_theme(colors.accent.primary/20%)] hover:bg-accent-primary hover:text-dark-900 hover:scale-110 opacity-60 hover:opacity-100 focus-visible:opacity-100 flex items-center justify-center transition-all duration-300 ease-out"
       >
         {isOpen ? (
           <X size={22} strokeWidth={2.5} />

@@ -60,10 +60,11 @@ export const ScrollToTopButton = () => {
         shadow-[0_4px_20px_theme(colors.accent.primary/30%)]
         hover:shadow-[0_6px_24px_theme(colors.accent.primary/40%)]
         hover:scale-110
+        opacity-60 hover:opacity-100 focus-visible:opacity-100
         flex items-center justify-center
         transition-all duration-300 ease-out
         ${isVisible
-          ? 'opacity-100 translate-y-0 pointer-events-auto'
+          ? 'translate-y-0 pointer-events-auto'
           : 'opacity-0 translate-y-4 pointer-events-none'
         }
       `}
