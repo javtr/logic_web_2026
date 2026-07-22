@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
-import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, Download } from "lucide-react";
+import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2 } from "lucide-react";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -351,7 +351,7 @@ export const Dashboard = () => {
               onClick={() => navigate("/dashboard/docs/installation")}
               className="w-full sm:w-auto"
             >
-              <Download size={18} />
+              <BookOpen size={18} />
               Instrucciones de instalación
             </Button>
           </div>

@@ -7,8 +7,8 @@ const variants = {
 
 export const Button = ({ children, variant = "primary", className = "", ...props }) => {
   return (
-    <button 
-      className={`px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 active:scale-95 ${variants[variant]} ${className}`}
+    <button
+      className={`inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 active:scale-95 ${variants[variant]} ${className}`}
       {...props}
     >
       {children}
