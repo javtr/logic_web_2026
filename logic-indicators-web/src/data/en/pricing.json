@@ -17,8 +17,7 @@
 
   "billingToggle": {
     "yearly": "Yearly",
-    "lifetime": "Lifetime",
-    "bestValue": "Best Value"
+    "lifetime": "Lifetime"
   },
 
   "singlePlan": {

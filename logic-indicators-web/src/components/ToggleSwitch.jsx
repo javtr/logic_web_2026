@@ -4,7 +4,7 @@
 export const ToggleSwitch = ({
   isLifetime,
   onToggle,
-  labels = { yearly: 'Yearly', lifetime: 'Lifetime', bestValue: 'Best Value' },
+  labels = { yearly: 'Yearly', lifetime: 'Lifetime' },
 }) => {
   return (
     <div className="flex items-center justify-center gap-5 my-8">
@@ -25,12 +25,9 @@ export const ToggleSwitch = ({
         />
       </button>
 
-      {/* Texto Lifetime con Badge */}
-      <span className={`flex items-center gap-3 text-lg font-semibold transition-colors duration-300 ${isLifetime ? 'text-text-main' : 'text-text-muted'}`}>
+      {/* Texto Lifetime (sin badge — el "Mejor Opción" se conserva solo en la card recomendada) */}
+      <span className={`text-lg font-semibold transition-colors duration-300 ${isLifetime ? 'text-text-main' : 'text-text-muted'}`}>
         {labels.lifetime}
-        <span className="px-2.5 py-1 rounded-md text-[11px] tracking-wider uppercase font-bold bg-accent-secondary/10 text-accent-secondary border border-accent-secondary/20">
-          {labels.bestValue}
-        </span>
       </span>
     </div>
   );
