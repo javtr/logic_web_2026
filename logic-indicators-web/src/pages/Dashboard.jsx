@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
-import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2 } from "lucide-react";
+import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, HelpCircle } from "lucide-react";
 import { getDownloadUrl, getDisplayName } from "../data/downloads";
 
 export const Dashboard = () => {
@@ -376,7 +376,7 @@ export const Dashboard = () => {
             Accedé al manual técnico detallado de cada indicator: configuración completa, parámetros, mejores prácticas y troubleshooting. ¿Recién empezás? Empezá por las instrucciones de instalación.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3">
             <Button
               variant="primary"
               onClick={() => navigate("/dashboard/docs")}
@@ -392,6 +392,14 @@ export const Dashboard = () => {
             >
               <BookOpen size={18} />
               Instrucciones de instalación
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => navigate("/faq")}
+              className="w-full sm:w-auto"
+            >
+              <HelpCircle size={18} />
+              Preguntas frecuentes
             </Button>
           </div>
         </div>
