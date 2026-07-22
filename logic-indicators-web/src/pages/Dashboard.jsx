@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2 } from "lucide-react";
-import { getDownloadUrl } from "../data/downloads";
+import { getDownloadUrl, getDisplayName } from "../data/downloads";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -335,7 +335,7 @@ export const Dashboard = () => {
                   >
                     <div className="min-w-0 flex-1">
                       <p className="text-text-main font-semibold text-sm truncate">
-                        {prod.nombre_producto || `Producto ${i + 1}`}
+                        {getDisplayName(prod.nombre_producto) || `Producto ${i + 1}`}
                       </p>
                       {/* codigo_producto NO se muestra: es una clave interna
                           de licenciamiento que el usuario no debe ver.
