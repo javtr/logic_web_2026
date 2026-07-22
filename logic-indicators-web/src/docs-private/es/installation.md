@@ -7,46 +7,46 @@ category: intro
 
 # Instalación
 
-Seguí estos pasos para instalar Logic Indicators en NinjaTrader 8. El proceso completo lleva unos 5 minutos.
+Esta guía describe el procedimiento de instalación de Logic Indicators sobre NinjaTrader 8. El proceso completo se completa en aproximadamente cinco minutos.
 
 ## Requisitos
 
-- **NinjaTrader 8** instalado (se recomienda la última versión).
-- **Windows 10 u 11.**
+- **NinjaTrader 8** instalado (se recomienda la versión estable más reciente).
+- **Windows 10 u 11** con permisos de administrador.
 - Una suscripción activa a **Logic Indicators**.
 - Una cuenta de **Logic Indicators** con al menos un producto asignado.
 
 ## Pasos de instalación
 
-1. **Descargá el archivo.** Andá a tu [Zona de miembros](/dashboard) y hacé clic en el botón **Descargar** del producto que querés instalar. El archivo es un `.zip` — no lo descomprimas.
+1. **Descargue el archivo.** Acceda a la [Zona de miembros](/dashboard) y haga clic en el botón **Descargar** correspondiente al producto que desea instalar. El archivo es un archivo `.zip` y no debe descomprimirlo.
 
-2. **Importalo en NinjaTrader 8.** Abrí NinjaTrader 8, andá a la pestaña **Tools**, hacé clic en **Import** y elegí **Ninja Script Add-on**. Seleccioná el archivo `.zip` que acabás de descargar.
+2. **Importe el archivo en NinjaTrader 8.** Abra NinjaTrader 8, diríjase a la pestaña **Tools**, seleccione **Import** y, a continuación, elija **Ninja Script Add-on**. Seleccione el archivo `.zip` descargado en el paso anterior.
 
-3. **Reiniciá NinjaTrader 8.** Este paso es **obligatorio**. NinjaTrader solo registra los indicadores después de un reinicio. Si te lo saltás, los indicadores no van a aparecer en la lista y cualquier gráfico donde intentes agregarlos va a tirar error.
+3. **Reinicie NinjaTrader 8.** Este paso es **obligatorio**. NinjaTrader registra los indicadores únicamente tras un reinicio completo de la aplicación. Si omite este paso, los indicadores no aparecerán en el listado y cualquier intento de agregarlos a un gráfico generará un error.
 
-4. **Cargá los indicadores en un gráfico.** Una vez que NinjaTrader haya reiniciado, abrí un gráfico, hacé clic derecho sobre él, elegí **Indicators**, buscá el indicador de Logic que quieras (por ejemplo `Logic Footprint`, `Logic Profile`) y agregalo al gráfico.
+4. **Cargue los indicadores en un gráfico.** Una vez que NinjaTrader haya reiniciado, abra un gráfico, haga clic derecho sobre él, seleccione **Indicators**, localice el indicador de Logic que desee agregar (por ejemplo, `Logic Footprint` o `Logic Profile`) y confírmelo.
 
-Si los indicadores aparecen en la lista y cargan sin errores, la instalación está lista.
+Si los indicadores aparecen en el listado y se cargan correctamente, la instalación ha finalizado.
 
 ## Si los indicadores dejan de funcionar
 
-Los indicadores de Logic están licenciados a un Machine ID específico (dentro de NinjaTrader se llama **MatchingID**). Este ID puede cambiar sin aviso si:
+Los indicadores de Logic se licencian a un Machine ID específico (denominado **MatchingID** dentro de NinjaTrader). Este identificador puede modificarse sin previo aviso en las siguientes situaciones:
 
-- Formateás el equipo.
-- Te cambiás de computadora.
-- Hacés un cambio importante en Windows (cambio de motherboard, swap de hardware, actualización grande de Windows).
-- Reinstalás NinjaTrader desde cero.
+- Formateo del equipo.
+- Migración a un equipo nuevo.
+- Cambios relevantes en el sistema operativo (sustitución de placa base, intercambio de hardware o actualizaciones importantes de Windows).
+- Reinstalación completa de NinjaTrader.
 
-Cuando eso pasa, el MatchingID de NinjaTrader ya no coincide con el que tenemos registrado en tu cuenta, y los indicadores se niegan a cargar. Para arreglarlo:
+Cuando esto ocurre, el MatchingID de NinjaTrader deja de coincidir con el que se encuentra registrado en su cuenta, y los indicadores se niegan a cargar. Para resolver la incidencia:
 
-1. **Buscá el MatchingID dentro de NinjaTrader 8.** Normalmente aparece en **Help → About** o en el panel de configuración del indicador.
-2. **Abrí tu [Zona de miembros](/dashboard)** y comparalo con el **NinjaTrader ID** que aparece en la card de arriba a la izquierda.
-3. **Si no coinciden**, copiá el valor de NinjaTrader al campo **NinjaTrader ID** del dashboard y guardá. El dashboard es la fuente de verdad — cuando ambos lados coincidan, los indicadores van a funcionar de nuevo después del próximo reinicio de NinjaTrader.
+1. **Localice el MatchingID dentro de NinjaTrader 8.** Este valor suele encontrarse en **Help → About** o en el panel de configuración del indicador.
+2. **Abra la [Zona de miembros](/dashboard)** y compare el valor con el campo **NinjaTrader ID** que aparece en la tarjeta superior izquierda.
+3. **Si los valores no coinciden**, copie el valor que muestra NinjaTrader y péguelo en el campo **NinjaTrader ID** del dashboard para guardarlo. El dashboard constituye la fuente de referencia; una vez que ambos valores coincidan, los indicadores volverán a funcionar tras el siguiente reinicio de NinjaTrader.
 
-> **Tip:** si cada vez que agregás un indicador de Logic ves un warning de `Matching ID` dentro de NinjaTrader, ese es el síntoma. Solo sincronizá los IDs como se describe arriba.
+> **Indicador de error:** si NinjaTrader muestra una advertencia de `Matching ID` cada vez que se agrega un indicador de Logic, se trata del mismo síntoma. En tal caso, basta con sincronizar los identificadores siguiendo el procedimiento descrito.
 
-## ¿Necesitás más ayuda?
+## Soporte adicional
 
-- Consultá la guía de [Solución de problemas](/dashboard/docs/troubleshooting) para otros errores comunes.
-- [Ir a la Zona de miembros](/dashboard) para descargar indicadores o gestionar tu suscripción.
-- [Contactar a soporte](https://wa.me/573113006826) si nada de esta guía te funciona.
+- Para incidencias adicionales, consulte la guía de [Solución de problemas](/dashboard/docs/troubleshooting).
+- [Acceda a la Zona de miembros](/dashboard) para descargar indicadores o gestionar su suscripción.
+- Si el problema persiste, [contacte al equipo de soporte](https://wa.me/573113006826).
