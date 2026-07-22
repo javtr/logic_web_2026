@@ -131,18 +131,24 @@ export const Home = () => {
       {/* 5. PREGUNTAS FRECUENTES (FAQ) — componente reusable compartido con /pricing */}
       <FAQSection />
 
-      {/* 6. CTA FINAL */}
+      {/* 6. CTA FINAL
+          Mobile-first (commit actual):
+          - Padding de la tarjeta: p-6 mobile (24px) / p-12 desktop (48px).
+            Antes era p-12 uniforme (48px en mobile = demasiado aire).
+          - Título: 24px mobile / 36px desktop. Subtítulo: 16px mobile / 18px desktop.
+          - Márgenes verticales reducidos en mobile: title mb-3 / subtitle mb-6 / button gap-3.
+            Desktop mantiene los valores originales (md:mb-4 / md:mb-8 / md:gap-4). */}
       <section className="px-6 container mx-auto mb-12">
-        <div className="bg-gradient-to-r from-dark-800 to-dark-700 p-12 rounded-3xl border border-dark-600 text-center relative overflow-hidden">
+        <div className="bg-gradient-to-r from-dark-800 to-dark-700 p-6 md:p-12 rounded-3xl border border-dark-600 text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-accent-secondary/10 blur-[80px] rounded-full pointer-events-none" />
-          <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4 relative z-10">{t('home.ctaTitle')}</h2>
-          <p className="text-text-muted text-lg mb-8 max-w-2xl mx-auto relative z-10">{t('home.ctaSubtitle')}</p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
-            <Link to="/pricing">
-              <Button variant="primary">{t('home.buyNow')}</Button>
+          <h2 className="text-2xl md:text-4xl font-bold text-text-main mb-3 md:mb-4 relative z-10">{t('home.ctaTitle')}</h2>
+          <p className="text-base md:text-lg text-text-muted mb-6 md:mb-8 max-w-2xl mx-auto relative z-10">{t('home.ctaSubtitle')}</p>
+          <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 relative z-10">
+            <Link to="/pricing" className="w-full sm:w-auto">
+              <Button variant="primary" className="w-full">{t('home.buyNow')}</Button>
             </Link>
-            <Link to="/contact">
-              <Button variant="outline">{t('home.contactUs')}</Button>
+            <Link to="/contact" className="w-full sm:w-auto">
+              <Button variant="outline" className="w-full">{t('home.contactUs')}</Button>
             </Link>
           </div>
         </div>
