@@ -44,6 +44,10 @@ export const Dashboard = () => {
         return res.json();
       })
       .then((data) => {
+        // Log para inspección: el dev puede ver la forma completa del payload
+        // que devuelve /portfolio y diseñar mejor la UI de productos a partir de ahi.
+        // eslint-disable-next-line no-console
+        console.log("[Dashboard] userData from /portfolio:", data);
         setUserData(data);
         setDraftValue(data.machine_id_actual || "");
         setIsLoading(false);
@@ -186,7 +190,8 @@ export const Dashboard = () => {
       {/* Grid de cards: 1 col en mobile, 2 col en desktop
           Layout:
             ┌────────────┬────────────┐
-            │ Machine ID │ Indicadores│
+            │ Machine ID │ Tus        │
+            │            │ Productos  │
             ├────────────┴────────────┤
             │ Documentación (full)     │
             │ [Ir a docs][Instalación]│
@@ -302,26 +307,56 @@ export const Dashboard = () => {
           )}
         </div>
 
-        {/* Descarga única (PLACEHOLDER) — top-right */}
+        {/* Tus Productos — top-right
+            Lista los productos del usuario desde userData.productos_activos
+            (devuelto por GET /api/v1/members/portfolio). Cada producto tiene
+            su botón de descarga individual desde R2.
+            Estructura esperada del array (defensivo: tolera campos faltantes):
+              { nombre_producto: string, codigo_producto: string, ... } */}
         <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
           <div className="flex items-center gap-3 mb-4 text-accent-primary">
             <Package size={24} />
-            <h2 className="text-xl font-bold text-text-main">Tus Indicadores</h2>
+            <h2 className="text-xl font-bold text-text-main">Tus Productos</h2>
           </div>
 
-          <p className="text-text-muted mb-6 leading-relaxed">
-            Durante esta prueba, todos los indicadores se entregan en un único archivo ZIP.
-          </p>
-
-          <a
-            href="https://pub-dae211f37c2b49448acb81600156089f.r2.dev/LOF_Suite_Beta_04.zip"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-accent-primary text-dark-900 font-bold py-3 md:py-3.5 px-5 md:px-6 rounded-xl md:rounded-2xl hover:brightness-110 transition-all"
-          >
-            <Package size={20} />
-            Descargar paquete completo
-          </a>
+          {userData.productos_activos && userData.productos_activos.length > 0 ? (
+            <ul className="space-y-2 max-h-72 overflow-y-auto pr-1">
+              {userData.productos_activos.map((prod, i) => (
+                <li
+                  key={i}
+                  className="p-3 bg-dark-900 border border-dark-600 rounded-xl flex items-center justify-between gap-3 group hover:border-accent-secondary/50 transition-colors"
+                >
+                  <div className="min-w-0 flex-1">
+                    <p className="text-text-main font-semibold text-sm truncate">
+                      {prod.nombre_producto || `Producto ${i + 1}`}
+                    </p>
+                    {prod.codigo_producto && (
+                      <p
+                        className="text-xs text-text-muted font-mono truncate"
+                        title={prod.codigo_producto}
+                      >
+                        {prod.codigo_producto}
+                      </p>
+                    )}
+                  </div>
+                  {prod.codigo_producto && (
+                    <a
+                      href={`https://r2.logicindicators.com/dl/${prod.codigo_producto}.zip`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs bg-accent-secondary/20 text-accent-secondary px-3 py-1.5 rounded-full hover:bg-accent-secondary hover:text-dark-900 transition-all font-bold whitespace-nowrap"
+                    >
+                      Descargar
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-text-muted text-sm">
+              No tienes productos activos asociados.
+            </p>
+          )}
         </div>
 
         {/* Documentación completa (privada, requiere auth) — full-width, bottom */}
@@ -356,59 +391,6 @@ export const Dashboard = () => {
             </Button>
           </div>
         </div>
-
-        {/* ============================================================
-            Listado de Productos — DESHABILITADO TEMPORALMENTE
-            ------------------------------------------------------------
-            Esta sección muestra los productos activos del usuario con su
-            botón de descarga individual desde R2. YA FUNCIONA en producción:
-              - Consume userData.productos_activos (viene del backend).
-              - Descarga desde https://r2.logicindicators.com/dl/<codigo>.zip
-              - Estilos y UX ya probados.
-
-            ESTÁ COMENTADA porque durante la prueba actual los usuarios
-            reciben TODOS los indicadores en un único archivo ZIP, no por
-            producto individual.
-
-            CUANDO TERMINEN LAS PRUEBAS - restaurar:
-              1. Borrar el bloque "Descarga única (PLACEHOLDER)" de abajo.
-              2. Descomentar este bloque (quitar las marcas de comentario).
-              3. Verificar que los estilos del grid md:grid-cols-2 siguen OK.
-            ============================================================ */}
-        {/* <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl md:col-span-2">
-          <div className="flex items-center gap-3 mb-8 text-accent-primary">
-            <Package size={24} />
-            <h2 className="text-xl font-bold text-text-main">
-              Tus Indicadores
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {userData.productos_activos &&
-            userData.productos_activos.length > 0 ? (
-              userData.productos_activos.map((prod, i) => (
-                <div
-                  key={i}
-                  className="p-5 bg-dark-900 border border-dark-600 rounded-2xl flex items-center justify-between group hover:border-accent-secondary/50 transition-all"
-                >
-                  <span className="text-text-main font-semibold">
-                    {prod.nombre_producto}
-                  </span>
-                  <a
-                    href={`https://r2.logicindicators.com/dl/${prod.codigo_producto}.zip`}
-                    className="text-xs bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full hover:bg-accent-secondary hover:text-white transition-all font-bold"
-                  >
-                    Descargar V18
-                  </a>
-                </div>
-              ))
-            ) : (
-              <p className="text-text-muted col-span-2">
-                No tienes productos activos asociados.
-              </p>
-            )}
-          </div>
-        </div> */}
       </div>
     </div>
   );
