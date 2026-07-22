@@ -5,6 +5,7 @@
 // usa `IndicatorCard` o crea un componente nuevo específico para ese contexto.
 import { Link } from 'react-router-dom';
 import { Button } from './Button';
+import { ZoomableImage } from './ImageLightbox';
 
 export const HomeIndicatorCard = ({
   title,
@@ -35,7 +36,7 @@ export const HomeIndicatorCard = ({
       {/* 3. Imagen */}
       {image && (
         <div className="overflow-hidden rounded-xl mb-6 bg-dark-900">
-          <img
+          <ZoomableImage
             src={image}
             alt={imageAlt || title}
             loading="lazy"

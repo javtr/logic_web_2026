@@ -21,6 +21,7 @@ import { Fragment } from 'react';
 import { Button } from '../Button';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
+import { ZoomableImage } from '../ImageLightbox';
 import imgSample from '../../assets/indicators/sample_image.png';
 
 export const IndicatorDetail = ({
@@ -42,7 +43,7 @@ export const IndicatorDetail = ({
       <h2 className="text-xl md:text-2xl text-accent-primary mb-3 md:mb-4">{subtitle}</h2>
 
       {/* 2. Imagen de cabecera */}
-      <img
+      <ZoomableImage
         src={image || imgSample}
         alt={title}
         className="w-full h-48 sm:h-60 md:h-72 object-cover rounded-lg mb-8 md:mb-12"
@@ -54,7 +55,7 @@ export const IndicatorDetail = ({
         paragraphs.map((paragraph, i) => (
           <Fragment key={i}>
             {i > 0 && contentImages[i - 1] && (
-              <img
+              <ZoomableImage
                 src={contentImages[i - 1]}
                 alt={`${title} - detalle ${i}`}
                 className="w-full h-auto rounded-xl my-6 md:my-8"
