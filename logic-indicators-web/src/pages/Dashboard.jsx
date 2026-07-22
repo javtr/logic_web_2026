@@ -336,14 +336,10 @@ export const Dashboard = () => {
                       <p className="text-text-main font-semibold text-sm truncate">
                         {prod.nombre_producto || `Producto ${i + 1}`}
                       </p>
-                      {prod.codigo_producto && (
-                        <p
-                          className="text-xs text-text-muted font-mono truncate"
-                          title={prod.codigo_producto}
-                        >
-                          {prod.codigo_producto}
-                        </p>
-                      )}
+                      {/* codigo_producto NO se muestra: es una clave interna
+                          de licenciamiento que el usuario no debe ver.
+                          Se sigue usando abajo para resolver la URL via
+                          getDownloadUrl(prod.codigo_producto). */}
                     </div>
                     {downloadUrl && (
                       <a
