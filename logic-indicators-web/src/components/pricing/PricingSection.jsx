@@ -56,7 +56,13 @@ export const PricingSection = ({ defaultIsLifetime = true, titleKey = 'pricing.s
               }`}
             >
               {highlighted && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent-primary text-dark-900 font-bold px-4 py-1 rounded-full text-sm uppercase tracking-wider">
+                // Badge "Mejor Opción" arriba de la tarjeta destacada.
+                // whitespace-nowrap: garantiza que el texto no se rompa en
+                // dos líneas (con font-bold + uppercase + tracking-wider
+                // + px-4 a veces el navegador wrappeaba "MEJOR OPCIÓN"
+                // en cards angostas). Con nowrap, el badge shrink-wraps
+                // al ancho del texto.
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent-primary text-dark-900 font-bold px-4 py-1 rounded-full text-sm uppercase tracking-wider whitespace-nowrap">
                   {bestValueText}
                 </div>
               )}
