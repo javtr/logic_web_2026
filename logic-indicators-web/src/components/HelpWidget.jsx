@@ -86,7 +86,7 @@ export const HelpWidget = () => {
     <div
       ref={containerRef}
       className={`
-        fixed bottom-[88px] right-6 md:bottom-24 z-40
+        fixed bottom-20 right-6 md:bottom-[88px] z-40
         ${!isOpen ? 'pointer-events-none' : ''}
       `}
     >
