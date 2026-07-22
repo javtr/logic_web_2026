@@ -142,23 +142,30 @@ export const Dashboard = () => {
     );
 
   return (
-    <div className="container mx-auto py-16 px-6 max-w-5xl">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12 bg-dark-800 p-8 rounded-3xl border border-dark-700">
+    <div className="container mx-auto py-10 md:py-16 px-4 md:px-6 max-w-5xl">
+      {/* Header del Dashboard */}
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6 mb-8 md:mb-12 bg-dark-800 p-6 md:p-8 rounded-2xl md:rounded-3xl border border-dark-700">
         <div>
-          <h1 className="text-3xl font-bold text-text-main mb-1">
+          <h1 className="text-2xl md:text-3xl font-bold text-text-main mb-1">
             Bienvenido, {userData.nombre}
           </h1>
-          <p className="text-text-muted">{userData.mail}</p>
+          <p className="text-sm md:text-base text-text-muted">{userData.mail}</p>
         </div>
-        
-        {/* Contenedor de Botones de Navegación */}
-        <div className="flex items-center gap-6">
+
+        {/* Botones de navegación — en mobile a la derecha del nombre,
+            en desktop agrupados a la derecha con separador */}
+        <div className="flex items-center gap-2 md:gap-4 -mx-2 md:mx-0">
           <button
             onClick={() => navigate("/")}
-            className="flex items-center gap-2 text-text-muted hover:text-text-main transition-colors font-medium"
+            className="flex items-center gap-1.5 md:gap-2 text-sm md:text-base text-text-muted hover:text-text-main transition-colors font-medium px-2 py-1 rounded-md"
           >
-            <Home size={20} /> Volver al Inicio
+            <Home size={18} className="md:hidden" />
+            <Home size={20} className="hidden md:block" />
+            <span className="hidden sm:inline">Volver al Inicio</span>
+            <span className="sm:hidden">Inicio</span>
           </button>
+
+          <span className="w-px h-5 bg-dark-600 hidden md:block" aria-hidden />
 
           <button
             onClick={() => {
@@ -166,16 +173,22 @@ export const Dashboard = () => {
               localStorage.removeItem("logic_token");
               navigate("/login");
             }}
-            className="flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors font-medium"
+            className="flex items-center gap-1.5 md:gap-2 text-sm md:text-base text-red-400 hover:text-red-300 transition-colors font-medium px-2 py-1 rounded-md"
           >
-            <LogOut size={20} /> Cerrar Sesión
+            <LogOut size={18} className="md:hidden" />
+            <LogOut size={20} className="hidden md:block" />
+            <span className="hidden sm:inline">Cerrar Sesión</span>
+            <span className="sm:hidden">Salir</span>
           </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-8">
+      {/* Grid de cards: 1 col en mobile, 2 col en desktop
+          (Documentación + Indicadores comparten fila;
+          Machine ID va full-width porque tiene más contenido) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         {/* Documentación completa (privada, requiere auth) */}
-        <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl">
+        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
           <div className="flex items-center gap-3 mb-4 text-accent-secondary">
             <BookOpen size={24} />
             <h2 className="text-xl font-bold text-text-main">
@@ -190,15 +203,37 @@ export const Dashboard = () => {
           <Button
             variant="primary"
             onClick={() => navigate("/dashboard/docs")}
-            className="w-full"
+            className="w-full sm:w-auto"
           >
             <BookOpen size={18} />
             Ir a la documentación
           </Button>
         </div>
 
-        {/* Gestión de Machine ID — modo dual (idle / editing) */}
-        <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl h-fit">
+        {/* Descarga única (PLACEHOLDER) */}
+        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
+          <div className="flex items-center gap-3 mb-4 text-accent-primary">
+            <Package size={24} />
+            <h2 className="text-xl font-bold text-text-main">Tus Indicadores</h2>
+          </div>
+
+          <p className="text-text-muted mb-6 leading-relaxed">
+            Durante esta prueba, todos los indicadores se entregan en un único archivo ZIP.
+          </p>
+
+          <a
+            href="https://pub-dae211f37c2b49448acb81600156089f.r2.dev/LOF_Suite_Beta_04.zip"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-accent-primary text-dark-900 font-bold py-3 md:py-3.5 px-5 md:px-6 rounded-xl md:rounded-2xl hover:brightness-110 transition-all"
+          >
+            <Package size={20} />
+            Descargar paquete completo
+          </a>
+        </div>
+
+        {/* Gestión de Machine ID — full-width (más contenido) */}
+        <div className="md:col-span-2 bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
           <div className="flex items-center justify-between gap-3 mb-6 text-accent-secondary">
             <div className="flex items-center gap-3">
               <Monitor size={24} />
@@ -235,7 +270,7 @@ export const Dashboard = () => {
               <Button
                 onClick={handleStartEdit}
                 variant="primary"
-                className="w-full"
+                className="w-full sm:w-auto"
               >
                 <Pencil size={18} />
                 Actualizar ID
@@ -325,7 +360,7 @@ export const Dashboard = () => {
               2. Descomentar este bloque (quitar las marcas de comentario).
               3. Verificar que los estilos del grid md:grid-cols-2 siguen OK.
             ============================================================ */}
-        {/* <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl">
+        {/* <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl md:col-span-2">
           <div className="flex items-center gap-3 mb-8 text-accent-primary">
             <Package size={24} />
             <h2 className="text-xl font-bold text-text-main">
@@ -359,33 +394,6 @@ export const Dashboard = () => {
             )}
           </div>
         </div> */}
-
-        {/* ============================================================
-            Descarga única (PLACEHOLDER para pruebas)
-            ------------------------------------------------------------
-            Reemplaza temporalmente la lista de productos individuales.
-            URL placeholder — AJUSTAR a la real antes de pasarles el link.
-            ============================================================ */}
-        <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl">
-          <div className="flex items-center gap-3 mb-6 text-accent-primary">
-            <Package size={24} />
-            <h2 className="text-xl font-bold text-text-main">Tus Indicadores</h2>
-          </div>
-
-          <p className="text-text-muted mb-6 leading-relaxed">
-            Durante esta prueba, todos los indicadores se entregan en un único archivo ZIP.
-          </p>
-
-          <a
-            href="https://pub-dae211f37c2b49448acb81600156089f.r2.dev/LOF_Suite_Beta_04.zip"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 w-full bg-accent-primary text-dark-900 font-bold py-4 px-6 rounded-2xl hover:brightness-110 transition-all"
-          >
-            <Package size={20} />
-            Descargar paquete completo de indicadores
-          </a>
-        </div>
       </div>
     </div>
   );
