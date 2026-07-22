@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
-import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2 } from "lucide-react";
+import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, Download } from "lucide-react";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -184,56 +184,16 @@ export const Dashboard = () => {
       </div>
 
       {/* Grid de cards: 1 col en mobile, 2 col en desktop
-          (Documentación + Indicadores comparten fila;
-          Machine ID va full-width porque tiene más contenido) */}
+          Layout:
+            ┌────────────┬────────────┐
+            │ Machine ID │ Indicadores│
+            ├────────────┴────────────┤
+            │ Documentación (full)     │
+            │ [Ir a docs][Instalación]│
+            └──────────────────────────┘ */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        {/* Documentación completa (privada, requiere auth) */}
+        {/* Gestión de Machine ID — posición: top-left */}
         <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
-          <div className="flex items-center gap-3 mb-4 text-accent-secondary">
-            <BookOpen size={24} />
-            <h2 className="text-xl font-bold text-text-main">
-              Documentación completa
-            </h2>
-          </div>
-
-          <p className="text-text-muted mb-6 leading-relaxed">
-            Accedé al manual técnico detallado de cada indicator: configuración completa, parámetros, mejores prácticas y troubleshooting.
-          </p>
-
-          <Button
-            variant="primary"
-            onClick={() => navigate("/dashboard/docs")}
-            className="w-full sm:w-auto"
-          >
-            <BookOpen size={18} />
-            Ir a la documentación
-          </Button>
-        </div>
-
-        {/* Descarga única (PLACEHOLDER) */}
-        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
-          <div className="flex items-center gap-3 mb-4 text-accent-primary">
-            <Package size={24} />
-            <h2 className="text-xl font-bold text-text-main">Tus Indicadores</h2>
-          </div>
-
-          <p className="text-text-muted mb-6 leading-relaxed">
-            Durante esta prueba, todos los indicadores se entregan en un único archivo ZIP.
-          </p>
-
-          <a
-            href="https://pub-dae211f37c2b49448acb81600156089f.r2.dev/LOF_Suite_Beta_04.zip"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-accent-primary text-dark-900 font-bold py-3 md:py-3.5 px-5 md:px-6 rounded-xl md:rounded-2xl hover:brightness-110 transition-all"
-          >
-            <Package size={20} />
-            Descargar paquete completo
-          </a>
-        </div>
-
-        {/* Gestión de Machine ID — full-width (más contenido) */}
-        <div className="md:col-span-2 bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
           <div className="flex items-center justify-between gap-3 mb-6 text-accent-secondary">
             <div className="flex items-center gap-3">
               <Monitor size={24} />
@@ -340,6 +300,61 @@ export const Dashboard = () => {
               </div>
             </form>
           )}
+        </div>
+
+        {/* Descarga única (PLACEHOLDER) — top-right */}
+        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
+          <div className="flex items-center gap-3 mb-4 text-accent-primary">
+            <Package size={24} />
+            <h2 className="text-xl font-bold text-text-main">Tus Indicadores</h2>
+          </div>
+
+          <p className="text-text-muted mb-6 leading-relaxed">
+            Durante esta prueba, todos los indicadores se entregan en un único archivo ZIP.
+          </p>
+
+          <a
+            href="https://pub-dae211f37c2b49448acb81600156089f.r2.dev/LOF_Suite_Beta_04.zip"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-accent-primary text-dark-900 font-bold py-3 md:py-3.5 px-5 md:px-6 rounded-xl md:rounded-2xl hover:brightness-110 transition-all"
+          >
+            <Package size={20} />
+            Descargar paquete completo
+          </a>
+        </div>
+
+        {/* Documentación completa (privada, requiere auth) — full-width, bottom */}
+        <div className="md:col-span-2 bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
+          <div className="flex items-center gap-3 mb-4 text-accent-secondary">
+            <BookOpen size={24} />
+            <h2 className="text-xl font-bold text-text-main">
+              Documentación completa
+            </h2>
+          </div>
+
+          <p className="text-text-muted mb-6 leading-relaxed">
+            Accedé al manual técnico detallado de cada indicator: configuración completa, parámetros, mejores prácticas y troubleshooting. ¿Recién empezás? Empezá por las instrucciones de instalación.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Button
+              variant="primary"
+              onClick={() => navigate("/dashboard/docs")}
+              className="w-full sm:w-auto"
+            >
+              <BookOpen size={18} />
+              Ir a la documentación
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={() => navigate("/dashboard/docs/installation")}
+              className="w-full sm:w-auto"
+            >
+              <Download size={18} />
+              Instrucciones de instalación
+            </Button>
+          </div>
         </div>
 
         {/* ============================================================
