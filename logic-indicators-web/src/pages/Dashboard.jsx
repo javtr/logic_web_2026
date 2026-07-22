@@ -326,7 +326,7 @@ export const Dashboard = () => {
               3. Verificar que los estilos del grid md:grid-cols-2 siguen OK.
             ============================================================ */}
         {/* <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl">
-          <div className="flex items-center gap-3 mb-8 text-accent-green">
+          <div className="flex items-center gap-3 mb-8 text-accent-primary">
             <Package size={24} />
             <h2 className="text-xl font-bold text-text-main">
               Tus Indicadores
@@ -367,7 +367,7 @@ export const Dashboard = () => {
             URL placeholder — AJUSTAR a la real antes de pasarles el link.
             ============================================================ */}
         <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl">
-          <div className="flex items-center gap-3 mb-6 text-accent-green">
+          <div className="flex items-center gap-3 mb-6 text-accent-primary">
             <Package size={24} />
             <h2 className="text-xl font-bold text-text-main">Tus Indicadores</h2>
           </div>
@@ -380,7 +380,7 @@ export const Dashboard = () => {
             href="https://pub-dae211f37c2b49448acb81600156089f.r2.dev/LOF_Suite_Beta_04.zip"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 w-full bg-accent-green text-dark-900 font-bold py-4 px-6 rounded-2xl hover:brightness-110 transition-all"
+            className="inline-flex items-center justify-center gap-2 w-full bg-accent-primary text-dark-900 font-bold py-4 px-6 rounded-2xl hover:brightness-110 transition-all"
           >
             <Package size={20} />
             Descargar paquete completo de indicadores
