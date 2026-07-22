@@ -30,16 +30,16 @@ Si los indicadores aparecen en el listado y se cargan correctamente, la instalac
 
 ## Si los indicadores dejan de funcionar
 
-Los indicadores de Logic se licencian a un Machine ID específico (denominado **MatchingID** dentro de NinjaTrader). Este identificador puede modificarse sin previo aviso en las siguientes situaciones:
+Los indicadores de Logic se licencian a un Machine ID específico (denominado **MachineID** dentro de NinjaTrader). Este identificador puede modificarse sin previo aviso en las siguientes situaciones:
 
 - Formateo del equipo.
 - Migración a un equipo nuevo.
 - Cambios relevantes en el sistema operativo (sustitución de placa base, intercambio de hardware o actualizaciones importantes de Windows).
 - Reinstalación completa de NinjaTrader.
 
-Cuando esto ocurre, el MatchingID de NinjaTrader deja de coincidir con el que se encuentra registrado en su cuenta, y los indicadores se niegan a cargar. Para resolver la incidencia:
+Cuando esto ocurre, el MachineID de NinjaTrader deja de coincidir con el que se encuentra registrado en su cuenta, y los indicadores se niegan a cargar. Para resolver la incidencia:
 
-1. **Localice el MatchingID dentro de NinjaTrader 8.** Este valor suele encontrarse en **Help → About** o en el panel de configuración del indicador.
+1. **Localice el MachineID dentro de NinjaTrader 8.** Este valor suele encontrarse en **Help → About** o en el panel de configuración del indicador.
 2. **Abra la [Zona de miembros](/dashboard)** y compare el valor con el campo **NinjaTrader ID** que aparece en la tarjeta superior izquierda.
 3. **Si los valores no coinciden**, copie el valor que muestra NinjaTrader y péguelo en el campo **NinjaTrader ID** del dashboard para guardarlo. El dashboard constituye la fuente de referencia; una vez que ambos valores coincidan, los indicadores volverán a funcionar tras el siguiente reinicio de NinjaTrader.
 

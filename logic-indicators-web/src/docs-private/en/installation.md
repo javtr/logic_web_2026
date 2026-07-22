@@ -30,16 +30,16 @@ If the indicators appear in the list and load correctly, the installation is com
 
 ## If the indicators stop working
 
-The Logic indicators are licensed to a specific Machine ID (called **MatchingID** inside NinjaTrader). This identifier may change without notice in the following situations:
+The Logic indicators are licensed to a specific Machine ID (called **MachineID** inside NinjaTrader). This identifier may change without notice in the following situations:
 
 - The workstation is reformatted.
 - The user migrates to a new workstation.
 - Major operating system changes occur (motherboard replacement, hardware swap, or significant Windows updates).
 - NinjaTrader is reinstalled from scratch.
 
-When this happens, NinjaTrader's MatchingID no longer matches the one registered to your account, and the indicators refuse to load. To resolve the issue:
+When this happens, NinjaTrader's MachineID no longer matches the one registered to your account, and the indicators refuse to load. To resolve the issue:
 
-1. **Locate the MatchingID inside NinjaTrader 8.** This value is usually found under **Help → About** or in the indicator configuration panel.
+1. **Locate the MachineID inside NinjaTrader 8.** This value is usually found under **Help → About** or in the indicator configuration panel.
 2. **Open your [Members area](/dashboard)** and compare the value with the **NinjaTrader ID** field shown in the top-left card.
 3. **If the values do not match**, copy the value shown in NinjaTrader and paste it into the **NinjaTrader ID** field on the dashboard, then save. The dashboard is the source of truth: once both values match, the indicators will work again after the next NinjaTrader restart.
 
