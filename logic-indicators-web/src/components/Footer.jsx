@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { getActiveIndicatorIds } from '../data';
 import { MessageCircle, Mail, ShieldCheck } from 'lucide-react';
+import logoSvg from '../assets/logo_logic_2026.svg';
 
 // Handler para los links externos (social, mailto, etc.). Usa window.open en
 // lugar de depender solo de target="_blank", porque algunos navegadores no
@@ -52,8 +53,12 @@ export const Footer = () => {
 
           {/* Columna 1: Branding */}
           <div className="col-span-1 md:col-span-1">
-            <Link to="/" className="text-xl font-bold tracking-tighter text-text-main">
-              LOGIC<span className="text-accent-primary">INDICATORS</span>
+            <Link to="/" aria-label="Logic Indicators - Inicio">
+              <img
+                src={logoSvg}
+                alt="Logic Indicators"
+                className="h-10 w-auto"
+              />
             </Link>
             <p className="mt-4 text-text-muted text-sm leading-relaxed">
               {t('footer.description')}

@@ -41,14 +41,7 @@
  */
 export const PRODUCT_DOWNLOADS = {
   // Ejemplos (ajustar a los nombres reales que devuelve el backend):
-  'LOGIC_PACK_BASICO':  'https://download.logicindicators.com/LOF_Suite_Beta_04.zip',
-  // 'Logic Footprint':  'https://r2.logicindicators.com/dl/logic-footprint.zip',
-  // 'Logic Profile':    'https://r2.logicindicators.com/dl/logic-profile.zip',
-  // 'Logic Composite':  'https://r2.logicindicators.com/dl/logic-composite.zip',
-  // 'Logic Footer':     'https://r2.logicindicators.com/dl/logic-footer.zip',
-  // 'Logic BigTrades':  'https://r2.logicindicators.com/dl/logic-bigtrades.zip',
-  // 'Logic Analytics':  'https://r2.logicindicators.com/dl/logic-analytics.zip',
-  // 'Algorithms':       'https://r2.logicindicators.com/dl/logic-algorithms.zip',
+  'LOGIC_PACK_BASICO':  'https://download.logicindicators.com/LOF_Suite_Beta_04.zip'
 };
 
 /**

@@ -7,6 +7,7 @@ import { ResourcesDropdown } from './ResourcesDropdown';
 import { MobileMenu } from './MobileMenu';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { Menu, Tag, Gift } from 'lucide-react';
+import logoSvg from '../assets/logo_logic_2026.svg';
 
 export const Navbar = () => {
   const { t } = useLanguage();
@@ -28,9 +29,13 @@ export const Navbar = () => {
     <>
       <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-dark-900/60 backdrop-blur-md">
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="text-xl font-bold tracking-tighter text-text-main">
-            LOGIC<span className="text-accent-primary">INDICATORS</span>
+          {/* Logo (SVG) */}
+          <Link to="/" aria-label="Logic Indicators - Inicio">
+            <img
+              src={logoSvg}
+              alt="Logic Indicators"
+              className="h-8 md:h-9 w-auto"
+            />
           </Link>
 
           {/* Desktop Links */}
