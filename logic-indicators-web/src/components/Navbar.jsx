@@ -34,7 +34,7 @@ export const Navbar = () => {
             <img
               src={logoSvg}
               alt="Logic Indicators"
-              className="h-8 md:h-9 w-auto"
+              className="h-16 md:h-[72px] w-auto"
             />
           </Link>
 

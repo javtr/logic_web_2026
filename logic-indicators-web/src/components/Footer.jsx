@@ -57,7 +57,7 @@ export const Footer = () => {
               <img
                 src={logoSvg}
                 alt="Logic Indicators"
-                className="h-10 w-auto"
+                className="h-20 w-auto"
               />
             </Link>
             <p className="mt-4 text-text-muted text-sm leading-relaxed">
