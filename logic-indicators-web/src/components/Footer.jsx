@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { getActiveIndicatorIds } from '../data';
 import { MessageCircle, Mail, ShieldCheck } from 'lucide-react';
-import logoSvg from '../assets/logo_logic_2026.svg';
+import logoSvg from '../assets/logo_logic.svg';
 
 // Handler para los links externos (social, mailto, etc.). Usa window.open en
 // lugar de depender solo de target="_blank", porque algunos navegadores no
@@ -57,7 +57,7 @@ export const Footer = () => {
               <img
                 src={logoSvg}
                 alt="Logic Indicators"
-                className="h-20 w-auto"
+                className="h-14 w-auto"
               />
             </Link>
             <p className="mt-4 text-text-muted text-sm leading-relaxed">

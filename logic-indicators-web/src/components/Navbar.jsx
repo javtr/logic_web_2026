@@ -7,7 +7,7 @@ import { ResourcesDropdown } from './ResourcesDropdown';
 import { MobileMenu } from './MobileMenu';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { Menu, Tag, Gift } from 'lucide-react';
-import logoSvg from '../assets/logo_logic_2026.svg';
+import logoSvg from '../assets/logo_logic.svg';
 
 export const Navbar = () => {
   const { t } = useLanguage();
@@ -34,7 +34,7 @@ export const Navbar = () => {
             <img
               src={logoSvg}
               alt="Logic Indicators"
-              className="h-16 md:h-[72px] w-auto"
+              className="h-11 md:h-12 w-auto"
             />
           </Link>
 
