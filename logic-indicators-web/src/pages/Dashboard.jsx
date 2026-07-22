@@ -1,15 +1,28 @@
 // src/pages/Dashboard.jsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
-import { LogOut, Package, Monitor, Home, BookOpen } from "lucide-react";
+import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2 } from "lucide-react";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
-  const [newMachineId, setNewMachineId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+
+  // Estado del bloque Machine ID:
+  // - isEditing: false = muestra el ID actual como texto + botón 'Actualizar ID'
+  //             true  = input editable + botones 'Guardar' / 'Cancelar'
+  // - draftValue: el valor del input mientras se está editando
+  // - isSaving: true mientras la llamada PUT al backend está en vuelo
+  // - status: { type: 'success'|'error'|'loading', msg: string } para feedback
+  // - savedFlash: true por 2s después de un guardado exitoso (muestra '✓ Guardado')
+  const [isEditing, setIsEditing] = useState(false);
+  const [draftValue, setDraftValue] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
   const [status, setStatus] = useState({ type: "", msg: "" });
+  const [savedFlash, setSavedFlash] = useState(false);
+  const inputRef = useRef(null);
+  const flashTimerRef = useRef(null);
 
   const userEmail = localStorage.getItem("logic_user_email");
   const token = localStorage.getItem("logic_token"); // Obtenemos el token aquí para usarlo en todo el componente
@@ -32,7 +45,7 @@ export const Dashboard = () => {
       })
       .then((data) => {
         setUserData(data);
-        setNewMachineId(data.machine_id_actual || "");
+        setDraftValue(data.machine_id_actual || "");
         setIsLoading(false);
       })
       .catch((err) => {
@@ -41,12 +54,39 @@ export const Dashboard = () => {
       });
   }, [userEmail, token, navigate]);
 
+  // Limpieza del flash timer al desmontar
+  useEffect(() => {
+    return () => {
+      if (flashTimerRef.current) clearTimeout(flashTimerRef.current);
+    };
+  }, []);
+
+  // ========== Handlers de Machine ID ==========
+
+  const currentMachineId = userData?.machine_id_actual || "";
+  const isUnchanged = draftValue === currentMachineId;
+
+  const handleStartEdit = () => {
+    setStatus({ type: "", msg: "" });
+    setDraftValue(currentMachineId);
+    setIsEditing(true);
+    // Autofocus + select all del input (el siguiente tick)
+    setTimeout(() => inputRef.current?.focus(), 50);
+  };
+
+  const handleCancel = () => {
+    setDraftValue(currentMachineId);
+    setStatus({ type: "", msg: "" });
+    setIsEditing(false);
+  };
+
   const handleUpdate = async (e) => {
-    e.preventDefault();
-    setStatus({ type: "loading", msg: "Actualizando..." });
+    e?.preventDefault?.();
+    if (isUnchanged || isSaving) return; // guard
+    setIsSaving(true);
+    setStatus({ type: "loading", msg: "Guardando..." });
 
     try {
-      // Nota: Ajusta la URL al nuevo dominio/puerto del microservicio de miembros
       const response = await fetch(
         "https://members.logicindicators.com/api/v1/members/machine-id",
         {
@@ -56,7 +96,7 @@ export const Dashboard = () => {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
-            nuevo_machine_id: newMachineId, // Ya no enviamos el email. El backend confía solo en el Token.
+            nuevo_machine_id: draftValue,
           }),
         },
       );
@@ -64,16 +104,34 @@ export const Dashboard = () => {
       const result = await response.json();
 
       if (response.ok) {
-        setStatus({
-          type: "success",
-          msg: result.message || "ID actualizado con éxito",
-        });
+        // Actualizamos el userData local con el nuevo ID para que el
+        // modo idle muestre el valor guardado, no el viejo.
+        setUserData((prev) => ({
+          ...prev,
+          machine_id_actual: draftValue,
+        }));
+        setStatus({ type: "success", msg: result.message || "ID actualizado con éxito" });
+        setIsEditing(false);
+        setSavedFlash(true);
+        // Limpiar el timer anterior si existe, después programar el nuevo
+        if (flashTimerRef.current) clearTimeout(flashTimerRef.current);
+        flashTimerRef.current = setTimeout(() => setSavedFlash(false), 2500);
       } else {
         throw new Error(result.detail || "Error al actualizar");
       }
     } catch (err) {
       setStatus({ type: "error", msg: err.message });
+    } finally {
+      setIsSaving(false);
     }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      handleCancel();
+    }
+    // Enter se maneja nativo por el form (onSubmit)
   };
 
   if (isLoading || !userData)
@@ -139,39 +197,114 @@ export const Dashboard = () => {
           </Button>
         </div>
 
-        {/* Gestión de Machine ID */}
+        {/* Gestión de Machine ID — modo dual (idle / editing) */}
         <div className="bg-dark-800 border border-dark-700 p-8 rounded-3xl h-fit">
-          <div className="flex items-center gap-3 mb-6 text-accent-secondary">
-            <Monitor size={24} />
-            <h2 className="text-xl font-bold text-text-main">NinjaTrader ID</h2>
+          <div className="flex items-center justify-between gap-3 mb-6 text-accent-secondary">
+            <div className="flex items-center gap-3">
+              <Monitor size={24} />
+              <h2 className="text-xl font-bold text-text-main">NinjaTrader ID</h2>
+            </div>
+            {savedFlash && (
+              <span className="flex items-center gap-1.5 text-sm font-semibold text-accent-secondary animate-pulse">
+                <Check size={16} /> Guardado
+              </span>
+            )}
           </div>
 
-          <form onSubmit={handleUpdate} className="space-y-5">
-            <div>
-              <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
-                Machine ID Actual
-              </label>
-              <input
-                type="text"
-                value={newMachineId}
-                onChange={(e) => setNewMachineId(e.target.value)}
-                className="w-full bg-dark-900 border border-dark-600 text-text-main p-4 rounded-xl focus:border-accent-secondary outline-none transition-all"
-                placeholder="Pega tu ID aquí"
-              />
-            </div>
+          {!isEditing ? (
+            // ========== Modo IDLE: muestra el ID como texto plano ==========
+            <div className="space-y-5">
+              <div>
+                <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
+                  Machine ID Actual
+                </label>
+                {currentMachineId ? (
+                  <p
+                    className="w-full bg-dark-900 border border-dark-700 text-text-main p-4 rounded-xl font-mono text-sm break-all"
+                    title={currentMachineId}
+                  >
+                    {currentMachineId}
+                  </p>
+                ) : (
+                  <p className="w-full bg-dark-900 border border-dashed border-dark-700 text-text-muted p-4 rounded-xl italic text-sm">
+                    No hay un ID configurado todavía
+                  </p>
+                )}
+              </div>
 
-            {status.msg && (
-              <p
-                className={`text-sm font-medium ${status.type === "success" ? "text-green-400" : "text-red-400"}`}
+              <Button
+                onClick={handleStartEdit}
+                variant="primary"
+                className="w-full"
               >
-                {status.msg}
-              </p>
-            )}
+                <Pencil size={18} />
+                Actualizar ID
+              </Button>
+            </div>
+          ) : (
+            // ========== Modo EDITING: input + Guardar / Cancelar ==========
+            <form onSubmit={handleUpdate} className="space-y-5">
+              <div>
+                <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
+                  Nuevo Machine ID
+                </label>
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={draftValue}
+                  onChange={(e) => setDraftValue(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  disabled={isSaving}
+                  className="w-full bg-dark-900 border border-dark-600 text-text-main p-4 rounded-xl focus:border-accent-secondary outline-none transition-all font-mono text-sm disabled:opacity-60"
+                  placeholder="Pega tu nuevo ID aquí"
+                />
+                <p className="text-xs text-text-muted mt-2">
+                  Enter para guardar · Esc para cancelar
+                </p>
+              </div>
 
-            <Button type="submit" variant="primary" className="w-full">
-              Actualizar ID
-            </Button>
-          </form>
+              {status.msg && status.type !== "loading" && (
+                <p
+                  className={`text-sm font-medium ${
+                    status.type === "success" ? "text-green-400" : "text-red-400"
+                  }`}
+                >
+                  {status.msg}
+                </p>
+              )}
+
+              <div className="flex flex-col-reverse sm:flex-row gap-3">
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={handleCancel}
+                  disabled={isSaving}
+                  className="flex-1"
+                >
+                  <X size={18} />
+                  Cancelar
+                </Button>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  disabled={isUnchanged || isSaving}
+                  className="flex-1"
+                >
+                  {isSaving ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin" />
+                      Guardando...
+                    </>
+                  ) : (
+                    <>
+                      <Check size={18} />
+                      Guardar nuevo ID
+                    </>
+                  )}
+                </Button>
+              </div>
+            </form>
+          )}
         </div>
 
         {/* ============================================================
