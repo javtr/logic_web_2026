@@ -43,8 +43,6 @@ Cuando esto ocurre, el MachineID de NinjaTrader deja de coincidir con el que se 
 2. **Abra la [Zona de miembros](/dashboard)** y compare el valor con el campo **NinjaTrader ID** que aparece en la tarjeta superior izquierda.
 3. **Si los valores no coinciden**, copie el valor que muestra NinjaTrader y péguelo en el campo **NinjaTrader ID** del dashboard para guardarlo. El dashboard constituye la fuente de referencia; una vez que ambos valores coincidan, los indicadores volverán a funcionar tras el siguiente reinicio de NinjaTrader.
 
-> **Indicador de error:** si NinjaTrader muestra una advertencia de `Matching ID` cada vez que se agrega un indicador de Logic, se trata del mismo síntoma. En tal caso, basta con sincronizar los identificadores siguiendo el procedimiento descrito.
-
 ## Soporte adicional
 
 - Para incidencias adicionales, consulte la guía de [Solución de problemas](/dashboard/docs/troubleshooting).
