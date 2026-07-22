@@ -133,10 +133,10 @@ export const TestimonialsCarousel = () => {
               aria-roledescription="slide"
               aria-label={`Slide ${i + 1} of ${items.length}`}
               style={{ flex: `0 0 ${cardBasisPct}%` }}
-              className="px-4"
+              className="px-2 md:px-4"
             >
-              <div className="p-8 rounded-2xl bg-dark-900 border border-dark-700 h-full">
-                <p className="text-text-muted italic mb-6 leading-relaxed">
+              <div className="p-5 md:p-8 rounded-2xl bg-dark-900 border border-dark-700 h-full">
+                <p className="text-text-muted italic mb-3 md:mb-6 leading-relaxed">
                   &ldquo;{item.quote}&rdquo;
                 </p>
                 <h4 className="font-bold text-text-main">- {item.author}</h4>
@@ -147,7 +147,7 @@ export const TestimonialsCarousel = () => {
       </div>
 
       {/* Controles */}
-      <div className="flex items-center justify-center gap-2 mt-8">
+      <div className="flex items-center justify-center gap-2 mt-6 md:mt-8">
         <button
           type="button"
           onClick={retreat}

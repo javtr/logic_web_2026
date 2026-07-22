@@ -52,7 +52,7 @@ export const PRODUCT_DOWNLOADS = {
  * getDisplayName() hace fallback al nombre original.
  */
 export const PRODUCT_DISPLAY_NAMES = {
-  'LOGIC_PACK_BASICO':  'Logic Pack Básico'
+  'LOGIC_PACK_BASICO':  'Logic Pack Beta V04'
 };
 
 /**

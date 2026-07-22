@@ -115,9 +115,9 @@ export const Home = () => {
       </section>
 
       {/* 3. TESTIMONIOS */}
-      <section className="bg-dark-800/50 py-20 px-6 border-y border-dark-700">
+      <section className="bg-dark-800/50 py-12 md:py-20 px-6 border-y border-dark-700">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold text-text-main mb-12">{t('home.testimonialsTitle')}</h2>
+          <h2 className="text-3xl font-bold text-text-main mb-8 md:mb-12">{t('home.testimonialsTitle')}</h2>
           <TestimonialsCarousel />
         </div>
       </section>
