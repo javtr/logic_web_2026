@@ -25,7 +25,7 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronDown, ArrowLeft } from 'lucide-react';
+import { ChevronDown, ArrowLeft, LayoutDashboard } from 'lucide-react';
 import { DocsSidebar } from './DocsSidebar';
 import { DocsContent } from './DocsContent';
 import { DocsTOC } from './DocsTOC';
@@ -73,17 +73,28 @@ export const DocsLayout = ({ doc, showHomeButton = false }) => {
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-8 md:py-12">
-      {/* Chrome de la docs privada: "Volver al inicio" + switcher de idioma.
-          La docs pública ya tiene el Navbar completo con ambos. */}
+      {/* Chrome de la docs privada: "Volver al inicio" + "Volver a la zona
+          de miembros" + switcher de idioma. La docs pública ya tiene el
+          Navbar completo con ambos. */}
       {showHomeButton && (
         <div className="flex items-center justify-between mb-4 gap-4">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-accent-primary transition-colors group"
-          >
-            <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-0.5" />
-            {getDocsLabel('docs.ui.breadcrumb.home')}
-          </Link>
+          <div className="flex items-center gap-4 flex-wrap">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-accent-primary transition-colors group"
+            >
+              <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-0.5" />
+              {getDocsLabel('docs.ui.breadcrumb.home')}
+            </Link>
+            <span className="w-px h-4 bg-dark-600" aria-hidden />
+            <Link
+              to="/dashboard"
+              className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-accent-primary transition-colors group"
+            >
+              <LayoutDashboard size={16} className="transition-transform group-hover:-translate-x-0.5" />
+              {getDocsLabel('docs.ui.breadcrumb.dashboard')}
+            </Link>
+          </div>
           <LanguageSwitcher />
         </div>
       )}
