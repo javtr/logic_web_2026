@@ -36,13 +36,7 @@
  */
 export const PRODUCT_DOWNLOADS = {
   // Ejemplos (ajustar a los códigos reales que devuelve el backend):
-  // 'logic-footprint':  'https://r2.logicindicators.com/dl/logic-footprint.zip',
-  // 'logic-profile':    'https://r2.logicindicators.com/dl/logic-profile.zip',
-  // 'logic-composite':  'https://r2.logicindicators.com/dl/logic-composite.zip',
-  // 'logic-footer':     'https://r2.logicindicators.com/dl/logic-footer.zip',
-  // 'logic-bigtrades':  'https://r2.logicindicators.com/dl/logic-bigtrades.zip',
-  // 'logic-analytics':  'https://r2.logicindicators.com/dl/logic-analytics.zip',
-  // 'logic-algorithms': 'https://r2.logicindicators.com/dl/logic-algorithms.zip',
+  'LOGIC_PACK_BASICO':  'https://download.logicindicators.com/LOF_Suite_Beta_04.zip'
 };
 
 /**
@@ -74,8 +68,17 @@ export const getDownloadUrl = (codigoProducto) => {
     return PRODUCT_DOWNLOADS[codigoProducto];
   }
 
-  // 2) Fallback con template
+  // 2) Fallback con template (loggeamos para que sea fácil detectar
+  //    productos que conviene agregar al mapa explícito)
   if (FALLBACK_URL_TEMPLATE) {
+    if (typeof console !== 'undefined') {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `[downloads] No hay mapping explicito para codigo_producto="${codigoProducto}". ` +
+        `Usando FALLBACK_URL_TEMPLATE. Si este producto deberia tener su propia URL, ` +
+        `agregalo a PRODUCT_DOWNLOADS en src/data/downloads.js.`,
+      );
+    }
     return FALLBACK_URL_TEMPLATE.replace('{codigo}', codigoProducto);
   }
 
