@@ -5,9 +5,11 @@ import { Button } from "../components/Button";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, HelpCircle } from "lucide-react";
 import { getDownloadUrl, getDisplayName } from "../data/downloads";
+import { useLanguage } from "../context/LanguageContext";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
+  const { t, language } = useLanguage();
   const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -75,7 +77,7 @@ export const Dashboard = () => {
     e?.preventDefault?.();
     if (isUnchanged || isSaving) return;
     setIsSaving(true);
-    setStatus({ type: "loading", msg: "Guardando..." });
+    setStatus({ type: "loading", msg: t('dashboard.machineId.saving') });
 
     try {
       const response = await fetch(
@@ -99,13 +101,13 @@ export const Dashboard = () => {
           ...prev,
           machine_id_actual: draftValue,
         }));
-        setStatus({ type: "success", msg: result.message || "ID actualizado con éxito" });
+        setStatus({ type: "success", msg: result.message || t('dashboard.machineId.updateSuccessFallback') });
         setIsEditing(false);
         setSavedFlash(true);
         if (flashTimerRef.current) clearTimeout(flashTimerRef.current);
         flashTimerRef.current = setTimeout(() => setSavedFlash(false), 2500);
       } else {
-        throw new Error(result.detail || "Error al actualizar");
+        throw new Error(result.detail || t('dashboard.machineId.updateErrorFallback'));
       }
     } catch (err) {
       setStatus({ type: "error", msg: err.message });
@@ -124,7 +126,7 @@ export const Dashboard = () => {
   if (isLoading || !userData)
     return (
       <div className="min-h-screen bg-dark-900 flex items-center justify-center text-text-muted">
-        Cargando datos del perfil...
+        {t('dashboard.loadingMessage')}
       </div>
     );
 
@@ -134,7 +136,7 @@ export const Dashboard = () => {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6 mb-8 md:mb-12 bg-dark-800 p-6 md:p-8 rounded-2xl md:rounded-3xl border border-dark-700">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-text-main mb-1">
-            Bienvenido, {userData.nombre}
+            {t('dashboard.header.welcomePrefix')}{userData.nombre}
           </h1>
           <p className="text-sm md:text-base text-text-muted">{userData.mail}</p>
         </div>
@@ -147,8 +149,8 @@ export const Dashboard = () => {
           >
             <Home size={18} className="md:hidden" />
             <Home size={20} className="hidden md:block" />
-            <span className="hidden sm:inline">Volver al Inicio</span>
-            <span className="sm:hidden">Inicio</span>
+            <span className="hidden sm:inline">{t('dashboard.header.backToHome')}</span>
+            <span className="sm:hidden">{t('dashboard.header.backToHomeShort')}</span>
           </button>
 
           <span className="w-px h-5 bg-dark-600 hidden md:block" aria-hidden />
@@ -163,8 +165,8 @@ export const Dashboard = () => {
           >
             <LogOut size={18} className="md:hidden" />
             <LogOut size={20} className="hidden md:block" />
-            <span className="hidden sm:inline">Cerrar Sesión</span>
-            <span className="sm:hidden">Salir</span>
+            <span className="hidden sm:inline">{t('dashboard.header.logout')}</span>
+            <span className="sm:hidden">{t('dashboard.header.logoutShort')}</span>
           </button>
         </div>
       </div>
@@ -176,11 +178,11 @@ export const Dashboard = () => {
           <div className="flex items-center justify-between gap-3 mb-6 text-accent-secondary">
             <div className="flex items-center gap-3">
               <Monitor size={24} />
-              <h2 className="text-xl font-bold text-text-main">NinjaTrader ID</h2>
+              <h2 className="text-xl font-bold text-text-main">{t('dashboard.machineId.cardTitle')}</h2>
             </div>
             {savedFlash && (
               <span className="flex items-center gap-1.5 text-sm font-semibold text-accent-secondary animate-pulse">
-                <Check size={16} /> Guardado
+                <Check size={16} /> {t('dashboard.machineId.savedFlash')}
               </span>
             )}
           </div>
@@ -189,7 +191,7 @@ export const Dashboard = () => {
             <div className="space-y-5">
               <div>
                 <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
-                  Machine ID Actual
+                  {t('dashboard.machineId.currentIdLabel')}
                 </label>
                 {currentMachineId ? (
                   <p
@@ -200,7 +202,7 @@ export const Dashboard = () => {
                   </p>
                 ) : (
                   <p className="w-full bg-dark-900 border border-dashed border-dark-700 text-text-muted p-4 rounded-xl italic text-sm">
-                    No hay un ID configurado todavía
+                    {t('dashboard.machineId.noIdConfigured')}
                   </p>
                 )}
               </div>
@@ -211,14 +213,14 @@ export const Dashboard = () => {
                 className="w-full sm:w-auto"
               >
                 <Pencil size={18} />
-                Actualizar ID
+                {t('dashboard.machineId.updateButton')}
               </Button>
             </div>
           ) : (
             <form onSubmit={handleUpdate} className="space-y-5">
               <div>
                 <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
-                  Nuevo Machine ID
+                  {t('dashboard.machineId.newIdLabel')}
                 </label>
                 <input
                   ref={inputRef}
@@ -228,10 +230,10 @@ export const Dashboard = () => {
                   onKeyDown={handleKeyDown}
                   disabled={isSaving}
                   className="w-full bg-dark-900 border border-dark-600 text-text-main p-4 rounded-xl focus:border-accent-secondary outline-none transition-all font-mono text-sm disabled:opacity-60"
-                  placeholder="Pega tu nuevo ID aquí"
+                  placeholder={t('dashboard.machineId.newIdPlaceholder')}
                 />
                 <p className="text-xs text-text-muted mt-2">
-                  Enter para guardar · Esc para cancelar
+                  {t('dashboard.machineId.saveHint')}
                 </p>
               </div>
 
@@ -254,7 +256,7 @@ export const Dashboard = () => {
                   className="flex-1"
                 >
                   <X size={18} />
-                  Cancelar
+                  {t('dashboard.machineId.cancelButton')}
                 </Button>
                 <Button
                   type="submit"
@@ -265,12 +267,12 @@ export const Dashboard = () => {
                   {isSaving ? (
                     <>
                       <Loader2 size={18} className="animate-spin" />
-                      Guardando...
+                      {t('dashboard.machineId.saving')}
                     </>
                   ) : (
                     <>
                       <Check size={18} />
-                      Guardar nuevo ID
+                      {t('dashboard.machineId.saveButton')}
                     </>
                   )}
                 </Button>
@@ -283,14 +285,14 @@ export const Dashboard = () => {
         <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
           <div className="flex items-center gap-3 mb-4 text-accent-primary">
             <Package size={24} />
-            <h2 className="text-xl font-bold text-text-main">Tus Productos</h2>
+            <h2 className="text-xl font-bold text-text-main">{t('dashboard.products.cardTitle')}</h2>
           </div>
 
           {userData.productos_activos && userData.productos_activos.length > 0 ? (
             <ul className="space-y-3 max-h-[400px] overflow-y-auto pr-1">
               {userData.productos_activos.map((prod, i) => {
                 const downloadUrl = getDownloadUrl(prod.nombre_producto);
-                
+
                 // LÓGICA DE SUSCRIPCIONES
                 const isLifetime = !prod.fecha_expiracion;
                 const expDate = new Date(prod.fecha_expiracion);
@@ -303,19 +305,19 @@ export const Dashboard = () => {
                   >
                     <div className="min-w-0 flex-1">
                       <p className="text-text-main font-semibold text-sm truncate mb-1">
-                        {getDisplayName(prod.nombre_producto) || `Producto ${i + 1}`}
+                        {getDisplayName(prod.nombre_producto) || `${t('dashboard.products.defaultNamePrefix')}${i + 1}`}
                       </p>
-                      
+
                       {/* Banderas de estado visual */}
                       {isLifetime ? (
-                        <span className="text-xs text-green-400 font-medium">Licencia Vitalicia</span>
+                        <span className="text-xs text-green-400 font-medium">{t('dashboard.products.lifetime')}</span>
                       ) : isExpired ? (
-                        <span className="text-xs text-red-500 font-medium">Expirado el {expDate.toLocaleDateString()}</span>
+                        <span className="text-xs text-red-500 font-medium">{t('dashboard.products.expiredPrefix')}{expDate.toLocaleDateString(language)}</span>
                       ) : (
-                        <span className="text-xs text-yellow-400 font-medium">Válido hasta {expDate.toLocaleDateString()}</span>
+                        <span className="text-xs text-yellow-400 font-medium">{t('dashboard.products.validUntilPrefix')}{expDate.toLocaleDateString(language)}</span>
                       )}
                     </div>
-                    
+
                     {/* Botón de descarga condicional */}
                     {!isExpired && downloadUrl ? (
                       <a
@@ -324,11 +326,11 @@ export const Dashboard = () => {
                         rel="noopener noreferrer"
                         className="text-xs bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full hover:bg-accent-secondary hover:text-dark-900 transition-all font-bold whitespace-nowrap text-center"
                       >
-                        Descargar
+                        {t('dashboard.products.downloadButton')}
                       </a>
                     ) : isExpired ? (
                       <button disabled className="text-xs bg-dark-700 text-text-muted px-4 py-2 rounded-full cursor-not-allowed whitespace-nowrap text-center">
-                        Renovar
+                        {t('dashboard.products.renewButton')}
                       </button>
                     ) : null}
                   </li>
@@ -337,7 +339,7 @@ export const Dashboard = () => {
             </ul>
           ) : (
             <p className="text-text-muted text-sm">
-              No tienes productos activos asociados.
+              {t('dashboard.products.emptyState')}
             </p>
           )}
         </div>
@@ -347,12 +349,12 @@ export const Dashboard = () => {
           <div className="flex items-center gap-3 mb-4 text-accent-secondary">
             <BookOpen size={24} />
             <h2 className="text-xl font-bold text-text-main">
-              Documentación completa
+              {t('dashboard.documentation.cardTitle')}
             </h2>
           </div>
 
           <p className="text-text-muted mb-6 leading-relaxed">
-            Accedé al manual técnico detallado de cada indicator: configuración completa, parámetros, mejores prácticas y troubleshooting. ¿Recién empezás? Empezá por las instrucciones de instalación.
+            {t('dashboard.documentation.description')}
           </p>
 
           <div className="flex flex-col sm:flex-row flex-wrap gap-3">
@@ -362,7 +364,7 @@ export const Dashboard = () => {
               className="w-full sm:w-auto"
             >
               <BookOpen size={18} />
-              Ir a la documentación
+              {t('dashboard.documentation.goToDocsButton')}
             </Button>
             <Button
               variant="secondary"
@@ -370,7 +372,7 @@ export const Dashboard = () => {
               className="w-full sm:w-auto"
             >
               <BookOpen size={18} />
-              Instrucciones de instalación
+              {t('dashboard.documentation.installationButton')}
             </Button>
             <Button
               variant="outline"
@@ -378,7 +380,7 @@ export const Dashboard = () => {
               className="w-full sm:w-auto"
             >
               <HelpCircle size={18} />
-              Preguntas frecuentes
+              {t('dashboard.documentation.faqButton')}
             </Button>
           </div>
         </div>

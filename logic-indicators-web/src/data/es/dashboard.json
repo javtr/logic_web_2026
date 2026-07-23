@@ -1,0 +1,42 @@
+{
+  "loadingMessage": "Cargando datos del perfil...",
+  "header": {
+    "welcomePrefix": "Bienvenido, ",
+    "backToHome": "Volver al Inicio",
+    "backToHomeShort": "Inicio",
+    "logout": "Cerrar Sesión",
+    "logoutShort": "Salir"
+  },
+  "machineId": {
+    "cardTitle": "NinjaTrader ID",
+    "savedFlash": "Guardado",
+    "currentIdLabel": "Machine ID Actual",
+    "noIdConfigured": "No hay un ID configurado todavía",
+    "updateButton": "Actualizar ID",
+    "newIdLabel": "Nuevo Machine ID",
+    "newIdPlaceholder": "Pega tu nuevo ID aquí",
+    "saveHint": "Enter para guardar · Esc para cancelar",
+    "cancelButton": "Cancelar",
+    "saveButton": "Guardar nuevo ID",
+    "saving": "Guardando...",
+    "updateSuccessFallback": "ID actualizado con éxito",
+    "updateErrorFallback": "Error al actualizar"
+  },
+  "products": {
+    "cardTitle": "Tus Productos",
+    "defaultNamePrefix": "Producto ",
+    "lifetime": "Licencia Vitalicia",
+    "expiredPrefix": "Expirado el ",
+    "validUntilPrefix": "Válido hasta ",
+    "downloadButton": "Descargar",
+    "renewButton": "Renovar",
+    "emptyState": "No tienes productos activos asociados."
+  },
+  "documentation": {
+    "cardTitle": "Documentación completa",
+    "description": "Accede al manual técnico detallado de cada indicador: configuración completa, parámetros, mejores prácticas y troubleshooting. ¿Recién empiezas? Empieza por las instrucciones de instalación.",
+    "goToDocsButton": "Ir a la documentación",
+    "installationButton": "Instrucciones de instalación",
+    "faqButton": "Preguntas frecuentes"
+  }
+}

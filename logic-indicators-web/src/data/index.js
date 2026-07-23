@@ -27,6 +27,7 @@ import enPrivacy from './en/privacy.json';
 import enTerms from './en/terms.json';
 import enHelp from './en/help.json';
 import enFooter from './en/footer.json';
+import enDashboard from './en/dashboard.json';
 
 import esNav from './es/nav.json';
 import esHero from './es/hero.json';
@@ -45,6 +46,7 @@ import esPrivacy from './es/privacy.json';
 import esTerms from './es/terms.json';
 import esHelp from './es/help.json';
 import esFooter from './es/footer.json';
+import esDashboard from './es/dashboard.json';
 
 export const SUPPORTED_LANGUAGES = ['en', 'es'];
 export const DEFAULT_LANGUAGE = 'en';
@@ -108,6 +110,7 @@ const dictionaries = {
     terms: enTerms,
     help: enHelp,
     footer: enFooter,
+    dashboard: enDashboard,
   },
   es: {
     nav: esNav,
@@ -127,6 +130,7 @@ const dictionaries = {
     terms: esTerms,
     help: esHelp,
     footer: esFooter,
+    dashboard: esDashboard,
   },
 };
 

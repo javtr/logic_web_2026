@@ -1,0 +1,42 @@
+{
+  "loadingMessage": "Loading profile data...",
+  "header": {
+    "welcomePrefix": "Welcome, ",
+    "backToHome": "Back to Home",
+    "backToHomeShort": "Home",
+    "logout": "Log Out",
+    "logoutShort": "Exit"
+  },
+  "machineId": {
+    "cardTitle": "NinjaTrader ID",
+    "savedFlash": "Saved",
+    "currentIdLabel": "Current Machine ID",
+    "noIdConfigured": "No ID configured yet",
+    "updateButton": "Update ID",
+    "newIdLabel": "New Machine ID",
+    "newIdPlaceholder": "Paste your new ID here",
+    "saveHint": "Enter to save · Esc to cancel",
+    "cancelButton": "Cancel",
+    "saveButton": "Save new ID",
+    "saving": "Saving...",
+    "updateSuccessFallback": "ID updated successfully",
+    "updateErrorFallback": "Error updating"
+  },
+  "products": {
+    "cardTitle": "Your Products",
+    "defaultNamePrefix": "Product ",
+    "lifetime": "Lifetime License",
+    "expiredPrefix": "Expired on ",
+    "validUntilPrefix": "Valid until ",
+    "downloadButton": "Download",
+    "renewButton": "Renew",
+    "emptyState": "You have no active products."
+  },
+  "documentation": {
+    "cardTitle": "Complete Documentation",
+    "description": "Access the detailed technical manual for each indicator: full configuration, parameters, best practices, and troubleshooting. Just getting started? Start with the installation instructions.",
+    "goToDocsButton": "Go to documentation",
+    "installationButton": "Installation instructions",
+    "faqButton": "Frequently asked questions"
+  }
+}
