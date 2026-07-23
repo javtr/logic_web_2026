@@ -7,6 +7,16 @@ import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, He
 import { getDownloadUrl, getDisplayName } from "../data/downloads";
 import { useLanguage } from "../context/LanguageContext";
 
+// Title Case para el nombre del usuario en el header.
+// Robusto a inputs en cualquier caso: "juan" -> "Juan", "JUAN" -> "Juan",
+// "juan perez" -> "Juan Perez", "jose maria" -> "Jose Maria".
+// Usa toLowerCase() para que el resto de las letras queden en minuscula
+// (CSS `capitalize` solo cambia la primera letra, no toca el resto, asi que
+// "JUAN" -> "JUAN" y queda inconsistente). String(str || '') protege contra
+// nombre undefined/null durante el loading.
+const toTitleCase = (str) =>
+  String(str || '').toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+
 export const Dashboard = () => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
@@ -136,7 +146,7 @@ export const Dashboard = () => {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6 mb-8 md:mb-12 bg-dark-800 p-6 md:p-8 rounded-2xl md:rounded-3xl border border-dark-700">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-text-main mb-1">
-            {t('dashboard.header.welcomePrefix')}{userData.nombre}
+            {t('dashboard.header.welcomePrefix')}{toTitleCase(userData.nombre)}
           </h1>
           <p className="text-sm md:text-base text-text-muted">{userData.mail}</p>
         </div>
