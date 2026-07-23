@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
+import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, HelpCircle } from "lucide-react";
 import { getDownloadUrl, getDisplayName } from "../data/downloads";
 
@@ -139,6 +140,7 @@ export const Dashboard = () => {
         </div>
 
         <div className="flex items-center gap-2 md:gap-4 -mx-2 md:mx-0">
+          <LanguageSwitcher />
           <button
             onClick={() => navigate("/")}
             className="flex items-center gap-1.5 md:gap-2 text-sm md:text-base text-text-muted hover:text-text-main transition-colors font-medium px-2 py-1 rounded-md"
