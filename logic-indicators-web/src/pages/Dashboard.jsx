@@ -10,13 +10,6 @@ export const Dashboard = () => {
   const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Estado del bloque Machine ID:
-  // - isEditing: false = muestra el ID actual como texto + botón 'Actualizar ID'
-  //             true  = input editable + botones 'Guardar' / 'Cancelar'
-  // - draftValue: el valor del input mientras se está editando
-  // - isSaving: true mientras la llamada PUT al backend está en vuelo
-  // - status: { type: 'success'|'error'|'loading', msg: string } para feedback
-  // - savedFlash: true por 2s después de un guardado exitoso (muestra '✓ Guardado')
   const [isEditing, setIsEditing] = useState(false);
   const [draftValue, setDraftValue] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -26,7 +19,7 @@ export const Dashboard = () => {
   const flashTimerRef = useRef(null);
 
   const userEmail = localStorage.getItem("logic_user_email");
-  const token = localStorage.getItem("logic_token"); // Obtenemos el token aquí para usarlo en todo el componente
+  const token = localStorage.getItem("logic_token");
 
   useEffect(() => {
     if (!userEmail || !token) {
@@ -34,8 +27,6 @@ export const Dashboard = () => {
       return;
     }
 
-    // EL FIX DE SEGURIDAD: El email ya no viaja en la URL (Evita el IDOR).
-    // Nota: Ajusta el puerto a 8004 o el dominio de tu proxy inverso
     fetch(`https://members.logicindicators.com/api/v1/members/portfolio`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
@@ -45,9 +36,6 @@ export const Dashboard = () => {
         return res.json();
       })
       .then((data) => {
-        // Log para inspección: el dev puede ver la forma completa del payload
-        // que devuelve /portfolio y diseñar mejor la UI de productos a partir de ahi.
-        // eslint-disable-next-line no-console
         console.log("[Dashboard] userData from /portfolio:", data);
         setUserData(data);
         setDraftValue(data.machine_id_actual || "");
@@ -55,18 +43,16 @@ export const Dashboard = () => {
       })
       .catch((err) => {
         console.error("Error cargando dashboard:", err);
+        // Si hay un error, devolvemos al usuario al login
         navigate("/login");
       });
   }, [userEmail, token, navigate]);
 
-  // Limpieza del flash timer al desmontar
   useEffect(() => {
     return () => {
       if (flashTimerRef.current) clearTimeout(flashTimerRef.current);
     };
   }, []);
-
-  // ========== Handlers de Machine ID ==========
 
   const currentMachineId = userData?.machine_id_actual || "";
   const isUnchanged = draftValue === currentMachineId;
@@ -75,7 +61,6 @@ export const Dashboard = () => {
     setStatus({ type: "", msg: "" });
     setDraftValue(currentMachineId);
     setIsEditing(true);
-    // Autofocus + select all del input (el siguiente tick)
     setTimeout(() => inputRef.current?.focus(), 50);
   };
 
@@ -87,7 +72,7 @@ export const Dashboard = () => {
 
   const handleUpdate = async (e) => {
     e?.preventDefault?.();
-    if (isUnchanged || isSaving) return; // guard
+    if (isUnchanged || isSaving) return;
     setIsSaving(true);
     setStatus({ type: "loading", msg: "Guardando..." });
 
@@ -103,14 +88,12 @@ export const Dashboard = () => {
           body: JSON.stringify({
             nuevo_machine_id: draftValue,
           }),
-        },
+        }
       );
 
       const result = await response.json();
 
       if (response.ok) {
-        // Actualizamos el userData local con el nuevo ID para que el
-        // modo idle muestre el valor guardado, no el viejo.
         setUserData((prev) => ({
           ...prev,
           machine_id_actual: draftValue,
@@ -118,7 +101,6 @@ export const Dashboard = () => {
         setStatus({ type: "success", msg: result.message || "ID actualizado con éxito" });
         setIsEditing(false);
         setSavedFlash(true);
-        // Limpiar el timer anterior si existe, después programar el nuevo
         if (flashTimerRef.current) clearTimeout(flashTimerRef.current);
         flashTimerRef.current = setTimeout(() => setSavedFlash(false), 2500);
       } else {
@@ -136,7 +118,6 @@ export const Dashboard = () => {
       e.preventDefault();
       handleCancel();
     }
-    // Enter se maneja nativo por el form (onSubmit)
   };
 
   if (isLoading || !userData)
@@ -157,8 +138,6 @@ export const Dashboard = () => {
           <p className="text-sm md:text-base text-text-muted">{userData.mail}</p>
         </div>
 
-        {/* Botones de navegación — en mobile a la derecha del nombre,
-            en desktop agrupados a la derecha con separador */}
         <div className="flex items-center gap-2 md:gap-4 -mx-2 md:mx-0">
           <button
             onClick={() => navigate("/")}
@@ -188,18 +167,10 @@ export const Dashboard = () => {
         </div>
       </div>
 
-      {/* Grid de cards: 1 col en mobile, 2 col en desktop
-          Layout:
-            ┌────────────┬────────────┐
-            │ Machine ID │ Tus        │
-            │            │ Productos  │
-            ├────────────┴────────────┤
-            │ Documentación (full)     │
-            │ [Ir a docs][Instalación]│
-            └──────────────────────────┘ */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        {/* Gestión de Machine ID — posición: top-left */}
-        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
+        
+        {/* Gestión de Machine ID */}
+        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
           <div className="flex items-center justify-between gap-3 mb-6 text-accent-secondary">
             <div className="flex items-center gap-3">
               <Monitor size={24} />
@@ -213,7 +184,6 @@ export const Dashboard = () => {
           </div>
 
           {!isEditing ? (
-            // ========== Modo IDLE: muestra el ID como texto plano ==========
             <div className="space-y-5">
               <div>
                 <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
@@ -243,7 +213,6 @@ export const Dashboard = () => {
               </Button>
             </div>
           ) : (
-            // ========== Modo EDITING: input + Guardar / Cancelar ==========
             <form onSubmit={handleUpdate} className="space-y-5">
               <div>
                 <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
@@ -308,50 +277,58 @@ export const Dashboard = () => {
           )}
         </div>
 
-        {/* Tus Productos — top-right
-            Lista los productos del usuario desde userData.productos_activos
-            (devuelto por GET /api/v1/members/portfolio). Cada producto tiene
-            su botón de descarga individual.
-            La URL se resuelve vía getDownloadUrl() desde src/data/downloads.js
-            (unica fuente de verdad para el mapping producto -> URL).
-            Estructura esperada del array (defensivo: tolera campos faltantes):
-              { nombre_producto: string, codigo_producto: string, ... } */}
-        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
+        {/* Tus Productos y Suscripciones */}
+        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
           <div className="flex items-center gap-3 mb-4 text-accent-primary">
             <Package size={24} />
             <h2 className="text-xl font-bold text-text-main">Tus Productos</h2>
           </div>
 
           {userData.productos_activos && userData.productos_activos.length > 0 ? (
-            <ul className="space-y-2 max-h-72 overflow-y-auto pr-1">
+            <ul className="space-y-3 max-h-[400px] overflow-y-auto pr-1">
               {userData.productos_activos.map((prod, i) => {
-                // Resolver la URL vía el helper. Devuelve string | null.
-                // La key es prod.nombre_producto (lo que ve el usuario).
                 const downloadUrl = getDownloadUrl(prod.nombre_producto);
+                
+                // LÓGICA DE SUSCRIPCIONES
+                const isLifetime = !prod.fecha_expiracion;
+                const expDate = new Date(prod.fecha_expiracion);
+                const isExpired = !isLifetime && new Date() > expDate;
+
                 return (
                   <li
                     key={i}
-                    className="p-3 bg-dark-900 border border-dark-600 rounded-xl flex items-center justify-between gap-3 group hover:border-accent-secondary/50 transition-colors"
+                    className={`p-4 bg-dark-900 border ${isExpired ? 'border-red-900/50 opacity-60' : 'border-dark-600 group hover:border-accent-secondary/50'} rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors`}
                   >
                     <div className="min-w-0 flex-1">
-                      <p className="text-text-main font-semibold text-sm truncate">
+                      <p className="text-text-main font-semibold text-sm truncate mb-1">
                         {getDisplayName(prod.nombre_producto) || `Producto ${i + 1}`}
                       </p>
-                      {/* codigo_producto NO se muestra: es una clave interna
-                          de licenciamiento que el usuario no debe ver.
-                          Se sigue usando abajo para resolver la URL via
-                          getDownloadUrl(prod.codigo_producto). */}
+                      
+                      {/* Banderas de estado visual */}
+                      {isLifetime ? (
+                        <span className="text-xs text-green-400 font-medium">Licencia Vitalicia</span>
+                      ) : isExpired ? (
+                        <span className="text-xs text-red-500 font-medium">Expirado el {expDate.toLocaleDateString()}</span>
+                      ) : (
+                        <span className="text-xs text-yellow-400 font-medium">Válido hasta {expDate.toLocaleDateString()}</span>
+                      )}
                     </div>
-                    {downloadUrl && (
+                    
+                    {/* Botón de descarga condicional */}
+                    {!isExpired && downloadUrl ? (
                       <a
                         href={downloadUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs bg-accent-secondary/20 text-accent-secondary px-3 py-1.5 rounded-full hover:bg-accent-secondary hover:text-dark-900 transition-all font-bold whitespace-nowrap"
+                        className="text-xs bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full hover:bg-accent-secondary hover:text-dark-900 transition-all font-bold whitespace-nowrap text-center"
                       >
                         Descargar
                       </a>
-                    )}
+                    ) : isExpired ? (
+                      <button disabled className="text-xs bg-dark-700 text-text-muted px-4 py-2 rounded-full cursor-not-allowed whitespace-nowrap text-center">
+                        Renovar
+                      </button>
+                    ) : null}
                   </li>
                 );
               })}
@@ -363,7 +340,7 @@ export const Dashboard = () => {
           )}
         </div>
 
-        {/* Documentación completa (privada, requiere auth) — full-width, bottom */}
+        {/* Documentación */}
         <div className="md:col-span-2 bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
           <div className="flex items-center gap-3 mb-4 text-accent-secondary">
             <BookOpen size={24} />
