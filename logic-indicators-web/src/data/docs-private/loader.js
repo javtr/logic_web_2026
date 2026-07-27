@@ -55,7 +55,7 @@ const INDEX = (() => {
       });
 
     if (!slugInStructure) {
-      console.warn(`[docs] No se encontró slug para ${path} en DOCS_STRUCTURE`);
+      if (import.meta.env.DEV) console.warn(`[docs] No se encontró slug para ${path} en DOCS_STRUCTURE`);
       continue;
     }
 

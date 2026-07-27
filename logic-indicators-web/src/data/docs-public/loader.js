@@ -41,7 +41,7 @@ const INDEX = (() => {
       .find(item => path.endsWith(`/${item.slug}.md`));
 
     if (!slugInStructure) {
-      console.warn(`[docs-public] No se encontró slug para ${path} en DOCS_PUBLIC_STRUCTURE`);
+      if (import.meta.env.DEV) console.warn(`[docs-public] No se encontró slug para ${path} en DOCS_PUBLIC_STRUCTURE`);
       continue;
     }
 

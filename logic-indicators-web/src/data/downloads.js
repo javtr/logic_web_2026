@@ -84,7 +84,7 @@ export const getDownloadUrl = (nombreProducto) => {
 
   // 2) Fallback con template
   if (FALLBACK_URL_TEMPLATE) {
-    if (typeof console !== 'undefined') {
+    if (import.meta.env.DEV && typeof console !== 'undefined') {
       // eslint-disable-next-line no-console
       console.warn(
         `[downloads] No hay mapping explicito para nombre_producto="${nombreProducto}". ` +

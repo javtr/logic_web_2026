@@ -85,7 +85,7 @@ export const getActiveIndicatorIds = (lang) => {
 
   // Aviso en consola si hay drift entre INDICATOR_ORDER y el JSON (solo dev).
   const missing = INDICATOR_ORDER.filter((id) => !(id in indicators));
-  if (missing.length > 0) {
+  if (missing.length > 0 && import.meta.env.DEV) {
     // eslint-disable-next-line no-console
     console.warn(
       `[i18n] ${missing.length} indicator(s) in INDICATOR_ORDER are missing from "${lang}/indicators.json": ${missing.join(', ')}. They will be hidden. Add them to the JSON or remove from INDICATOR_ORDER.`
@@ -144,8 +144,10 @@ const dictionaries = {
 
 export const getDictionary = (lang) => {
   if (!dictionaries[lang]) {
-    // eslint-disable-next-line no-console
-    console.warn(`[i18n] No dictionary for "${lang}". Falling back to "${DEFAULT_LANGUAGE}".`);
+    if (import.meta.env.DEV) {
+      // eslint-disable-next-line no-console
+      console.warn(`[i18n] No dictionary for "${lang}". Falling back to "${DEFAULT_LANGUAGE}".`);
+    }
     return dictionaries[DEFAULT_LANGUAGE];
   }
   return dictionaries[lang];

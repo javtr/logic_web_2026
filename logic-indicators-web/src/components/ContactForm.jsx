@@ -40,7 +40,7 @@ export const ContactForm = () => {
         const banned = data.trim().split(',');
         setBannedEmails(banned);
       } catch (error) {
-        console.error('Error fetching banned emails:', error);
+        if (import.meta.env.DEV) console.error('Error fetching banned emails:', error);
       }
     };
     fetchBannedEmails();
@@ -126,7 +126,7 @@ export const ContactForm = () => {
 
     // Validación Blacklist (silenciosa)
     if (bannedEmails.includes(formData.email.trim())) {
-      console.log("Filtro mail: Email bloqueado");
+      if (import.meta.env.DEV) console.log("Filtro mail: Email bloqueado");
       setTimeout(() => {
         handleSuccess();
       }, 1500);
@@ -139,7 +139,7 @@ export const ContactForm = () => {
         handleSuccess();
       })
       .catch((error) => {
-        console.error("Error EmailJS:", error);
+        if (import.meta.env.DEV) console.error("Error EmailJS:", error);
         setStatus('error');
       });
   };
