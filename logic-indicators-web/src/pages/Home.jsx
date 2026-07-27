@@ -20,10 +20,10 @@ export const Home = () => {
   const featuredIndicators = getActiveIndicatorIds(language);
 
   return (
-    <div className="flex flex-col gap-24 pb-24">
+    <div className="flex flex-col gap-12 md:gap-24 pb-24">
 
       {/* 1. HERO SECTION */}
-      <section className="relative pt-32 pb-10 px-6 text-center overflow-hidden">
+      <section className="relative pt-16 md:pt-32 pb-4 md:pb-10 px-6 text-center overflow-hidden">
         {/* Grid sutil de fondo — animación barata (background-position, GPU-composited).
             IMPORTANTE: NO usamos motion-reduce:animate-none acá a propósito.
             Esta animación es tan sutil (60px en 3s = 20px/s, grid de fondo con
