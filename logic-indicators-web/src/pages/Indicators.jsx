@@ -18,7 +18,7 @@ export const Indicators = () => {
   return (
     <div className="min-h-screen bg-dark-900">
       {/* 1. HERO DE TEXTO */}
-      <section className="pt-32 pb-12 px-6 text-center">
+      <section className="pt-16 md:pt-32 pb-12 px-6 text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-text-main tracking-tight mb-4">
           {t('indicatorsPage.title')}
         </h1>
