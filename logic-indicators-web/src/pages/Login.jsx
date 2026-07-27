@@ -119,7 +119,7 @@ export const Login = () => {
     <div className="min-h-screen bg-dark-900 flex flex-col justify-center items-center relative overflow-hidden px-6">
       <Link to="/" className="absolute top-8 left-8 text-text-muted hover:text-text-main flex items-center gap-2 transition-colors">
         <ArrowLeft size={20} />
-        {t('login.backToHome') || 'Volver'}
+        {t('login.backToHome')}
       </Link>
 
       <div className="w-full max-w-md z-10">
