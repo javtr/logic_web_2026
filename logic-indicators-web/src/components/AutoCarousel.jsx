@@ -19,11 +19,9 @@
 //     con pointer-events-none para que el click siempre abra el lightbox de
 //     la imagen visible, no de una oculta.
 //
-// Accesibilidad:
-//   - Respeta prefers-reduced-motion: si el usuario tiene esa preferencia,
-//     NO rota y muestra solo la primera imagen sin transición.
-//   - `aria-hidden` en el wrapper porque es decorativo: el indicador real
-//     sigue siendo el "Read more" / botón de la card.
+// Nota: NO se respeta prefers-reduced-motion (decisión del usuario, 2026-07-27).
+// El carousel siempre rota. Si más adelante se quiere respetar, hay que volver
+// a agregar el check de matchMedia y el state `reducedMotion`.
 //
 // Performance:
 //   - El re-render es solo un cambio de índice (state), opacidad es
@@ -49,24 +47,11 @@ export const AutoCarousel = ({
 
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
   const timerRef = useRef(null);
 
-  // Detectar prefers-reduced-motion una sola vez + escuchar cambios.
-  // (El usuario puede toggear la pref del OS en cualquier momento.)
+  // Auto-advance: solo si hay 2+ imágenes y no está pausado por hover.
   useEffect(() => {
-    if (typeof window === 'undefined' || !window.matchMedia) return;
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReducedMotion(mq.matches);
-    const handler = (e) => setReducedMotion(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, []);
-
-  // Auto-advance: solo si hay 2+ imágenes, no está pausado, y no hay
-  // prefers-reduced-motion.
-  useEffect(() => {
-    if (count < 2 || paused || reducedMotion) {
+    if (count < 2 || paused) {
       if (timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
@@ -84,7 +69,7 @@ export const AutoCarousel = ({
         timerRef.current = null;
       }
     };
-  }, [count, paused, reducedMotion, interval]);
+  }, [count, paused, interval]);
 
   // 0 imágenes: nada que renderizar.
   if (count === 0) return null;
@@ -111,19 +96,16 @@ export const AutoCarousel = ({
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {list.map((src, i) => {
-        const isActive = reducedMotion ? i === 0 : i === current;
-        return (
-          <ZoomableImage
-            key={`${src}-${i}`}
-            src={src}
-            alt={`${alt} ${i + 1}`}
-            className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
-              isActive ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-            } ${imageClassName}`}
-          />
-        );
-      })}
+      {list.map((src, i) => (
+        <ZoomableImage
+          key={`${src}-${i}`}
+          src={src}
+          alt={`${alt} ${i + 1}`}
+          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
+            i === current ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          } ${imageClassName}`}
+        />
+      ))}
     </div>
   );
 };
