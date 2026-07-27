@@ -38,5 +38,10 @@
     "goToDocsButton": "Ir a la documentación",
     "installationButton": "Instrucciones de instalación",
     "faqButton": "Preguntas frecuentes"
+  },
+  "error": {
+    "sessionExpired": "Tu sesión ha expirado. Por favor, vuelve a iniciar sesión.",
+    "loadFailed": "No pudimos cargar tu panel en este momento. Inténtalo de nuevo en unos minutos.",
+    "retryButton": "Reintentar"
   }
 }

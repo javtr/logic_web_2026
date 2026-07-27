@@ -38,5 +38,10 @@
     "goToDocsButton": "Go to documentation",
     "installationButton": "Installation instructions",
     "faqButton": "Frequently asked questions"
+  },
+  "error": {
+    "sessionExpired": "Your session has expired. Please log in again.",
+    "loadFailed": "We couldn't load your dashboard right now. Please try again in a few moments.",
+    "retryButton": "Retry"
   }
 }

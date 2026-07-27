@@ -1,11 +1,12 @@
 // src/pages/Dashboard.jsx
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
-import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, HelpCircle } from "lucide-react";
+import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, HelpCircle, AlertCircle } from "lucide-react";
 import { getDownloadUrl, getDisplayName } from "../data/downloads";
 import { useLanguage } from "../context/LanguageContext";
+import { useAuth } from "../hooks/useAuth";
 
 // Title Case para el nombre del usuario en el header.
 // Robusto a inputs en cualquier caso: "juan" -> "Juan", "JUAN" -> "Juan",
@@ -20,8 +21,10 @@ const toTitleCase = (str) =>
 export const Dashboard = () => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
+  const { logout } = useAuth();
   const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState(null);
 
   const [isEditing, setIsEditing] = useState(false);
   const [draftValue, setDraftValue] = useState("");
@@ -34,6 +37,15 @@ export const Dashboard = () => {
   const userEmail = localStorage.getItem("logic_user_email");
   const token = localStorage.getItem("logic_token");
 
+  // Helper: cuando el backend rechaza el token (401), limpiamos la sesión
+  // y mandamos al usuario a /login. Usamos useAuth().logout() para que
+  // dispare el evento 'logic-auth-change' (mantiene sincronizado el hook
+  // useAuth en otros componentes que ya estén montados).
+  const handleUnauthorized = useCallback(() => {
+    logout();
+    navigate("/login", { replace: true });
+  }, [logout, navigate]);
+
   useEffect(() => {
     if (!userEmail || !token) {
       navigate("/login");
@@ -45,21 +57,34 @@ export const Dashboard = () => {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
+        // 401 = token expirado/inválido -> logout y al login.
+        // Otros errores (500, 503, red) -> mensaje en pantalla, sin logout.
+        if (res.status === 401) {
+          handleUnauthorized();
+          return null;
+        }
         if (!res.ok) throw new Error("Error en la respuesta del servidor");
         return res.json();
       })
       .then((data) => {
-        console.log("[Dashboard] userData from /portfolio:", data);
+        if (!data) return; // 401 path, handleUnauthorized ya redirigió
+        if (import.meta.env.DEV) {
+          console.log("[Dashboard] userData from /portfolio:", data);
+        }
         setUserData(data);
         setDraftValue(data.machine_id_actual || "");
         setIsLoading(false);
       })
       .catch((err) => {
-        console.error("Error cargando dashboard:", err);
-        // Si hay un error, devolvemos al usuario al login
-        navigate("/login");
+        // Cualquier error no-401 (red, 500, JSON inválido) -> mostrar mensaje
+        // en pantalla en vez de deslogear al usuario automáticamente.
+        if (import.meta.env.DEV) {
+          console.error("Error cargando dashboard:", err);
+        }
+        setLoadError(t("dashboard.error.loadFailed"));
+        setIsLoading(false);
       });
-  }, [userEmail, token, navigate]);
+  }, [userEmail, token, navigate, t, handleUnauthorized]);
 
   useEffect(() => {
     return () => {
@@ -104,6 +129,14 @@ export const Dashboard = () => {
         }
       );
 
+      // 401 = sesión expirada también acá (el token puede haber expirado
+      // mientras el usuario estaba editando el form). Misma lógica que en
+      // el load inicial: logout + redirect.
+      if (response.status === 401) {
+        handleUnauthorized();
+        return;
+      }
+
       const result = await response.json();
 
       if (response.ok) {
@@ -133,12 +166,28 @@ export const Dashboard = () => {
     }
   };
 
-  if (isLoading || !userData)
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-dark-900 flex items-center justify-center text-text-muted">
         {t('dashboard.loadingMessage')}
       </div>
     );
+  }
+
+  // Error de carga (red, 500, JSON inválido, etc.). Diferenciamos este
+  // caso del loading para que el usuario vea un mensaje claro y pueda
+  // reintentar, en vez de un loop de "loading..." infinito.
+  if (loadError) {
+    return (
+      <div className="min-h-screen bg-dark-900 flex flex-col items-center justify-center text-center px-6 gap-4">
+        <AlertCircle className="text-red-400" size={48} />
+        <p className="text-text-muted text-lg max-w-md">{loadError}</p>
+        <Button variant="primary" onClick={() => window.location.reload()}>
+          {t('dashboard.error.retryButton')}
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto py-10 md:py-16 px-4 md:px-6 max-w-5xl">
