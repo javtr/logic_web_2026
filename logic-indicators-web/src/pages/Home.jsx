@@ -99,18 +99,27 @@ export const Home = () => {
           <p className="text-text-muted text-lg">{t('home.suiteSubtitle')}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {featuredIndicators.map((id) => (
-            <HomeIndicatorCard
-              key={id}
-              title={t(`indicators.${id}.name`)}
-              subtitle={t(`indicators.${id}.tagline`)}
-              image={resolveImage(t(`indicators.${id}.imageKey`))}
-              imageAlt={`${t(`indicators.${id}.name`)} preview`}
-              description={t(`indicators.${id}.shortDescription`)}
-              buttonText={t('indicatorsPage.readMore')}
-              slug={t(`indicators.${id}.slug`)}
-            />
-          ))}
+          {featuredIndicators.map((id) => {
+            // contentImages del detail page: si hay 2+ → carousel; 1 → imagen simple;
+            // 0 → fallback a `image` de cabecera. Filtramos null por si el JSON
+            // tiene slots vacíos.
+            const contentImages = (t(`indicators.${id}.contentImages`) || [])
+              .map(resolveImage)
+              .filter(Boolean);
+            return (
+              <HomeIndicatorCard
+                key={id}
+                title={t(`indicators.${id}.name`)}
+                subtitle={t(`indicators.${id}.tagline`)}
+                image={resolveImage(t(`indicators.${id}.imageKey`))}
+                imageAlt={`${t(`indicators.${id}.name`)} preview`}
+                contentImages={contentImages}
+                description={t(`indicators.${id}.shortDescription`)}
+                buttonText={t('indicatorsPage.readMore')}
+                slug={t(`indicators.${id}.slug`)}
+              />
+            );
+          })}
         </div>
       </section>
 

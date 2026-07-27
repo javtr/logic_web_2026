@@ -1,61 +1,91 @@
 // src/components/HomeIndicatorCard.jsx
 // NOTA: Este componente es EXCLUSIVO para la página de Home (suite premium).
-// Es diferente a `IndicatorCard.jsx`, que se usa en la página de /indicators.
+// Es diferente a `IndicatorInfo.jsx`, que se usa en la página de /indicators.
 // No reutilizar fuera de Home — si necesitas una card de indicador en otra página,
-// usa `IndicatorCard` o crea un componente nuevo específico para ese contexto.
+// usa `IndicatorInfo` o crea un componente nuevo específico para ese contexto.
 import { Link } from 'react-router-dom';
 import { Button } from './Button';
 import { ZoomableImage } from './ImageLightbox';
+import { AutoCarousel } from './AutoCarousel';
 
 export const HomeIndicatorCard = ({
   title,
   subtitle,
   image,
   imageAlt,
+  contentImages,
   description,
   buttonText = 'Read more',
   slug,
-}) => (
-  <article className="group relative rounded-3xl bg-dark-800 border border-dark-700 hover:border-accent-secondary/50 transition-all duration-500 overflow-hidden hover:-translate-y-1">
-    {/* Glow decorativo en hover */}
-    <div className="absolute -inset-px rounded-3xl bg-gradient-to-b from-accent-secondary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+}) => {
+  // Decidir qué mostrar en el slot de imagen:
+  //   - 2+ contentImages  → AutoCarousel (cross-fade automático, pausa en hover)
+  //   - 1 contentImage    → ZoomableImage simple (sin animación)
+  //   - 0 contentImages   → fallback al `image` (imagen de cabecera del JSON)
+  const hasCarousel = Array.isArray(contentImages) && contentImages.length >= 2;
+  const singleDetail = Array.isArray(contentImages) && contentImages.length === 1;
+  const altText = imageAlt || title;
 
-    <div className="relative px-6 py-8 md:px-8 md:py-10 flex flex-col h-full">
-      {/* 1. Título */}
-      <h3 className="text-3xl font-bold text-text-main mb-2 transition-colors group-hover:text-accent-secondary">
-        {title}
-      </h3>
+  return (
+    <article className="group relative rounded-3xl bg-dark-800 border border-dark-700 hover:border-accent-secondary/50 transition-all duration-500 overflow-hidden hover:-translate-y-1">
+      {/* Glow decorativo en hover */}
+      <div className="absolute -inset-px rounded-3xl bg-gradient-to-b from-accent-secondary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
-      {/* 2. Subtítulo */}
-      {subtitle && (
-        <p className="text-sm uppercase tracking-wider text-text-main font-semibold mb-6">
-          {subtitle}
+      <div className="relative px-6 py-8 md:px-8 md:py-10 flex flex-col h-full">
+        {/* 1. Título */}
+        <h3 className="text-3xl font-bold text-text-main mb-2 transition-colors group-hover:text-accent-secondary">
+          {title}
+        </h3>
+
+        {/* 2. Subtítulo */}
+        {subtitle && (
+          <p className="text-sm uppercase tracking-wider text-text-main font-semibold mb-6">
+            {subtitle}
+          </p>
+        )}
+
+        {/* 3. Imagen: carousel (2+) / single (1) / fallback a `image` (0) */}
+        {(hasCarousel || singleDetail) && (
+          <div className="overflow-hidden rounded-xl mb-6 bg-dark-900 aspect-video">
+            {hasCarousel ? (
+              <AutoCarousel
+                images={contentImages}
+                alt={altText}
+                imageClassName="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            ) : (
+              <ZoomableImage
+                src={contentImages[0]}
+                alt={altText}
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            )}
+          </div>
+        )}
+        {!hasCarousel && !singleDetail && image && (
+          <div className="overflow-hidden rounded-xl mb-6 bg-dark-900">
+            <ZoomableImage
+              src={image}
+              alt={altText}
+              loading="lazy"
+              className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </div>
+        )}
+
+        {/* 4. Párrafo */}
+        <p className="text-text-muted leading-relaxed mb-6 flex-grow">
+          {description}
         </p>
-      )}
 
-      {/* 3. Imagen */}
-      {image && (
-        <div className="overflow-hidden rounded-xl mb-6 bg-dark-900">
-          <ZoomableImage
-            src={image}
-            alt={imageAlt || title}
-            loading="lazy"
-            className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        </div>
-      )}
-
-      {/* 4. Párrafo */}
-      <p className="text-text-muted leading-relaxed mb-6 flex-grow">
-        {description}
-      </p>
-
-      {/* 5. Botón → navega a la página de detalle del indicador */}
-      <Link to={`/indicators/${slug}`} className="block w-full">
-        <Button variant="primary" className="w-full">
-          {buttonText}
-        </Button>
-      </Link>
-    </div>
-  </article>
-);
+        {/* 5. Botón → navega a la página de detalle del indicador */}
+        <Link to={`/indicators/${slug}`} className="block w-full">
+          <Button variant="primary" className="w-full">
+            {buttonText}
+          </Button>
+        </Link>
+      </div>
+    </article>
+  );
+};

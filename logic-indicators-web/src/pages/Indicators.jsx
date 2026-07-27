@@ -45,6 +45,11 @@ export const Indicators = () => {
             const shortDescription = t(`indicators.${id}.shortDescription`);
             const slug = t(`indicators.${id}.slug`);
             const imageKey = t(`indicators.${id}.imageKey`);
+            // contentImages del detail page: si hay 2+ → carousel; 1 → imagen
+            // simple; 0 → fallback a `image` de cabecera.
+            const contentImages = (t(`indicators.${id}.contentImages`) || [])
+              .map(resolveImage)
+              .filter(Boolean);
             return (
               <IndicatorInfo
                 key={id}
@@ -52,6 +57,7 @@ export const Indicators = () => {
                 subtitle={tagline}
                 description={shortDescription}
                 image={resolveImage(imageKey)}
+                contentImages={contentImages}
                 buttonText={t('indicatorsPage.readMore')}
                 slug={slug}
               />
