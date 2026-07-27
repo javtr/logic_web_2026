@@ -106,7 +106,7 @@ export const AutoCarousel = ({
   // 2+ imágenes: cross-fade.
   return (
     <div
-      className={`relative ${className}`}
+      className={`relative w-full h-full ${className}`}
       aria-hidden="true"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
