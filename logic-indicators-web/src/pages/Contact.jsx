@@ -74,9 +74,8 @@ export const Contact = () => {
   return (
     <div className="min-h-screen bg-dark-900">
       {/* HERO */}
-      <section className="relative pt-32 pb-12 px-6 text-center overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-accent-secondary/10 blur-[120px] rounded-full pointer-events-none" />
-        <div className="relative z-10 max-w-3xl mx-auto">
+      <section className="pt-16 md:pt-32 pb-12 px-6 text-center bg-[radial-gradient(ellipse_600px_200px_at_center_top,theme(colors.accent.primary/10%)_0%,transparent_70%)]">
+        <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-text-main tracking-tight mb-4">
             {t('contact.title')}
           </h1>
