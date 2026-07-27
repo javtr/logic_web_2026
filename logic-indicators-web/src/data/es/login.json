@@ -1,0 +1,19 @@
+{
+  "backToHome": "Volver",
+  "title": "Zona de Miembros",
+  "subtitleEmail": "Ingresa tu correo para recibir un código de acceso",
+  "subtitleOtp": "Ingresa el código de 6 dígitos enviado a tu email",
+  "emailLabel": "Correo Electrónico",
+  "emailPlaceholder": "ejemplo@correo.com",
+  "sendCodeButton": "Enviar Código",
+  "sendingButton": "Enviando...",
+  "otpLabel": "Código de Verificación",
+  "otpPlaceholder": "000000",
+  "enterButton": "Entrar al Panel",
+  "verifyingButton": "Verificando...",
+  "changeEmailButton": "Volver a intentar con otro correo",
+  "errors": {
+    "sendCodeFallback": "Error al enviar el código",
+    "verifyOtpFallback": "Código incorrecto o expirado"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "backToHome": "Back",
+  "title": "Members Area",
+  "subtitleEmail": "Enter your email to receive an access code",
+  "subtitleOtp": "Enter the 6-digit code sent to your email",
+  "emailLabel": "Email Address",
+  "emailPlaceholder": "name@example.com",
+  "sendCodeButton": "Send Code",
+  "sendingButton": "Sending...",
+  "otpLabel": "Verification Code",
+  "otpPlaceholder": "000000",
+  "enterButton": "Enter Dashboard",
+  "verifyingButton": "Verifying...",
+  "changeEmailButton": "Try again with a different email",
+  "errors": {
+    "sendCodeFallback": "Error sending the code",
+    "verifyOtpFallback": "Wrong or expired code"
+  }
+}

@@ -58,10 +58,12 @@ export const Login = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email })
       });
-      
+
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.detail || "Error al enviar el código");
+        // Si el backend manda detail, ese gana (es el mensaje real del server);
+        // si no, mostramos el fallback i18n.
+        throw new Error(data.detail || t('login.errors.sendCodeFallback'));
       }
 
       setStep(2); // Avanzamos al paso del código
@@ -79,23 +81,23 @@ export const Login = () => {
     setError('');
 
     try {
-      // EL FIX DE SEGURIDAD: El código y email ya no viajan en la URL. 
+      // EL FIX DE SEGURIDAD: El código y email ya no viajan en la URL.
       // Se envían de forma segura en el Body del POST.
       const response = await fetch('https://members.logicindicators.com/api/v1/members/verify-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          email: email, 
-          codigo: otp 
+        body: JSON.stringify({
+          email: email,
+          codigo: otp
         })
       });
-      
+
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.detail || "Código incorrecto o expirado");
+        throw new Error(data.detail || t('login.errors.verifyOtpFallback'));
       }
-      
+
       // Guardamos el TOKEN de seguridad y el email
       localStorage.setItem('logic_token', data.access_token);
       localStorage.setItem('logic_user_email', email);
@@ -124,11 +126,11 @@ export const Login = () => {
 
       <div className="w-full max-w-md z-10">
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-text-main mb-3">Zona de Miembros</h1>
+          <h1 className="text-4xl font-bold text-text-main mb-3">{t('login.title')}</h1>
           <p className="text-text-muted">
-            {step === 1 
-              ? "Ingresa tu correo para recibir un código de acceso" 
-              : "Ingresa el código de 6 dígitos enviado a tu email"}
+            {step === 1
+              ? t('login.subtitleEmail')
+              : t('login.subtitleOtp')}
           </p>
         </div>
 
@@ -137,7 +139,7 @@ export const Login = () => {
           {step === 1 ? (
             <form onSubmit={handleRequestOTP} className="space-y-6">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-text-main block">Correo Electrónico</label>
+                <label className="text-sm font-medium text-text-main block">{t('login.emailLabel')}</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <Mail size={18} className="text-text-muted" />
@@ -147,7 +149,7 @@ export const Login = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    placeholder="ejemplo@correo.com"
+                    placeholder={t('login.emailPlaceholder')}
                     className="w-full bg-dark-900 border border-dark-700 text-text-main text-sm rounded-lg focus:ring-1 focus:ring-accent-secondary focus:border-accent-secondary block pl-10 p-3 outline-none"
                   />
                 </div>
@@ -156,14 +158,14 @@ export const Login = () => {
               {error && <div className="bg-red-500/10 border border-red-500/50 text-red-500 text-sm p-3 rounded-lg text-center">{error}</div>}
 
               <Button type="submit" variant="primary" className="w-full" disabled={isLoading}>
-                {isLoading ? 'Enviando...' : 'Enviar Código'}
+                {isLoading ? t('login.sendingButton') : t('login.sendCodeButton')}
               </Button>
             </form>
           ) : (
             /* Si estamos en el paso 2, mostramos el form de Código OTP */
             <form onSubmit={handleVerifyOTP} className="space-y-6">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-text-main block">Código de Verificación</label>
+                <label className="text-sm font-medium text-text-main block">{t('login.otpLabel')}</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <Key size={18} className="text-text-muted" />
@@ -174,7 +176,7 @@ export const Login = () => {
                     onChange={(e) => setOtp(e.target.value)}
                     required
                     maxLength={6}
-                    placeholder="000000"
+                    placeholder={t('login.otpPlaceholder')}
                     className="w-full bg-dark-900 border border-dark-700 text-text-main text-xl tracking-[1em] text-center rounded-lg focus:ring-1 focus:ring-accent-secondary focus:border-accent-secondary block p-3 outline-none"
                   />
                 </div>
@@ -183,15 +185,15 @@ export const Login = () => {
               {error && <div className="bg-red-500/10 border border-red-500/50 text-red-500 text-sm p-3 rounded-lg text-center">{error}</div>}
 
               <Button type="submit" variant="primary" className="w-full" disabled={isLoading}>
-                {isLoading ? 'Verificando...' : 'Entrar al Panel'}
+                {isLoading ? t('login.verifyingButton') : t('login.enterButton')}
               </Button>
-              
-              <button 
-                type="button" 
+
+              <button
+                type="button"
                 onClick={() => setStep(1)}
                 className="w-full text-sm text-text-muted hover:text-text-main transition-colors"
               >
-                Volver a intentar con otro correo
+                {t('login.changeEmailButton')}
               </button>
             </form>
           )}
