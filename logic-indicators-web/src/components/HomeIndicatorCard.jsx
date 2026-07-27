@@ -20,7 +20,7 @@ export const HomeIndicatorCard = ({
     {/* Glow decorativo en hover */}
     <div className="absolute -inset-px rounded-3xl bg-gradient-to-b from-accent-secondary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
-    <div className="relative p-8 md:p-10 flex flex-col h-full">
+    <div className="relative px-6 py-8 md:px-8 md:py-10 flex flex-col h-full">
       {/* 1. Título */}
       <h3 className="text-3xl font-bold text-text-main mb-2 transition-colors group-hover:text-accent-secondary">
         {title}
