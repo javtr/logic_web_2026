@@ -27,7 +27,7 @@ export const IndicatorPage = () => {
   if (!indicatorId) {
     return (
       <div className="min-h-screen bg-dark-900 flex items-center justify-center text-text-muted">
-        No encontrado
+        {t('indicatorPage.notFound')}
       </div>
     );
   }
