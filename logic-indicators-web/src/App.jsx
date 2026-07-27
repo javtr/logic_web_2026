@@ -34,6 +34,7 @@ import { Contact } from './pages/Contact';
 import { Faq } from './pages/Faq';
 import { Privacy } from './pages/Privacy';
 import { Terms } from './pages/Terms';
+import { NotFound } from './pages/NotFound';
 
 import { Indicators } from './pages/Indicators';
 import { Pricing } from './pages/Pricing';
@@ -95,6 +96,10 @@ function App() {
               </PrivateRoute>
             }
           />
+
+          {/* Catch-all 404 (fuera de MainLayout a propósito: pantalla de error
+              pelada, sin navbar/footer, para no distraer del mensaje) */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </LanguageProvider>

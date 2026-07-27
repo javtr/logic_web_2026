@@ -11,13 +11,13 @@ export const NotFound = () => {
     <div className="min-h-screen bg-dark-900 flex flex-col items-center justify-center text-center px-6">
       <h1 className="text-6xl font-bold text-accent-primary mb-4">404</h1>
       <p className="text-text-muted text-lg mb-8 max-w-md">
-        {t('notFound.message') || 'La página que buscas no existe.'}
+        {t('notFound.message')}
       </p>
       <Link
         to="/login"
         className="bg-accent-primary text-dark-900 font-bold py-3 px-6 rounded-xl hover:brightness-110 transition-all"
       >
-        {t('notFound.cta') || 'Volver al inicio de sesión'}
+        {t('notFound.cta')}
       </Link>
     </div>
   );

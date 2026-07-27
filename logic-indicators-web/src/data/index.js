@@ -28,6 +28,7 @@ import enTerms from './en/terms.json';
 import enHelp from './en/help.json';
 import enFooter from './en/footer.json';
 import enDashboard from './en/dashboard.json';
+import enNotFound from './en/notFound.json';
 
 import esNav from './es/nav.json';
 import esHero from './es/hero.json';
@@ -47,6 +48,7 @@ import esTerms from './es/terms.json';
 import esHelp from './es/help.json';
 import esFooter from './es/footer.json';
 import esDashboard from './es/dashboard.json';
+import esNotFound from './es/notFound.json';
 
 export const SUPPORTED_LANGUAGES = ['en', 'es'];
 export const DEFAULT_LANGUAGE = 'en';
@@ -111,6 +113,7 @@ const dictionaries = {
     help: enHelp,
     footer: enFooter,
     dashboard: enDashboard,
+    notFound: enNotFound,
   },
   es: {
     nav: esNav,
@@ -131,6 +134,7 @@ const dictionaries = {
     help: esHelp,
     footer: esFooter,
     dashboard: esDashboard,
+    notFound: esNotFound,
   },
 };
 
