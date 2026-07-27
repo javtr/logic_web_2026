@@ -20,7 +20,7 @@ export const Home = () => {
   const featuredIndicators = getActiveIndicatorIds(language);
 
   return (
-    <div className="flex flex-col gap-12 md:gap-24 pb-24">
+    <div className="flex flex-col gap-12 md:gap-24 pb-12 md:pb-24">
 
       {/* 1. HERO SECTION */}
       <section className="relative pt-16 md:pt-32 pb-4 md:pb-10 px-6 text-center overflow-hidden">
@@ -138,7 +138,7 @@ export const Home = () => {
           - Título: 24px mobile / 36px desktop. Subtítulo: 16px mobile / 18px desktop.
           - Márgenes verticales reducidos en mobile: title mb-3 / subtitle mb-6 / button gap-3.
             Desktop mantiene los valores originales (md:mb-4 / md:mb-8 / md:gap-4). */}
-      <section className="px-6 container mx-auto mb-12">
+      <section className="px-6 container mx-auto mb-6 md:mb-12">
         <div className="bg-gradient-to-r from-dark-800 to-dark-700 p-6 md:p-12 rounded-3xl border border-dark-600 text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-accent-secondary/10 blur-[80px] rounded-full pointer-events-none" />
           <h2 className="text-2xl md:text-4xl font-bold text-text-main mb-3 md:mb-4 relative z-10">{t('home.ctaTitle')}</h2>
