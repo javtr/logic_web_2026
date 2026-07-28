@@ -114,19 +114,8 @@ const PricingCard = ({ plan, t, bestValueText }) => {
         </div>
       )}
 
-      {/* Installments — solo en planes Lifetime. Caja destacada. */}
-      {plan.installments && (
-        <div className="mt-4 p-3 rounded-lg bg-accent-primary/5 border border-accent-primary/20">
-          <p className="text-sm font-semibold text-accent-primary">
-            {plan.installments.text}
-          </p>
-          <p className="text-xs text-text-muted mt-1 leading-snug">
-            {plan.installments.disclaimer}
-          </p>
-        </div>
-      )}
-
-      {/* CTA */}
+      {/* CTA — siempre antes de installments (installments es info
+          complementaria, no compite con la acción principal). */}
       <a
         href={plan.checkoutUrl}
         target="_blank"
@@ -140,6 +129,23 @@ const PricingCard = ({ plan, t, bestValueText }) => {
           {plan.cta}
         </Button>
       </a>
+
+      {/* Installments — solo en planes Lifetime. Caja destacada DEBAJO
+          del botón, con título "Diferir pagos" / "Installments" para
+          separar visualmente del bloque de precio que está arriba. */}
+      {plan.installments && (
+        <div className="mt-4 pt-4 border-t border-dark-700 text-center">
+          <p className="text-xs uppercase tracking-wider text-accent-primary font-bold mb-2">
+            {t('pricing.installmentsTitle')}
+          </p>
+          <p className="text-sm font-semibold text-accent-primary">
+            {plan.installments.text}
+          </p>
+          <p className="text-xs text-text-muted mt-1 leading-snug">
+            {plan.installments.disclaimer}
+          </p>
+        </div>
+      )}
     </div>
   );
 };
