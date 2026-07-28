@@ -1,15 +1,6 @@
 {
   "pageTitle": "Precios",
-  "pageSubtitle": "Elige el plan que se ajusta a tu estilo de trading. De por vida es la mejor opción.",
-
-  "promotion": {
-    "enabled": false,
-    "badge": "Tiempo Limitado",
-    "title": "Ahorra 30% en la Suite Completa",
-    "subtitle": "Usa el código LOGIC30 al pagar. La oferta termina el 31 de julio.",
-    "ctaText": "Reclamar Descuento",
-    "ctaLink": "#"
-  },
+  "pageSubtitle": "Elige el plan que se ajuste a tu estilo de trading. De por vida es la mejor opción.",
 
   "sectionTitle": "Desbloquea tu Ventaja Competitiva en el Mercado",
   "bestValueBadge": "Mejor Opción",
@@ -20,38 +11,130 @@
     "lifetime": "De por vida"
   },
 
-  "singlePlan": {
-    "name": "Indicador Individual",
-    "description": "Perfecto para traders enfocados.",
-    "priceYearly": 99,
-    "priceLifetime": 249,
-    "billingPeriodYearly": "año",
-    "billingPeriodLifetime": "pago único",
-    "features": [
-      "Elige un indicador",
-      "1 Machine ID",
-      "Soporte estándar"
-    ],
-    "cta": "Comenzar Ahora",
-    "ctaUrl": "https://example.com/checkout/single",
-    "highlighted": false
-  },
-
-  "suitePlan": {
-    "name": "Suite Completa",
-    "description": "Todas las herramientas para una ventaja institucional.",
-    "priceYearly": 299,
-    "priceLifetime": 699,
-    "billingPeriodYearly": "año",
-    "billingPeriodLifetime": "pago único",
-    "features": [
-      "Logic Imprint Pro",
-      "Todos los indicadores actuales y futuros",
-      "2 Machine IDs",
-      "Soporte prioritario"
-    ],
-    "cta": "Comenzar Ahora",
-    "ctaUrl": "https://example.com/checkout/suite",
-    "highlighted": true
+  "plans": {
+    "yearly": {
+      "basic": {
+        "id": "basic-yearly",
+        "name": "Pack Básico",
+        "billingLabel": "por año",
+        "price": 390,
+        "crossedPrice": 645,
+        "highlighted": false,
+        "cta": "Elegir Pack Básico",
+        "indicators": [
+          "footprint",
+          "footer",
+          "profile",
+          "composite",
+          "bigtrades",
+          "analytics",
+          "algorithms"
+        ],
+        "checkoutUrl": "https://example.com/checkout/basic-yearly"
+      },
+      "plus": {
+        "id": "plus-yearly",
+        "name": "Pack Plus",
+        "billingLabel": "por año",
+        "price": 590,
+        "crossedPrice": 845,
+        "highlighted": true,
+        "cta": "Elegir Pack Plus",
+        "indicators": [
+          "footprint",
+          "footer",
+          "profile",
+          "composite",
+          "bigtrades",
+          "analytics",
+          "algorithms"
+        ],
+        "plusContent": [
+          {
+            "title": "Order Flow y estrategias de giros",
+            "note": "curso — incluye ejemplos en vivo, giros con order flow"
+          },
+          {
+            "title": "Volume Profile Elite",
+            "note": "curso"
+          },
+          {
+            "title": "Estrategias de swing trading con Volume Profile",
+            "note": "curso"
+          },
+          {
+            "title": "Estrategias de Big Trades",
+            "note": "curso"
+          }
+        ],
+        "checkoutUrl": "https://example.com/checkout/plus-yearly"
+      }
+    },
+    "lifetime": {
+      "basic": {
+        "id": "basic-lifetime",
+        "name": "Pack Básico",
+        "billingLabel": "pago único",
+        "price": 590,
+        "crossedPrice": 985,
+        "highlighted": false,
+        "cta": "Elegir Pack Básico",
+        "indicators": [
+          "footprint",
+          "footer",
+          "profile",
+          "composite",
+          "bigtrades",
+          "analytics",
+          "algorithms"
+        ],
+        "installments": {
+          "text": "5 pagos de $125",
+          "disclaimer": "Los códigos de descuento se aplican a todas las cuotas"
+        },
+        "checkoutUrl": "https://example.com/checkout/basic-lifetime"
+      },
+      "plus": {
+        "id": "plus-lifetime",
+        "name": "Pack Plus",
+        "billingLabel": "pago único",
+        "price": 890,
+        "crossedPrice": 1285,
+        "highlighted": true,
+        "cta": "Elegir Pack Plus",
+        "indicators": [
+          "footprint",
+          "footer",
+          "profile",
+          "composite",
+          "bigtrades",
+          "analytics",
+          "algorithms"
+        ],
+        "plusContent": [
+          {
+            "title": "Order Flow y estrategias de giros",
+            "note": "curso — incluye ejemplos en vivo, giros con order flow"
+          },
+          {
+            "title": "Volume Profile Elite",
+            "note": "curso"
+          },
+          {
+            "title": "Estrategias de swing trading con Volume Profile",
+            "note": "curso"
+          },
+          {
+            "title": "Estrategias de Big Trades",
+            "note": "curso"
+          }
+        ],
+        "installments": {
+          "text": "5 pagos de $178",
+          "disclaimer": "Los códigos de descuento se aplican a todas las cuotas"
+        },
+        "checkoutUrl": "https://example.com/checkout/plus-lifetime"
+      }
+    }
   }
 }

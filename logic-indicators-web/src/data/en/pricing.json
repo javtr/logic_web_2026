@@ -2,56 +2,52 @@
   "pageTitle": "Pricing",
   "pageSubtitle": "Choose the plan that fits your trading style. Lifetime is the best value.",
 
-  "promotion": {
-    "enabled": false,
-    "badge": "Limited Time",
-    "title": "Save 30% on the Full Suite",
-    "subtitle": "Use code LOGIC30 at checkout. Offer ends July 31.",
-    "ctaText": "Claim Discount",
-    "ctaLink": "#"
-  },
-
-  "sectionTitle": "Simple, Transparent Pricing",
+  "sectionTitle": "Unlock Your Competitive Edge in the Market",
   "bestValueBadge": "Best Value",
   "faqTitle": "Pricing & Payment Questions",
 
-  "billingToggle": {
-    "yearly": "Yearly",
-    "lifetime": "Lifetime"
-  },
-
-  "singlePlan": {
-    "name": "Single Indicator",
-    "description": "Perfect for focused traders.",
-    "priceYearly": 99,
-    "priceLifetime": 249,
-    "billingPeriodYearly": "yr",
-    "billingPeriodLifetime": "once",
-    "features": [
-      "Choose one indicator",
-      "1 Machine ID",
-      "Standard Support"
-    ],
-    "cta": "Get Started Now",
-    "ctaUrl": "https://example.com/checkout/single",
-    "highlighted": false
-  },
-
-  "suitePlan": {
-    "name": "Full Suite",
-    "description": "All tools for institutional edge.",
-    "priceYearly": 299,
-    "priceLifetime": 699,
-    "billingPeriodYearly": "yr",
-    "billingPeriodLifetime": "once",
-    "features": [
-      "Logic Imprint Pro",
-      "All current & future indicators",
-      "2 Machine IDs",
-      "Priority Support"
-    ],
-    "cta": "Get Started Now",
-    "ctaUrl": "https://example.com/checkout/suite",
-    "highlighted": true
-  }
+  "plans": [
+    {
+      "id": "annual",
+      "name": "Annual",
+      "billingLabel": "per year",
+      "price": 390,
+      "crossedPrice": 645,
+      "highlighted": false,
+      "cta": "Choose Annual",
+      "indicators": [
+        "footprint",
+        "footer",
+        "profile",
+        "composite",
+        "bigtrades",
+        "analytics",
+        "algorithms"
+      ],
+      "checkoutUrl": "https://example.com/checkout/annual"
+    },
+    {
+      "id": "lifetime",
+      "name": "Lifetime",
+      "billingLabel": "one-time payment",
+      "price": 590,
+      "crossedPrice": 985,
+      "highlighted": true,
+      "cta": "Choose Lifetime",
+      "indicators": [
+        "footprint",
+        "footer",
+        "profile",
+        "composite",
+        "bigtrades",
+        "analytics",
+        "algorithms"
+      ],
+      "installments": {
+        "text": "5 payments of $125",
+        "disclaimer": "Discount codes apply to all installments"
+      },
+      "checkoutUrl": "https://example.com/checkout/lifetime"
+    }
+  ]
 }
