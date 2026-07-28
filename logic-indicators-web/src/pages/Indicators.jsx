@@ -38,7 +38,7 @@ export const Indicators = () => {
 
       {/* 3. GRILLA DE TARJETAS */}
       <section className="px-6 container mx-auto pb-24">
-        <div className="grid grid-cols-1 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 gap-12 max-w-7xl mx-auto">
           {activeIndicators.map((id) => {
             const name = t(`indicators.${id}.name`);
             const tagline = t(`indicators.${id}.tagline`);
