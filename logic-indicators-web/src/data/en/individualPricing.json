@@ -1,0 +1,44 @@
+{
+  "title": "Buy Indicators Individually",
+  "subtitle": "Pick the tool that fits your strategy. Lifetime access, no subscriptions.",
+
+  "cta": "Buy Now",
+  "emptyMessage": "No individual indicators available right now.",
+
+  "defaultPrice": 199,
+  "defaultBillingPeriod": "once",
+  "currencySymbol": "$",
+
+  "bundleBadge": "Bundle",
+  "bundleSubtitle": "+ {secondary}",
+
+  "products": [
+    {
+      "id": "footprint-bundle",
+      "primaryIndicatorId": "footprint",
+      "secondaryIndicatorId": "footer",
+      "checkoutUrl": "https://example.com/checkout/footprint-footer"
+    },
+    {
+      "id": "profile-bundle",
+      "primaryIndicatorId": "profile",
+      "secondaryIndicatorId": "composite",
+      "checkoutUrl": "https://example.com/checkout/profile-composite"
+    },
+    {
+      "id": "bigtrades",
+      "primaryIndicatorId": "bigtrades",
+      "checkoutUrl": "https://example.com/checkout/bigtrades"
+    },
+    {
+      "id": "analytics",
+      "primaryIndicatorId": "analytics",
+      "checkoutUrl": "https://example.com/checkout/analytics"
+    },
+    {
+      "id": "algorithms",
+      "primaryIndicatorId": "algorithms",
+      "checkoutUrl": "https://example.com/checkout/algorithms"
+    }
+  ]
+}
