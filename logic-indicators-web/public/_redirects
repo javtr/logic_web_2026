@@ -1,0 +1,46 @@
+# _redirects — Cloudflare Pages
+# Mapeo de URLs del sitio viejo (logicindicators.com) a las URLs del nuevo sitio.
+# 301 = redirect permanente. Transfiere el valor SEO de la URL vieja a la nueva.
+#
+# Última actualización: 2026-07-28
+# Fuentes de la estructura vieja: navegación directa + sitemap manual del usuario.
+
+# ---------- Top-level (sin equivalente en el nuevo sitio) ----------
+/risk                   /                          301
+
+# ---------- Mismo path en el nuevo sitio ----------
+/indicators             /indicators                301
+/contact                /contact                   301
+
+# ---------- Renombres simples ----------
+/buy                    /pricing                   301
+/education              /                          301
+
+# ---------- Sección "Free" ----------
+# El nuevo sitio tiene /resources/free-indicators (single page) en vez de
+# páginas individuales por indicador free. Redirigimos cada una ahí para
+# que el usuario vea qué herramientas free SÍ existen hoy.
+/free                   /resources/free-indicators  301
+/free/otm-deltabar-free /resources/free-indicators  301
+/free/logic-profile-free /resources/free-indicators 301
+/free/logic-pocbar-free /resources/free-indicators  301
+
+# ---------- Indicadores (singular /indicator/ → plural /indicators/) ----------
+# Mapeo por cambio de nombre o normalización de slug:
+#   logic-order-flow      → logic-footprint     (rename)
+#   logic-volume-profile  → logic-profile       (rename)
+#   logic-analytics       → logic-analytics     (mismo)
+#   logic-big-trades      → logic-bigtrades     (slug sin guión)
+#   logic-algorithms      → logic-algorithms    (mismo)
+/indicator/logic-order-flow     /indicators/logic-footprint  301
+/indicator/logic-volume-profile /indicators/logic-profile    301
+/indicator/logic-analytics      /indicators/logic-analytics  301
+/indicator/logic-big-trades     /indicators/logic-bigtrades  301
+/indicator/logic-algorithms     /indicators/logic-algorithms  301
+
+# ---------- Catch-all SPA ----------
+# Cualquier URL que no matchee los redirects anteriores (ej. /pricing,
+# /indicators/logic-footprint, /dashboard, etc.) se sirve con index.html
+# y React Router toma el control. NO es un redirect, es un rewrite
+# interno (status 200 = servir el contenido, no cambiar la URL).
+/*                      /index.html                200
