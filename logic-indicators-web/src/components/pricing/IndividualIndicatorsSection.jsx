@@ -9,13 +9,17 @@
 // usuario puede hacer click en el nombre para ir al detalle del indicator):
 //
 //   ┌─────────────────────┐
-//   │  [imagen]           │
+//   │  [imagen]      [PAQ]│  ← badge "PAQUETE" solo si es bundle
 //   │                     │
-//   │  Footprint          │   ← nombre del primary
-//   │  + Footer           │   ← solo si es bundle
+//   │  Footprint + Footer │ ← bundles: ambos en el título
 //   │  $199               │
 //   │  [ Buy Now ]        │
 //   └─────────────────────┘
+//
+// Para bundles, el secondary va en el TÍTULO (mismo tamaño y peso que el
+// primary) — antes era un subtítulo "+ Footer" en gris, que le daba
+// muy poca importancia. El badge "PAQUETE" sigue marcando visualmente
+// que la card contiene 2 productos antes de que el usuario lea el título.
 //
 // Fuente de verdad de TODO (precios, URLs, lista de productos) está en el
 // JSON correspondiente. El componente no tiene valores hardcodeados —
@@ -39,11 +43,19 @@ const ProductCard = ({ product, t, section }) => {
   const primaryName = t(`indicators.${product.primaryIndicatorId}.name`);
   const primaryImageKey = t(`indicators.${product.primaryIndicatorId}.imageKey`);
 
-  // Si tiene secondary, lo mostramos como subtítulo "+ Footer" / "+ Composite"
+  // Si tiene secondary, lo concatenamos AL TÍTULO (no como subtítulo).
+  // El usuario pidió que el secondary tenga la misma importancia visual
+  // que el primary — antes era "+ Footer" en gris pequeño, ahora es
+  // "Logic Footprint + Footer" en el mismo tamaño y peso que el título.
+  // El badge "Bundle" / "Paquete" sigue marcando visualmente que es un
+  // bundle (es la señal rápida, antes que el usuario lea el título).
   const isBundle = Boolean(product.secondaryIndicatorId);
   const secondaryName = isBundle
     ? t(`indicators.${product.secondaryIndicatorId}.name`)
     : null;
+  const cardTitle = isBundle
+    ? `${primaryName} ${section.bundleTitleAppend.replace('{secondary}', secondaryName)}`
+    : primaryName;
 
   return (
     <article className="group relative flex flex-col bg-dark-800 border border-dark-700 hover:border-accent-secondary/50 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-0.5">
@@ -60,23 +72,18 @@ const ProductCard = ({ product, t, section }) => {
       <div className="aspect-[4/3] w-full bg-dark-900 overflow-hidden">
         <ZoomableImage
           src={resolveImage(primaryImageKey)}
-          alt={primaryName}
+          alt={cardTitle}
           loading="lazy"
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
 
-      {/* Contenido: nombre + (subtitle si es bundle) + precio + botón */}
+      {/* Contenido: título (incluye "+ Secondary" si es bundle) + precio + botón */}
       <div className="flex flex-col flex-grow p-4 gap-3">
         <div>
           <h3 className="text-base font-bold text-text-main leading-tight">
-            {primaryName}
+            {cardTitle}
           </h3>
-          {isBundle && (
-            <p className="text-xs text-text-muted mt-0.5">
-              {section.bundleSubtitle.replace('{secondary}', secondaryName)}
-            </p>
-          )}
         </div>
 
         <div className="flex items-baseline gap-1">

@@ -10,7 +10,7 @@
   "currencySymbol": "$",
 
   "bundleBadge": "Paquete",
-  "bundleSubtitle": "+ {secondary}",
+  "bundleTitleAppend": "+ {secondary}",
 
   "products": [
     {
