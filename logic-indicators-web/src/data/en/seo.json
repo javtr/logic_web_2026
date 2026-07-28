@@ -1,0 +1,51 @@
+{
+  "siteName": "Logic Indicators",
+
+  "defaultTitle": "Logic Indicators - Order Flow Software for NinjaTrader 8",
+  "defaultDescription": "Professional order flow, footprint, volume profile, and big trades indicators for NinjaTrader 8. Zero-latency performance, institutional-grade analytics, and preset templates ready to trade.",
+
+  "home": {
+    "title": "Logic Indicators - Order Flow Software for NinjaTrader 8",
+    "description": "Professional order flow, footprint, volume profile, and big trades indicators for NinjaTrader 8. Zero-latency performance and institutional-grade volume analysis tools."
+  },
+  "indicators": {
+    "title": "Order Flow Indicators for NinjaTrader 8 - Full Suite",
+    "description": "Explore our ecosystem of 7 order flow indicators for NinjaTrader 8: Footprint, Volume Profile, Big Trades, Algorithms, and more. Zero-latency performance with preset templates."
+  },
+  "indicator": {
+    "titleSuffix": "for NinjaTrader 8 | Logic Indicators",
+    "descriptionSuffix": "Order flow indicator for NinjaTrader 8. Zero-latency performance, institutional-grade analytics, and preset templates ready to trade."
+  },
+  "pricing": {
+    "title": "Pricing - Order Flow Indicators for NinjaTrader 8",
+    "description": "Choose the plan that fits your trading style. Annual or lifetime access to our order flow, footprint, and volume profile indicators for NinjaTrader 8. Best value with the Lifetime plan."
+  },
+  "freeIndicators": {
+    "title": "Free Order Flow Indicators - Download for NinjaTrader 8",
+    "description": "Download free order flow and volume analysis tools for NinjaTrader 8. Test our development quality before buying the full suite. No registration required."
+  },
+  "contact": {
+    "title": "Contact - Logic Indicators",
+    "description": "Questions about our order flow indicators, licensing, or partnerships? Reach us by Discord, Instagram, or email. We respond within 24 hours."
+  },
+  "faq": {
+    "title": "Frequently Asked Questions - Logic Indicators",
+    "description": "Everything you need to know about Logic Indicators: compatibility, licensing, payment methods, refunds, and how the annual vs lifetime plans work."
+  },
+  "docs": {
+    "title": "Documentation - Logic Indicators",
+    "description": "Public documentation for our order flow indicators: installation, configuration, presets, and best practices. Free access without registration."
+  },
+  "privacy": {
+    "title": "Privacy Policy - Logic Indicators",
+    "description": "How we collect, use, and protect your personal information. Your rights and our commitments to data privacy."
+  },
+  "terms": {
+    "title": "Terms of Service - Logic Indicators",
+    "description": "Terms of service for Logic Indicators products: license of use, payment policies, refunds, intellectual property, and limitations of liability."
+  },
+  "notFound": {
+    "title": "Page Not Found - Logic Indicators",
+    "description": "The page you are looking for does not exist. Go back to the Logic Indicators home page."
+  }
+}
