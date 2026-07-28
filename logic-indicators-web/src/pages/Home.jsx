@@ -7,6 +7,7 @@ import { PricingSection } from '../components/pricing/PricingSection';
 import { TrustSection } from '../components/pricing/TrustSection';
 import { FAQSection } from '../components/FAQSection';
 import { TestimonialsCarousel } from '../components/TestimonialsCarousel';
+import { SEO } from '../components/SEO';
 import { resolveImage } from '../data/imageResolver';
 import { getActiveIndicatorIds } from '../data';
 
@@ -20,6 +21,13 @@ export const Home = () => {
   const featuredIndicators = getActiveIndicatorIds(language);
 
   return (
+    <>
+      <SEO
+        title={t('seo.home.title')}
+        description={t('seo.home.description')}
+        type="website"
+      />
+
     <div className="flex flex-col gap-12 md:gap-24 pb-12 md:pb-24">
 
       {/* 1. HERO SECTION */}
@@ -164,5 +172,6 @@ export const Home = () => {
       </section>
 
     </div>
+    </>
   );
 };

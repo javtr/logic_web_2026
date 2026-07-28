@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { MessageCircle, AtSign, Mail } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { ContactForm } from '../components/ContactForm';
+import { SEO } from '../components/SEO';
 
 // Mapeo de canales. Cada uno tiene un icon, color (accent), glow de hover y url
 // (leída desde contact.json para que sea traducible/editable).
@@ -72,7 +73,13 @@ export const Contact = () => {
   const { t } = useLanguage();
 
   return (
-    <div className="min-h-screen bg-dark-900">
+    <>
+      <SEO
+        title={t('seo.contact.title')}
+        description={t('seo.contact.description')}
+        type="website"
+      />
+      <div className="min-h-screen bg-dark-900">
       {/* HERO */}
       <section className="pt-16 md:pt-32 pb-12 px-6 text-center bg-[radial-gradient(ellipse_600px_200px_at_center_top,theme(colors.accent.primary/10%)_0%,transparent_70%)]">
         <div className="max-w-3xl mx-auto">
@@ -122,5 +129,6 @@ export const Contact = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };

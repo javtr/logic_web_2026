@@ -9,6 +9,7 @@
 // Si `paragraphs` está presente y es no vacío, se usa el layout nuevo. Si no, fallback al legacy.
 import { useParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { SEO } from '../components/SEO';
 import { getActiveIndicatorIds } from '../data';
 import { resolveImage } from '../data/imageResolver';
 import { IndicatorDetail } from '../components/Indicators/IndicatorDetail';
@@ -26,14 +27,22 @@ export const IndicatorPage = () => {
 
   if (!indicatorId) {
     return (
-      <div className="min-h-screen bg-dark-900 flex items-center justify-center text-text-muted">
-        {t('indicatorPage.notFound')}
-      </div>
+      <>
+        <SEO
+          title={t('seo.notFound.title')}
+          description={t('seo.notFound.description')}
+          noindex
+        />
+        <div className="min-h-screen bg-dark-900 flex items-center justify-center text-text-muted">
+          {t('indicatorPage.notFound')}
+        </div>
+      </>
     );
   }
 
   const name = t(`indicators.${indicatorId}.name`);
   const tagline = t(`indicators.${indicatorId}.tagline`);
+  const shortDescription = t(`indicators.${indicatorId}.shortDescription`);
   const longDescription = t(`indicators.${indicatorId}.longDescription`);
   const imageKey = t(`indicators.${indicatorId}.imageKey`);
 
@@ -47,14 +56,30 @@ export const IndicatorPage = () => {
     .filter(Boolean)
     .map(resolveImage);
 
+  // Meta tags dinámicos por indicator:
+  //   title:        "Logic Footprint for NinjaTrader 8 | Logic Indicators"
+  //   description:  tagline (corta, impactante, keyword-rich)
+  //   image:        la imagen del propio indicator (footprint, profile, etc.)
+  //   type:         "product" porque cada indicator es un producto vendible
+  const indicatorTitle = `${name} ${t('seo.indicator.titleSuffix')}`;
+  const indicatorDescription = `${tagline} ${shortDescription ? ` ${shortDescription}` : ''} ${t('seo.indicator.descriptionSuffix')}`.trim();
+
   return (
-    <IndicatorDetail
-      title={name}
-      subtitle={tagline}
-      image={resolveImage(imageKey)}
-      contentImages={contentImages}
-      paragraphs={paragraphs}
-      content={longDescription}
-    />
+    <>
+      <SEO
+        title={indicatorTitle}
+        description={indicatorDescription}
+        image={imageKey}
+        type="product"
+      />
+      <IndicatorDetail
+        title={name}
+        subtitle={tagline}
+        image={resolveImage(imageKey)}
+        contentImages={contentImages}
+        paragraphs={paragraphs}
+        content={longDescription}
+      />
+    </>
   );
 };

@@ -2,6 +2,7 @@
 // Página /faq — renderiza el contenido de faqPage.json con un Accordion.
 // Reutiliza el componente Accordion existente (mismo que usa la home).
 import { useLanguage } from '../context/LanguageContext';
+import { SEO } from '../components/SEO';
 import { Accordion } from '../components/Accordion';
 
 export const Faq = () => {
@@ -14,7 +15,13 @@ export const Faq = () => {
   }));
 
   return (
-    <article className="max-w-3xl mx-auto px-4 md:px-6 pt-32 pb-24 text-text-main">
+    <>
+      <SEO
+        title={t('seo.faq.title')}
+        description={t('seo.faq.description')}
+        type="website"
+      />
+      <article className="max-w-3xl mx-auto px-4 md:px-6 pt-32 pb-24 text-text-main">
       {/* Header */}
       <header className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
@@ -28,5 +35,6 @@ export const Faq = () => {
       {/* Accordion */}
       <Accordion items={items} />
     </article>
+    </>
   );
 };

@@ -7,6 +7,7 @@
 // El subtítulo y la imagen son específicos de esta página (no se reutilizan de home.json)
 // para que se puedan editar de forma independiente del Home.
 import { useLanguage } from '../context/LanguageContext';
+import { SEO } from '../components/SEO';
 import { getActiveIndicatorIds } from '../data';
 import { resolveImage } from '../data/imageResolver';
 import { IndicatorInfo } from '../components/Indicators/IndicatorInfo';
@@ -16,7 +17,13 @@ export const Indicators = () => {
   const activeIndicators = getActiveIndicatorIds(language);
 
   return (
-    <div className="min-h-screen bg-dark-900">
+    <>
+      <SEO
+        title={t('seo.indicators.title')}
+        description={t('seo.indicators.description')}
+        type="website"
+      />
+      <div className="min-h-screen bg-dark-900">
       {/* 1. HERO DE TEXTO */}
       <section className="pt-16 md:pt-32 pb-12 px-6 text-center bg-[radial-gradient(ellipse_600px_200px_at_center_top,theme(colors.accent.primary/10%)_0%,transparent_70%)]">
         <h1 className="text-4xl md:text-5xl font-bold text-text-main tracking-tight mb-4">
@@ -66,5 +73,6 @@ export const Indicators = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };

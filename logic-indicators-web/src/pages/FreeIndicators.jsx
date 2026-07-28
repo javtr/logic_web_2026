@@ -1,11 +1,18 @@
 // src/pages/FreeIndicators.jsx
 import { useLanguage } from '../context/LanguageContext';
+import { SEO } from '../components/SEO';
 
 export const FreeIndicators = () => {
   const { t } = useLanguage();
 
   return (
-    <div className="container mx-auto px-6 py-24 max-w-4xl">
+    <>
+      <SEO
+        title={t('seo.freeIndicators.title')}
+        description={t('seo.freeIndicators.description')}
+        type="website"
+      />
+      <div className="container mx-auto px-6 py-24 max-w-4xl">
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-extrabold text-text-main mb-4 tracking-tight">
           {t('freeIndicators.title')}
@@ -21,5 +28,6 @@ export const FreeIndicators = () => {
         </p>
       </div>
     </div>
+    </>
   );
 };

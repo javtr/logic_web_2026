@@ -15,6 +15,7 @@
 
 import { useParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { SEO } from '../components/SEO';
 import { DocsProvider, useDocs } from '../context/DocsContext';
 import { DocsLayout } from '../components/docs';
 import {
@@ -27,13 +28,32 @@ import {
 } from '../data/docs-public';
 
 const DocsPublicInner = () => {
-  const { language } = useLanguage();
+  const { t, language } = useLanguage();
   const { getDoc: getDocFromCtx } = useDocs();
   const params = useParams();
   // Captura el resto del path después de /docs/
   const slug = params['*'] || 'indicators/logic-footprint';
   const doc = getDocFromCtx(slug, language);
-  return <DocsLayout doc={doc} />;
+
+  // Meta dinámicos desde el frontmatter del .md. Si el doc no existe
+  // (slug inválido), usamos el título genérico + noindex para que
+  // Google no indexe URLs rotas.
+  const pageTitle = doc?.frontmatter?.title
+    ? `${doc.frontmatter.title} | Logic Indicators`
+    : t('seo.docs.title');
+  const pageDescription = doc?.frontmatter?.description || t('seo.docs.description');
+
+  return (
+    <>
+      <SEO
+        title={pageTitle}
+        description={pageDescription}
+        type="article"
+        noindex={!doc}
+      />
+      <DocsLayout doc={doc} />
+    </>
+  );
 };
 
 export const DocsPublic = () => {
