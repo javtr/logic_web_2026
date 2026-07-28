@@ -1,0 +1,19 @@
+# robots.txt — Logic Indicators
+# =============================================================================
+# Permite indexar todas las páginas públicas; bloquea las rutas privadas
+# (dashboard, login) para que Google no las indexe ni rastree.
+#
+# El User-agent: * aplica a todos los bots (Google, Bing, etc.).
+# Cada bot puede tener su propia sección abajo si en el futuro hace falta
+# reglas específicas (ej. bloquear un bot abusivo).
+# =============================================================================
+
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /dashboard/
+Disallow: /login
+
+# Sitemap. Google lo lee y rastrea las URLs listadas ahí. Es importante
+# que esta URL coincida con la ubicación real del sitemap.
+Sitemap: https://logicindicators.com/sitemap.xml
