@@ -63,7 +63,7 @@ export const IndicatorInfo = ({ title, subtitle, description, image, contentImag
           sm:px-4 md:px-8
           md:pt-4 md:border-t md:border-dark-700
         ">
-          <div className="aspect-[3/2] w-full relative">
+          <div className="aspect-[2/1] w-full relative">
             {hasCarousel ? (
               <AutoCarousel
                 images={contentImages}
