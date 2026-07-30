@@ -7,13 +7,18 @@
   "emailPlaceholder": "ejemplo@correo.com",
   "sendCodeButton": "Enviar Código",
   "sendingButton": "Enviando...",
+  "sendCodeCooldown": "Reenviar en {seconds}s",
+  "resendCodeButton": "Reenviar código",
   "otpLabel": "Código de Verificación",
   "otpPlaceholder": "000000",
   "enterButton": "Entrar al Panel",
   "verifyingButton": "Verificando...",
   "changeEmailButton": "Volver a intentar con otro correo",
+  "otpAttemptsRemaining": "Te quedan {n} intento(s)",
   "errors": {
+    "emailNotRegistered": "Este correo no está registrado en nuestro sistema.",
     "sendCodeFallback": "Error al enviar el código",
-    "verifyOtpFallback": "Código incorrecto o expirado"
+    "verifyOtpFallback": "Código incorrecto o expirado",
+    "tooManyAttempts": "Demasiados intentos. Por favor intenta de nuevo en {minutes} minutos."
   }
 }

@@ -1,21 +1,56 @@
+// src/pages/Login.jsx
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { Button } from '../components/Button';
 import { ArrowLeft, Mail, Key } from 'lucide-react';
 
+// =============================================================================
+// OPEN-REDIRECT PROTECTION
+// =============================================================================
 // Valida que el `next` param sea un path interno seguro.
 // Sin esto, un atacante podría hacer /login?next=https://evil.com
 // y el usuario sería redirigido a un sitio de phishing después de
-// autenticarse (open redirect). Solo aceptamos paths que empiecen
-// con "/" pero NO con "//" (que es una URL absoluta sin protocolo).
+// autenticarse. Solo aceptamos paths que empiecen con "/" pero NO con
+// "//" (URL absoluta sin protocolo) ni "/\" (algunos browsers raros).
+// =============================================================================
 const FALLBACK_AFTER_LOGIN = '/dashboard';
 const getSafeNext = (raw) => {
   if (!raw || typeof raw !== 'string') return FALLBACK_AFTER_LOGIN;
   if (!raw.startsWith('/')) return FALLBACK_AFTER_LOGIN;
-  if (raw.startsWith('//')) return FALLBACK_AFTER_LOGIN;   // //evil.com
-  if (raw.startsWith('/\\')) return FALLBACK_AFTER_LOGIN;  // /\evil.com (algunos browsers lo interpretan raro)
+  if (raw.startsWith('//')) return FALLBACK_AFTER_LOGIN;
+  if (raw.startsWith('/\\')) return FALLBACK_AFTER_LOGIN;
   return raw;
+};
+
+// =============================================================================
+// CONTROLES DE FRECUENCIA (frontend-only)
+// =============================================================================
+// Esto NO es una frontera de seguridad real — el backend (o Cloudflare
+// rate limiting) es quien tiene que hacer el rate limit duro. Estos
+// controles frenan el abuso casual y mejoran la UX:
+//   - Cooldown de 30s entre request-otp (anti doble-click, anti spam naive)
+//   - Max 5 intentos de OTP, luego 10 min de lockout (anti "pruebo y pruebo")
+//   - Persistencia en localStorage para que el bloqueo sobreviva recargas
+//
+// Un atacante con DevTools puede saltarse todo esto (clear localStorage,
+// usar otro browser, etc.). Por eso esto es defense-in-depth, no la
+// primera linea de defensa.
+// =============================================================================
+const RESEND_COOLDOWN_SECONDS = 30;
+const MAX_OTP_ATTEMPTS = 5;
+const LOCKOUT_DURATION_MS = 10 * 60 * 1000; // 10 minutos
+const ATTEMPTS_KEY = 'logic_otp_attempts';
+const LOCKOUT_KEY = 'logic_otp_lockout_until';
+
+const readAttempts = () => {
+  if (typeof window === 'undefined') return 0;
+  return Number(localStorage.getItem(ATTEMPTS_KEY) || 0);
+};
+
+const readLockout = () => {
+  if (typeof window === 'undefined') return 0;
+  return Number(localStorage.getItem(LOCKOUT_KEY) || 0);
 };
 
 export const Login = () => {
@@ -23,7 +58,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  // next param: a dónde ir después del login. Lo sanitizamos para
+  // Next param: a dónde ir después del login. Lo sanitizamos para
   // evitar open-redirect (ver getSafeNext arriba).
   const next = getSafeNext(searchParams.get('next'));
 
@@ -33,26 +68,71 @@ export const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
+  // Cooldown de reenvío (entre request-otp calls)
+  const [resendCooldown, setResendCooldown] = useState(0); // segundos restantes
 
-// AUTO-LOGIN: Si el usuario ya tiene token, lo enviamos a `next`
-// (o al Dashboard por defecto).
+  // Intentos fallidos de OTP y lockout (persisten en localStorage)
+  const [otpAttempts, setOtpAttempts] = useState(readAttempts);
+  const [otpLockoutUntil, setOtpLockoutUntil] = useState(readLockout);
+
+  // AUTO-LOGIN: Si el usuario ya tiene token, lo enviamos a `next`
+  // (o al Dashboard por defecto).
   useEffect(() => {
     const existingToken = localStorage.getItem('logic_token');
     const existingEmail = localStorage.getItem('logic_user_email');
-
     if (existingToken && existingEmail) {
       navigate(next, { replace: true });
     }
   }, [navigate, next]);
 
-// PASO 1: Solicitar el código al servidor
+  // Cooldown: interval que decrementa cada segundo mientras resendCooldown > 0.
+  // Se monta una sola vez al mount; el state interno decide cuando parar.
+  useEffect(() => {
+    const id = setInterval(() => {
+      setResendCooldown((s) => (s > 0 ? s - 1 : 0));
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  // Re-chequear lockout al montar y cuando cambia el idioma.
+  // Si el bloqueo empezo en una sesion anterior, mostramos el mensaje
+  // apenas el usuario entra. Si el bloqueo ya expiro, limpiamos.
+  useEffect(() => {
+    const lockUntil = readLockout();
+    if (lockUntil > Date.now()) {
+      const minutes = Math.ceil((lockUntil - Date.now()) / 60000);
+      setOtpLockoutUntil(lockUntil);
+      setError(t('login.errors.tooManyAttempts').replace('{minutes}', String(minutes)));
+    } else if (lockUntil > 0) {
+      localStorage.removeItem(LOCKOUT_KEY);
+      setOtpLockoutUntil(0);
+    }
+  }, [t]);
+
+  const isLockedOut = otpLockoutUntil > Date.now();
+  const attemptsRemaining = Math.max(0, MAX_OTP_ATTEMPTS - otpAttempts);
+  const showAttemptsRemaining = step === 2 && otpAttempts > 0 && !isLockedOut;
+
+  // =====================================================================
+  // PASO 1: Solicitar el código
+  // =====================================================================
   const handleRequestOTP = async (e) => {
-    e.preventDefault();
+    e?.preventDefault?.();
+    if (isLockedOut) return;
+    if (resendCooldown > 0) return; // defensa (boton ya deberia estar disabled)
+
     setIsLoading(true);
     setError('');
 
+    // Reset de intentos al pedir un codigo nuevo: si el usuario pidio
+    // uno antes, fallo N veces, y ahora pidio otro, los N anteriores
+    // no cuentan contra el nuevo codigo.
+    setOtpAttempts(0);
+    localStorage.removeItem(ATTEMPTS_KEY);
+    localStorage.removeItem(LOCKOUT_KEY);
+    setOtpLockoutUntil(0);
+
     try {
-      // Ajusta la URL al nuevo dominio o puerto del microservicio de miembros
       const response = await fetch('https://members.logicindicators.com/api/v1/members/request-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -60,13 +140,17 @@ export const Login = () => {
       });
 
       if (!response.ok) {
-        const data = await response.json();
-        // Si el backend manda detail, ese gana (es el mensaje real del server);
-        // si no, mostramos el fallback i18n.
+        const data = await response.json().catch(() => ({}));
+        // Si el backend distingue "email no registrado" (404 o detail
+        // especifico), mostramos un mensaje claro. Si no, fallback generico.
+        if (response.status === 404 || data.detail === 'email_not_registered') {
+          throw new Error(t('login.errors.emailNotRegistered'));
+        }
         throw new Error(data.detail || t('login.errors.sendCodeFallback'));
       }
 
-      setStep(2); // Avanzamos al paso del código
+      setStep(2);
+      setResendCooldown(RESEND_COOLDOWN_SECONDS);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -74,48 +158,64 @@ export const Login = () => {
     }
   };
 
-  // PASO 2: Verificar el código y obtener el Token JWT
+  // =====================================================================
+  // PASO 2: Verificar el código
+  // =====================================================================
   const handleVerifyOTP = async (e) => {
-    e.preventDefault();
+    e?.preventDefault?.();
+    if (isLockedOut) {
+      const minutes = Math.ceil((otpLockoutUntil - Date.now()) / 60000);
+      setError(t('login.errors.tooManyAttempts').replace('{minutes}', String(minutes)));
+      return;
+    }
+
     setIsLoading(true);
     setError('');
 
     try {
-      // EL FIX DE SEGURIDAD: El código y email ya no viajan en la URL.
-      // Se envían de forma segura en el Body del POST.
       const response = await fetch('https://members.logicindicators.com/api/v1/members/verify-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: email,
-          codigo: otp
-        })
+        body: JSON.stringify({ email: email, codigo: otp })
       });
 
       const data = await response.json();
 
       if (!response.ok) {
+        // Incrementar contador de intentos fallidos
+        const newAttempts = otpAttempts + 1;
+        setOtpAttempts(newAttempts);
+        localStorage.setItem(ATTEMPTS_KEY, String(newAttempts));
+
+        // Si llega al maximo, bloquear
+        if (newAttempts >= MAX_OTP_ATTEMPTS) {
+          const lockUntil = Date.now() + LOCKOUT_DURATION_MS;
+          setOtpLockoutUntil(lockUntil);
+          localStorage.setItem(LOCKOUT_KEY, String(lockUntil));
+          const minutes = Math.round(LOCKOUT_DURATION_MS / 60000);
+          throw new Error(t('login.errors.tooManyAttempts').replace('{minutes}', String(minutes)));
+        }
+
         throw new Error(data.detail || t('login.errors.verifyOtpFallback'));
       }
 
-      // Guardamos el TOKEN de seguridad y el email
+      // Exito: limpiar contadores antes de navegar
+      localStorage.removeItem(ATTEMPTS_KEY);
+      localStorage.removeItem(LOCKOUT_KEY);
+
       localStorage.setItem('logic_token', data.access_token);
       localStorage.setItem('logic_user_email', email);
 
       // Disparamos el evento custom para que useAuth() sincronice
-      // su estado en componentes que ya estén montados.
       window.dispatchEvent(new Event('logic-auth-change'));
 
-      // Navegamos al `next` sanitizado (Dashboard por defecto)
       navigate(next, { replace: true });
-
     } catch (err) {
       setError(err.message);
     } finally {
       setIsLoading(false);
     }
   };
-
 
   return (
     <div className="min-h-screen bg-dark-900 flex flex-col justify-center items-center relative overflow-hidden px-6">
@@ -135,7 +235,6 @@ export const Login = () => {
         </div>
 
         <div className="bg-dark-800 border border-dark-700 p-8 rounded-2xl shadow-xl">
-          {/* Si estamos en el paso 1, mostramos el form de Email */}
           {step === 1 ? (
             <form onSubmit={handleRequestOTP} className="space-y-6">
               <div className="space-y-2">
@@ -157,12 +256,20 @@ export const Login = () => {
 
               {error && <div className="bg-red-500/10 border border-red-500/50 text-red-500 text-sm p-3 rounded-lg text-center">{error}</div>}
 
-              <Button type="submit" variant="primary" className="w-full" disabled={isLoading}>
-                {isLoading ? t('login.sendingButton') : t('login.sendCodeButton')}
+              <Button
+                type="submit"
+                variant="primary"
+                className="w-full"
+                disabled={isLoading || resendCooldown > 0}
+              >
+                {isLoading
+                  ? t('login.sendingButton')
+                  : resendCooldown > 0
+                    ? t('login.sendCodeCooldown').replace('{seconds}', String(resendCooldown))
+                    : t('login.sendCodeButton')}
               </Button>
             </form>
           ) : (
-            /* Si estamos en el paso 2, mostramos el form de Código OTP */
             <form onSubmit={handleVerifyOTP} className="space-y-6">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-text-main block">{t('login.otpLabel')}</label>
@@ -176,25 +283,58 @@ export const Login = () => {
                     onChange={(e) => setOtp(e.target.value)}
                     required
                     maxLength={6}
+                    disabled={isLockedOut}
                     placeholder={t('login.otpPlaceholder')}
-                    className="w-full bg-dark-900 border border-dark-700 text-text-main text-xl tracking-[1em] text-center rounded-lg focus:ring-1 focus:ring-accent-secondary focus:border-accent-secondary block p-3 outline-none"
+                    className="w-full bg-dark-900 border border-dark-700 text-text-main text-xl tracking-[1em] text-center rounded-lg focus:ring-1 focus:ring-accent-secondary focus:border-accent-secondary block p-3 outline-none disabled:opacity-60 disabled:cursor-not-allowed"
                   />
                 </div>
+                {/* Contador de intentos restantes (solo si ya fallo al menos 1) */}
+                {showAttemptsRemaining && (
+                  <p className="text-xs text-text-muted text-center">
+                    {t('login.otpAttemptsRemaining').replace('{n}', String(attemptsRemaining))}
+                  </p>
+                )}
               </div>
 
               {error && <div className="bg-red-500/10 border border-red-500/50 text-red-500 text-sm p-3 rounded-lg text-center">{error}</div>}
 
-              <Button type="submit" variant="primary" className="w-full" disabled={isLoading}>
+              <Button
+                type="submit"
+                variant="primary"
+                className="w-full"
+                disabled={isLoading || isLockedOut}
+              >
                 {isLoading ? t('login.verifyingButton') : t('login.enterButton')}
               </Button>
 
-              <button
-                type="button"
-                onClick={() => setStep(1)}
-                className="w-full text-sm text-text-muted hover:text-text-main transition-colors"
-              >
-                {t('login.changeEmailButton')}
-              </button>
+              {/* Botones secundarios: reenviar codigo y cambiar email */}
+              <div className="flex flex-col gap-2">
+                <button
+                  type="button"
+                  onClick={handleRequestOTP}
+                  disabled={isLoading || isLockedOut || resendCooldown > 0}
+                  className="w-full text-sm text-accent-secondary hover:text-accent-primary transition-colors disabled:text-text-muted disabled:cursor-not-allowed"
+                >
+                  {resendCooldown > 0
+                    ? t('login.sendCodeCooldown').replace('{seconds}', String(resendCooldown))
+                    : t('login.resendCodeButton')}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setStep(1);
+                    setOtp('');
+                    setError('');
+                    setOtpAttempts(0);
+                    localStorage.removeItem(ATTEMPTS_KEY);
+                  }}
+                  disabled={isLoading || isLockedOut}
+                  className="w-full text-sm text-text-muted hover:text-text-main transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {t('login.changeEmailButton')}
+                </button>
+              </div>
             </form>
           )}
         </div>
