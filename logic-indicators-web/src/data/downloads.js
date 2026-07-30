@@ -2,61 +2,92 @@
 // =============================================================================
 // CONFIGURACION DE PRODUCTOS DEL DASHBOARD
 // =============================================================================
-// Fuente unica de verdad para resolver dos cosas de cada producto del
-// usuario en el Dashboard:
+// Fuente unica de verdad para resolver, de cada producto del usuario:
 //
-//   1. La URL de descarga        → ver PRODUCT_DOWNLOADS / getDownloadUrl
-//   2. El nombre visible en la UI → ver PRODUCT_DISPLAY_NAMES / getDisplayName
+//   1. La URL de descarga        → ver PRODUCTS / getDownloadUrl
+//   2. El nombre visible en la UI → ver PRODUCTS / getDisplayName
+//   3. La categoria (pack/individual/system) → ver getProductCategory
 //
-// La KEY de ambos mapas es el `nombre_producto` que viene del backend
+// La KEY de PRODUCTS es el `nombre_producto` que viene del backend
 // (es lo que el usuario ve en la card si no hay override). NO es el
 // `codigo_producto` (clave interna de licenciamiento que el usuario
 // no debe ver).
 //
+// ESTRUCTURA DE UN PRODUCTO:
+//   {
+//     url:         string  (requerido) — URL completa de descarga
+//     displayName: string  (opcional)  — override del nombre en la UI
+//     category:    'pack' | 'individual' | 'system'  (requerido)
+//   }
+//
+// CATEGORIAS:
+//   - 'pack'       → producto bundle autocontenido (no requiere system base)
+//   - 'individual' → indicador suelto (requiere system base)
+//   - 'system'     → archivo de sistema base (configurations + engine).
+//                    No es un producto que el usuario compra; es un
+//                    prerequisito que el dashboard muestra automaticamente
+//                    cuando el usuario tiene al menos un individual activo.
+//
 // COMO USAR:
-//   import { getDownloadUrl, getDisplayName } from '../data/downloads';
-//   const url    = getDownloadUrl(prod.nombre_producto);   // string | null
-//   const nombre = getDisplayName(prod.nombre_producto);   // string | null
+//   import { getDownloadUrl, getDisplayName, getProductCategory, isSystemProduct, SYSTEM_PRODUCTS }
+//     from '../data/downloads';
+//
+//   const url      = getDownloadUrl(prod.nombre_producto);   // string | null
+//   const nombre   = getDisplayName(prod.nombre_producto);   // string | null
+//   const category = getProductCategory(prod.nombre_producto);// 'pack'|'individual'|'system'|'unknown'
+//   const isSys    = isSystemProduct(prod.nombre_producto);  // boolean
 //
 // PARA AGREGAR / CAMBIAR UN PRODUCTO:
 //   1. Mirá en el dashboard qué nombre tiene el producto.
-//   2. Agregá una entrada en PRODUCT_DOWNLOADS y/o PRODUCT_DISPLAY_NAMES
-//      con ESE string exacto como key (case-sensitive, con acentos).
-//   3. Ponele la URL y/o el nombre visible que quieras.
-//
-// PARA CAMBIAR DE PROVEEDOR (ej. R2 -> S3):
-//   - Si todos van al mismo lugar, cambiá solo FALLBACK_URL_TEMPLATE.
-//   - Si solo algunos, overridealos en PRODUCT_DOWNLOADS con su URL.
+//   2. Agregá una entrada en PRODUCTS con ESE string exacto como key
+//      (case-sensitive, con acentos).
+//   3. Completá url + category. displayName es opcional.
 //
 // PARA RENOMBRAR UN PRODUCTO EN LA UI:
-//   - Agregá entrada en PRODUCT_DISPLAY_NAMES con el nombre original
-//     como key y el nombre que querés mostrar como value.
+//   - Agregá/modificá `displayName` en la entrada de PRODUCTS.
 //   - El backend queda intacto; el cambio es solo cosmético.
 // =============================================================================
 
 /**
- * Mapa de URLs de descarga por producto.
- * Key: el `nombre_producto` que viene del backend.
- * Value: la URL completa de descarga para ese producto.
+ * Categorias de producto. Constantes para evitar strings sueltos
+ * por el código. Si agregás una categoría nueva, también tenés
+ * que contemplarla en getProductCategory() (devolver string literal).
  */
-export const PRODUCT_DOWNLOADS = {
-  'LOGIC_PACK_BASICO':  'https://download.logicindicators.com/LOF_Suite_Beta_04.zip'
+export const PRODUCT_CATEGORY = {
+  PACK: 'pack',
+  INDIVIDUAL: 'individual',
+  SYSTEM: 'system',
 };
 
 /**
- * Mapa de nombres visibles custom para el dashboard.
- * Key: el `nombre_producto` que viene del backend (tal cual).
- * Value: el texto que querés que vea el usuario en la card.
+ * Productos del sistema. El dashboard los renderiza automaticamente
+ * como prerequisito cuando el usuario tiene indicadores individuales
+ * activos y ningun pack activo.
  *
- * Si el nombre original ya está bien, no hace falta agregar entrada.
- * getDisplayName() hace fallback al nombre original.
+ * El orden del array define el orden de visualizacion.
  */
-export const PRODUCT_DISPLAY_NAMES = {
-  'LOGIC_PACK_BASICO':  'Logic Pack Beta V04'
+export const SYSTEM_PRODUCTS = ['LOGIC_CONFIGURATIONS', 'LOGIC_ENGINE'];
+
+/**
+ * Catalogo de productos. Cada key es el `nombre_producto` que viene
+ * del backend. Ver comentario al inicio del archivo para la forma
+ * del value.
+ */
+export const PRODUCTS = {
+  'LOGIC_PACK_BASICO':    { url: 'https://download.logicindicators.com/LOF_Suite_Beta_04.zip', displayName: 'Logic Pack Beta V04', category: 'pack' },
+  'LOGIC_FOOTPRINT':      { url: 'https://download.logicindicators.com/lof_footprint.zip',  category: 'individual' },
+  'LOGIC_FOOTER':         { url: 'https://download.logicindicators.com/lof_footer.zip',     category: 'individual' },
+  'LOGIC_VOLUMEPROFILE':  { url: 'https://download.logicindicators.com/lof_profile.zip',     category: 'individual' },
+  'LOGIC_BIGTRADES':      { url: 'https://download.logicindicators.com/lof_bigtrades.zip',   category: 'individual' },
+  'LOGIC_ANALYTICS':      { url: 'https://download.logicindicators.com/lof_analytics.zip',   category: 'individual' },
+  'LOGIC_ALGORITHMS':     { url: 'https://download.logicindicators.com/lof_algorithms.zip',  category: 'individual' },
+  'LOGIC_COMPOSITE':      { url: 'https://download.logicindicators.com/lof_composite.zip',   category: 'individual' },
+  'LOGIC_CONFIGURATIONS': { url: 'https://download.logicindicators.com/lof_configurations.zip', displayName: 'Configurations', category: 'system' },
+  'LOGIC_ENGINE':         { url: 'https://download.logicindicators.com/lof_engine.zip',         displayName: 'Engine',         category: 'system' },
 };
 
 /**
- * Pattern de fallback para productos que NO estan en PRODUCT_DOWNLOADS.
+ * Pattern de fallback para productos que NO estan en PRODUCTS.
  * Usa `{nombre}` como placeholder — se reemplaza por una version
  * "slug" del nombre (lowercase, sin acentos, con guiones).
  */
@@ -66,7 +97,7 @@ export const FALLBACK_URL_TEMPLATE = 'https://r2.logicindicators.com/dl/{nombre}
  * Resuelve la URL de descarga para un producto, dado su nombre.
  *
  * Prioridad:
- *   1) Si el nombre está en PRODUCT_DOWNLOADS → devuelve esa URL.
+ *   1) Si el nombre está en PRODUCTS → devuelve PRODUCTS[nombre].url.
  *   2) Si no, construye la URL con FALLBACK_URL_TEMPLATE reemplazando
  *      {nombre} por una version slug del nombre.
  *   3) Si no hay nombre o template → devuelve null.
@@ -78,8 +109,9 @@ export const getDownloadUrl = (nombreProducto) => {
   if (!nombreProducto) return null;
 
   // 1) Override específico
-  if (PRODUCT_DOWNLOADS[nombreProducto]) {
-    return PRODUCT_DOWNLOADS[nombreProducto];
+  const product = PRODUCTS[nombreProducto];
+  if (product?.url) {
+    return product.url;
   }
 
   // 2) Fallback con template
@@ -89,7 +121,7 @@ export const getDownloadUrl = (nombreProducto) => {
       console.warn(
         `[downloads] No hay mapping explicito para nombre_producto="${nombreProducto}". ` +
         `Usando FALLBACK_URL_TEMPLATE. Si este producto deberia tener su propia URL, ` +
-        `agregalo a PRODUCT_DOWNLOADS en src/data/downloads.js.`,
+        `agregalo a PRODUCTS en src/data/downloads.js.`,
       );
     }
     // Slug-ificamos el nombre para generar URLs razonables.
@@ -110,7 +142,7 @@ export const getDownloadUrl = (nombreProducto) => {
  * Resuelve el nombre visible para mostrar en el dashboard.
  *
  * Prioridad:
- *   1) Si el nombre está en PRODUCT_DISPLAY_NAMES → devuelve ese override.
+ *   1) Si el nombre está en PRODUCTS con `displayName` → devuelve ese override.
  *   2) Si no, devuelve el nombre original (el que vino del backend).
  *   3) Si el input es null/undefined → devuelve null.
  *
@@ -119,5 +151,27 @@ export const getDownloadUrl = (nombreProducto) => {
  */
 export const getDisplayName = (nombreProducto) => {
   if (!nombreProducto) return null;
-  return PRODUCT_DISPLAY_NAMES[nombreProducto] || nombreProducto;
+  return PRODUCTS[nombreProducto]?.displayName || nombreProducto;
+};
+
+/**
+ * Devuelve la categoría de un producto.
+ *
+ * @param {string|undefined|null} nombreProducto
+ * @returns {'pack'|'individual'|'system'|'unknown'}
+ *   - 'unknown' si el nombre no esta catalogado en PRODUCTS.
+ */
+export const getProductCategory = (nombreProducto) => {
+  if (!nombreProducto) return 'unknown';
+  return PRODUCTS[nombreProducto]?.category || 'unknown';
+};
+
+/**
+ * Helper de conveniencia: true si el producto es del sistema base.
+ *
+ * @param {string|undefined|null} nombreProducto
+ * @returns {boolean}
+ */
+export const isSystemProduct = (nombreProducto) => {
+  return getProductCategory(nombreProducto) === 'system';
 };
