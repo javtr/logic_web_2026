@@ -3,8 +3,8 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
-import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, HelpCircle, AlertCircle } from "lucide-react";
-import { getDownloadUrl, getDisplayName } from "../data/downloads";
+import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, HelpCircle, AlertCircle, Info } from "lucide-react";
+import { getDownloadUrl, getDisplayName, getProductCategory, SYSTEM_PRODUCTS } from "../data/downloads";
 import { useLanguage } from "../context/LanguageContext";
 import { useAuth } from "../hooks/useAuth";
 
@@ -94,6 +94,37 @@ export const Dashboard = () => {
 
   const currentMachineId = userData?.machine_id_actual || "";
   const isUnchanged = draftValue === currentMachineId;
+
+  // ===========================================================================
+  // LOGICA DE PRODUCTOS — derivamos visibilidad segun la regla de negocio:
+  //   - Productos del sistema (configurations + engine) NO son parte de la
+  //     compra del usuario. Se muestran automaticamente como sub-seccion
+  //     "Configuracion basica del sistema" SOLO cuando el usuario tiene
+  //     al menos un indicador individual ACTIVO y ningun pack activo.
+  //   - Los productos del sistema se filtran del listado de "Tus productos"
+  //     para que no aparezcan duplicados (su seccion propia se encarga).
+  //   - Productos vencidos siguen apareciendo en "Tus productos" con el
+  //     boton Renovar, pero NO disparan la seccion de sistema base.
+  // ===========================================================================
+  const productos = userData?.productos_activos || [];
+  const esActivo = (p) => !p.fecha_expiracion || new Date(p.fecha_expiracion) > new Date();
+  const activos = productos.filter(esActivo);
+
+  const packs = activos.filter((p) => getProductCategory(p.nombre_producto) === 'pack');
+  const individuales = activos.filter((p) => getProductCategory(p.nombre_producto) === 'individual');
+
+  // Sub-seccion sistema: solo si hay individuales activos y NO hay packs activos.
+  const showSystemConfig = individuales.length > 0 && packs.length === 0;
+
+  // Productos del usuario (excluyendo los del sistema, que tienen su propia
+  // sub-seccion). Se listan todos (activos + vencidos) — los vencidos muestran
+  // el boton Renovar.
+  const productosVisibles = productos.filter(
+    (p) => getProductCategory(p.nombre_producto) !== 'system',
+  );
+
+  // Empty state solo si NO hay contenido visible: ni sistema base ni productos.
+  const hasVisibleContent = showSystemConfig || productosVisibles.length > 0;
 
   const handleStartEdit = () => {
     setStatus({ type: "", msg: "" });
@@ -347,59 +378,135 @@ export const Dashboard = () => {
             <h2 className="text-xl font-bold text-text-main">{t('dashboard.products.cardTitle')}</h2>
           </div>
 
-          {userData.productos_activos && userData.productos_activos.length > 0 ? (
-            <ul className="space-y-3 max-h-[400px] overflow-y-auto pr-1">
-              {userData.productos_activos.map((prod, i) => {
-                const downloadUrl = getDownloadUrl(prod.nombre_producto);
-
-                // LÓGICA DE SUSCRIPCIONES
-                const isLifetime = !prod.fecha_expiracion;
-                const expDate = new Date(prod.fecha_expiracion);
-                const isExpired = !isLifetime && new Date() > expDate;
-
-                return (
-                  <li
-                    key={i}
-                    className={`p-4 bg-dark-900 border ${isExpired ? 'border-red-900/50 opacity-60' : 'border-dark-600 group hover:border-accent-secondary/50'} rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors`}
-                  >
-                    <div className="min-w-0 flex-1">
-                      <p className="text-text-main font-semibold text-sm truncate mb-1">
-                        {getDisplayName(prod.nombre_producto) || `${t('dashboard.products.defaultNamePrefix')}${i + 1}`}
-                      </p>
-
-                      {/* Banderas de estado visual */}
-                      {isLifetime ? (
-                        <span className="text-xs text-green-400 font-medium">{t('dashboard.products.lifetime')}</span>
-                      ) : isExpired ? (
-                        <span className="text-xs text-red-500 font-medium">{t('dashboard.products.expiredPrefix')}{expDate.toLocaleDateString(language)}</span>
-                      ) : (
-                        <span className="text-xs text-yellow-400 font-medium">{t('dashboard.products.validUntilPrefix')}{expDate.toLocaleDateString(language)}</span>
-                      )}
-                    </div>
-
-                    {/* Botón de descarga condicional */}
-                    {!isExpired && downloadUrl ? (
-                      <a
-                        href={downloadUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full hover:bg-accent-secondary hover:text-dark-900 transition-all font-bold whitespace-nowrap text-center"
-                      >
-                        {t('dashboard.products.downloadButton')}
-                      </a>
-                    ) : isExpired ? (
-                      <button disabled className="text-xs bg-dark-700 text-text-muted px-4 py-2 rounded-full cursor-not-allowed whitespace-nowrap text-center">
-                        {t('dashboard.products.renewButton')}
-                      </button>
-                    ) : null}
-                  </li>
-                );
-              })}
-            </ul>
-          ) : (
+          {!hasVisibleContent ? (
             <p className="text-text-muted text-sm">
               {t('dashboard.products.emptyState')}
             </p>
+          ) : (
+            <>
+              {/* Sub-seccion: Configuracion basica del sistema.
+                  Solo se muestra cuando el usuario tiene indicadores individuales
+                  activos y ningun pack activo (el pack ya trae el sistema base). */}
+              {showSystemConfig && (
+                <div className="mb-6 p-4 md:p-5 bg-accent-secondary/5 border border-accent-secondary/30 rounded-xl">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Info size={18} className="text-accent-secondary shrink-0" />
+                    <h3 className="text-base md:text-lg font-bold text-text-main">
+                      {t('dashboard.products.systemConfig.title')}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-text-muted leading-relaxed mb-4">
+                    {t('dashboard.products.systemConfig.subtitle')}
+                  </p>
+                  <span className="inline-block text-xs uppercase tracking-wider font-bold text-accent-secondary bg-accent-secondary/10 border border-accent-secondary/20 px-2.5 py-1 rounded mb-4">
+                    {t('dashboard.products.systemConfig.installFirstBadge')}
+                  </span>
+                  <ul className="space-y-3">
+                    {SYSTEM_PRODUCTS.map((nombreProducto) => {
+                      const url = getDownloadUrl(nombreProducto);
+                      // El nombre del producto del sistema viene de i18n.
+                      // Determinamos la "kind" segun el codigo del producto.
+                      const kind =
+                        nombreProducto === 'LOGIC_CONFIGURATIONS'
+                          ? 'configurations'
+                          : 'engine';
+                      const displayName =
+                        t(`dashboard.products.systemConfig.productNames.${kind}`) ||
+                        getDisplayName(nombreProducto) ||
+                        nombreProducto;
+
+                      return (
+                        <li
+                          key={nombreProducto}
+                          className="p-3 md:p-4 bg-dark-900 border border-accent-secondary/30 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors"
+                        >
+                          <div className="min-w-0 flex-1">
+                            <p className="text-text-main font-semibold text-sm truncate mb-1">
+                              {displayName}
+                            </p>
+                            <span className="text-xs text-accent-secondary font-medium">
+                              {t('dashboard.products.systemConfig.requiredBadge')}
+                            </span>
+                          </div>
+                          {url && (
+                            <a
+                              href={url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-xs bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full hover:bg-accent-secondary hover:text-dark-900 transition-all font-bold whitespace-nowrap text-center"
+                            >
+                              {t('dashboard.products.downloadButton')}
+                            </a>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+
+              {/* Label "Tus productos" — solo si la sub-seccion de sistema esta
+                  visible y ademas hay productos que listar. Separa visualmente
+                  "instala esto primero" de "lo que compraste". */}
+              {showSystemConfig && productosVisibles.length > 0 && (
+                <h3 className="text-xs uppercase tracking-wider text-text-muted font-bold mb-3">
+                  {t('dashboard.products.yourProductsLabel')}
+                </h3>
+              )}
+
+              {/* Sub-seccion: Tus productos (packs + individuales, activos y vencidos).
+                  Excluye productos del sistema (que tienen su propia sub-seccion). */}
+              {productosVisibles.length > 0 && (
+                <ul className="space-y-3 max-h-[400px] overflow-y-auto pr-1">
+                  {productosVisibles.map((prod, i) => {
+                    const downloadUrl = getDownloadUrl(prod.nombre_producto);
+
+                    // LÓGICA DE SUSCRIPCIONES
+                    const isLifetime = !prod.fecha_expiracion;
+                    const expDate = new Date(prod.fecha_expiracion);
+                    const isExpired = !isLifetime && new Date() > expDate;
+
+                    return (
+                      <li
+                        key={i}
+                        className={`p-4 bg-dark-900 border ${isExpired ? 'border-red-900/50 opacity-60' : 'border-dark-600 group hover:border-accent-secondary/50'} rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors`}
+                      >
+                        <div className="min-w-0 flex-1">
+                          <p className="text-text-main font-semibold text-sm truncate mb-1">
+                            {getDisplayName(prod.nombre_producto) || `${t('dashboard.products.defaultNamePrefix')}${i + 1}`}
+                          </p>
+
+                          {/* Banderas de estado visual */}
+                          {isLifetime ? (
+                            <span className="text-xs text-green-400 font-medium">{t('dashboard.products.lifetime')}</span>
+                          ) : isExpired ? (
+                            <span className="text-xs text-red-500 font-medium">{t('dashboard.products.expiredPrefix')}{expDate.toLocaleDateString(language)}</span>
+                          ) : (
+                            <span className="text-xs text-yellow-400 font-medium">{t('dashboard.products.validUntilPrefix')}{expDate.toLocaleDateString(language)}</span>
+                          )}
+                        </div>
+
+                        {/* Botón de descarga condicional */}
+                        {!isExpired && downloadUrl ? (
+                          <a
+                            href={downloadUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full hover:bg-accent-secondary hover:text-dark-900 transition-all font-bold whitespace-nowrap text-center"
+                          >
+                            {t('dashboard.products.downloadButton')}
+                          </a>
+                        ) : isExpired ? (
+                          <button disabled className="text-xs bg-dark-700 text-text-muted px-4 py-2 rounded-full cursor-not-allowed whitespace-nowrap text-center">
+                            {t('dashboard.products.renewButton')}
+                          </button>
+                        ) : null}
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+            </>
           )}
         </div>
 
