@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, HelpCircle, AlertCircle, Info } from "lucide-react";
-import { getDownloadUrl, getDisplayName, getProductCategory, SYSTEM_PRODUCTS } from "../data/downloads";
+import { getDownloadUrl, getDisplayName, getProductCategory, SYSTEM_PRODUCTS, applyUnlocks } from "../data/downloads";
 import { useLanguage } from "../context/LanguageContext";
 import { useAuth } from "../hooks/useAuth";
 
@@ -105,8 +105,12 @@ export const Dashboard = () => {
   //     para que no aparezcan duplicados (su seccion propia se encarga).
   //   - Productos vencidos siguen apareciendo en "Tus productos" con el
   //     boton Renovar, pero NO disparan la seccion de sistema base.
+  //   - applyUnlocks(): enriquece la lista con los pares que se venden
+  //     juntos (Volume Profile <-> Composite, Footprint <-> Footer).
+  //     Es la primera transformacion para que el resto de la logica
+  //     (filtros, visibilidad, render) trabaje sobre la lista completa.
   // ===========================================================================
-  const productos = userData?.productos_activos || [];
+  const productos = applyUnlocks(userData?.productos_activos || []);
   const esActivo = (p) => !p.fecha_expiracion || new Date(p.fecha_expiracion) > new Date();
   const activos = productos.filter(esActivo);
 

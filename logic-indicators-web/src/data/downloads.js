@@ -175,3 +175,74 @@ export const getProductCategory = (nombreProducto) => {
 export const isSystemProduct = (nombreProducto) => {
   return getProductCategory(nombreProducto) === 'system';
 };
+
+// =============================================================================
+// REGLAS DE DESBLOQUEO (unlocks)
+// =============================================================================
+// Hay pares de productos que se venden juntos: tener uno desbloquea al otro
+// automaticamente en el dashboard, sin importar si el backend lo manda o no.
+//
+//   - LOGIC_VOLUMEPROFILE <-> LOGIC_COMPOSITE
+//     (Volume Profile y Composite se venden como uno solo)
+//   - LOGIC_FOOTPRINT <-> LOGIC_FOOTER
+//     (Footprint siempre viene con su Footer, y vice-versa)
+//
+// Estas son las unicas excepciones al modelo "1 producto = 1 entrada en
+// productos_activos". Todo lo nuevo va por packs. Si en el futuro se agregan
+// mas pares, solo hay que anadir entradas a este mapa.
+//
+// SIMETRIA: ambos lados del par desbloquean al otro. Si llega solo
+// VOLUMEPROFILE, se agrega COMPOSITE. Si llega solo COMPOSITE, se
+// agrega VOLUMEPROFILE. Lo mismo para FOOTPRINT/FOOTER.
+// =============================================================================
+export const UNLOCKS = {
+  'LOGIC_VOLUMEPROFILE': ['LOGIC_COMPOSITE'],
+  'LOGIC_COMPOSITE':     ['LOGIC_VOLUMEPROFILE'],
+  'LOGIC_FOOTPRINT':     ['LOGIC_FOOTER'],
+  'LOGIC_FOOTER':        ['LOGIC_FOOTPRINT'],
+};
+
+/**
+ * Enriquece la lista de productos del usuario aplicando las reglas de
+ * desbloqueo. Si el usuario tiene LOGIC_VOLUMEPROFILE, esta funcion le
+ * agrega LOGIC_COMPOSITE a la lista (y vice-versa). Lo mismo para
+ * LOGIC_FOOTPRINT <-> LOGIC_FOOTER.
+ *
+ * COMPORTAMIENTO:
+ *   - No muta el array de entrada (devuelve uno nuevo).
+ *   - Si el producto desbloqueado ya esta en la lista (vino del backend
+ *     con ambos codigos), no se duplica.
+ *   - El producto sintetico hereda la `fecha_expiracion` del original:
+ *     mismo ciclo de vida. Si el original vence, el desbloqueado tambien.
+ *   - Si la lista viene vacia o no es un array, la devuelve tal cual.
+ *
+ * @param {Array<{nombre_producto: string, fecha_expiracion: string|null}>} productos
+ * @returns {Array} Nueva lista con los desbloqueos aplicados.
+ */
+export const applyUnlocks = (productos) => {
+  if (!Array.isArray(productos) || productos.length === 0) return productos;
+
+  // Trabajamos sobre una copia para no mutar el array del backend.
+  const result = [...productos];
+
+  for (const prod of productos) {
+    const unlocks = UNLOCKS[prod.nombre_producto];
+    if (!unlocks) continue;
+
+    for (const unlockedCode of unlocks) {
+      // Si el producto ya esta en la lista (caso comun: el backend lo
+      // mando junto con el original), no duplicar.
+      if (result.some((p) => p.nombre_producto === unlockedCode)) continue;
+
+      // Sintetizar el producto desbloqueado, heredando la expiracion
+      // del original (venden juntos, mismo ciclo de vida).
+      result.push({
+        ...prod,
+        nombre_producto: unlockedCode,
+        _unlockedFrom: prod.nombre_producto,  // solo para debugging
+      });
+    }
+  }
+
+  return result;
+};
