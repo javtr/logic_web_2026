@@ -30,7 +30,18 @@
     "validUntilPrefix": "Valid until ",
     "downloadButton": "Download",
     "renewButton": "Renew",
-    "emptyState": "You have no active products."
+    "emptyState": "You have no active products.",
+    "yourProductsLabel": "Your products",
+    "systemConfig": {
+      "title": "Basic System Configuration",
+      "subtitle": "Install these two indicators before any other. They are the base files the system needs to function.",
+      "installFirstBadge": "Install this first",
+      "requiredBadge": "Required",
+      "productNames": {
+        "configurations": "Configurations",
+        "engine": "Engine"
+      }
+    }
   },
   "documentation": {
     "cardTitle": "Complete Documentation",

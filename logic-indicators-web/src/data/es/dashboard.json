@@ -30,7 +30,18 @@
     "validUntilPrefix": "Válido hasta ",
     "downloadButton": "Descargar",
     "renewButton": "Renovar",
-    "emptyState": "No tienes productos activos asociados."
+    "emptyState": "No tienes productos activos asociados.",
+    "yourProductsLabel": "Tus productos",
+    "systemConfig": {
+      "title": "Configuración básica del sistema",
+      "subtitle": "Instala estos dos indicadores antes que cualquier otro. Son los archivos base que el sistema necesita para funcionar.",
+      "installFirstBadge": "Instala esto primero",
+      "requiredBadge": "Requerido",
+      "productNames": {
+        "configurations": "Configuraciones",
+        "engine": "Engine"
+      }
+    }
   },
   "documentation": {
     "cardTitle": "Documentación completa",
