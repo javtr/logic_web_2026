@@ -262,117 +262,16 @@ export const Dashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        
-        {/* Gestión de Machine ID */}
-        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
-          <div className="flex items-center justify-between gap-3 mb-6 text-accent-secondary">
-            <div className="flex items-center gap-3">
-              <Monitor size={24} />
-              <h2 className="text-xl font-bold text-text-main">{t('dashboard.machineId.cardTitle')}</h2>
-            </div>
-            {savedFlash && (
-              <span className="flex items-center gap-1.5 text-sm font-semibold text-accent-secondary animate-pulse">
-                <Check size={16} /> {t('dashboard.machineId.savedFlash')}
-              </span>
-            )}
-          </div>
-
-          {!isEditing ? (
-            <div className="space-y-5">
-              <div>
-                <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
-                  {t('dashboard.machineId.currentIdLabel')}
-                </label>
-                {currentMachineId ? (
-                  <p
-                    className="w-full bg-dark-900 border border-dark-700 text-text-main p-4 rounded-xl font-mono text-sm break-all"
-                    title={currentMachineId}
-                  >
-                    {currentMachineId}
-                  </p>
-                ) : (
-                  <p className="w-full bg-dark-900 border border-dashed border-dark-700 text-text-muted p-4 rounded-xl italic text-sm">
-                    {t('dashboard.machineId.noIdConfigured')}
-                  </p>
-                )}
-              </div>
-
-              <Button
-                onClick={handleStartEdit}
-                variant="primary"
-                className="w-full sm:w-auto"
-              >
-                <Pencil size={18} />
-                {t('dashboard.machineId.updateButton')}
-              </Button>
-            </div>
-          ) : (
-            <form onSubmit={handleUpdate} className="space-y-5">
-              <div>
-                <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
-                  {t('dashboard.machineId.newIdLabel')}
-                </label>
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={draftValue}
-                  onChange={(e) => setDraftValue(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  disabled={isSaving}
-                  className="w-full bg-dark-900 border border-dark-600 text-text-main p-4 rounded-xl focus:border-accent-secondary outline-none transition-all font-mono text-sm disabled:opacity-60"
-                  placeholder={t('dashboard.machineId.newIdPlaceholder')}
-                />
-                <p className="text-xs text-text-muted mt-2">
-                  {t('dashboard.machineId.saveHint')}
-                </p>
-              </div>
-
-              {status.msg && status.type !== "loading" && (
-                <p
-                  className={`text-sm font-medium ${
-                    status.type === "success" ? "text-green-400" : "text-red-400"
-                  }`}
-                >
-                  {status.msg}
-                </p>
-              )}
-
-              <div className="flex flex-col-reverse sm:flex-row gap-3">
-                <Button
-                  type="button"
-                  variant="secondary"
-                  onClick={handleCancel}
-                  disabled={isSaving}
-                  className="flex-1"
-                >
-                  <X size={18} />
-                  {t('dashboard.machineId.cancelButton')}
-                </Button>
-                <Button
-                  type="submit"
-                  variant="primary"
-                  disabled={isUnchanged || isSaving}
-                  className="flex-1"
-                >
-                  {isSaving ? (
-                    <>
-                      <Loader2 size={18} className="animate-spin" />
-                      {t('dashboard.machineId.saving')}
-                    </>
-                  ) : (
-                    <>
-                      <Check size={18} />
-                      {t('dashboard.machineId.saveButton')}
-                    </>
-                  )}
-                </Button>
-              </div>
-            </form>
-          )}
-        </div>
+        {/*
+          LAYOUT (md+):
+            Columna izquierda: Tus Productos y Suscripciones (con row-span-2,
+            crece hacia abajo segun la cantidad de productos del usuario).
+            Columna derecha: Machine ID arriba + Documentacion abajo.
+          Mobile: stack vertical en orden Products, Machine ID, Documentation.
+        */}
 
         {/* Tus Productos y Suscripciones */}
-        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
+        <div className="md:row-span-2 bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
           <div className="flex items-center gap-3 mb-4 text-accent-primary">
             <Package size={24} />
             <h2 className="text-xl font-bold text-text-main">{t('dashboard.products.cardTitle')}</h2>
@@ -510,8 +409,116 @@ export const Dashboard = () => {
           )}
         </div>
 
+        {/* Gestión de Machine ID */}
+        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
+          <div className="flex items-center justify-between gap-3 mb-6 text-accent-secondary">
+            <div className="flex items-center gap-3">
+              <Monitor size={24} />
+              <h2 className="text-xl font-bold text-text-main">{t('dashboard.machineId.cardTitle')}</h2>
+            </div>
+            {savedFlash && (
+              <span className="flex items-center gap-1.5 text-sm font-semibold text-accent-secondary animate-pulse">
+                <Check size={16} /> {t('dashboard.machineId.savedFlash')}
+              </span>
+            )}
+          </div>
+
+          {!isEditing ? (
+            <div className="space-y-5">
+              <div>
+                <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
+                  {t('dashboard.machineId.currentIdLabel')}
+                </label>
+                {currentMachineId ? (
+                  <p
+                    className="w-full bg-dark-900 border border-dark-700 text-text-main p-4 rounded-xl font-mono text-sm break-all"
+                    title={currentMachineId}
+                  >
+                    {currentMachineId}
+                  </p>
+                ) : (
+                  <p className="w-full bg-dark-900 border border-dashed border-dark-700 text-text-muted p-4 rounded-xl italic text-sm">
+                    {t('dashboard.machineId.noIdConfigured')}
+                  </p>
+                )}
+              </div>
+
+              <Button
+                onClick={handleStartEdit}
+                variant="primary"
+                className="w-full sm:w-auto"
+              >
+                <Pencil size={18} />
+                {t('dashboard.machineId.updateButton')}
+              </Button>
+            </div>
+          ) : (
+            <form onSubmit={handleUpdate} className="space-y-5">
+              <div>
+                <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
+                  {t('dashboard.machineId.newIdLabel')}
+                </label>
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={draftValue}
+                  onChange={(e) => setDraftValue(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  disabled={isSaving}
+                  className="w-full bg-dark-900 border border-dark-600 text-text-main p-4 rounded-xl focus:border-accent-secondary outline-none transition-all font-mono text-sm disabled:opacity-60"
+                  placeholder={t('dashboard.machineId.newIdPlaceholder')}
+                />
+                <p className="text-xs text-text-muted mt-2">
+                  {t('dashboard.machineId.saveHint')}
+                </p>
+              </div>
+
+              {status.msg && status.type !== "loading" && (
+                <p
+                  className={`text-sm font-medium ${
+                    status.type === "success" ? "text-green-400" : "text-red-400"
+                  }`}
+                >
+                  {status.msg}
+                </p>
+              )}
+
+              <div className="flex flex-col-reverse sm:flex-row gap-3">
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={handleCancel}
+                  disabled={isSaving}
+                  className="flex-1"
+                >
+                  <X size={18} />
+                  {t('dashboard.machineId.cancelButton')}
+                </Button>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  disabled={isUnchanged || isSaving}
+                  className="flex-1"
+                >
+                  {isSaving ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin" />
+                      {t('dashboard.machineId.saving')}
+                    </>
+                  ) : (
+                    <>
+                      <Check size={18} />
+                      {t('dashboard.machineId.saveButton')}
+                    </>
+                  )}
+                </Button>
+              </div>
+            </form>
+          )}
+        </div>
+
         {/* Documentación */}
-        <div className="md:col-span-2 bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
+        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
           <div className="flex items-center gap-3 mb-4 text-accent-secondary">
             <BookOpen size={24} />
             <h2 className="text-xl font-bold text-text-main">
