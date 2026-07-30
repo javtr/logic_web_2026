@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { Button } from '../components/Button';
+import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import { ArrowLeft, Mail, Key } from 'lucide-react';
 
 // =============================================================================
@@ -244,6 +245,13 @@ export const Login = () => {
         <ArrowLeft size={20} />
         {t('login.backToHome')}
       </Link>
+
+      {/* Switcher de idioma — esquina superior derecha, mismo nivel
+          que el boton "Volver al inicio" (top-left). Mismo componente
+          que en el Dashboard y la Navbar para mantener consistencia. */}
+      <div className="absolute top-8 right-8 z-10">
+        <LanguageSwitcher />
+      </div>
 
       <div className="w-full max-w-md z-10">
         <div className="text-center mb-10">
