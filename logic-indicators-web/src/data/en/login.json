@@ -19,6 +19,7 @@
     "emailNotRegistered": "This email is not registered in our system.",
     "sendCodeFallback": "Error sending the code",
     "verifyOtpFallback": "Wrong or expired code",
-    "tooManyAttempts": "Too many attempts. Please try again in {minutes} minutes."
+    "tooManyAttempts": "Too many attempts. Please try again in {minutes} minutes.",
+    "tooManyRequests": "Too many requests. Please wait a moment before trying again."
   }
 }

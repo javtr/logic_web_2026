@@ -39,7 +39,8 @@ const getSafeNext = (raw) => {
 // =============================================================================
 const RESEND_COOLDOWN_SECONDS = 30;
 const MAX_OTP_ATTEMPTS = 5;
-const LOCKOUT_DURATION_MS = 10 * 60 * 1000; // 10 minutos
+const LOCKOUT_DURATION_MS = 10 * 60 * 1000; // 10 minutos (intentos fallidos)
+const RATE_LIMIT_LOCKOUT_MS = 60 * 1000; // 1 minuto (HTTP 429 del backend)
 const ATTEMPTS_KEY = 'logic_otp_attempts';
 const LOCKOUT_KEY = 'logic_otp_lockout_until';
 
@@ -141,10 +142,18 @@ export const Login = () => {
 
       if (!response.ok) {
         const data = await response.json().catch(() => ({}));
-        // Si el backend distingue "email no registrado" (404 o detail
-        // especifico), mostramos un mensaje claro. Si no, fallback generico.
-        if (response.status === 404 || data.detail === 'email_not_registered') {
+        // 404: el backend dice explicitamente que el email no esta
+        // registrado. Mostramos mensaje i18n (no el detail en espanol
+        // del backend, para no romper el locale del usuario).
+        if (response.status === 404) {
           throw new Error(t('login.errors.emailNotRegistered'));
+        }
+        // 429: rate limit del backend (3 req/min por IP). Arrancamos
+        // el cooldown local para que el usuario no siga clickeando
+        // y reciba 429 cada vez.
+        if (response.status === 429) {
+          setResendCooldown(RESEND_COOLDOWN_SECONDS);
+          throw new Error(t('login.errors.tooManyRequests'));
         }
         throw new Error(data.detail || t('login.errors.sendCodeFallback'));
       }
@@ -182,6 +191,18 @@ export const Login = () => {
       const data = await response.json();
 
       if (!response.ok) {
+        // 429: rate limit del backend (5 req/min por IP). NO contamos
+        // como intento fallido (el backend rechazo por exceso, no por
+        // codigo incorrecto). Aplicamos un lockout corto (1 min) para
+        // que la UI muestre el bloqueo y no permita reintentar hasta
+        // que el backend resetee.
+        if (response.status === 429) {
+          const lockUntil = Date.now() + RATE_LIMIT_LOCKOUT_MS;
+          setOtpLockoutUntil(lockUntil);
+          localStorage.setItem(LOCKOUT_KEY, String(lockUntil));
+          throw new Error(t('login.errors.tooManyRequests'));
+        }
+
         // Incrementar contador de intentos fallidos
         const newAttempts = otpAttempts + 1;
         setOtpAttempts(newAttempts);
