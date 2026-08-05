@@ -34,9 +34,9 @@
       "Cálculo Óptimo y Configuración Inmediata: Procesar hasta 23 puntos de datos estadísticos por cada vela de forma simultánea es una tarea computacional exigente, pero nuestro motor de rendimiento optimizado asegura que tu plataforma NinjaTrader 8 no sufra retrasos. La extracción de datos se realiza de forma fluida, manteniendo tus gráficos en estricto tiempo real. Además, conservarás la practicidad de nuestra suite: gracias al sistema de presets integrados, puedes cargar configuraciones preestablecidas o descargar plantillas desde la web, logrando un entorno de trabajo profesional al instante sin configuraciones tediosas."
     ],
     "contentImages": [
-      "footer_d01",
-      "footer_d02",
-      "footer_d03"
+      "footer_d1",
+      "footer_d2",
+      "footer_d3"
     ]
   },
   "profile": {
@@ -54,9 +54,9 @@
       "Máximo Rendimiento y Despliegue Inmediato: Calcular y renderizar múltiples perfiles, deltas y líneas extendidas suele ser el principal causante de la congestión en las plataformas de trading. Sin embargo, este indicador comparte el mismo motor de rendimiento de nuestra suite, asegurando un procesamiento de datos sin latencia y una navegación fluida en NinjaTrader 8, incluso en los días de mayor volatilidad. Y para facilitar tu flujo de trabajo, cuenta con el sistema de presets integrados: elige entre nuestras plantillas preestablecidas o descárgalas de la web para tener tu espacio de trabajo configurado como un profesional en cuestión de clics."
     ],
     "contentImages": [
-      "profile_d01",
-      "profile_d02",
-      "profile_d03"
+      "profile_d1",
+      "profile_d2",
+      "profile_d3"
     ]
   },
   "composite": {
@@ -74,9 +74,9 @@
       "Procesamiento Masivo sin Latencia: Agrupar y calcular el volumen de cientos de miles de velas históricas es la prueba de fuego para cualquier plataforma. Nuestro Composite está impulsado por el mismo motor de rendimiento nativo del resto de la suite, garantizando que puedas cargar áreas de análisis masivas sin experimentar bloqueos ni retrasos en tu entorno de NinjaTrader 8. Y para que pases directamente a la acción, el indicador se integra con nuestro sistema de plantillas preestablecidas (presets), listas para ser aplicadas o descargadas desde la web con un solo clic."
     ],
     "contentImages": [
-      "composite_d01",
-      "composite_d02",
-      "composite_d03"
+      "composite_d1",
+      "composite_d2",
+      "composite_d3"
     ]
   },
   "bigtrades": {
@@ -94,9 +94,9 @@
       "Filtros Dinámicos y Rendimiento Óptimo: Identificar y procesar la actividad de alta frecuencia requiere una eficiencia extrema. Nuestro Big Trades está diseñado para ser altamente óptimo, permitiendo la modificación y configuración de filtros de volumen en estricto tiempo real sin congelar NinjaTrader 8. Mantén tu plataforma rápida, estable y sin latencia, y aprovecha nuestro ecosistema de plantillas preestablecidas (presets) para cargar tus configuraciones y comenzar a rastrear las operaciones institucionales en cuestión de segundos."
     ],
     "contentImages": [
-      "bigtrades_d01",
-      "bigtrades_d02",
-      "bigtrades_d03"
+      "bigtrades_d1",
+      "bigtrades_d2",
+      "bigtrades_d3"
     ]
   },
   "analytics": {
@@ -114,9 +114,9 @@
       "Cálculos Complejos sin Latencia: Calcular promedios, curvas de delta y desviaciones estándar al instante requiere una potencia de procesamiento superior. Analytics está respaldado por el mismo motor de rendimiento nativo del resto de nuestra suite, garantizando que estos cálculos matemáticos profundos se ejecuten en tiempo real sin generar latencia ni bloqueos en NinjaTrader 8. Y para agilizar tu flujo de análisis, mantiene la compatibilidad con nuestro ecosistema de plantillas preestablecidas (presets), permitiéndote cargar tu configuración visual y estadística favorita con un solo clic."
     ],
     "contentImages": [
-      "analytics_d01",
-      "analytics_d02",
-      "analytics_d03"
+      "analytics_d1",
+      "analytics_d2",
+      "analytics_d3"
     ]
   },
   "algorithms": {
@@ -134,9 +134,9 @@
       "Procesamiento Simultáneo y Despliegue Inmediato: Ejecutar 11 algoritmos matemáticos simultáneamente sobre los datos en vivo es un desafío técnico severo para cualquier plataforma. No obstante, nuestro motor de rendimiento optimizado absorbe esta carga computacional masiva, garantizando que NinjaTrader 8 se mantenga estable, rápido y libre de latencia, incluso si decides mantener todas las detecciones encendidas al mismo tiempo. Y para mantener un flujo de trabajo ágil, el indicador incluye nuestro sistema de plantillas preestablecidas (presets), permitiéndote cargar configuraciones profesionales en cuestión de segundos."
     ],
     "contentImages": [
-      "algorithms_d01",
-      "algorithms_d02",
-      "algorithms_d03"
+      "algorithms_d1",
+      "algorithms_d2",
+      "algorithms_d3"
     ]
   }
 }

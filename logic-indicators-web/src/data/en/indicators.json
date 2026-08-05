@@ -34,9 +34,9 @@
       "Optimal Calculation and Immediate Setup: Processing up to 23 statistical data points per candle simultaneously is a computationally demanding task, but our optimized performance engine ensures your NinjaTrader 8 platform suffers no delays. Data extraction is performed smoothly, keeping your charts in strict real-time. Furthermore, you retain the practicality of our suite: thanks to the integrated presets system, you can load pre-established configurations or download templates from the web, achieving a professional workspace instantly without tedious configurations."
     ],
     "contentImages": [
-      "footer_d01",
-      "footer_d02",
-      "footer_d03"
+      "footer_d1",
+      "footer_d2",
+      "footer_d3"
     ]
   },
   "profile": {
@@ -54,9 +54,9 @@
       "Maximum Performance and Immediate Deployment: Calculating and rendering multiple profiles, deltas, and extended lines is usually the main cause of congestion in trading platforms. However, this indicator shares the same performance engine as the rest of our suite, ensuring zero-latency data processing and smooth navigation in NinjaTrader 8, even on the most volatile days. And to streamline your workflow, it features our integrated presets system: choose from our pre-established templates or download them from the web to have your workspace configured like a professional in a matter of clicks."
     ],
     "contentImages": [
-      "profile_d01",
-      "profile_d02",
-      "profile_d03"
+      "profile_d1",
+      "profile_d2",
+      "profile_d3"
     ]
   },
   "composite": {
@@ -74,9 +74,9 @@
       "Massive Processing without Latency: Grouping and calculating the volume of hundreds of thousands of historical candles is the ultimate test for any platform. Our Composite is powered by the same native performance engine as the rest of the suite, guaranteeing that you can load massive analysis areas without experiencing freezes or delays in your NinjaTrader 8 environment. And so you can get straight to action, the indicator integrates with our preset templates system, ready to be applied or downloaded from the web with a single click."
     ],
     "contentImages": [
-      "composite_d01",
-      "composite_d02",
-      "composite_d03"
+      "composite_d1",
+      "composite_d2",
+      "composite_d3"
     ]
   },
   "bigtrades": {
@@ -94,9 +94,9 @@
       "Dynamic Filters and Optimal Performance: Identifying and processing high-frequency activity requires extreme efficiency. Our Big Trades is designed to be highly optimal, allowing the modification and configuration of volume filters in strict real-time without freezing NinjaTrader 8. Keep your platform fast, stable, and latency-free, and leverage our ecosystem of preset templates to load your configurations and start tracking institutional operations in a matter of seconds."
     ],
     "contentImages": [
-      "bigtrades_d01",
-      "bigtrades_d02",
-      "bigtrades_d03"
+      "bigtrades_d1",
+      "bigtrades_d2",
+      "bigtrades_d3"
     ]
   },
   "analytics": {
@@ -114,9 +114,9 @@
       "Complex Calculations without Latency: Calculating averages, delta curves, and standard deviations instantly requires superior processing power. Analytics is backed by the same native performance engine as the rest of our suite, guaranteeing that these deep mathematical calculations are executed in real-time without generating latency or freezes in NinjaTrader 8. And to streamline your analysis workflow, it maintains compatibility with our preset templates ecosystem, allowing you to load your favorite visual and statistical configuration with a single click."
     ],
     "contentImages": [
-      "analytics_d01",
-      "analytics_d02",
-      "analytics_d03"
+      "analytics_d1",
+      "analytics_d2",
+      "analytics_d3"
     ]
   },
   "algorithms": {
@@ -134,9 +134,9 @@
       "Simultaneous Processing and Immediate Deployment: Executing 11 mathematical algorithms simultaneously on live data is a severe technical challenge for any platform. However, our optimized performance engine absorbs this massive computational load, guaranteeing that NinjaTrader 8 remains stable, fast, and latency-free, even if you decide to keep all detections turned on at the same time. And to maintain an agile workflow, the indicator includes our preset templates system, allowing you to load professional configurations in a matter of seconds."
     ],
     "contentImages": [
-      "algorithms_d01",
-      "algorithms_d02",
-      "algorithms_d03"
+      "algorithms_d1",
+      "algorithms_d2",
+      "algorithms_d3"
     ]
   }
 }
