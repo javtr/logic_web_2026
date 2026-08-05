@@ -37,6 +37,12 @@ export const Dashboard = () => {
   const userEmail = localStorage.getItem("logic_user_email");
   const token = localStorage.getItem("logic_token");
 
+  // Ref para `t`. La función t() del LanguageProvider cambia de identidad en
+  // cada render (no está memoizada), por eso si la pongo en las deps del
+  // useEffect del portfolio, se re-fetchea en cada cambio de idioma. Con
+  // este ref, leemos la versión actual de t sin triggerear re-fetches.
+  const tRef = useRef(t);
+
   // Helper: cuando el backend rechaza el token (401), limpiamos la sesión
   // y mandamos al usuario a /login. Usamos useAuth().logout() para que
   // dispare el evento 'logic-auth-change' (mantiene sincronizado el hook
@@ -47,14 +53,28 @@ export const Dashboard = () => {
   }, [logout, navigate]);
 
   useEffect(() => {
+    // t (la funcion de i18n) cambia de identidad en cada render del Provider,
+    // por eso la leemos de un ref para NO incluirla en las deps. Asi no
+    // re-fetcheamos el portfolio cada vez que el usuario cambia de idioma.
+    // (El texto del mensaje de error sale del t() que se lee en el render,
+    // no necesita estar en las deps.)
+    tRef.current = t;
+
     if (!userEmail || !token) {
       navigate("/login");
       return;
     }
 
+    // AbortController para cancelar el fetch si el componente se desmonta
+    // o si cambia el token antes de que termine. Sin esto, si el usuario
+    // cierra sesion rapido, la respuesta del portfolio viejo podria
+    // pisar el estado del componente (race condition).
+    const abortController = new AbortController();
+
     fetch(`https://members.logicindicators.com/api/v1/members/portfolio`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
+      signal: abortController.signal,
     })
       .then((res) => {
         // 401 = token expirado/inválido -> logout y al login.
@@ -76,15 +96,22 @@ export const Dashboard = () => {
         setIsLoading(false);
       })
       .catch((err) => {
+        // AbortError es esperado cuando el componente se desmonta o cambia
+        // el token antes de que termine el fetch. No mostrar error al usuario.
+        if (err.name === "AbortError") return;
         // Cualquier error no-401 (red, 500, JSON inválido) -> mostrar mensaje
         // en pantalla en vez de deslogear al usuario automáticamente.
         if (import.meta.env.DEV) {
           console.error("Error cargando dashboard:", err);
         }
-        setLoadError(t("dashboard.error.loadFailed"));
+        setLoadError(tRef.current("dashboard.error.loadFailed"));
         setIsLoading(false);
       });
-  }, [userEmail, token, navigate, t, handleUnauthorized]);
+
+    // Cleanup: si el componente se desmonta o las deps cambian, abortar
+    // el fetch en vuelo. Evita pisar el estado con datos viejos.
+    return () => abortController.abort();
+  }, [userEmail, token, navigate, handleUnauthorized]);
 
   useEffect(() => {
     return () => {
@@ -251,8 +278,11 @@ export const Dashboard = () => {
 
           <button
             onClick={() => {
-              localStorage.removeItem("logic_user_email");
-              localStorage.removeItem("logic_token");
+              // logout() del hook limpia localStorage Y dispara el evento
+              // 'logic-auth-change', asi useAuth() en otros componentes
+              // (Navbar, etc.) se sincroniza inmediatamente. Si lo hicieramos
+              // a mano solo con localStorage, esos componentes no se enteran.
+              logout();
               navigate("/login");
             }}
             className="flex items-center gap-1.5 md:gap-2 text-sm md:text-base text-red-400 hover:text-red-300 transition-colors font-medium px-2 py-1 rounded-md"
@@ -371,7 +401,12 @@ export const Dashboard = () => {
 
                     return (
                       <li
-                        key={i}
+                        // Key estable por nombre_producto (+ sufijo si es un
+                        // unlock sintetico de applyUnlocks). NO usamos el index
+                        // porque si la lista cambia (e.g. un producto vence o
+                        // se compra uno nuevo), React reusa los elementos con
+                        // el mismo index y puede mostrar datos incorrectos.
+                        key={`${prod.nombre_producto}-${prod._unlockedFrom || 'owned'}`}
                         className={`p-4 bg-dark-900 border ${isExpired ? 'border-red-900/50 opacity-60' : 'border-dark-600 group hover:border-accent-secondary/50'} rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors`}
                       >
                         <div className="min-w-0 flex-1">
