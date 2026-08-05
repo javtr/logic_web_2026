@@ -1,6 +1,6 @@
 // src/components/ResourcesDropdown.jsx
 import { useState, useRef, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, BookOpen, Gift } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -9,12 +9,12 @@ export const ResourcesDropdown = () => {
   const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const location = useLocation();
 
-  // Cerrar el dropdown al cambiar de ruta
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location.pathname]);
+  // NOTA: Antes habia un useEffect aqui que cerraba el dropdown cuando
+  // cambiaba location.pathname (re-render por navegacion). Eso es el
+  // anti-patron de "setState in effect" que React moderno desaconseja.
+  // Lo cerramos en el onClick de cada <Link> (abajo), que es donde
+  // realmente sabemos que el usuario navega.
 
   // Cerrar al hacer click fuera
   useEffect(() => {
@@ -88,6 +88,7 @@ export const ResourcesDropdown = () => {
                   <Link
                     key={option.to}
                     to={option.to}
+                    onClick={() => setIsOpen(false)}
                     className="flex items-center gap-3 px-4 py-3 text-sm text-text-muted hover:bg-dark-700 hover:text-accent-primary transition-colors"
                   >
                     <Icon size={16} />
