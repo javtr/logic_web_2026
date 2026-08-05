@@ -26,7 +26,7 @@ export const Indicators = () => {
       <div className="min-h-screen bg-dark-900">
       {/* 1. HERO DE TEXTO */}
       <section className="pt-16 md:pt-32 pb-12 px-6 text-center bg-[radial-gradient(ellipse_600px_200px_at_center_top,theme(colors.accent.primary/10%)_0%,transparent_70%)]">
-        <h1 className="text-4xl md:text-5xl font-bold text-text-main tracking-tight mb-4">
+        <h1 className="text-4xl md:text-5xl font-bold text-text-main tracking-tight mb-4 whitespace-pre-line">
           {t('indicatorsPage.title')}
         </h1>
         <p className="text-lg text-text-muted max-w-2xl mx-auto">
