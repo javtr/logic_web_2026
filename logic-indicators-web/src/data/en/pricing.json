@@ -1,4 +1,6 @@
 {
+  "_doc": "ASIMETRÍA BILINGÜE INTENCIONAL: este JSON NO tiene 'billingToggle' (mensual/anual) — solo se ofrece compra anual en inglés. La versión ES sí lo tiene porque el mercado hispano tiene más costumbre de pago mensual. Si en el futuro se agrega el toggle a EN, mover las keys aquí y eliminar el fallback en PricingSection.jsx.",
+
   "pageTitle": "Pricing",
   "pageSubtitle": "Choose the plan that fits your trading style. Lifetime is the best value.",
 

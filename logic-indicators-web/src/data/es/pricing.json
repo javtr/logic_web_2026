@@ -1,4 +1,6 @@
 {
+  "_doc": "ASIMETRÍA BILINGÜE INTENCIONAL: este JSON tiene 'billingToggle' (anual / de por vida) que la versión EN no tiene. El mercado hispano está más acostumbrado al pago en cuotas, así que aquí se ofrece el toggle. PricingSection.jsx hace fallback a 'yearly' si la key no existe (caso EN).",
+
   "pageTitle": "Precios",
   "pageSubtitle": "Elige el plan que se ajuste a tu estilo de trading. De por vida es la mejor opción.",
 
