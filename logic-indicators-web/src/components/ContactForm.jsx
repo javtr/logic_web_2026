@@ -27,8 +27,16 @@ const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 // CRITICO: si esto queda en 'true' en producción, el reCAPTCHA queda
 // deshabilitado y cualquiera puede hacer spam al formulario. El flag
 // DEBE estar en 'false' en el ambiente de producción.
+//
+// FALLBACK DE SEGURIDAD: si no hay RECAPTCHA_SITE_KEY configurada,
+// forzamos modo local. El componente ReCAPTCHA crashea toda la app
+// si se monta sin sitekey, asi que mejor mostrar el banner de modo
+// local que romper la página entera. Esto solo aplica si el dev no
+// configuro el .env (o si production deployo sin las env vars).
 // -----------------------------------------------------------------------------
-const IS_LOCAL_TESTING = import.meta.env.VITE_IS_LOCAL_TESTING === 'true';
+const HAS_RECAPTCHA_KEY = Boolean(import.meta.env.VITE_RECAPTCHA_SITE_KEY);
+const IS_LOCAL_TESTING =
+  import.meta.env.VITE_IS_LOCAL_TESTING === 'true' || !HAS_RECAPTCHA_KEY;
 
 export const ContactForm = () => {
   const { t } = useLanguage();
