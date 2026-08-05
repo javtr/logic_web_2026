@@ -123,7 +123,7 @@ export const ContactForm = () => {
     
     // Validación de ReCAPTCHA (Se salta si estamos probando en local)
     if (!captchaValue && !IS_LOCAL_TESTING) {
-      newErrors.captcha = "Please complete the reCAPTCHA"; 
+      newErrors.captcha = t('contact.form.errors.captcha');
     }
 
     setErrors(newErrors);
@@ -314,7 +314,7 @@ export const ContactForm = () => {
             {/* Sección dinámica de ReCAPTCHA */}
             {IS_LOCAL_TESTING ? (
               <div className="p-3 text-center text-xs text-accent-secondary bg-accent-secondary/10 rounded-lg border border-accent-secondary/20">
-                🛠️ <strong>Modo Local:</strong> ReCAPTCHA está deshabilitado para pruebas. Cambiar <code>IS_LOCAL_TESTING = false</code> en producción.
+                🛠️ {t('contact.form.localTestingMode')}
               </div>
             ) : (
               <div className="flex flex-col items-center pt-2">

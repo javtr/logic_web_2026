@@ -17,6 +17,7 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
+import { useLanguage } from '../context/languageContext';
 
 const MIN_SCALE = 1;
 const MAX_SCALE = 4;
@@ -57,6 +58,7 @@ export const ZoomableImage = ({
 };
 
 const Lightbox = ({ src, alt, onClose }) => {
+  const { t } = useLanguage();
   const [scale, setScale] = useState(1);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
 
@@ -222,7 +224,7 @@ const Lightbox = ({ src, alt, onClose }) => {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label={alt || "Imagen ampliada"}
+      aria-label={alt || t('common.lightbox.expanded')}
       onClick={handleBackdropClick}
       className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center touch-none"
     >
@@ -230,7 +232,7 @@ const Lightbox = ({ src, alt, onClose }) => {
         ref={closeBtnRef}
         onClick={onClose}
         className="absolute top-4 right-4 z-10 p-2.5 rounded-full bg-dark-800/80 text-white hover:bg-dark-800 active:scale-95 transition-all border border-white/10"
-        aria-label="Cerrar imagen"
+        aria-label={t('common.lightbox.close')}
       >
         <X size={22} />
       </button>

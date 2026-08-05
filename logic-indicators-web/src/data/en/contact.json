@@ -17,8 +17,10 @@
       "required": "This field is required",
       "email": "Please enter a valid email address",
       "messageMinLength": "Message must be at least 10 characters",
-      "generic": "Something went wrong. Please try again."
-    }
+      "generic": "Something went wrong. Please try again.",
+      "captcha": "Please complete the reCAPTCHA"
+    },
+    "localTestingMode": "Local Mode: reCAPTCHA is disabled for testing. Set VITE_IS_LOCAL_TESTING=false in production."
   },
   "channels": {
     "title": "Other ways to reach us",

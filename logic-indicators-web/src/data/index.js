@@ -32,6 +32,7 @@ import enNotFound from './en/notFound.json';
 import enLogin from './en/login.json';
 import enSeo from './en/seo.json';
 import enIndividualPricing from './en/individualPricing.json';
+import enCommon from './en/common.json';
 
 import esNav from './es/nav.json';
 import esHero from './es/hero.json';
@@ -55,6 +56,7 @@ import esNotFound from './es/notFound.json';
 import esLogin from './es/login.json';
 import esSeo from './es/seo.json';
 import esIndividualPricing from './es/individualPricing.json';
+import esCommon from './es/common.json';
 
 export const SUPPORTED_LANGUAGES = ['en', 'es'];
 export const DEFAULT_LANGUAGE = 'en';
@@ -122,6 +124,7 @@ const dictionaries = {
     login: enLogin,
     seo: enSeo,
     individualPricing: enIndividualPricing,
+    common: enCommon,
   },
   es: {
     nav: esNav,
@@ -146,6 +149,7 @@ const dictionaries = {
     login: esLogin,
     seo: esSeo,
     individualPricing: esIndividualPricing,
+    common: esCommon,
   },
 };
 

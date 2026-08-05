@@ -1,0 +1,16 @@
+{
+  "_doc": "Strings globales reutilizables (compartidos por varios componentes). Si una key es especifica de un solo componente, va en el JSON del componente/pagina correspondiente (nav, home, contact, etc.).",
+
+  "logoAria": "Logic Indicators - Inicio",
+  "languageSwitcher": {
+    "aria": "Cambiar idioma (actual: {lang})"
+  },
+  "lightbox": {
+    "close": "Cerrar imagen",
+    "expanded": "Imagen ampliada"
+  },
+  "carousel": {
+    "goTo": "Ir al slide {n}",
+    "slideOf": "Slide {n} de {total}"
+  }
+}

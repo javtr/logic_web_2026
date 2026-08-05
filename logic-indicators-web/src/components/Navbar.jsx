@@ -30,7 +30,7 @@ export const Navbar = () => {
       <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-dark-900/60 backdrop-blur-md">
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
           {/* Logo (SVG) */}
-          <Link to="/" aria-label="Logic Indicators - Inicio">
+          <Link to="/" aria-label={t('common.logoAria')}>
             <img
               src={logoSvg}
               alt="Logic Indicators"

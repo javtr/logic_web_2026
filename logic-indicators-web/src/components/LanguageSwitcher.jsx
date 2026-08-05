@@ -23,7 +23,7 @@ const LABEL_BY_CODE = {
 };
 
 export const LanguageSwitcher = ({ className = '' }) => {
-  const { language, setLanguageByCode, supportedLanguages } = useLanguage();
+  const { t, language, setLanguageByCode, supportedLanguages } = useLanguage();
 
   // Si el actual es el último, vuelve al primero; si no, va al siguiente.
   // Funciona con 2 o más idiomas.
@@ -36,7 +36,7 @@ export const LanguageSwitcher = ({ className = '' }) => {
   return (
     <button
       onClick={handleToggle}
-      aria-label={`Switch language (current: ${language.toUpperCase()})`}
+      aria-label={t('common.languageSwitcher.aria').replace('{lang}', language.toUpperCase())}
       className={`
         inline-flex items-center gap-1.5
         px-3 py-1 rounded-full

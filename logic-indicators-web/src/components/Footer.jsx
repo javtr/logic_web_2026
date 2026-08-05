@@ -25,15 +25,15 @@ const handleExternalClick = (e, url) => {
 const socialLinks = [
   {
     id: 'discord',
-    label: 'Discord',
+    labelKey: 'Discord',  // i18n key, ver footer.json → socialLinks
     icon: MessageCircle,
-    urlKey: 'https://discord.gg/EWFehJ9dFu',
+    url: 'https://discord.gg/EWFehJ9dFu',
   },
   {
     id: 'email',
-    label: 'Email',
+    labelKey: 'Email',  // i18n key, ver footer.json → socialLinks
     icon: Mail,
-    urlKey: 'mailto:info@logicindicators.com',
+    url: 'mailto:info@logicindicators.com',
   },
 ];
 
@@ -53,7 +53,7 @@ export const Footer = () => {
 
           {/* Columna 1: Branding */}
           <div className="col-span-1 md:col-span-1">
-            <Link to="/" aria-label="Logic Indicators - Inicio">
+            <Link to="/" aria-label={t('common.logoAria')}>
               <img
                 src={logoSvg}
                 alt="Logic Indicators"
@@ -64,14 +64,14 @@ export const Footer = () => {
               {t('footer.description')}
             </p>
             <div className="flex gap-4 mt-6">
-              {socialLinks.map(({ id, label, icon: Icon, urlKey }) => (
+              {socialLinks.map(({ id, labelKey, icon: Icon, url }) => (
                 <a
                   key={id}
-                  href={urlKey}
+                  href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(e) => handleExternalClick(e, urlKey)}
-                  aria-label={label}
+                  onClick={(e) => handleExternalClick(e, url)}
+                  aria-label={t(`footer.socialLinks.${id}`) || labelKey}
                   className="text-text-muted hover:text-accent-secondary transition-colors"
                 >
                   <Icon size={20} />
@@ -137,7 +137,7 @@ export const Footer = () => {
             <div className="mt-6 p-4 rounded-lg bg-dark-800 border border-dark-700 flex items-center gap-3">
               <ShieldCheck className="text-accent-primary" size={24} />
               <span className="text-[10px] text-text-muted uppercase font-bold tracking-wider">
-                Secure SSL Encryption
+                {t('footer.secureSsl')}
               </span>
             </div>
           </div>

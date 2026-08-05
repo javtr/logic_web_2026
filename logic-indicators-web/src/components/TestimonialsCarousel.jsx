@@ -131,7 +131,7 @@ export const TestimonialsCarousel = () => {
               key={i}
               role="group"
               aria-roledescription="slide"
-              aria-label={`Slide ${i + 1} of ${items.length}`}
+              aria-label={t('common.carousel.slideOf').replace('{n}', String(i + 1)).replace('{total}', String(items.length))}
               style={{ flex: `0 0 ${cardBasisPct}%` }}
               className="px-2 md:px-4"
             >
@@ -181,7 +181,7 @@ export const TestimonialsCarousel = () => {
             key={i}
             type="button"
             onClick={() => goTo(i)}
-            aria-label={`Go to slide ${i + 1}`}
+            aria-label={t('common.carousel.goTo').replace('{n}', String(i + 1))}
             aria-current={i === safeIndex ? 'true' : undefined}
             className={`h-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-accent-secondary/50 ${
               i === safeIndex

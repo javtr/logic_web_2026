@@ -10,5 +10,10 @@
   "terms": "Términos de Servicio",
   "copyright": "© {year} Logic Indicators. Todos los derechos reservados.",
   "tagline": "Hecho a mano para traders de NinjaTrader 8.",
-  "backToTop": "Volver arriba"
+  "backToTop": "Volver arriba",
+  "secureSsl": "Cifrado SSL Seguro",
+  "socialLinks": {
+    "discord": "Discord",
+    "email": "Correo"
+  }
 }

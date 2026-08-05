@@ -17,8 +17,10 @@
       "required": "Este campo es obligatorio",
       "email": "Por favor ingresa un correo electrónico válido",
       "messageMinLength": "El mensaje debe tener al menos 10 caracteres",
-      "generic": "Algo salió mal. Por favor intenta de nuevo."
-    }
+      "generic": "Algo salió mal. Por favor intenta de nuevo.",
+      "captcha": "Por favor completa el reCAPTCHA"
+    },
+    "localTestingMode": "Modo Local: reCAPTCHA está deshabilitado para pruebas. Configurar VITE_IS_LOCAL_TESTING=false en producción."
   },
   "channels": {
     "title": "Otras formas de contactarnos",

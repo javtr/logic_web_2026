@@ -10,5 +10,10 @@
   "terms": "Terms of Service",
   "copyright": "© {year} Logic Indicators. All rights reserved.",
   "tagline": "Handcrafted for NinjaTrader 8 traders.",
-  "backToTop": "Back to top"
+  "backToTop": "Back to top",
+  "secureSsl": "Secure SSL Encryption",
+  "socialLinks": {
+    "discord": "Discord",
+    "email": "Email"
+  }
 }
