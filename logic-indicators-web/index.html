@@ -15,6 +15,34 @@
       que no ejecutan JS vean información coherente.
     -->
     <title>Logic Indicators - Order Flow Software for NinjaTrader 8</title>
+    <!--
+      Script inline pre-React: setea el atributo lang del <html> leyendo
+      la preferencia guardada en localStorage por LanguageContext.
+      Se ejecuta SINCRONICAMENTE antes del primer paint, asi no hay
+      flash del idioma incorrecto (ej: muestra "Members Area" en EN
+      durante un frame antes de saltar a "Zona de Miembros" en ES).
+
+      Limitacion conocida: crawlers que no ejecutan JS (algunos de
+      Google, motores alternativos, herramientas de validacion) ven
+      SIEMPRE lang="en" porque ese es el valor del HTML estatico.
+      La deteccion del idioma para SEO se hace via el atributo
+      hreflang en el componente <SEO> y la metadata OG. El patron
+      de "toggle por UI sin prefijo de URL" no es el ideal para
+      SEO multilingue (lo ideal seria /en/* y /es/*), pero es
+      aceptable para un sitio pequeno.
+    -->
+    <script>
+      (function() {
+        try {
+          var stored = localStorage.getItem('logic-preferred-language');
+          if (stored === 'es' || stored === 'en') {
+            document.documentElement.lang = stored;
+          }
+        } catch (e) {
+          // localStorage deshabilitado: ignorar, queda lang="en"
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
