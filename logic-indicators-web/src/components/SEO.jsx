@@ -12,7 +12,9 @@
 //     (mismo path en ambos idiomas, el usuario cambia el idioma por UI)
 //   - Open Graph (og:*) para preview en Facebook, LinkedIn, Slack, WhatsApp
 //   - Twitter Card (twitter:*) para preview en X
-//   - JSON-LD Organization en la home (datos estructurados para Google)
+//
+// El JSON-LD Organization NO esta aca — vive en
+// src/components/OrganizationJsonLd.jsx y se usa solo en la home.
 //
 // El componente lee el idioma actual del LanguageContext y actualiza
 // <html lang="..."> automáticamente (Helmet puede mutar atributos del <html>).

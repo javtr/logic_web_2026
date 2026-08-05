@@ -8,6 +8,7 @@ import { TrustSection } from '../components/pricing/TrustSection';
 import { FAQSection } from '../components/FAQSection';
 import { TestimonialsCarousel } from '../components/TestimonialsCarousel';
 import { SEO } from '../components/SEO';
+import { OrganizationJsonLd } from '../components/OrganizationJsonLd';
 import { resolveImage } from '../data/imageResolver';
 import { getActiveIndicatorIds } from '../data';
 
@@ -27,6 +28,7 @@ export const Home = () => {
         description={t('seo.home.description')}
         type="website"
       />
+      <OrganizationJsonLd />
 
     <div className="flex flex-col gap-12 md:gap-24 pb-12 md:pb-24">
 
