@@ -18,10 +18,17 @@ const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
-// ---------------------------------------------------------
-// ⚠️ MODO DESARROLLO: Cambia a 'false' antes de subir a producción
-const IS_LOCAL_TESTING = true;
-// ---------------------------------------------------------
+// -----------------------------------------------------------------------------
+// MODO DESARROLLO: lee de variable de entorno.
+//
+// En desarrollo local (.env):   VITE_IS_LOCAL_TESTING=true
+// En producción (Cloudflare):   VITE_IS_LOCAL_TESTING=false
+//
+// CRITICO: si esto queda en 'true' en producción, el reCAPTCHA queda
+// deshabilitado y cualquiera puede hacer spam al formulario. El flag
+// DEBE estar en 'false' en el ambiente de producción.
+// -----------------------------------------------------------------------------
+const IS_LOCAL_TESTING = import.meta.env.VITE_IS_LOCAL_TESTING === 'true';
 
 export const ContactForm = () => {
   const { t } = useLanguage();
