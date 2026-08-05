@@ -10,11 +10,13 @@ import ReCAPTCHA from 'react-google-recaptcha';
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MESSAGE_MIN_LENGTH = 10;
 
-// Variables de entorno o constantes de EmailJS y ReCAPTCHA
-const EMAILJS_SERVICE_ID = "service_g9gfwit";
-const EMAILJS_TEMPLATE_ID = "template_7vyrf6s";
-const EMAILJS_PUBLIC_KEY = "QyQP72Hg4ObCGjDYM";
-const RECAPTCHA_SITE_KEY = "6LdmJucpAAAAAPN--0vzj_7NuxLvMHqsRDrOkpxO";
+// EmailJS y reCAPTCHA keys — se leen de variables de entorno
+// (definidas en .env, ver .env.example para documentacion).
+// Vite expone al cliente SOLO las variables que arrancan con VITE_.
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
 // ---------------------------------------------------------
 // ⚠️ MODO DESARROLLO: Cambia a 'false' antes de subir a producción
