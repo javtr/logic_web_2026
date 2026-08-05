@@ -96,20 +96,23 @@ export const Login = () => {
     return () => clearInterval(id);
   }, []);
 
-  // Re-chequear lockout al montar y cuando cambia el idioma.
-  // Si el bloqueo empezo en una sesion anterior, mostramos el mensaje
-  // apenas el usuario entra. Si el bloqueo ya expiro, limpiamos.
+  // Re-chequear lockout al montar.
+  // Si el bloqueo empezo en una sesion anterior, marcamos el state. Si
+  // el bloqueo ya expiro, limpiamos localStorage y el state.
+  //
+  // Antes: useEffect con [t] en deps se re-ejecutaba en cada cambio de
+  // idioma (t() no esta memoizada en el Provider). Ahora solo se ejecuta
+  // al mount. El texto del mensaje de error se calcula derivado en
+  // render, asi se traduce automaticamente al cambiar idioma.
   useEffect(() => {
     const lockUntil = readLockout();
     if (lockUntil > Date.now()) {
-      const minutes = Math.ceil((lockUntil - Date.now()) / 60000);
       setOtpLockoutUntil(lockUntil);
-      setError(t('login.errors.tooManyAttempts').replace('{minutes}', String(minutes)));
     } else if (lockUntil > 0) {
       localStorage.removeItem(LOCKOUT_KEY);
       setOtpLockoutUntil(0);
     }
-  }, [t]);
+  }, []);
 
   const isLockedOut = otpLockoutUntil > Date.now();
   const attemptsRemaining = Math.max(0, MAX_OTP_ATTEMPTS - otpAttempts);
