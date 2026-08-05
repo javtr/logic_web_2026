@@ -34,7 +34,7 @@ import { LanguageSwitcher } from '../LanguageSwitcher';
 import { useDocs } from '../../context/DocsContext';
 
 export const DocsLayout = ({ doc, showHomeButton = false }) => {
-  const { getDocsLabel, getAdjacentDocs, basePath } = useDocs();
+  const { getDocsLabel, findDocInStructure, getAdjacentDocs, basePath } = useDocs();
 
   if (!doc) {
     return (
@@ -152,7 +152,7 @@ export const DocsLayout = ({ doc, showHomeButton = false }) => {
         {/* TOC (sticky, solo lg+) */}
         <aside className="hidden lg:block">
           <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto">
-            <DocsTOC headings={doc.headings || []} />
+            <DocsTOC key={doc?.slug} headings={doc.headings || []} />
           </div>
         </aside>
       </div>

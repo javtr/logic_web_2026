@@ -23,14 +23,20 @@ import { useEffect, useState, useRef } from 'react';
 import { useDocs } from '../../context/DocsContext';
 
 export const DocsTOC = ({ headings = [] }) => {
-  const { getDocsLabel, doc } = useDocs();
+  const { getDocsLabel } = useDocs();
   const [activeId, setActiveId] = useState(headings[0]?.slug || null);
   const observerRef = useRef(null);
 
-  // Reset activeId cuando cambia el doc
-  useEffect(() => {
-    setActiveId(headings[0]?.slug || null);
-  }, [doc?.slug]);
+  // NOTA: Antes habia un useEffect que reseteaba activeId cuando
+  // cambiaba doc.slug (anti-patron de 'setState in effect').
+  // Ahora ese reset se hace automaticamente porque el padre
+  // (DocsLayout) pasa `key={doc?.slug}` al TOC, lo que hace que
+  // React desmonte y remonte el componente cuando cambia el doc.
+  // Eso resetea TODOS los useState (incluido activeId) sin necesidad
+  // de un useEffect de sincronizacion.
+  //
+  // Tambien elimina el parametro `doc` del useDocs() porque ya no
+  // se necesita (solo se usaba como dependencia del useEffect).
 
   // Scroll-spy: observer que resalta el heading visible según scroll
   useEffect(() => {
@@ -72,7 +78,7 @@ export const DocsTOC = ({ headings = [] }) => {
       clearTimeout(timeoutId);
       if (observerRef.current) observerRef.current.disconnect();
     };
-  }, [headings, doc?.slug]);
+  }, [headings]);
 
   const handleClick = (e, slug) => {
     e.preventDefault();
