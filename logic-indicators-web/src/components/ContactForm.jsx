@@ -1,7 +1,7 @@
 // src/components/ContactForm.jsx
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { Button } from './Button';
 import { Send, CheckCircle2, AlertCircle, Mail, User, MessageSquare } from 'lucide-react';
 import emailjs from '@emailjs/browser';

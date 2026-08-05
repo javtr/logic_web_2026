@@ -1,6 +1,6 @@
-// src/context/LanguageContext.jsx
+// src/context/LanguageProvider.jsx
 // =============================================================================
-// LANGUAGE CONTEXT — con persistencia en localStorage y auto-deteccion
+// LANGUAGE PROVIDER — solo el componente Provider
 // =============================================================================
 // Resolucion del idioma inicial (prioridad de 3 niveles):
 //   1) localStorage['logic-preferred-language'] (decision explicita del usuario)
@@ -18,8 +18,9 @@
 // incognito, extensiones agresivas), la app sigue funcionando, solo no
 // persiste entre sesiones.
 // =============================================================================
-import { createContext, useState, useContext } from 'react';
+import { useState } from 'react';
 import { getDictionary, resolvePath, SUPPORTED_LANGUAGES } from '../data';
+import { LanguageContext } from './languageContext';
 
 // Clave de localStorage. Namespace con "logic-" para evitar choques
 // con otras apps en el mismo dominio (no es probable, pero buena practica).
@@ -66,10 +67,6 @@ function persistLanguage(lang) {
   }
 }
 
-// 1. Creamos el contexto
-const LanguageContext = createContext();
-
-// 2. Provider que envuelve la App
 export const LanguageProvider = ({ children }) => {
   // Lazy init: getInitialLanguage() corre solo en el mount.
   const [language, setLanguage] = useState(() => getInitialLanguage());
@@ -103,6 +100,3 @@ export const LanguageProvider = ({ children }) => {
     </LanguageContext.Provider>
   );
 };
-
-// 3. Hook para consumir el contexto
-export const useLanguage = () => useContext(LanguageContext);

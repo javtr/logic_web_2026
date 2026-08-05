@@ -1,7 +1,7 @@
 // src/pages/Terms.jsx
 // Página /terms — renderiza terms.json usando el componente LegalPage
 // (reutilizable con Privacy).
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { SEO } from '../components/SEO';
 import { LegalPage } from '../components/legal/LegalPage';
 

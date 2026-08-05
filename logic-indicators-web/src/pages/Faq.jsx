@@ -1,7 +1,7 @@
 // src/pages/Faq.jsx
 // Página /faq — renderiza el contenido de faqPage.json con un Accordion.
 // Reutiliza el componente Accordion existente (mismo que usa la home).
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { SEO } from '../components/SEO';
 import { Accordion } from '../components/Accordion';
 

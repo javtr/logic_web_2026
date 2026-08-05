@@ -9,7 +9,7 @@
 
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useDocs } from '../../context/DocsContext';
+import { useDocs } from '../../context/docsContext';
 
 export const DocsPagination = ({ prev, next }) => {
   const { getDocsLabel, basePath } = useDocs();

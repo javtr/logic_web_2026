@@ -1,7 +1,7 @@
 // src/components/Navbar.jsx
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { Button } from './Button';
 import { ResourcesDropdown } from './ResourcesDropdown';
 import { MobileMenu } from './MobileMenu';

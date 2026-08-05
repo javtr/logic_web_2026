@@ -14,7 +14,7 @@
 // Ejemplo de uso:
 //   <FAQSection />                                       ← Home: namespace 'homeFaq', título 'home.faqTitle'
 //   <FAQSection namespace="pricingFaq" titleKey="pricing.faqTitle" />
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { Accordion } from './Accordion';
 
 export const FAQSection = ({ titleKey = 'home.faqTitle', namespace = 'homeFaq' }) => {

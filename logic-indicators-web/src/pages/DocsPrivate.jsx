@@ -12,8 +12,9 @@
 // =============================================================================
 
 import { useParams } from 'react-router-dom';
-import { useLanguage } from '../context/LanguageContext';
-import { DocsProvider, useDocs } from '../context/DocsContext';
+import { useLanguage } from '../context/languageContext';
+import { DocsProvider } from '../context/DocsProvider';
+import { useDocs } from '../context/docsContext';
 import { DocsLayout } from '../components/docs';
 import {
   DOCS_STRUCTURE,

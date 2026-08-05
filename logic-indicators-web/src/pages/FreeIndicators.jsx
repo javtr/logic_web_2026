@@ -1,5 +1,5 @@
 // src/pages/FreeIndicators.jsx
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { SEO } from '../components/SEO';
 
 export const FreeIndicators = () => {

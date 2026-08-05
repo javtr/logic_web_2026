@@ -33,7 +33,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import { useDocs } from '../../context/DocsContext';
+import { useDocs } from '../../context/docsContext';
 
 // Custom link resolver: reescribe /docs/* al basePath actual
 const makeLinkRenderer = (basePath) => ({ href, children, ...props }) => {

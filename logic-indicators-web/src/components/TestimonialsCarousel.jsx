@@ -32,7 +32,7 @@
 //   - Respeta prefers-reduced-motion (transition se anula).
 
 import { useState, useEffect } from 'react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 
 const TRANSITION_MS = 3000;

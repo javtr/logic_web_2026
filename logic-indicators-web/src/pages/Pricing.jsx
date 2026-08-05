@@ -8,7 +8,7 @@
 //   3. <IndividualIndicatorsSection />   → grilla compacta de 5 cards (2 bundles + 3 individuales)
 //   4. <TrustSection />                  → SSL + medios de pago
 //   5. <FAQSection />                     → usa namespace 'pricingFaq' (preguntas transaccionales, distintas a Home)
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { SEO } from '../components/SEO';
 import { PromoBanner } from '../components/pricing/PromoBanner';
 import { PricingSection } from '../components/pricing/PricingSection';

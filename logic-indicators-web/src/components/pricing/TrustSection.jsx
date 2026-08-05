@@ -27,7 +27,7 @@
 //   - Separadores sutiles (h-px) entre los bloques lógicos.
 //   - Chips de métodos de pago: padding/icono/texto más chicos en mobile
 //     (px-3 py-1.5 / size-14 / text-xs vs px-4 py-2 / size-16 / text-sm).
-import { useLanguage } from '../../context/LanguageContext';
+import { useLanguage } from '../../context/languageContext';
 import { Lock, ShieldCheck, CreditCard, Wallet } from 'lucide-react';
 
 // Mapeo de método de pago → ícono. Si el método no está acá, fallback a CreditCard.

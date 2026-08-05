@@ -6,7 +6,7 @@
 //
 // El subtítulo y la imagen son específicos de esta página (no se reutilizan de home.json)
 // para que se puedan editar de forma independiente del Home.
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { SEO } from '../components/SEO';
 import { getActiveIndicatorIds } from '../data';
 import { resolveImage } from '../data/imageResolver';

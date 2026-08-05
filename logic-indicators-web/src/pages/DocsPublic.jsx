@@ -14,9 +14,10 @@
 // =============================================================================
 
 import { useParams } from 'react-router-dom';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { SEO } from '../components/SEO';
-import { DocsProvider, useDocs } from '../context/DocsContext';
+import { DocsProvider } from '../context/DocsProvider';
+import { useDocs } from '../context/docsContext';
 import { DocsLayout } from '../components/docs';
 import {
   DOCS_PUBLIC_STRUCTURE as DOCS_STRUCTURE,

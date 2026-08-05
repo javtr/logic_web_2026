@@ -1,6 +1,6 @@
 // src/pages/Home.jsx
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { Button } from '../components/Button';
 import { HomeIndicatorCard } from '../components/HomeIndicatorCard';
 import { PricingSection } from '../components/pricing/PricingSection';

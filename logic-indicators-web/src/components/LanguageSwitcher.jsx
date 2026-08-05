@@ -15,7 +15,7 @@
 // =============================================================================
 
 import { Globe } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 
 const LABEL_BY_CODE = {
   es: 'ES',

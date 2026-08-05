@@ -5,7 +5,7 @@
 // Activar/desactivar promociones es 100% data — un cambio de `"enabled": false` a
 // `"enabled": true` en el JSON sin tocar código.
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../../context/LanguageContext';
+import { useLanguage } from '../../context/languageContext';
 import { Button } from '../Button';
 import { Sparkles, ArrowRight } from 'lucide-react';
 

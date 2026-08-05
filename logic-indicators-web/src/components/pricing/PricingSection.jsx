@@ -23,7 +23,7 @@
 // =============================================================================
 
 import { useState } from 'react';
-import { useLanguage } from '../../context/LanguageContext';
+import { useLanguage } from '../../context/languageContext';
 import { Button } from '../Button';
 import { ToggleSwitch } from '../ToggleSwitch';
 import { CheckCircle2, GraduationCap } from 'lucide-react';

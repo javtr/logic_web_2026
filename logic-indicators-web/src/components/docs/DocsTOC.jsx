@@ -20,7 +20,7 @@
 // =============================================================================
 
 import { useEffect, useState, useRef } from 'react';
-import { useDocs } from '../../context/DocsContext';
+import { useDocs } from '../../context/docsContext';
 
 export const DocsTOC = ({ headings = [] }) => {
   const { getDocsLabel } = useDocs();

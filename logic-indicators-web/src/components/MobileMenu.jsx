@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronDown, BookOpen, Gift, BarChart3, MessageCircle, Tag } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { Button } from './Button';
 
 export const MobileMenu = ({ isOpen, onClose }) => {

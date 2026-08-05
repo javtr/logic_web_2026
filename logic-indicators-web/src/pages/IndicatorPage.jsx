@@ -8,7 +8,7 @@
 //   - longDescription (string)                                            : layout legacy
 // Si `paragraphs` está presente y es no vacío, se usa el layout nuevo. Si no, fallback al legacy.
 import { useParams } from 'react-router-dom';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { SEO } from '../components/SEO';
 import { getActiveIndicatorIds } from '../data';
 import { resolveImage } from '../data/imageResolver';

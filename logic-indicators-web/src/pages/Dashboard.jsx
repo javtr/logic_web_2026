@@ -5,7 +5,7 @@ import { Button } from "../components/Button";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, HelpCircle, AlertCircle, Info } from "lucide-react";
 import { getDownloadUrl, getDisplayName, getProductCategory, SYSTEM_PRODUCTS, applyUnlocks } from "../data/downloads";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from '../context/languageContext';
 import { useAuth } from "../hooks/useAuth";
 
 // Title Case para el nombre del usuario en el header.

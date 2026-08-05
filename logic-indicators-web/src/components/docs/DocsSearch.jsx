@@ -12,7 +12,7 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Fuse from 'fuse.js';
 import { Search, X } from 'lucide-react';
-import { useDocs } from '../../context/DocsContext';
+import { useDocs } from '../../context/docsContext';
 
 export const DocsSearch = () => {
   const { language, getAllSlugsForSearch, getDocsLabel, basePath } = useDocs();

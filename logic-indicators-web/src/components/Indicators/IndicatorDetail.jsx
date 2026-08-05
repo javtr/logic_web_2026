@@ -20,7 +20,7 @@
 import { Fragment } from 'react';
 import { Button } from '../Button';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../../context/LanguageContext';
+import { useLanguage } from '../../context/languageContext';
 import { ZoomableImage } from '../ImageLightbox';
 import imgSample from '../../assets/indicators/sample_image.png';
 

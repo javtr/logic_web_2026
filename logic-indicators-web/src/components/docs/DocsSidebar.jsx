@@ -10,7 +10,7 @@
 
 import { useState, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useDocs } from '../../context/DocsContext';
+import { useDocs } from '../../context/docsContext';
 import { ChevronDown } from 'lucide-react';
 
 export const DocsSidebar = () => {

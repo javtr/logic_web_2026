@@ -1,6 +1,6 @@
-// src/context/DocsContext.jsx
+// src/context/DocsProvider.jsx
 // =============================================================================
-// CONTEXTO DE DOCUMENTACIÓN — desacopla los componentes del data source
+// DOCS PROVIDER — solo el componente Provider
 // =============================================================================
 // Antes de la separación pública/privada, los 5 componentes de
 // components/docs/ importaban directamente desde data/docs/. Esto los
@@ -27,23 +27,8 @@
 //   getDocsLabel(key) — se calcula en useDocs() y se expone, así los
 //   componentes no tienen que pasar el language a cada llamada.
 // =============================================================================
-
-import { createContext, useContext, useMemo } from 'react';
-
-export const DocsContext = createContext(null);
-
-/**
- * Hook para consumir el contexto de documentación.
- * Lanza error si se usa fuera de un DocsProvider (mejor fail-loud que
- * un null pointer silencioso en producción).
- */
-export const useDocs = () => {
-  const ctx = useContext(DocsContext);
-  if (!ctx) {
-    throw new Error('useDocs() debe usarse dentro de un <DocsProvider>');
-  }
-  return ctx;
-};
+import { useMemo } from 'react';
+import { DocsContext } from './docsContext';
 
 /**
  * Provider de documentación.

@@ -5,7 +5,7 @@
 // Cero hardcoded: agregar/quitar indicadores, links o redes es solo editar
 // el JSON correspondiente.
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { getActiveIndicatorIds } from '../data';
 import { MessageCircle, Mail, ShieldCheck } from 'lucide-react';
 import logoSvg from '../assets/logo_logic.svg';

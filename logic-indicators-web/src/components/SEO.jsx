@@ -35,7 +35,7 @@
 
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { resolveImage } from '../data/imageResolver';
 import { SUPPORTED_LANGUAGES } from '../data';
 

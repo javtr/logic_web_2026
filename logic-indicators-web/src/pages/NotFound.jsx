@@ -3,7 +3,7 @@
 // Se muestra si el usuario entra a una URL que no existe
 // (ej. https://tu-app.onrender.com/alguna-ruta-random).
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { SEO } from '../components/SEO';
 
 export const NotFound = () => {

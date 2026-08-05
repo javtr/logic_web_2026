@@ -16,7 +16,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { X, FileQuestion, BookOpen, Mail, MessageCircle } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 
 const WHATSAPP_URL = 'https://wa.me/573113006826';
 

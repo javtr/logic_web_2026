@@ -1,7 +1,7 @@
 // src/pages/Login.jsx
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { Button } from '../components/Button';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import { ArrowLeft, Mail, Key } from 'lucide-react';

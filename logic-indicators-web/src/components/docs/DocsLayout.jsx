@@ -31,7 +31,7 @@ import { DocsTOC } from './DocsTOC';
 import { DocsSearch } from './DocsSearch';
 import { DocsPagination } from './DocsPagination';
 import { LanguageSwitcher } from '../LanguageSwitcher';
-import { useDocs } from '../../context/DocsContext';
+import { useDocs } from '../../context/docsContext';
 
 export const DocsLayout = ({ doc, showHomeButton = false }) => {
   const { getDocsLabel, findDocInStructure, getAdjacentDocs, basePath } = useDocs();

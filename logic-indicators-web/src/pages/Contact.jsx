@@ -1,7 +1,7 @@
 // src/pages/Contact.jsx
 import { motion } from 'framer-motion';
 import { MessageCircle, AtSign, Mail } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 import { ContactForm } from '../components/ContactForm';
 import { SEO } from '../components/SEO';
 

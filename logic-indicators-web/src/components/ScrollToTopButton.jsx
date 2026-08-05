@@ -8,7 +8,7 @@
 
 import { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/languageContext';
 
 // Umbral en píxeles: el botón aparece cuando window.scrollY > este valor.
 // 400px es un buen balance: no aparece en páginas cortas, aparece rápido

@@ -32,7 +32,7 @@
 // `emptyMessage` en lugar de una grilla vacía.
 // =============================================================================
 
-import { useLanguage } from '../../context/LanguageContext';
+import { useLanguage } from '../../context/languageContext';
 import { Button } from '../Button';
 import { ZoomableImage } from '../ImageLightbox';
 import { resolveImage } from '../../data/imageResolver';
