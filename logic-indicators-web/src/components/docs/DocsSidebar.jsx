@@ -8,7 +8,7 @@
 // desde dónde se renderice.
 // =============================================================================
 
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDocs } from '../../context/DocsContext';
 import { ChevronDown } from 'lucide-react';
@@ -25,28 +25,37 @@ export const DocsSidebar = () => {
     cat.items.some(i => i.slug === activeSlug)
   )?.id;
 
-  const [collapsed, setCollapsed] = useState(() => {
-    const initial = {};
-    structure.forEach(cat => {
-      initial[cat.id] = cat.id !== activeCategoryId;
-    });
-    return initial;
-  });
+  // Trackea solo las categorías que el user colapso MANUALMENTE.
+  // El estado final de cada categoría se DERIVA de esto + activeCategoryId
+  // (ver isCategoryCollapsed). Esto elimina el useEffect que antes
+  // sincronizaba setCollapsed con activeCategoryId (anti-patron
+  // 'setState in effect' que causaba re-renders extras).
+  const [userCollapsed, setUserCollapsed] = useState(() => new Set());
 
-  useEffect(() => {
-    if (activeCategoryId) {
-      setCollapsed(prev => ({ ...prev, [activeCategoryId]: false }));
-    }
-  }, [activeCategoryId]);
+  // Una categoría está colapsada si:
+  //   - El user la colapso manualmente, Y
+  //   - No es la categoría activa (la activa siempre se ve).
+  const isCategoryCollapsed = useCallback((catId) => {
+    if (catId === activeCategoryId) return false;
+    return userCollapsed.has(catId);
+  }, [userCollapsed, activeCategoryId]);
 
   const toggleCategory = (id) => {
-    setCollapsed(prev => ({ ...prev, [id]: !prev[id] }));
+    setUserCollapsed(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
   };
 
   return (
     <nav aria-label="Documentation navigation" className="docs-sidebar">
       {structure.map((cat) => {
-        const isCollapsed = collapsed[cat.id];
+        const isCollapsed = isCategoryCollapsed(cat.id);
         const isActiveCategory = cat.id === activeCategoryId;
 
         return (
