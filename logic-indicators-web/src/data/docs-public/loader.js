@@ -10,7 +10,7 @@
 // =============================================================================
 
 import { parseFrontmatter, extractHeadings } from './frontmatter';
-import { DOCS_PUBLIC_STRUCTURE, findDocInPublicStructure } from './structure';
+import { DOCS_PUBLIC_STRUCTURE } from './structure';
 
 // Cargar todos los .md de la carpeta pública en build time.
 const RAW_DOCS = import.meta.glob('/src/docs-public/**/*.md', {
@@ -31,7 +31,7 @@ const INDEX = (() => {
     const match = path.match(/^\/src\/docs-public\/([^/]+)\/(.+)\.md$/);
     if (!match) continue;
 
-    const [, language, slugWithMaybeSubdir] = match;
+    const [, language] = match;
 
     const { data, content } = parseFrontmatter(raw);
     const headings = extractHeadings(content);

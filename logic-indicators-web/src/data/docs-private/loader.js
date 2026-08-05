@@ -12,7 +12,7 @@
 // =============================================================================
 
 import { parseFrontmatter, extractHeadings } from './frontmatter';
-import { DOCS_STRUCTURE, findDocInStructure } from './structure';
+import { DOCS_STRUCTURE } from './structure';
 
 // Cargar todos los .md en build time. Vite resuelve los ?raw como strings.
 // Formato: { '/src/docs-private/en/getting-started.md': '...contenido...', ... }
@@ -35,7 +35,7 @@ const INDEX = (() => {
     const match = path.match(/^\/src\/docs-private\/([^/]+)\/(.+)\.md$/);
     if (!match) continue;
 
-    const [, language, slugWithMaybeSubdir] = match;
+    const [, language] = match;
     // El slug en la URL puede tener subdirectorios: 'indicators/logic-footprint'
     // Pero el path puede ser 'indicators/logic-footprint' o 'logic-footprint'
     // La estructura es nuestra fuente de verdad para los slugs.

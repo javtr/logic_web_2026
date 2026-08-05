@@ -23,7 +23,6 @@
 //   - <md: solo content, sidebar en <details>, TOC oculto
 // =============================================================================
 
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown, ArrowLeft, LayoutDashboard } from 'lucide-react';
 import { DocsSidebar } from './DocsSidebar';
@@ -35,8 +34,7 @@ import { LanguageSwitcher } from '../LanguageSwitcher';
 import { useDocs } from '../../context/DocsContext';
 
 export const DocsLayout = ({ doc, showHomeButton = false }) => {
-  const { getDocsLabel, findDocInStructure, getAdjacentDocs, basePath } = useDocs();
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const { getDocsLabel, getAdjacentDocs, basePath } = useDocs();
 
   if (!doc) {
     return (

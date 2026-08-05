@@ -84,7 +84,6 @@ export const resolveImage = (imageKey) => {
   const image = imageMap[imageKey];
   if (!image) {
     if (import.meta.env.DEV) {
-      // eslint-disable-next-line no-console
       console.warn(`[imageResolver] Unknown imageKey: "${imageKey}". Available: ${Object.keys(imageMap).join(', ')}`);
     }
     // Importación directa: Vite tree-shakea el imageMap pero este asset sigue en el bundle.
