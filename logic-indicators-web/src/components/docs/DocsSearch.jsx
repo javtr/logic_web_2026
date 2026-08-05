@@ -56,17 +56,26 @@ export const DocsSearch = () => {
     return () => window.removeEventListener('keydown', handleKey);
   }, [isOpen]);
 
-  useEffect(() => {
-    if (isOpen) {
-      setQuery('');
-      setSelectedIdx(0);
-      setTimeout(() => inputRef.current?.focus(), 50);
-    }
-  }, [isOpen]);
+  // NOTA: Antes habia 2 useEffects con setState directo que disparaban
+  // re-renders innecesarios (anti-patron de "setState in effect"):
+  //   1) useEffect([isOpen]) -> reseteaba query/selectedIdx al abrir
+  //   2) useEffect([query])  -> reseteaba selectedIdx al cambiar busqueda
+  // Ahora ambos reseteos se hacen en el event handler que dispara el
+  // cambio (openSearch y handleQueryChange), que es donde React espera
+  // que actualices el state.
 
-  useEffect(() => {
+  const openSearch = () => {
+    setQuery('');
     setSelectedIdx(0);
-  }, [query]);
+    setIsOpen(true);
+    // Focus al input DESPUES de que React renderice el modal.
+    setTimeout(() => inputRef.current?.focus(), 50);
+  };
+
+  const handleQueryChange = (e) => {
+    setQuery(e.target.value);
+    setSelectedIdx(0);
+  };
 
   const handleKeyDown = (e) => {
     if (e.key === 'ArrowDown') {
@@ -104,7 +113,7 @@ export const DocsSearch = () => {
   return (
     <>
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={openSearch}
         className="docs-search-trigger inline-flex items-center gap-2 px-3 py-1.5 text-sm text-text-muted bg-dark-800 border border-dark-700 rounded-md hover:border-dark-600 hover:text-text-main transition-colors"
       >
         <Search size={14} />
@@ -129,7 +138,7 @@ export const DocsSearch = () => {
                 ref={inputRef}
                 type="text"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={handleQueryChange}
                 onKeyDown={handleKeyDown}
                 placeholder={getDocsLabel('docs.ui.search.placeholder')}
                 className="flex-1 bg-transparent text-text-main placeholder-text-muted focus:outline-none"
