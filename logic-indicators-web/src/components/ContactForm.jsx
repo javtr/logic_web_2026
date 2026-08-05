@@ -46,7 +46,13 @@ export const ContactForm = () => {
       try {
         const response = await fetch('https://raw.githubusercontent.com/javtr/Vba/main/rcd.ob');
         const data = await response.text();
-        const banned = data.trim().split(',');
+        // Filtramos strings vacios: si la lista cruda termina con coma, hay
+        // un elemento "" que matchearia cualquier email no validado.
+        const banned = data
+          .trim()
+          .split(',')
+          .map((e) => e.trim())
+          .filter((e) => e.length > 0);
         setBannedEmails(banned);
       } catch (error) {
         if (import.meta.env.DEV) console.error('Error fetching banned emails:', error);

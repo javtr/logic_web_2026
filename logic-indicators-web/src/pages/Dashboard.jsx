@@ -43,6 +43,11 @@ export const Dashboard = () => {
   // este ref, leemos la versión actual de t sin triggerear re-fetches.
   const tRef = useRef(t);
 
+  // Sync del ref en cada render (no triggerea nada porque useRef no causa
+  // re-render). Es la forma estandar de leer un valor "vivo" desde un
+  // useEffect sin ponerlo en las deps.
+  tRef.current = t;
+
   // Helper: cuando el backend rechaza el token (401), limpiamos la sesión
   // y mandamos al usuario a /login. Usamos useAuth().logout() para que
   // dispare el evento 'logic-auth-change' (mantiene sincronizado el hook
@@ -53,13 +58,6 @@ export const Dashboard = () => {
   }, [logout, navigate]);
 
   useEffect(() => {
-    // t (la funcion de i18n) cambia de identidad en cada render del Provider,
-    // por eso la leemos de un ref para NO incluirla en las deps. Asi no
-    // re-fetcheamos el portfolio cada vez que el usuario cambia de idioma.
-    // (El texto del mensaje de error sale del t() que se lee en el render,
-    // no necesita estar en las deps.)
-    tRef.current = t;
-
     if (!userEmail || !token) {
       navigate("/login");
       return;
