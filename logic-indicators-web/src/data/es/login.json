@@ -15,6 +15,7 @@
   "verifyingButton": "Verificando...",
   "changeEmailButton": "Volver a intentar con otro correo",
   "otpAttemptsRemaining": "Te quedan {n} intento(s)",
+  "spamWarning": "¿No encuentras el correo? Revisa tu carpeta de spam o correo no deseado — a veces llega ahí.",
   "errors": {
     "emailNotRegistered": "Este correo no está registrado en nuestro sistema.",
     "sendCodeFallback": "Error al enviar el código",

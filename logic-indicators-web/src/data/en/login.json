@@ -15,6 +15,7 @@
   "verifyingButton": "Verifying...",
   "changeEmailButton": "Try again with a different email",
   "otpAttemptsRemaining": "{n} attempt(s) left",
+  "spamWarning": "Can't find the email? Check your spam or junk folder — sometimes it lands there.",
   "errors": {
     "emailNotRegistered": "This email is not registered in our system.",
     "sendCodeFallback": "Error sending the code",
