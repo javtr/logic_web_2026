@@ -38,7 +38,7 @@ const getSafeNext = (raw) => {
 // usar otro browser, etc.). Por eso esto es defense-in-depth, no la
 // primera linea de defensa.
 // =============================================================================
-const RESEND_COOLDOWN_SECONDS = 30;
+const RESEND_COOLDOWN_SECONDS = 60;
 const MAX_OTP_ATTEMPTS = 5;
 const LOCKOUT_DURATION_MS = 10 * 60 * 1000; // 10 minutos (intentos fallidos)
 const RATE_LIMIT_LOCKOUT_MS = 60 * 1000; // 1 minuto (HTTP 429 del backend)
