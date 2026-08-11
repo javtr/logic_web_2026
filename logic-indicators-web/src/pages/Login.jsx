@@ -374,15 +374,13 @@ export const Login = () => {
           )}
         </div>
 
-        {/* Banner amarillo "revisa spam": recordatorio inmediato de que
-            el mail puede caer en spam. Solo aparece en paso 2 (donde
-            el usuario ya pidio el codigo y esta esperando). Caso real
-            reportado por un usuario. */}
-        {step === 2 && (
-          <div className="mt-6">
-            <CheckSpamBanner />
-          </div>
-        )}
+        {/* Banner amarillo "revisa spam": recordatorio proactivo visible
+            en AMBOS pasos del login. Caso real reportado por un usuario
+            (mail cayo en spam y no lo encontro). Mejor tenerlo siempre
+            a la vista que solo cuando el problema ya esta pasando. */}
+        <div className="mt-6">
+          <CheckSpamBanner />
+        </div>
 
         {/* Explicador de 3 pasos (Email → Code → Access). Visible en
             AMBOS pasos del login: educa al usuario sobre el flujo
