@@ -6,6 +6,7 @@ import { Button } from '../components/Button';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import { LoginExplainer } from '../components/login/LoginExplainer';
 import { DidntReceiveCode } from '../components/login/DidntReceiveCode';
+import { CheckSpamBanner } from '../components/login/CheckSpamBanner';
 import { ArrowLeft, Mail, Key } from 'lucide-react';
 
 // =============================================================================
@@ -372,6 +373,16 @@ export const Login = () => {
             </form>
           )}
         </div>
+
+        {/* Banner amarillo "revisa spam": recordatorio inmediato de que
+            el mail puede caer en spam. Solo aparece en paso 2 (donde
+            el usuario ya pidio el codigo y esta esperando). Caso real
+            reportado por un usuario. */}
+        {step === 2 && (
+          <div className="mt-6">
+            <CheckSpamBanner />
+          </div>
+        )}
 
         {/* Explicador de 3 pasos (Email → Code → Access). Visible en
             AMBOS pasos del login: educa al usuario sobre el flujo
