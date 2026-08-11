@@ -374,14 +374,6 @@ export const Login = () => {
           )}
         </div>
 
-        {/* Banner amarillo "revisa spam": recordatorio proactivo visible
-            en AMBOS pasos del login. Caso real reportado por un usuario
-            (mail cayo en spam y no lo encontro). Mejor tenerlo siempre
-            a la vista que solo cuando el problema ya esta pasando. */}
-        <div className="mt-6">
-          <CheckSpamBanner />
-        </div>
-
         {/* Explicador de 3 pasos (Email → Code → Access). Visible en
             AMBOS pasos del login: educa al usuario sobre el flujo
             completo antes y despues de pedir el codigo. */}
@@ -396,6 +388,15 @@ export const Login = () => {
             <DidntReceiveCode />
           </div>
         )}
+
+        {/* Banner amarillo "revisa spam": recordatorio proactivo al FINAL
+            de todo, en AMBOS pasos del login. Caso real reportado por un
+            usuario (mail cayo en spam y no lo encontro). Es el ultimo
+            elemento visible para que el usuario lo vea justo antes de
+            revisar su mail. */}
+        <div className="mt-6">
+          <CheckSpamBanner />
+        </div>
       </div>
     </div>
   );
