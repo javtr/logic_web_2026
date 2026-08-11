@@ -4,7 +4,9 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useLanguage } from '../context/languageContext';
 import { Button } from '../components/Button';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
-import { ArrowLeft, Mail, Key, AlertTriangle } from 'lucide-react';
+import { LoginExplainer } from '../components/login/LoginExplainer';
+import { DidntReceiveCode } from '../components/login/DidntReceiveCode';
+import { ArrowLeft, Mail, Key } from 'lucide-react';
 
 // =============================================================================
 // OPEN-REDIRECT PROTECTION
@@ -328,17 +330,6 @@ export const Login = () => {
                 )}
               </div>
 
-              {/* Banner de advertencia: revisar spam. Aparece solo en el paso 2
-                  (despues de enviar el codigo) para que el usuario sepa donde
-                  buscar el mail. Caso real reportado por un usuario. */}
-              <div
-                role="note"
-                className="flex items-start gap-2.5 p-3 rounded-lg bg-yellow-500/10 border border-yellow-500/30 text-yellow-200 text-xs leading-relaxed"
-              >
-                <AlertTriangle size={16} className="shrink-0 mt-0.5 text-yellow-400" aria-hidden="true" />
-                <span>{t('login.spamWarning')}</span>
-              </div>
-
               {error && <div className="bg-red-500/10 border border-red-500/50 text-red-500 text-sm p-3 rounded-lg text-center">{error}</div>}
 
               <Button
@@ -381,6 +372,21 @@ export const Login = () => {
             </form>
           )}
         </div>
+
+        {/* Explicador de 3 pasos (Email → Code → Access). Visible en
+            AMBOS pasos del login: educa al usuario sobre el flujo
+            completo antes y despues de pedir el codigo. */}
+        <LoginExplainer />
+
+        {/* Banner "Didn't receive the code?": solo aparece en paso 2
+            (despues de enviar el codigo), donde tiene sentido la
+            advertencia. Reemplaza al banner amarillo de spam anterior
+            porque es mas completo (incluye sugerencia de contactar soporte). */}
+        {step === 2 && (
+          <div className="mt-6">
+            <DidntReceiveCode />
+          </div>
+        )}
       </div>
     </div>
   );

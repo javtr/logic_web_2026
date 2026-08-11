@@ -16,6 +16,27 @@
   "changeEmailButton": "Volver a intentar con otro correo",
   "otpAttemptsRemaining": "Te quedan {n} intento(s)",
   "spamWarning": "¿No encuentras el correo? Revisa tu carpeta de spam o correo no deseado — a veces llega ahí.",
+  "howItWorks": {
+    "title": "¿Cómo funciona?",
+    "steps": [
+      {
+        "title": "Correo",
+        "description": "Escribe el correo de tu compra."
+      },
+      {
+        "title": "Código",
+        "description": "Recibirás el código en tu bandeja de entrada."
+      },
+      {
+        "title": "Acceso",
+        "description": "Entra directamente al panel de miembros."
+      }
+    ]
+  },
+  "didntReceiveCode": {
+    "title": "¿No recibiste el código?",
+    "description": "Revisa tu carpeta de spam o promociones. Si aún no lo encuentras, contacta a nuestro equipo de soporte."
+  },
   "errors": {
     "emailNotRegistered": "Este correo no está registrado en nuestro sistema.",
     "sendCodeFallback": "Error al enviar el código",

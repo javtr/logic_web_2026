@@ -16,6 +16,27 @@
   "changeEmailButton": "Try again with a different email",
   "otpAttemptsRemaining": "{n} attempt(s) left",
   "spamWarning": "Can't find the email? Check your spam or junk folder — sometimes it lands there.",
+  "howItWorks": {
+    "title": "How does it work?",
+    "steps": [
+      {
+        "title": "Email",
+        "description": "Write the email of your purchase."
+      },
+      {
+        "title": "Code",
+        "description": "You will receive the code in your inbox."
+      },
+      {
+        "title": "Access",
+        "description": "Enter directly to the members panel."
+      }
+    ]
+  },
+  "didntReceiveCode": {
+    "title": "Didn't receive the code?",
+    "description": "Check your spam or promotions folder. If you still can't find it, contact our support team."
+  },
   "errors": {
     "emailNotRegistered": "This email is not registered in our system.",
     "sendCodeFallback": "Error sending the code",
