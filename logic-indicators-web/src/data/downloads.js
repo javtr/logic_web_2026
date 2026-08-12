@@ -74,7 +74,7 @@ export const SYSTEM_PRODUCTS = ['LOGIC_CONFIGURATIONS', 'LOGIC_ENGINE'];
  * del value.
  */
 export const PRODUCTS = {
-  'LOGIC_PACK_BASICO':    { url: 'https://download.logicindicators.com/LOF_Suite_Beta_05_01.zip', displayName: 'Logic Pack Beta V05', category: 'pack' },
+  'LOGIC_PACK_BASICO':    { url: 'https://download.logicindicators.com/LOF_Suite_Beta_05_01.zip', displayName: 'Logic Pack Beta V05.01', category: 'pack' },
   'LOGIC_PACK_DEPTH':     { url: 'https://download.logicindicators.com/LOF_Suite_Depth_Beta_01.zip', displayName: 'Logic Depth Pack V01', category: 'pack' },
   'LOGIC_FOOTPRINT':      { url: 'https://download.logicindicators.com/lof_footprint.zip',  category: 'individual' },
   'LOGIC_FOOTER':         { url: 'https://download.logicindicators.com/lof_footer.zip',     category: 'individual' },
