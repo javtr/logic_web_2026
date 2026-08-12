@@ -33,13 +33,14 @@
     "emptyState": "You have no active products.",
     "yourProductsLabel": "Your products",
     "systemConfig": {
-      "title": "Basic System Configuration",
-      "subtitle": "Install these two indicators before any other. They are the base files the system needs to function.",
+      "title": "Core file",
+      "subtitle": "Install this core file first before any other. It contains the base system that all Logic Indicators need to function correctly.",
       "installFirstBadge": "Install this first",
       "requiredBadge": "Required",
       "productNames": {
         "configurations": "Configurations",
-        "engine": "Engine"
+        "engine": "Engine",
+        "core": "Core file"
       }
     }
   },

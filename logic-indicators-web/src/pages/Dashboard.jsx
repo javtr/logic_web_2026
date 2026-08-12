@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, HelpCircle, AlertCircle, Info } from "lucide-react";
-import { getDownloadUrl, getDisplayName, getProductCategory, SYSTEM_PRODUCTS, applyUnlocks } from "../data/downloads";
+import { getDownloadUrl, getDisplayName, getProductCategory, CORE_FILE, applyUnlocks } from "../data/downloads";
 import { useLanguage } from '../context/languageContext';
 import { useAuth } from "../hooks/useAuth";
 
@@ -122,14 +122,15 @@ export const Dashboard = () => {
 
   // ===========================================================================
   // LOGICA DE PRODUCTOS — derivamos visibilidad segun la regla de negocio:
-  //   - Productos del sistema (configurations + engine) NO son parte de la
-  //     compra del usuario. Se muestran automaticamente como sub-seccion
-  //     "Configuracion basica del sistema" SOLO cuando el usuario tiene
-  //     al menos un indicador individual ACTIVO y ningun pack activo.
-  //   - Los productos del sistema se filtran del listado de "Tus productos"
-  //     para que no aparezcan duplicados (su seccion propia se encarga).
+  //   - El Archivo Core (CORE_FILE) NO es parte de la compra del usuario.
+  //     Se muestra automaticamente arriba de "Tus productos" para CUALQUIER
+  //     usuario con al menos un producto (activo o vencido) — todos tienen
+  //     que instalar el core antes que cualquier otro archivo.
+  //   - Los productos con categoria 'system' (LOGIC_CONFIGURATIONS,
+  //     LOGIC_ENGINE) se filtran del listado de "Tus productos" para que
+  //     no aparezcan duplicados. Quedan en PRODUCTS por compat historica.
   //   - Productos vencidos siguen apareciendo en "Tus productos" con el
-  //     boton Renovar, pero NO disparan la seccion de sistema base.
+  //     boton Renovar, y SI disparan la seccion del Core (es universal).
   //   - applyUnlocks(): enriquece la lista con los pares que se venden
   //     juntos (Volume Profile <-> Composite, Footprint <-> Footer).
   //     Es la primera transformacion para que el resto de la logica
@@ -142,18 +143,20 @@ export const Dashboard = () => {
   const packs = activos.filter((p) => getProductCategory(p.nombre_producto) === 'pack');
   const individuales = activos.filter((p) => getProductCategory(p.nombre_producto) === 'individual');
 
-  // Sub-seccion sistema: solo si hay individuales activos y NO hay packs activos.
-  const showSystemConfig = individuales.length > 0 && packs.length === 0;
+  // Sub-seccion Core: para CUALQUIER usuario con al menos un producto
+  // (activo o vencido). El Core es un pre-requisito universal, no
+  // depende del tipo de producto.
+  const showCore = productos.length > 0;
 
-  // Productos del usuario (excluyendo los del sistema, que tienen su propia
-  // sub-seccion). Se listan todos (activos + vencidos) — los vencidos muestran
-  // el boton Renovar.
+  // Productos del usuario (excluyendo los del sistema, que quedan en PRODUCTS
+  // por compat historica pero no se renderizan). Se listan todos
+  // (activos + vencidos) — los vencidos muestran el boton Renovar.
   const productosVisibles = productos.filter(
     (p) => getProductCategory(p.nombre_producto) !== 'system',
   );
 
-  // Empty state solo si NO hay contenido visible: ni sistema base ni productos.
-  const hasVisibleContent = showSystemConfig || productosVisibles.length > 0;
+  // Empty state solo si NO hay contenido visible: ni Core ni productos.
+  const hasVisibleContent = showCore || productosVisibles.length > 0;
 
   const handleStartEdit = () => {
     setStatus({ type: "", msg: "" });
@@ -315,10 +318,11 @@ export const Dashboard = () => {
             </p>
           ) : (
             <>
-              {/* Sub-seccion: Configuracion basica del sistema.
-                  Solo se muestra cuando el usuario tiene indicadores individuales
-                  activos y ningun pack activo (el pack ya trae el sistema base). */}
-              {showSystemConfig && (
+              {/* Sub-seccion: Archivo Core.
+                  Se muestra para CUALQUIER usuario con al menos un producto
+                  (activo o vencido). El Core es un pre-requisito universal
+                  que se debe instalar antes que cualquier otro archivo. */}
+              {showCore && (
                 <div className="mb-6 p-4 md:p-5 bg-accent-secondary/5 border border-accent-secondary/30 rounded-xl">
                   <div className="flex items-center gap-2 mb-2">
                     <Info size={18} className="text-accent-secondary shrink-0" />
@@ -333,53 +337,41 @@ export const Dashboard = () => {
                     {t('dashboard.products.systemConfig.installFirstBadge')}
                   </span>
                   <ul className="space-y-3">
-                    {SYSTEM_PRODUCTS.map((nombreProducto) => {
-                      const url = getDownloadUrl(nombreProducto);
-                      // El nombre del producto del sistema viene de i18n.
-                      // Determinamos la "kind" segun el codigo del producto.
-                      const kind =
-                        nombreProducto === 'LOGIC_CONFIGURATIONS'
-                          ? 'configurations'
-                          : 'engine';
-                      const displayName =
-                        t(`dashboard.products.systemConfig.productNames.${kind}`) ||
-                        getDisplayName(nombreProducto) ||
-                        nombreProducto;
-
-                      return (
-                        <li
-                          key={nombreProducto}
-                          className="p-3 md:p-4 bg-dark-900 border border-accent-secondary/30 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors"
-                        >
-                          <div className="min-w-0 flex-1">
-                            <p className="text-text-main font-semibold text-sm truncate mb-1">
-                              {displayName}
-                            </p>
-                            <span className="text-xs text-accent-secondary font-medium">
-                              {t('dashboard.products.systemConfig.requiredBadge')}
-                            </span>
-                          </div>
-                          {url && (
-                            <a
-                              href={url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-xs bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full hover:bg-accent-secondary hover:text-dark-900 transition-all font-bold whitespace-nowrap text-center"
-                            >
-                              {t('dashboard.products.downloadButton')}
-                            </a>
-                          )}
-                        </li>
-                      );
-                    })}
+                    {/*
+                      Bloque unico para el Core. Antes aca se iteraba sobre
+                      SYSTEM_PRODUCTS (Configurations + Engine) pero ahora
+                      el Core es un unico archivo estatico que todos los
+                      usuarios tienen que instalar primero.
+                    */}
+                    <li
+                      key="core"
+                      className="p-3 md:p-4 bg-dark-900 border border-accent-secondary/30 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors"
+                    >
+                      <div className="min-w-0 flex-1">
+                        <p className="text-text-main font-semibold text-sm truncate mb-1">
+                          {t('dashboard.products.systemConfig.productNames.core')}
+                        </p>
+                        <span className="text-xs text-accent-secondary font-medium">
+                          {t('dashboard.products.systemConfig.requiredBadge')}
+                        </span>
+                      </div>
+                      <a
+                        href={CORE_FILE.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full hover:bg-accent-secondary hover:text-dark-900 transition-all font-bold whitespace-nowrap text-center"
+                      >
+                        {t('dashboard.products.downloadButton')}
+                      </a>
+                    </li>
                   </ul>
                 </div>
               )}
 
-              {/* Label "Tus productos" — solo si la sub-seccion de sistema esta
-                  visible y ademas hay productos que listar. Separa visualmente
-                  "instala esto primero" de "lo que compraste". */}
-              {showSystemConfig && productosVisibles.length > 0 && (
+              {/* Label "Tus productos" — solo si hay productos que listar abajo
+                  del Core. Separa visualmente "instala esto primero" de
+                  "lo que compraste". */}
+              {productosVisibles.length > 0 && (
                 <h3 className="text-xs uppercase tracking-wider text-text-muted font-bold mb-3">
                   {t('dashboard.products.yourProductsLabel')}
                 </h3>

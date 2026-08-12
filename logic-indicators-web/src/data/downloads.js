@@ -69,13 +69,29 @@ export const PRODUCT_CATEGORY = {
 export const SYSTEM_PRODUCTS = ['LOGIC_CONFIGURATIONS', 'LOGIC_ENGINE'];
 
 /**
+ * Archivo Core del sistema. Unico, estatico, sin clave de producto.
+ * Lo descarga TODO usuario con al menos un producto (activo o vencido)
+ * antes de instalar cualquier otro archivo del suite.
+ *
+ * No es un producto del backend: no aparece en productos_activos.
+ * El dashboard lo renderiza como pre-requisito universal dentro del
+ * card de "Tus Productos", en la misma sub-seccion donde antes se
+ * listaban los productos del sistema.
+ */
+export const CORE_FILE = {
+  url: 'https://download.logicindicators.com/LOF_Core_Beta_05_02.zip',
+  version: 'Beta V05.02',
+  required: true,
+};
+
+/**
  * Catalogo de productos. Cada key es el `nombre_producto` que viene
  * del backend. Ver comentario al inicio del archivo para la forma
  * del value.
  */
 export const PRODUCTS = {
-  'LOGIC_PACK_BASICO':    { url: 'https://download.logicindicators.com/LOF_Suite_Beta_05_01.zip', displayName: 'Logic Pack Beta V05.01', category: 'pack' },
-  'LOGIC_PACK_DEPTH':     { url: 'https://download.logicindicators.com/LOF_Suite_Depth_Beta_01.zip', displayName: 'Logic Depth Pack V01', category: 'pack' },
+  'LOGIC_PACK_BASICO':    { url: 'https://download.logicindicators.com/LOF_Suite_Beta_05_02.zip', displayName: 'Logic Pack Beta V05.02', category: 'pack' },
+  'LOGIC_PACK_DEPTH':     { url: 'https://download.logicindicators.com/LOF_Suite_Depth_Beta_02.zip', displayName: 'Logic Depth Pack V0.1', category: 'pack' },
   'LOGIC_FOOTPRINT':      { url: 'https://download.logicindicators.com/lof_footprint.zip',  category: 'individual' },
   'LOGIC_FOOTER':         { url: 'https://download.logicindicators.com/lof_footer.zip',     category: 'individual' },
   'LOGIC_VOLUMEPROFILE':  { url: 'https://download.logicindicators.com/lof_profile.zip',     category: 'individual' },
