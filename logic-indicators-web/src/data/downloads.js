@@ -161,11 +161,11 @@ export const PRODUCTS = {
   'LOGIC_PACK_FULL':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_FullPack_Beta_05_03.zip',  displayName: 'Logic Full Pack Beta V05.03', category: 'pack' },
   'LOGIC_FOOTPRINT':      { url: 'https://download.logicindicators.com/lof_footprint.zip',  category: 'individual' },
   'LOGIC_FOOTER':         { url: 'https://download.logicindicators.com/lof_footer.zip',     category: 'individual' },
-  'LOGIC_VOLUMEPROFILE':  { url: 'https://download.logicindicators.com/lof_profile.zip',     category: 'individual' },
+  'LOGIC_VOLUMEPROFILE':  { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Profile.zip', displayName: 'Logic Profile', category: 'individual' },
   'LOGIC_BIGTRADES':      { url: 'https://download.logicindicators.com/lof_bigtrades.zip',   category: 'individual' },
   'LOGIC_ANALYTICS':      { url: 'https://download.logicindicators.com/lof_analytics.zip',   category: 'individual' },
   'LOGIC_ALGORITHMS':     { url: 'https://download.logicindicators.com/lof_algorithms.zip',  category: 'individual' },
-  'LOGIC_COMPOSITE':      { url: 'https://download.logicindicators.com/lof_composite.zip',   category: 'individual' },
+  'LOGIC_COMPOSITE':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Composite.zip', displayName: 'Logic Composite',  category: 'individual' },
   'LOGIC_CONFIGURATIONS': { url: 'https://download.logicindicators.com/lof_configurations.zip', displayName: 'Configurations', category: 'system' },
   'LOGIC_ENGINE':         { url: 'https://download.logicindicators.com/lof_engine.zip',         displayName: 'Engine',         category: 'system' },
 };
