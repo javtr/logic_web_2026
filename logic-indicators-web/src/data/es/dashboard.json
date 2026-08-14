@@ -33,14 +33,14 @@
     "emptyState": "No tienes productos activos asociados.",
     "yourProductsLabel": "Tus productos",
     "systemConfig": {
-      "title": "Archivo Core",
-      "subtitle": "Instala este archivo Core primero, antes que cualquier otro. Contiene el sistema base que todos los Logic Indicators necesitan para funcionar correctamente.",
+      "title": "Archivos necesarios",
+      "subtitle": "Instala estos archivos primero, antes que cualquier otro. Contienen el sistema base que todos los Logic Indicators necesitan para funcionar correctamente.",
       "installFirstBadge": "Instala esto primero",
       "requiredBadge": "Requerido",
       "productNames": {
         "configurations": "Configuraciones",
-        "engine": "Engine",
-        "core": "Archivo Core"
+        "engine": "Logic Engine Beta V05.03",
+        "core": "Logic Core Beta V05.03"
       }
     }
   },

@@ -33,14 +33,14 @@
     "emptyState": "You have no active products.",
     "yourProductsLabel": "Your products",
     "systemConfig": {
-      "title": "Core file",
-      "subtitle": "Install this core file first before any other. It contains the base system that all Logic Indicators need to function correctly.",
+      "title": "Prerequisites",
+      "subtitle": "Install these files first, before any other. They contain the base system that all Logic Indicators need to function correctly.",
       "installFirstBadge": "Install this first",
       "requiredBadge": "Required",
       "productNames": {
         "configurations": "Configurations",
-        "engine": "Engine",
-        "core": "Core file"
+        "engine": "Logic Engine Beta V05.03",
+        "core": "Logic Core Beta V05.03"
       }
     }
   },

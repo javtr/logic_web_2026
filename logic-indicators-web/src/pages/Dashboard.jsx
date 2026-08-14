@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, HelpCircle, AlertCircle, Info } from "lucide-react";
-import { getDownloadUrl, getDisplayName, getProductCategory, CORE_FILE, applyUnlocks } from "../data/downloads";
+import { getDownloadUrl, getDisplayName, getProductCategory, applyUnlocks, getPrerequisites } from "../data/downloads";
 import { useLanguage } from '../context/languageContext';
 import { useAuth } from "../hooks/useAuth";
 
@@ -122,15 +122,18 @@ export const Dashboard = () => {
 
   // ===========================================================================
   // LOGICA DE PRODUCTOS — derivamos visibilidad segun la regla de negocio:
-  //   - El Archivo Core (CORE_FILE) NO es parte de la compra del usuario.
-  //     Se muestra automaticamente arriba de "Tus productos" para CUALQUIER
-  //     usuario con al menos un producto (activo o vencido) — todos tienen
-  //     que instalar el core antes que cualquier otro archivo.
+  //   - Los archivos pre-requisito (Core, Engine, ambos, o nada) NO son
+  //     parte de la compra del usuario. Se muestran arriba de "Tus
+  //     productos" segun la combinacion que tenga habilitada. La logica
+  //     completa (reglas) vive en getPrerequisites() en downloads.js.
+  //     Esta pagina solo llama el helper y renderiza el array resultante.
   //   - Los productos con categoria 'system' (LOGIC_CONFIGURATIONS,
   //     LOGIC_ENGINE) se filtran del listado de "Tus productos" para que
   //     no aparezcan duplicados. Quedan en PRODUCTS por compat historica.
   //   - Productos vencidos siguen apareciendo en "Tus productos" con el
-  //     boton Renovar, y SI disparan la seccion del Core (es universal).
+  //     boton Renovar, y SI disparan la seccion de pre-requisitos (la
+  //     logica en getPrerequisites considera cualquier producto, activo
+  //     o no).
   //   - applyUnlocks(): enriquece la lista con los pares que se venden
   //     juntos (Volume Profile <-> Composite, Footprint <-> Footer).
   //     Es la primera transformacion para que el resto de la logica
@@ -143,10 +146,10 @@ export const Dashboard = () => {
   const packs = activos.filter((p) => getProductCategory(p.nombre_producto) === 'pack');
   const individuales = activos.filter((p) => getProductCategory(p.nombre_producto) === 'individual');
 
-  // Sub-seccion Core: para CUALQUIER usuario con al menos un producto
-  // (activo o vencido). El Core es un pre-requisito universal, no
-  // depende del tipo de producto.
-  const showCore = productos.length > 0;
+  // Lista de pre-requisitos a mostrar (Core, Engine, ambos, o []). La
+  // logica de combinacion vive en getPrerequisites() — si cambia una
+  // regla, se modifica solo ahi.
+  const prerequisites = getPrerequisites(productos);
 
   // Productos del usuario (excluyendo los del sistema, que quedan en PRODUCTS
   // por compat historica pero no se renderizan). Se listan todos
@@ -155,8 +158,8 @@ export const Dashboard = () => {
     (p) => getProductCategory(p.nombre_producto) !== 'system',
   );
 
-  // Empty state solo si NO hay contenido visible: ni Core ni productos.
-  const hasVisibleContent = showCore || productosVisibles.length > 0;
+  // Empty state solo si NO hay contenido visible: ni pre-requisitos ni productos.
+  const hasVisibleContent = prerequisites.length > 0 || productosVisibles.length > 0;
 
   const handleStartEdit = () => {
     setStatus({ type: "", msg: "" });
@@ -318,11 +321,11 @@ export const Dashboard = () => {
             </p>
           ) : (
             <>
-              {/* Sub-seccion: Archivo Core.
-                  Se muestra para CUALQUIER usuario con al menos un producto
-                  (activo o vencido). El Core es un pre-requisito universal
-                  que se debe instalar antes que cualquier otro archivo. */}
-              {showCore && (
+              {/* Sub-seccion: Pre-requisitos.
+                  La lista de archivos a mostrar la decide getPrerequisites()
+                  en downloads.js segun la combinacion de productos del
+                  usuario. Esta UI solo renderiza lo que el helper devuelve. */}
+              {prerequisites.length > 0 && (
                 <div className="mb-6 p-4 md:p-5 bg-accent-secondary/5 border border-accent-secondary/30 rounded-xl">
                   <div className="flex items-center gap-2 mb-2">
                     <Info size={18} className="text-accent-secondary shrink-0" />
@@ -337,33 +340,29 @@ export const Dashboard = () => {
                     {t('dashboard.products.systemConfig.installFirstBadge')}
                   </span>
                   <ul className="space-y-3">
-                    {/*
-                      Bloque unico para el Core. Antes aca se iteraba sobre
-                      SYSTEM_PRODUCTS (Configurations + Engine) pero ahora
-                      el Core es un unico archivo estatico que todos los
-                      usuarios tienen que instalar primero.
-                    */}
-                    <li
-                      key="core"
-                      className="p-3 md:p-4 bg-dark-900 border border-accent-secondary/30 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors"
-                    >
-                      <div className="min-w-0 flex-1">
-                        <p className="text-text-main font-semibold text-sm truncate mb-1">
-                          {t('dashboard.products.systemConfig.productNames.core')}
-                        </p>
-                        <span className="text-xs text-accent-secondary font-medium">
-                          {t('dashboard.products.systemConfig.requiredBadge')}
-                        </span>
-                      </div>
-                      <a
-                        href={CORE_FILE.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full hover:bg-accent-secondary hover:text-dark-900 transition-all font-bold whitespace-nowrap text-center"
+                    {prerequisites.map((file) => (
+                      <li
+                        key={file.key}
+                        className="p-3 md:p-4 bg-dark-900 border border-accent-secondary/30 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors"
                       >
-                        {t('dashboard.products.downloadButton')}
-                      </a>
-                    </li>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-text-main font-semibold text-sm truncate mb-1">
+                            {t(`dashboard.products.systemConfig.productNames.${file.key}`)}
+                          </p>
+                          <span className="text-xs text-accent-secondary font-medium">
+                            {t('dashboard.products.systemConfig.requiredBadge')}
+                          </span>
+                        </div>
+                        <a
+                          href={file.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full hover:bg-accent-secondary hover:text-dark-900 transition-all font-bold whitespace-nowrap text-center"
+                        >
+                          {t('dashboard.products.downloadButton')}
+                        </a>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               )}

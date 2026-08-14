@@ -70,18 +70,84 @@ export const SYSTEM_PRODUCTS = ['LOGIC_CONFIGURATIONS', 'LOGIC_ENGINE'];
 
 /**
  * Archivo Core del sistema. Unico, estatico, sin clave de producto.
- * Lo descarga TODO usuario con al menos un producto (activo o vencido)
- * antes de instalar cualquier otro archivo del suite.
+ * Pre-requisito universal: lo instala todo usuario que NO tenga un
+ * pack completo (BasicPack o FullPack), independientemente de que
+ * tenga individuales o DepthPack.
  *
  * No es un producto del backend: no aparece en productos_activos.
- * El dashboard lo renderiza como pre-requisito universal dentro del
- * card de "Tus Productos", en la misma sub-seccion donde antes se
- * listaban los productos del sistema.
+ * El dashboard lo renderiza segun la logica de getPrerequisites().
  */
 export const CORE_FILE = {
-  url: 'https://download.logicindicators.com/LOF_Core_Beta_05_02.zip',
-  version: 'Beta V05.02',
-  required: true,
+  url: 'https://download.logicindicators.com/LOF_3_0/LOF_Core_Beta_05_03.zip',
+  version: 'Beta V05.03',
+  key: 'core',
+};
+
+/**
+ * Archivo Engine del sistema. Unico, estatico, sin clave de producto.
+ * Pre-requisito adicional al Core: se muestra cuando el usuario tiene
+ * indicadores individuales (con o sin DepthPack). El DepthPack solo
+ * NO requiere Engine, pero combinado con individuales si.
+ *
+ * No es un producto del backend: no aparece en productos_activos.
+ * La decision de mostrarlo vive en getPrerequisites().
+ */
+export const ENGINE_FILE = {
+  url: 'https://download.logicindicators.com/LOF_3_0/LOF_Engine_Beta_05_03.zip',
+  version: 'Beta V05.03',
+  key: 'engine',
+};
+
+/**
+ * Determina qué archivos pre-requisito debe mostrar el dashboard
+ * arriba de "Tus productos", según la combinación de productos del
+ * usuario. Devuelve un array de archivos (Core, Engine, ambos, o
+ * vacío) en el orden en que se deben listar.
+ *
+ * Reglas (leer de arriba a abajo — la primera que matchea gana):
+ *
+ *   1. BasicPack o FullPack: el pack ya trae todo, no se muestra
+ *      ningún pre-requisito. (El usuario NO ve la sección.)
+ *
+ *   2. Con indicadores individuales (con o sin DepthPack): el
+ *      usuario ve Core + Engine.
+ *
+ *   3. Solo DepthPack (sin packs completos ni individuales): el
+ *      usuario ve solo Core.
+ *
+ *   4. Sin productos: array vacío (no hay sección).
+ *
+ * Esta función es la única fuente de verdad para la decisión. Si en
+ * el futuro cambia una regla, se modifica acá y el Dashboard se
+ * entera solo (no tiene lógica de combinación propia).
+ *
+ * @param {Array<{nombre_producto: string}>} productos
+ *   Lista de productos del usuario (post applyUnlocks).
+ * @returns {Array<{url: string, version: string, key: string}>}
+ *   Pre-requisitos a mostrar, en orden de aparición.
+ */
+export const getPrerequisites = (productos) => {
+  if (!Array.isArray(productos) || productos.length === 0) return [];
+
+  const nombres = new Set(productos.map((p) => p.nombre_producto));
+
+  // Regla 1: BasicPack o FullPack -> el pack ya trae todo.
+  if (nombres.has('LOGIC_PACK_BASICO') || nombres.has('LOGIC_FULL_PACK')) {
+    return [];
+  }
+
+  const tieneIndividuales = productos.some(
+    (p) => getProductCategory(p.nombre_producto) === 'individual',
+  );
+
+  // Regla 2: con individuales -> Core + Engine.
+  if (tieneIndividuales) return [CORE_FILE, ENGINE_FILE];
+
+  // Regla 3: solo DepthPack -> solo Core.
+  if (nombres.has('LOGIC_PACK_DEPTH')) return [CORE_FILE];
+
+  // Regla 4: sin nada matchea -> array vacío.
+  return [];
 };
 
 /**
@@ -90,8 +156,9 @@ export const CORE_FILE = {
  * del value.
  */
 export const PRODUCTS = {
-  'LOGIC_PACK_BASICO':    { url: 'https://download.logicindicators.com/LOF_Suite_Beta_05_02.zip', displayName: 'Logic Pack Beta V05.02', category: 'pack' },
-  'LOGIC_PACK_DEPTH':     { url: 'https://download.logicindicators.com/LOF_Suite_Depth_Beta_02.zip', displayName: 'Logic Depth Pack V0.1', category: 'pack' },
+  'LOGIC_PACK_BASICO':    { url: 'https://download.logicindicators.com/LOF_3_0/LOF_BasicPack_Beta_05_03.zip', displayName: 'Logic Pack Beta V05.03', category: 'pack' },
+  'LOGIC_PACK_DEPTH':     { url: 'https://download.logicindicators.com/LOF_3_0/LOF_DepthPack_Beta_05_03.zip', displayName: 'Logic Depth Pack Beta V0.1', category: 'pack' },
+  'LOGIC_PACK_FULL':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_FullPack_Beta_05_03.zip',  displayName: 'Logic Full Pack Beta V05.03', category: 'pack' },
   'LOGIC_FOOTPRINT':      { url: 'https://download.logicindicators.com/lof_footprint.zip',  category: 'individual' },
   'LOGIC_FOOTER':         { url: 'https://download.logicindicators.com/lof_footer.zip',     category: 'individual' },
   'LOGIC_VOLUMEPROFILE':  { url: 'https://download.logicindicators.com/lof_profile.zip',     category: 'individual' },
