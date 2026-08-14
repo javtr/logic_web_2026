@@ -24,6 +24,10 @@
     "title": "Indicadores de Order Flow Gratuitos - Descarga para NinjaTrader 8",
     "description": "Descargá indicadores gratuitos de order flow y análisis de volumen para NinjaTrader 8. Probá la calidad de nuestro desarrollo antes de comprar la suite completa. Sin registro."
   },
+  "presets": {
+    "title": "Plantillas de Indicadores - Templates XML para NinjaTrader 8",
+    "description": "Descargá plantillas XML preconfiguradas para nuestros indicadores de order flow. Importalas en NinjaTrader 8 y empezá a operar en segundos con los ajustes visuales y técnicos óptimos."
+  },
   "contact": {
     "title": "Contacto - Logic Indicators",
     "description": "¿Preguntas sobre nuestros indicadores de order flow, licencias o alianzas? Escribinos por Discord, Instagram o correo electrónico. Respondemos en menos de 24 horas."

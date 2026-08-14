@@ -26,9 +26,16 @@ import { useState } from 'react';
 import { useLanguage } from '../../context/languageContext';
 import { Button } from '../Button';
 import { ToggleSwitch } from '../ToggleSwitch';
-import { CheckCircle2, GraduationCap } from 'lucide-react';
+import { CheckCircle2, GraduationCap, Headphones } from 'lucide-react';
 
 const CURRENCY_SYMBOL = '$';
+
+// Mapa de iconos para los "extras" del plan (features que no son
+// indicadores, p.ej. soporte tecnico). Si agregas un extra nuevo en
+// pricing.json con un icon nuevo, agregalo aca tambien.
+const EXTRA_ICONS = {
+  support: Headphones,
+};
 
 // -----------------------------------------------------------------------------
 // PricingCard — card individual. No sabe si viene de un array (EN) o del toggle
@@ -83,6 +90,23 @@ const PricingCard = ({ plan, t, bestValueText }) => {
             <span>{t(`indicators.${indicatorId}.name`)}</span>
           </li>
         ))}
+
+        {/* Extras del plan (features no-indicador, p.ej. soporte tecnico).
+            Se renderizan en la misma <ul> que los indicators, separados
+            visualmente por el icono distinto (LifeBuoy en vez de check). */}
+        {Array.isArray(plan.extras) && plan.extras.map((extra, i) => {
+          const Icon = EXTRA_ICONS[extra.icon];
+          if (!Icon) return null;
+          return (
+            <li key={`extra-${i}`} className="flex items-center gap-3 text-sm">
+              <Icon
+                size={16}
+                className={highlighted ? 'text-accent-primary shrink-0' : 'text-accent-secondary shrink-0'}
+              />
+              <span>{t(`pricing.extras.${extra.icon}`)}</span>
+            </li>
+          );
+        })}
       </ul>
 
       {/* Plus content — solo en planes Plus (ES). Lista de cursos. */}

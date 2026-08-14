@@ -10,13 +10,17 @@
   "plusContentTitle": "Plus Content (Courses Included)",
   "installmentsTitle": "Installments",
 
+  "extras": {
+    "support": "Technical Support"
+  },
+
   "plans": [
     {
       "id": "annual",
       "name": "Annual",
       "billingLabel": "per year",
-      "price": 390,
-      "crossedPrice": 645,
+      "price": 468,
+      "crossedPrice": 748,
       "highlighted": false,
       "cta": "Choose Annual",
       "indicators": [
@@ -28,14 +32,17 @@
         "analytics",
         "algorithms"
       ],
+      "extras": [
+        { "icon": "support" }
+      ],
       "checkoutUrl": "https://example.com/checkout/annual"
     },
     {
       "id": "lifetime",
       "name": "Lifetime",
       "billingLabel": "one-time payment",
-      "price": 590,
-      "crossedPrice": 985,
+      "price": 737,
+      "crossedPrice": 1091,
       "highlighted": true,
       "cta": "Choose Lifetime",
       "indicators": [
@@ -47,8 +54,11 @@
         "analytics",
         "algorithms"
       ],
+      "extras": [
+        { "icon": "support" }
+      ],
       "installments": {
-        "text": "5 payments of $125",
+        "text": "6 payments of $125",
         "disclaimer": "Discount codes apply to all installments"
       },
       "checkoutUrl": "https://example.com/checkout/lifetime"

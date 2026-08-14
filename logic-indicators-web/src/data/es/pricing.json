@@ -15,14 +15,18 @@
     "lifetime": "De por vida"
   },
 
+  "extras": {
+    "support": "Soporte técnico"
+  },
+
   "plans": {
     "yearly": {
       "basic": {
         "id": "basic-yearly",
         "name": "Pack Básico",
         "billingLabel": "por año",
-        "price": 390,
-        "crossedPrice": 645,
+        "price": 468,
+        "crossedPrice": 748,
         "highlighted": false,
         "cta": "Elegir Pack Básico",
         "indicators": [
@@ -34,14 +38,17 @@
           "analytics",
           "algorithms"
         ],
+        "extras": [
+          { "icon": "support" }
+        ],
         "checkoutUrl": "https://example.com/checkout/basic-yearly"
       },
       "plus": {
         "id": "plus-yearly",
         "name": "Pack Plus",
         "billingLabel": "por año",
-        "price": 590,
-        "crossedPrice": 845,
+        "price": 708,
+        "crossedPrice": 1132,
         "highlighted": true,
         "cta": "Elegir Pack Plus",
         "indicators": [
@@ -53,10 +60,13 @@
           "analytics",
           "algorithms"
         ],
+        "extras": [
+          { "icon": "support" }
+        ],
         "plusContent": [
           {
-            "title": "Order Flow y estrategias de giros",
-            "note": "curso — incluye ejemplos en vivo, giros con order flow"
+            "title": "Estrategias de giros y continuación con footprint",
+            "note": "curso incluye cuatro estrategias y ejemplos en vivo"
           },
           {
             "title": "Volume Profile Elite",
@@ -79,8 +89,8 @@
         "id": "basic-lifetime",
         "name": "Pack Básico",
         "billingLabel": "pago único",
-        "price": 590,
-        "crossedPrice": 985,
+        "price": 737,
+        "crossedPrice": 1091,
         "highlighted": false,
         "cta": "Elegir Pack Básico",
         "indicators": [
@@ -92,8 +102,11 @@
           "analytics",
           "algorithms"
         ],
+        "extras": [
+          { "icon": "support" }
+        ],
         "installments": {
-          "text": "5 pagos de $125",
+          "text": "6 pagos de $125",
           "disclaimer": "Los códigos de descuento se aplican a todas las cuotas"
         },
         "checkoutUrl": "https://example.com/checkout/basic-lifetime"
@@ -102,8 +115,8 @@
         "id": "plus-lifetime",
         "name": "Pack Plus",
         "billingLabel": "pago único",
-        "price": 890,
-        "crossedPrice": 1285,
+        "price": 1112,
+        "crossedPrice": 1779,
         "highlighted": true,
         "cta": "Elegir Pack Plus",
         "indicators": [
@@ -115,10 +128,13 @@
           "analytics",
           "algorithms"
         ],
+        "extras": [
+          { "icon": "support" }
+        ],
         "plusContent": [
           {
-            "title": "Order Flow y estrategias de giros",
-            "note": "curso — incluye ejemplos en vivo, giros con order flow"
+            "title": "Estrategias de giros y continuación con footprint",
+            "note": "curso incluye cuatro estrategias y ejemplos en vivo"
           },
           {
             "title": "Volume Profile Elite",
@@ -134,7 +150,7 @@
           }
         ],
         "installments": {
-          "text": "5 pagos de $178",
+          "text": "7 pagos de $159",
           "disclaimer": "Los códigos de descuento se aplican a todas las cuotas"
         },
         "checkoutUrl": "https://example.com/checkout/plus-lifetime"

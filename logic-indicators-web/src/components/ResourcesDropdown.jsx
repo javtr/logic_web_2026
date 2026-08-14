@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, BookOpen, Gift } from 'lucide-react';
+import { ChevronDown, BookOpen, Gift, Sliders } from 'lucide-react';
 import { useLanguage } from '../context/languageContext';
 
 export const ResourcesDropdown = () => {
@@ -52,6 +52,11 @@ export const ResourcesDropdown = () => {
       to: '/resources/free-indicators',
       icon: Gift,
       label: t('nav.resourcesDropdown.freeIndicators'),
+    },
+    {
+      to: '/resources/presets',
+      icon: Sliders,
+      label: t('nav.resourcesDropdown.presets'),
     },
   ];
 

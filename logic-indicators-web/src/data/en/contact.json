@@ -29,13 +29,19 @@
       "name": "Discord",
       "handle": "Logic Indicators Community",
       "description": "Join our community of traders for real-time support and discussions.",
-      "url": "https://discord.gg/EWFehJ9dFu"
+      "url": "https://discord.gg/aM2PNaWzmj"
     },
     "instagram": {
       "name": "Instagram",
       "handle": "@logic_indicators",
       "description": "Follow us for market analysis, product updates, and new features.",
-      "url": "https://www.instagram.com/logic_indicators"
+      "url": "https://www.instagram.com/logic_indicators/"
+    },
+    "youtube": {
+      "name": "YouTube",
+      "handle": "@LogicIndicators",
+      "description": "Tutorials, market analysis, and product walkthroughs.",
+      "url": "https://www.youtube.com/@LogicIndicators"
     },
     "email": {
       "name": "Email",

@@ -1,14 +1,20 @@
 // src/pages/Contact.jsx
 import { motion } from 'framer-motion';
-import { MessageCircle, AtSign, Mail } from 'lucide-react';
+import { MessageCircle, AtSign, Play, Mail } from 'lucide-react';
 import { useLanguage } from '../context/languageContext';
 import { ContactForm } from '../components/ContactForm';
 import { SEO } from '../components/SEO';
 
 // Mapeo de canales. Cada uno tiene un icon, color (accent), glow de hover y url
 // (leída desde contact.json para que sea traducible/editable).
-// Discord e Instagram abren en nueva pestaña; Email abre el cliente de correo
-// (mailto:). El componente ChannelCard detecta el tipo de url y renderiza <a>.
+// Discord, Instagram y YouTube abren en nueva pestaña; Email abre el cliente
+// de correo (mailto:). El componente ChannelCard detecta el tipo de url y
+// renderiza <a>.
+//
+// Para YouTube usamos `Play` (triangulo play) en vez de un icono
+// dedicado, porque la version de lucide-react del proyecto no exporta
+// `Youtube` (lo removieron por ser una marca registrada). `Play` + color
+// rojo es la convencion universal para "video" en interfaces web.
 const channelKeys = [
   {
     id: 'discord',
@@ -21,6 +27,12 @@ const channelKeys = [
     icon: AtSign,
     accent: 'text-pink-400',
     glow: 'hover:border-pink-400/40 hover:shadow-[0_0_20px_theme(colors.pink.400/15%)]',
+  },
+  {
+    id: 'youtube',
+    icon: Play,
+    accent: 'text-red-500',
+    glow: 'hover:border-red-500/40 hover:shadow-[0_0_20px_theme(colors.red.500/15%)]',
   },
   {
     id: 'email',

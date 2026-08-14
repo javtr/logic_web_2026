@@ -1,0 +1,323 @@
+{
+  "_doc": "PLACEHOLDER hasta que se suban las imagenes y los XMLs reales. Cambiar imageKey/xmlUrl por producto cuando lleguen los assets. imageKey debe existir en src/data/imageResolver.js (o se cae al fallback). El campo 'description' es opcional — si esta vacio o ausente, la card solo muestra el nombre + boton.",
+
+  "pageTitle": "Plantillas de Indicadores",
+  "pageSubtitle": "Archivos XML preconfigurados para cargar nuestros indicadores con los ajustes visuales y técnicos óptimos. Solo tienes que importarlos en NinjaTrader 8 y empezar a operar en segundos.",
+  "cta": "Descargar",
+  "emptyMessage": "Aún no hay plantillas disponibles.",
+
+  "tutorial": {
+    "title": "Cómo importar una plantilla",
+    "subtitle": "Dos pasos y listo. El archivo XML configura todos los ajustes visuales y técnicos para que no tengas que hacerlo manualmente.",
+    "stepLabel": "Paso",
+    "steps": [
+      {
+        "stepNumber": 1,
+        "title": "Descarga el archivo XML",
+        "description": "Haz clic en el botón de descarga de la plantilla que quieras usar. El XML se guardará en tu equipo.",
+        "imageKey": "tutorial_step_1"
+      },
+      {
+        "stepNumber": 2,
+        "title": "Impórtalas en NinjaTrader 8",
+        "description": "Dentro de NinjaTrader 8:",
+        "steps": [
+          "Ve al botón de Configurations.",
+          "Haz clic en 'Import Logic Presets'.",
+          "Haz clic en 'Import Local File'."
+        ],
+        "note": "Puedes seleccionar e importar varios archivos XML a la vez — no hace falta repetir el proceso uno por uno.",
+        "imageKey": "tutorial_step_2"
+      }
+    ]
+  },
+
+  "presets": [
+    {
+      "id": "footprint-default",
+      "indicatorId": "footprint",
+      "name": "Por defecto",
+      "description": "Configuración balanceada para trading diario. Buen punto de partida para la mayoría de los usuarios.",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/footprint-default.xml"
+    },
+    {
+      "id": "footprint-advanced",
+      "indicatorId": "footprint",
+      "name": "Avanzada",
+      "description": "Ajustada para scalping y análisis de order flow de alto volumen. Más capas visuales habilitadas.",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/footprint-advanced.xml"
+    },
+    {
+      "id": "footprint-scalper",
+      "indicatorId": "footprint",
+      "name": "Scalper",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/footprint-scalper.xml"
+    },
+    {
+      "id": "footprint-swing",
+      "indicatorId": "footprint",
+      "name": "Swing",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/footprint-swing.xml"
+    },
+    {
+      "id": "footprint-intraday",
+      "indicatorId": "footprint",
+      "name": "Intradía",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/footprint-intraday.xml"
+    },
+
+    {
+      "id": "footer-default",
+      "indicatorId": "footer",
+      "name": "Por defecto",
+      "description": "Panel analítico balanceado para lectura general del mercado.",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/footer-default.xml"
+    },
+    {
+      "id": "footer-advanced",
+      "indicatorId": "footer",
+      "name": "Avanzada",
+      "description": "Panel completo de 23 métricas para análisis profundo post-operación.",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/footer-advanced.xml"
+    },
+    {
+      "id": "footer-lite",
+      "indicatorId": "footer",
+      "name": "Ligera",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/footer-lite.xml"
+    },
+
+    {
+      "id": "profile-default",
+      "indicatorId": "profile",
+      "name": "Por defecto",
+      "description": "Render estándar de volume profile con zonas clave destacadas.",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/profile-default.xml"
+    },
+    {
+      "id": "profile-advanced",
+      "indicatorId": "profile",
+      "name": "Avanzada",
+      "description": "Composite profile con POC/VAH/VAL y overlays por sesión.",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/profile-advanced.xml"
+    },
+    {
+      "id": "profile-developing",
+      "indicatorId": "profile",
+      "name": "En desarrollo",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/profile-developing.xml"
+    },
+    {
+      "id": "profile-multisession",
+      "indicatorId": "profile",
+      "name": "Multi-sesión",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/profile-multisession.xml"
+    },
+    {
+      "id": "profile-range",
+      "indicatorId": "profile",
+      "name": "Rango",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/profile-range.xml"
+    },
+    {
+      "id": "profile-vwap",
+      "indicatorId": "profile",
+      "name": "VWAP por sesión",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/profile-vwap.xml"
+    },
+    {
+      "id": "profile-naked-poc",
+      "indicatorId": "profile",
+      "name": "POC desnudo",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/profile-naked-poc.xml"
+    },
+    {
+      "id": "profile-value-area",
+      "indicatorId": "profile",
+      "name": "Value Area",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/profile-value-area.xml"
+    },
+
+    {
+      "id": "composite-default",
+      "indicatorId": "composite",
+      "name": "Por defecto",
+      "description": "Render estándar de composite profile para la sesión activa.",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/composite-default.xml"
+    },
+    {
+      "id": "composite-advanced",
+      "indicatorId": "composite",
+      "name": "Avanzada",
+      "description": "Multi-sesión con seguimiento de POC en desarrollo.",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/composite-advanced.xml"
+    },
+
+    {
+      "id": "bigtrades-default",
+      "indicatorId": "bigtrades",
+      "name": "Por defecto",
+      "description": "Umbral por defecto para filtrar ejecuciones grandes.",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/bigtrades-default.xml"
+    },
+    {
+      "id": "bigtrades-advanced",
+      "indicatorId": "bigtrades",
+      "name": "Avanzada",
+      "description": "Umbrales multi-nivel con destacado por lado bid/ask.",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/bigtrades-advanced.xml"
+    },
+    {
+      "id": "bigtrades-high",
+      "indicatorId": "bigtrades",
+      "name": "Umbral alto",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/bigtrades-high.xml"
+    },
+    {
+      "id": "bigtrades-low",
+      "indicatorId": "bigtrades",
+      "name": "Umbral bajo",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/bigtrades-low.xml"
+    },
+    {
+      "id": "bigtrades-multitier",
+      "indicatorId": "bigtrades",
+      "name": "Multi-nivel",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/bigtrades-multitier.xml"
+    },
+
+    {
+      "id": "analytics-default",
+      "indicatorId": "analytics",
+      "name": "Por defecto",
+      "description": "Configuración visual por defecto para detección de absorción/agotamiento.",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/analytics-default.xml"
+    },
+    {
+      "id": "analytics-advanced",
+      "indicatorId": "analytics",
+      "name": "Avanzada",
+      "description": "Umbrales custom y overlays multi-timeframe.",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/analytics-advanced.xml"
+    },
+
+    {
+      "id": "algorithms-default",
+      "indicatorId": "algorithms",
+      "name": "Por defecto",
+      "description": "Panel de detección de algoritmos por defecto para reconocimiento de patrones.",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/algorithms-default.xml"
+    },
+    {
+      "id": "algorithms-advanced",
+      "indicatorId": "algorithms",
+      "name": "Avanzada",
+      "description": "Todos los patrones de algoritmo habilitados con filtros personalizados.",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/algorithms-advanced.xml"
+    },
+    {
+      "id": "algorithms-iceberg",
+      "indicatorId": "algorithms",
+      "name": "Iceberg",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/algorithms-iceberg.xml"
+    },
+    {
+      "id": "algorithms-spoofing",
+      "indicatorId": "algorithms",
+      "name": "Spoofing",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/algorithms-spoofing.xml"
+    },
+    {
+      "id": "algorithms-layering",
+      "indicatorId": "algorithms",
+      "name": "Layering",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/algorithms-layering.xml"
+    },
+    {
+      "id": "algorithms-absorption",
+      "indicatorId": "algorithms",
+      "name": "Absorción",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/algorithms-absorption.xml"
+    },
+    {
+      "id": "algorithms-exhaustion",
+      "indicatorId": "algorithms",
+      "name": "Agotamiento",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/algorithms-exhaustion.xml"
+    },
+    {
+      "id": "algorithms-stophunt",
+      "indicatorId": "algorithms",
+      "name": "Stop hunt",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/algorithms-stophunt.xml"
+    },
+    {
+      "id": "algorithms-momentum",
+      "indicatorId": "algorithms",
+      "name": "Momentum",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/algorithms-momentum.xml"
+    },
+    {
+      "id": "algorithms-trend",
+      "indicatorId": "algorithms",
+      "name": "Tendencia",
+      "description": "",
+      "imageKey": "sample_indicator",
+      "xmlUrl": "https://example.com/presets/algorithms-trend.xml"
+    }
+  ]
+}

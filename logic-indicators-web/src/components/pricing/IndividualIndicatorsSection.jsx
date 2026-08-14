@@ -88,7 +88,9 @@ const ProductCard = ({ product, t, section }) => {
 
         <div className="flex items-baseline gap-1">
           <span className="text-2xl font-extrabold text-text-main">
-            {section.currencySymbol}{section.defaultPrice}
+            {/* Override por producto: si el JSON define `price` en un
+                product, ese gana. Si no, cae al defaultPrice global. */}
+            {section.currencySymbol}{product.price ?? section.defaultPrice}
           </span>
           <span className="text-xs text-text-muted">
             / {section.defaultBillingPeriod}

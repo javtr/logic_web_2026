@@ -40,6 +40,7 @@ const IndicatorPage = lazy(() => import('./pages/IndicatorPage').then((m) => ({ 
 const DocsPublic = lazy(() => import('./pages/DocsPublic').then((m) => ({ default: m.DocsPublic })));
 const DocsPrivate = lazy(() => import('./pages/DocsPrivate').then((m) => ({ default: m.DocsPrivate })));
 const FreeIndicators = lazy(() => import('./pages/FreeIndicators').then((m) => ({ default: m.FreeIndicators })));
+const Presets = lazy(() => import('./pages/Presets').then((m) => ({ default: m.Presets })));
 const Contact = lazy(() => import('./pages/Contact').then((m) => ({ default: m.Contact })));
 const Faq = lazy(() => import('./pages/Faq').then((m) => ({ default: m.Faq })));
 const Privacy = lazy(() => import('./pages/Privacy').then((m) => ({ default: m.Privacy })));
@@ -80,6 +81,7 @@ function App() {
               <Route path="/docs/*" element={<DocsPublic />} />
               <Route path="/resources/docs" element={<Navigate to="/docs/indicators/logic-footprint" replace />} />
               <Route path="/resources/free-indicators" element={<FreeIndicators />} />
+              <Route path="/resources/presets" element={<Presets />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/faq" element={<Faq />} />
               <Route path="/privacy" element={<Privacy />} />

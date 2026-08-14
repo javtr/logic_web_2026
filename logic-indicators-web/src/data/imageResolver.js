@@ -77,7 +77,12 @@ export const imageMap = {
   algorithms_d2: algorithms_d02Image,
   algorithms_d3: algorithms_d03Image,
 
-  
+  // Tutorial de importacion de presets (pagina /resources/presets).
+  // PLACEHOLDER — apunta al fallback hasta que subas las capturas reales
+  // de NinjaTrader 8. Para reemplazarlas: importa el asset arriba, agrega
+  // la entrada aqui, y/o cambia el imageKey en presets.json.
+  tutorial_step_1: sampleIndicatorImage,
+  tutorial_step_2: sampleIndicatorImage,
 
   
 };

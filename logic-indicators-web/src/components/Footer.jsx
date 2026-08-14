@@ -21,19 +21,23 @@ const handleExternalClick = (e, url) => {
 };
 
 // Redes sociales: si agregás una red nueva, agregás una entrada acá.
-// `url` se lee desde el JSON de contacto para mantener una sola fuente de verdad.
+// `kind` indica si el link es externo (target=_blank + window.open) o
+// interno (react-router Link, misma pestaña). Para el email usamos
+// interno → apunta a /contact en vez de un mailto:.
 const socialLinks = [
   {
     id: 'discord',
     labelKey: 'Discord',  // i18n key, ver footer.json → socialLinks
     icon: MessageCircle,
-    url: 'https://discord.gg/EWFehJ9dFu',
+    url: 'https://discord.gg/aM2PNaWzmj',
+    kind: 'external',
   },
   {
     id: 'email',
     labelKey: 'Email',  // i18n key, ver footer.json → socialLinks
     icon: Mail,
-    url: 'mailto:info@logicindicators.com',
+    url: '/contact',
+    kind: 'internal',
   },
 ];
 
@@ -64,19 +68,35 @@ export const Footer = () => {
               {t('footer.description')}
             </p>
             <div className="flex gap-4 mt-6">
-              {socialLinks.map(({ id, labelKey, icon: Icon, url }) => (
-                <a
-                  key={id}
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => handleExternalClick(e, url)}
-                  aria-label={t(`footer.socialLinks.${id}`) || labelKey}
-                  className="text-text-muted hover:text-accent-secondary transition-colors"
-                >
-                  <Icon size={20} />
-                </a>
-              ))}
+              {socialLinks.map(({ id, labelKey, icon: Icon, url, kind }) => {
+                const ariaLabel = t(`footer.socialLinks.${id}`) || labelKey;
+                const className = "text-text-muted hover:text-accent-secondary transition-colors";
+                const content = <Icon size={20} />;
+
+                // Link interno: react-router, misma pestaña.
+                if (kind === 'internal') {
+                  return (
+                    <Link key={id} to={url} aria-label={ariaLabel} className={className}>
+                      {content}
+                    </Link>
+                  );
+                }
+
+                // Link externo: target=_blank + window.open.
+                return (
+                  <a
+                    key={id}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => handleExternalClick(e, url)}
+                    aria-label={ariaLabel}
+                    className={className}
+                  >
+                    {content}
+                  </a>
+                );
+              })}
             </div>
           </div>
 

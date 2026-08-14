@@ -11,6 +11,7 @@
   "freeIndicators": "Free",
   "resourcesDropdown": {
     "docs": "Documentation",
-    "freeIndicators": "Free Indicators"
+    "freeIndicators": "Free Indicators",
+    "presets": "Presets"
   }
 }

@@ -1,24 +1,28 @@
 {
   "items": [
     {
-      "q": "Do these indicators cause lag or freeze NinjaTrader 8 during moments of high volatility?",
-      "a": "Logic Indicators is a suite of professional indicators for NinjaTrader 8, designed for traders who use order flow, footprint, and volume analysis in their daily trading. We combine high-performance development with a focus on analyzing absorption, exhaustion, and delta."
+      "q": "Do I need a NinjaTrader 8 license to use Logic Indicators?",
+      "a": "No. You do not need to purchase the NinjaTrader 8 Lifetime license to use our tools.\n\nLogic Indicators are independent developments and do not rely on NinjaTrader's Order Flow tools. This means you can use our solutions without buying the platform's official add-ons."
     },
     {
-      "q": "Is it difficult to configure the Footprint and volume profiles?",
-      "a": "Not at all. We have developed an intuitive user interface. You don't need to navigate complicated menus; you can load our preset templates with a couple of clicks or save your own custom configurations to use instantly on any chart."
+      "q": "Is Level 2 (Level II) data required to use the tools?",
+      "a": "In most cases, no.\n\nThe following tools:\n\n- Logic Profile\n- Logic Footprint\n- Logic Algorithms\n- Logic Big Trades\n- Logic Analytics\n\nwork perfectly using only Level 1 (Level I) data, which is provided by any:\n\n- Live account\n- Demo account (10-minute delay after 14 days)\n- Prop firm account\n\nThe only tools that require Level 2 (Market Depth) data are the Liquidity Maps, since they need order book information to function.\n\nImportant: Logic Indicators does not provide market data. Each user must contract and manage their own data provider."
     },
     {
-      "q": "Do I get the same visual capabilities as platforms like ATAS or Sierra Chart?",
-      "a": "Yes. We have brought the most advanced and clean graphical options on the market directly to the NinjaTrader 8 ecosystem. You will be able to filter visual noise and detect imbalances, absorptions, and liquidity with institutional-grade clarity."
+      "q": "Do I receive support material to learn how to use the tools?",
+      "a": "Yes.\n\nWhen you purchase Logic Indicators you will get access to a complete support package that includes:\n\n- Step-by-step installation manual.\n- Configuration guide for each tool.\n- Detailed explainer videos.\n- Tutorials to take advantage of all features.\n\nOur goal is for you to install, configure, and start using the tools quickly, thanks to our default templates — with a single click you can have fully configured charts."
     },
     {
-      "q": "What markets can I trade with this suite?",
-      "a": "Any market that provides Level 1 data (Tick data) in NinjaTrader 8. Our suite is ideal for futures (ES, NQ, YM, Crude Oil), centralized forex, and cryptocurrencies, as long as your data provider (Rithmic, CQG, etc.) delivers volume information."
+      "q": "What platforms do the tools work on?",
+      "a": "Currently, Logic Indicators has been developed exclusively for NinjaTrader 8.\n\nAll tools are optimized for this platform to offer maximum performance, stability, and execution speed.\n\nThere is currently no compatibility with other trading platforms."
     },
     {
-      "q": "Is the Big Trades indicator included?",
-      "a": "Yes, our suite is a complete ecosystem. We don't sell the pieces separately. You will have access to our auction tools (Profile, Composite), tape reading tools (Footprint, Footer), and liquidity and algorithm detection (Big Trades, Analytics, Algorithms)."
+      "q": "What are the minimum system requirements for my computer?",
+      "a": "One of the advantages of Logic Indicators is that it does not use Tick Replay, which significantly reduces resource consumption and improves the platform's performance.\n\nAs a reference, we recommend meeting NinjaTrader 8's minimum requirements:\n\n- 64-bit 3 GHz processor or higher.\n- 16 GB of RAM (or higher recommended for better performance).\n- DirectX 10-compatible graphics card or higher.\n- Solid State Drive (SSD).\n- 64-bit Windows operating system.\n\nIf you use multiple screens or run multiple charts simultaneously, more RAM and a more powerful processor will further improve the experience."
+    },
+    {
+      "q": "Do the tools use Tick Replay?",
+      "a": "No.\n\nAll Logic Indicators tools have been designed to work without Tick Replay.\n\nThis offers important advantages:\n\n- Faster chart loading.\n- Lower RAM consumption.\n- Better overall NinjaTrader performance.\n- Lower processor usage.\n- Smoother experience when analyzing the market.\n\nCompared to tools that depend on Tick Replay, our solutions can deliver up to 10x better performance, depending on the hardware, the number of open charts, and the configuration used."
     }
   ]
 }

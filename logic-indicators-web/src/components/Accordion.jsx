@@ -18,10 +18,12 @@ export const AccordionItem = ({ title, content, isOpen, onClick }) => {
       </button>
       <div
         className={`transition-all duration-300 ease-in-out ${
-          isOpen ? 'max-h-96 opacity-100 p-5 pt-0' : 'max-h-0 opacity-0 px-5'
+          isOpen ? 'max-h-[1500px] opacity-100 p-5 pt-0' : 'max-h-0 opacity-0 px-5'
         }`}
       >
-        <p className="text-text-muted leading-relaxed">{content}</p>
+        {/* whitespace-pre-line respeta \n en el string del JSON, para
+            soportar items con multiples parrafos y bullets simples. */}
+        <p className="text-text-muted leading-relaxed whitespace-pre-line">{content}</p>
       </div>
     </div>
   );

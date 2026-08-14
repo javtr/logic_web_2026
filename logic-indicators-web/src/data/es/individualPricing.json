@@ -5,7 +5,7 @@
   "cta": "Comprar",
   "emptyMessage": "No hay indicadores individuales disponibles por el momento.",
 
-  "defaultPrice": 199,
+  "defaultPrice": 197,
   "defaultBillingPeriod": "pago único",
   "currencySymbol": "$",
 
@@ -17,12 +17,14 @@
       "id": "footprint-bundle",
       "primaryIndicatorId": "footprint",
       "secondaryIndicatorId": "footer",
+      "price": 250,
       "checkoutUrl": "https://example.com/checkout/footprint-footer"
     },
     {
       "id": "profile-bundle",
       "primaryIndicatorId": "profile",
       "secondaryIndicatorId": "composite",
+      "price": 250,
       "checkoutUrl": "https://example.com/checkout/profile-composite"
     },
     {

@@ -11,6 +11,7 @@
   "freeIndicators": "Gratis",
   "resourcesDropdown": {
     "docs": "Documentación",
-    "freeIndicators": "Indicadores Gratuitos"
+    "freeIndicators": "Indicadores Gratuitos",
+    "presets": "Plantillas"
   }
 }
