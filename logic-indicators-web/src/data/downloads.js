@@ -159,15 +159,13 @@ export const PRODUCTS = {
   'LOGIC_PACK_BASICO':    { url: 'https://download.logicindicators.com/LOF_3_0/LOF_BasicPack_Beta_05_03.zip', displayName: 'Logic Pack Beta V05.03', category: 'pack' },
   'LOGIC_PACK_DEPTH':     { url: 'https://download.logicindicators.com/LOF_3_0/LOF_DepthPack_Beta_05_03.zip', displayName: 'Logic Depth Pack Beta V0.1', category: 'pack' },
   'LOGIC_PACK_FULL':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_FullPack_Beta_05_03.zip',  displayName: 'Logic Full Pack Beta V05.03', category: 'pack' },
-  'LOGIC_FOOTPRINT':      { url: 'https://download.logicindicators.com/lof_footprint.zip',  category: 'individual' },
-  'LOGIC_FOOTER':         { url: 'https://download.logicindicators.com/lof_footer.zip',     category: 'individual' },
+  'LOGIC_FOOTPRINT':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Footprint.zip', displayName: 'Logic Footprint',  category: 'individual' },
+  'LOGIC_FOOTER':         { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Footer.zip', displayName: 'Logic Footer',     category: 'individual' },
   'LOGIC_VOLUMEPROFILE':  { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Profile.zip', displayName: 'Logic Profile', category: 'individual' },
-  'LOGIC_BIGTRADES':      { url: 'https://download.logicindicators.com/lof_bigtrades.zip',   category: 'individual' },
-  'LOGIC_ANALYTICS':      { url: 'https://download.logicindicators.com/lof_analytics.zip',   category: 'individual' },
-  'LOGIC_ALGORITHMS':     { url: 'https://download.logicindicators.com/lof_algorithms.zip',  category: 'individual' },
+  'LOGIC_BIGTRADES':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Bigtrades.zip', displayName: 'Logic BigTrades',   category: 'individual' },
+  'LOGIC_ANALYTICS':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Analytics.zip', displayName: 'Logic Analytics',   category: 'individual' },
+  'LOGIC_ALGORITHMS':     { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Algorithms.zip', displayName: 'Logic Algorithms',  category: 'individual' },
   'LOGIC_COMPOSITE':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Composite.zip', displayName: 'Logic Composite',  category: 'individual' },
-  'LOGIC_CONFIGURATIONS': { url: 'https://download.logicindicators.com/lof_configurations.zip', displayName: 'Configurations', category: 'system' },
-  'LOGIC_ENGINE':         { url: 'https://download.logicindicators.com/lof_engine.zip',         displayName: 'Engine',         category: 'system' },
 };
 
 /**
