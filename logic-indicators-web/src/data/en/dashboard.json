@@ -39,8 +39,8 @@
       "requiredBadge": "Required",
       "productNames": {
         "configurations": "Configurations",
-        "engine": "Logic Engine Beta V05.03",
-        "core": "Logic Core Beta V05.03"
+        "engine": "Logic Engine V3.0.0",
+        "core": "Logic Core V3.0.0"
       }
     }
   },

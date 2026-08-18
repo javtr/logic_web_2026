@@ -78,8 +78,8 @@ export const SYSTEM_PRODUCTS = ['LOGIC_CONFIGURATIONS', 'LOGIC_ENGINE'];
  * El dashboard lo renderiza segun la logica de getPrerequisites().
  */
 export const CORE_FILE = {
-  url: 'https://download.logicindicators.com/LOF_3_0/LOF_Core_Beta_05_03.zip',
-  version: 'Beta V05.03',
+  url: 'https://download.logicindicators.com/LOF_3_0/LOF_Core_3.0.0.zip',
+  version: 'V3.0.0',
   key: 'core',
 };
 
@@ -93,8 +93,8 @@ export const CORE_FILE = {
  * La decision de mostrarlo vive en getPrerequisites().
  */
 export const ENGINE_FILE = {
-  url: 'https://download.logicindicators.com/LOF_3_0/LOF_Engine_Beta_05_03.zip',
-  version: 'Beta V05.03',
+  url: 'https://download.logicindicators.com/LOF_3_0/LOF_Engine_3.0.0.zip',
+  version: 'V3.0.0',
   key: 'engine',
 };
 
@@ -156,16 +156,16 @@ export const getPrerequisites = (productos) => {
  * del value.
  */
 export const PRODUCTS = {
-  'LOGIC_PACK_BASICO':    { url: 'https://download.logicindicators.com/LOF_3_0/LOF_BasicPack_Beta_05_03.zip', displayName: 'Logic Pack Beta V05.03', category: 'pack' },
-  'LOGIC_PACK_DEPTH':     { url: 'https://download.logicindicators.com/LOF_3_0/LOF_DepthPack_Beta_05_03.zip', displayName: 'Logic Depth Pack Beta V0.1', category: 'pack' },
-  'LOGIC_PACK_FULL':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_FullPack_Beta_05_03.zip',  displayName: 'Logic Full Pack Beta V05.03', category: 'pack' },
-  'LOGIC_FOOTPRINT':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Footprint.zip', displayName: 'Logic Footprint',  category: 'individual' },
-  'LOGIC_FOOTER':         { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Footer.zip', displayName: 'Logic Footer',     category: 'individual' },
-  'LOGIC_VOLUMEPROFILE':  { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Profile.zip', displayName: 'Logic Profile', category: 'individual' },
-  'LOGIC_BIGTRADES':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Bigtrades.zip', displayName: 'Logic BigTrades',   category: 'individual' },
-  'LOGIC_ANALYTICS':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Analytics.zip', displayName: 'Logic Analytics',   category: 'individual' },
-  'LOGIC_ALGORITHMS':     { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Algorithms.zip', displayName: 'Logic Algorithms',  category: 'individual' },
-  'LOGIC_COMPOSITE':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Composite.zip', displayName: 'Logic Composite',  category: 'individual' },
+  'LOGIC_PACK_BASICO':    { url: 'https://download.logicindicators.com/LOF_3_0/LOF_BasicPack_3.0.0.zip', displayName: 'Logic Pack V3.0.0', category: 'pack' },
+  'LOGIC_PACK_DEPTH':     { url: 'https://download.logicindicators.com/LOF_3_0/LOF_DepthPack_3.0.0.zip', displayName: 'Logic Depth Pack V3.0.0', category: 'pack' },
+  'LOGIC_PACK_FULL':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_FullPack_3.0.0.zip',  displayName: 'Logic Full Pack V3.0.0', category: 'pack' },
+  'LOGIC_FOOTPRINT':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Footprint_3.0.0.zip', displayName: 'Logic Footprint',  category: 'individual' },
+  'LOGIC_FOOTER':         { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Footer_3.0.0.zip', displayName: 'Logic Footer',     category: 'individual' },
+  'LOGIC_VOLUMEPROFILE':  { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Profile_3.0.0.zip', displayName: 'Logic Profile', category: 'individual' },
+  'LOGIC_BIGTRADES':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Bigtrades_3.0.0.zip', displayName: 'Logic BigTrades',   category: 'individual' },
+  'LOGIC_ANALYTICS':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Analytics_3.0.0.zip', displayName: 'Logic Analytics',   category: 'individual' },
+  'LOGIC_ALGORITHMS':     { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Algorithms_3.0.0.zip', displayName: 'Logic Algorithms',  category: 'individual' },
+  'LOGIC_COMPOSITE':      { url: 'https://download.logicindicators.com/LOF_3_0/LOF_Composite_3.0.0.zip', displayName: 'Logic Composite',  category: 'individual' },
 };
 
 /**
