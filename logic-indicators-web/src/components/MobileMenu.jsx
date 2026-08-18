@@ -4,12 +4,21 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronDown, BookOpen, Gift, BarChart3, MessageCircle, Tag } from 'lucide-react';
 import { useLanguage } from '../context/languageContext';
+import { useAuth } from '../hooks/useAuth';
+import { useUserName } from '../hooks/useUserName';
 import { Button } from './Button';
 
 export const MobileMenu = ({ isOpen, onClose }) => {
   const { t } = useLanguage();
+  const { isAuthenticated, email } = useAuth();
+  const { name: userName } = useUserName();
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const location = useLocation();
+
+  // Mismo patron que el Navbar desktop: nombre real del backend con
+  // fallback al email prefix mientras useUserName hace el fetch.
+  const userDisplayName =
+    userName || (isAuthenticated && email ? email.split('@')[0] : '');
 
   // Cierre automático al cambiar de ruta
   useEffect(() => {
@@ -191,11 +200,24 @@ export const MobileMenu = ({ isOpen, onClose }) => {
               </ul>
             </nav>
 
-            {/* Footer con botón login */}
+            {/* Footer con botón de sesion */}
             <div className="p-4 border-t border-white/10">
-              <Link to="/login" onClick={handleLinkClick} className="block">
+              <Link
+                to={isAuthenticated ? '/dashboard' : '/login'}
+                onClick={handleLinkClick}
+                className="block"
+              >
                 <Button variant="secondary" className="w-full">
-                  {t('nav.login')}
+                  {isAuthenticated ? (
+                    <span className="flex flex-col items-center leading-tight gap-0.5">
+                      <span className="text-sm">{t('nav.login')}</span>
+                      <span className="text-[10px] opacity-75 truncate max-w-[200px]">
+                        {userDisplayName}
+                      </span>
+                    </span>
+                  ) : (
+                    t('nav.signIn')
+                  )}
                 </Button>
               </Link>
             </div>

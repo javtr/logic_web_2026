@@ -37,6 +37,11 @@ import analytics_d03Image from '../assets/indicators/analytics_d3.png';
 import algorithms_d01Image from '../assets/indicators/algorithms_d1.png';
 import algorithms_d02Image from '../assets/indicators/algorithms_d2.png';
 import algorithms_d03Image from '../assets/indicators/algorithms_d3.png';
+// Imagenes del tutorial de instalacion en NinjaTrader 8.
+// Usadas en el primer paso del wizard de instalacion (segun /resources
+// en el schema del step tipo 'tutorial' en installation.js).
+import ninjaInstall01Image from '../assets/installation/ninja_install_01.png';
+import ninjaInstall02Image from '../assets/installation/ninja_install_02.png';
 
 
 
@@ -83,6 +88,14 @@ export const imageMap = {
   // la entrada aqui, y/o cambia el imageKey en presets.json.
   tutorial_step_1: sampleIndicatorImage,
   tutorial_step_2: sampleIndicatorImage,
+
+  // Tutorial del wizard de instalacion (Dashboard). Estas imagenes
+  // muestran el proceso general de instalar indicadores en NinjaTrader 8
+  // y se renderizan dentro del primer paso del wizard (tipo 'tutorial'
+  // en installation.js). Las keys son las que usa el i18n para apuntar
+  // a las imagenes desde el sub-step 2 ("Install the indicators in NT8").
+  installation_ninja_01: ninjaInstall01Image,
+  installation_ninja_02: ninjaInstall02Image,
 
   
 };

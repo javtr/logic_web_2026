@@ -55,5 +55,118 @@
     "sessionExpired": "Tu sesión ha expirado. Por favor, vuelve a iniciar sesión.",
     "loadFailed": "No pudimos cargar tu panel en este momento. Inténtalo de nuevo en unos minutos.",
     "retryButton": "Reintentar"
+  },
+  "installation": {
+    "startCta": "Comenzar proceso de instalación",
+    "alreadyInstalled": "¿Ya lo tienes instalado? Vuelve a abrir el proceso guiado cuando quieras.",
+    "wizard": {
+      "title": "Proceso de instalación",
+      "subtitle": "Sigue cada paso en orden.",
+      "stepIndicator": "Paso {current} de {total}",
+      "prev": "Anterior",
+      "next": "Siguiente",
+      "finish": "Finalizar",
+      "close": "Cerrar",
+      "closeAriaLabel": "Cerrar el proceso de instalación",
+      "downloadButton": "Descargar"
+    },
+    "steps": {
+      "tutorial": {
+        "title": "Cómo instalar indicadores en NinjaTrader 8",
+        "intro": "Antes de seguir con los archivos de tu compra, vamos a repasar el proceso general de instalación. Todos los indicadores siguen exactamente estos mismos pasos.",
+        "substeps": [
+          {
+            "title": "Descarga los archivos en tu computador",
+            "description": "Guarda cada archivo en una carpeta que recuerdes — el Escritorio está bien. Los vas a necesitar en el siguiente paso."
+          },
+          {
+            "title": "Instala los indicadores en NinjaTrader 8",
+            "description": "Abre NinjaTrader 8 y sigue los dos pasos que se muestran en las capturas de abajo para importar los archivos que acabas de descargar. Cada imagen muestra un paso del proceso — primero la acción de importar, después el aviso de confirmación.",
+            "images": [
+              "installation_ninja_01",
+              "installation_ninja_02"
+            ],
+            "imageLabels": [
+              "Paso 1 de 2",
+              "Paso 2 de 2"
+            ]
+          },
+          {
+            "title": "Espera la confirmación y luego reinicia NinjaTrader 8",
+            "description": "Cuando el proceso de importación termine, NinjaTrader 8 va a mostrar un aviso de confirmación. Después de verlo, cierra NinjaTrader 8 por completo y vuelve a abrirlo. Este paso es fundamental: sin reinicio, los indicadores no se cargan y no van a aparecer en tus gráficos.",
+            "important": true
+          }
+        ],
+        "closingNote": {
+          "core+engine": "Listo. **Importante:** completa cada paso en orden. NO te adelantes — Core y Engine tienen que estar instalados ANTES que los productos, si no los indicadores no van a funcionar. A partir del siguiente paso, solo descarga cada archivo y aplica el mismo proceso.",
+          "core": "Listo. **Importante:** completa cada paso en orden. NO te adelantes — Core tiene que estar instalado ANTES que el producto, si no el indicador no va a funcionar. A partir del siguiente paso, descarga el archivo y aplica el mismo proceso.",
+          "none": "Listo. A partir del siguiente paso, descarga el archivo y aplica el mismo proceso en NinjaTrader 8 que se mostró arriba. Si NinjaTrader 8 te muestra algún aviso durante la instalación, sigue las instrucciones que aparecen en pantalla."
+        },
+        "importantLabel": "Importante"
+      },
+      "prerequisite": {
+        "core": {
+          "name": "Logic Core V3.0.0",
+          "title": "Descarga el archivo Core",
+          "description": "Haz clic en el botón de abajo para descargarlo. Después sigue los pasos de instalación en NinjaTrader 8 que se vieron en el tutorial anterior."
+        },
+        "engine": {
+          "name": "Logic Engine V3.0.0",
+          "title": "Descarga el archivo Engine",
+          "description": "Haz clic en el botón de abajo para descargarlo. Después sigue los pasos de instalación en NinjaTrader 8 que se vieron en el tutorial anterior."
+        }
+      },
+      "products": {
+        "title": "Descarga tus productos",
+        "description": "Haz clic en cada botón de abajo para descargar el archivo que necesites. Después sigue los mismos pasos de instalación en NinjaTrader 8 que se vieron en el tutorial anterior — uno por producto. Puedes instalarlos todos de una sola vez, conviven sin problema en la misma instalación."
+      },
+      "success": {
+        "title": "Reinicia NinjaTrader 8",
+        "description": "Cierra y vuelve a abrir NinjaTrader 8 para que todos los archivos nuevos se carguen. Después del reinicio, tus indicadores están listos — puedes aplicarlos en cualquier gráfico.",
+        "actionNote": "Este es el último paso. Cuando reinicies, todo queda configurado."
+      }
+    },
+    "stepMessages": {
+      "prerequisite": {
+        "warningTitle": "No te saltes este paso",
+        "warning": "Core y Engine tienen que estar instalados en NinjaTrader 8 ANTES de instalar cualquier producto. Si te saltas este paso, los indicadores no van a funcionar y vas a tener que empezar de cero. No avances hasta haber instalado el archivo.",
+        "completeLabel": "Ya instalé este archivo en NinjaTrader 8",
+        "completeHint": "Marca esta casilla para confirmar que terminaste antes de continuar.",
+        "completedLabel": "Instalación confirmada",
+        "footerLabel": "Ya lo instalé",
+        "footerCompletedLabel": "Instalado",
+        "byKey": {
+          "core": {
+            "footerLabel": "Ya instalé el Core",
+            "footerCompletedLabel": "Core instalado"
+          },
+          "engine": {
+            "footerLabel": "Ya instalé el Engine",
+            "footerCompletedLabel": "Engine instalado"
+          }
+        }
+      },
+      "products": {
+        "warningByPrereq": {
+          "core+engine": {
+            "warningTitle": "Verifica que Core y Engine estén instalados",
+            "warning": "Solo continúa si Logic Core y Logic Engine ya están instalados en NinjaTrader 8. Si te los saltaste, vuelve atrás e instálalos primero. Instalar los productos sin los prerrequisitos va a fallar y vas a tener que empezar de cero."
+          },
+          "core": {
+            "warningTitle": "Verifica que Core esté instalado",
+            "warning": "Solo continúa si Logic Core ya está instalado en NinjaTrader 8. Si te lo saltaste, vuelve atrás e instálalo primero. Instalar el producto sin Core va a fallar y vas a tener que empezar de cero."
+          },
+          "none": {
+            "warningTitle": "",
+            "warning": ""
+          }
+        },
+        "completeLabel": "Ya instalé todos los productos en NinjaTrader 8",
+        "completeHint": "Marca esta casilla para confirmar que terminaste antes de continuar.",
+        "completedLabel": "Instalación confirmada",
+        "footerLabel": "Ya los instalé todos",
+        "footerCompletedLabel": "Todos instalados"
+      }
+    }
   }
 }

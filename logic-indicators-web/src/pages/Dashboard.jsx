@@ -3,10 +3,12 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
-import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, HelpCircle, AlertCircle, Info } from "lucide-react";
-import { getDownloadUrl, getDisplayName, getProductCategory, applyUnlocks, getPrerequisites } from "../data/downloads";
+import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, HelpCircle, AlertCircle, Play } from "lucide-react";
+import { applyUnlocks, getDisplayName, getProductCategory } from "../data/downloads";
 import { useLanguage } from '../context/languageContext';
 import { useAuth } from "../hooks/useAuth";
+import { InstallationWizard } from "../components/dashboard/InstallationWizard";
+import { generateInstallationSteps } from "../data/installation";
 
 // Title Case para el nombre del usuario en el header.
 // Robusto a inputs en cualquier caso: "juan" -> "Juan", "JUAN" -> "Juan",
@@ -31,6 +33,10 @@ export const Dashboard = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [status, setStatus] = useState({ type: "", msg: "" });
   const [savedFlash, setSavedFlash] = useState(false);
+  // Estado del wizard de instalación. La logica de qué pasos se muestran
+  // vive en generateInstallationSteps() (src/data/installation.js) y se
+  // recalcula solo cuando cambia la lista de productos del usuario.
+  const [isWizardOpen, setIsWizardOpen] = useState(false);
   const inputRef = useRef(null);
   const flashTimerRef = useRef(null);
 
@@ -121,45 +127,94 @@ export const Dashboard = () => {
   const isUnchanged = draftValue === currentMachineId;
 
   // ===========================================================================
-  // LOGICA DE PRODUCTOS — derivamos visibilidad segun la regla de negocio:
-  //   - Los archivos pre-requisito (Core, Engine, ambos, o nada) NO son
-  //     parte de la compra del usuario. Se muestran arriba de "Tus
-  //     productos" segun la combinacion que tenga habilitada. La logica
-  //     completa (reglas) vive en getPrerequisites() en downloads.js.
-  //     Esta pagina solo llama el helper y renderiza el array resultante.
-  //   - Los productos con categoria 'system' (LOGIC_CONFIGURATIONS,
-  //     LOGIC_ENGINE) se filtran del listado de "Tus productos" para que
-  //     no aparezcan duplicados. Quedan en PRODUCTS por compat historica.
-  //   - Productos vencidos siguen apareciendo en "Tus productos" con el
-  //     boton Renovar, y SI disparan la seccion de pre-requisitos (la
-  //     logica en getPrerequisites considera cualquier producto, activo
-  //     o no).
+  // LOGICA DE PRODUCTOS + WIZARD DE INSTALACION
   //   - applyUnlocks(): enriquece la lista con los pares que se venden
   //     juntos (Volume Profile <-> Composite, Footprint <-> Footer).
-  //     Es la primera transformacion para que el resto de la logica
-  //     (filtros, visibilidad, render) trabaje sobre la lista completa.
+  //   - generateInstallationSteps(): produce los pasos del wizard. La
+  //     logica de que pre-requisitos aplican (Core, Engine, ambos, nada)
+  //     vive adentro de esa funcion (que a su vez usa getPrerequisites()
+  //     en downloads.js). Si cambia una regla, se modifica solo ahi.
+  //   - En esta pagina SOLO se renderiza el CTA que abre el wizard. La
+  //     lista de productos y la descarga individual se quitaron para
+  //     forzar el flujo guiado y reducir tickets de soporte.
   // ===========================================================================
   const productos = applyUnlocks(userData?.productos_activos || []);
-  const esActivo = (p) => !p.fecha_expiracion || new Date(p.fecha_expiracion) > new Date();
-  const activos = productos.filter(esActivo);
 
-  const packs = activos.filter((p) => getProductCategory(p.nombre_producto) === 'pack');
-  const individuales = activos.filter((p) => getProductCategory(p.nombre_producto) === 'individual');
+  // Pasos del wizard de instalación. Se recalculan en cada render porque
+  // `productos` cambia de referencia (applyUnlocks devuelve un array nuevo),
+  // pero es O(n) en una lista chica — el costo es despreciable. No usamos
+  // useMemo porque la dependencia cambiaría siempre de todos modos.
+  // El array resultante lo consume <InstallationWizard> via prop.
+  const installationSteps = generateInstallationSteps(productos);
+  // Hay pasos "instalables" reales (descartando el success final) si el
+  // usuario tiene al menos un producto descargable. Determina si mostramos
+  // el CTA o no y el empty state.
+  const hasInstallableSteps = installationSteps.some(
+    (step) => step.type !== 'success',
+  );
 
-  // Lista de pre-requisitos a mostrar (Core, Engine, ambos, o []). La
-  // logica de combinacion vive en getPrerequisites() — si cambia una
-  // regla, se modifica solo ahi.
-  const prerequisites = getPrerequisites(productos);
-
-  // Productos del usuario (excluyendo los del sistema, que quedan en PRODUCTS
-  // por compat historica pero no se renderizan). Se listan todos
-  // (activos + vencidos) — los vencidos muestran el boton Renovar.
-  const productosVisibles = productos.filter(
+  // ===========================================================================
+  // LISTA INFORMATIVA DE PRODUCTOS DEL USUARIO
+  //   - Se muestra debajo del CTA, dentro de la misma card "Tus Productos".
+  //   - NO son botones de descarga: solo muestran qué productos tiene el
+  //     usuario y su estado (vitalicio / vigente hasta fecha / vencido).
+  //   - La descarga real se hace dentro del wizard de instalación.
+  //   - Filtramos los productos de sistema (Core/Engine) porque no son
+  //     productos comprados sino archivos de soporte, ya aparecen como
+  //     prerrequisitos en el wizard.
+  // ===========================================================================
+  const userProducts = productos.filter(
     (p) => getProductCategory(p.nombre_producto) !== 'system',
   );
 
-  // Empty state solo si NO hay contenido visible: ni pre-requisitos ni productos.
-  const hasVisibleContent = prerequisites.length > 0 || productosVisibles.length > 0;
+  // Helper: formatea la fecha de expiracion segun el idioma actual.
+  // Devuelve null si la fecha no es valida. Usamos toLocaleDateString para
+  // que el formato siga la convencion del idioma (es-ES produce "31 dic 2025",
+  // en-US produce "Dec 31, 2025").
+  const formatExpirationDate = (dateStr) => {
+    if (!dateStr) return null;
+    const date = new Date(dateStr);
+    if (isNaN(date.getTime())) return null;
+    const locale = language === 'es' ? 'es-ES' : 'en-US';
+    return date.toLocaleDateString(locale, {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    });
+  };
+
+  // Helper: determina el estado visual (label + color) de un producto.
+  // - Sin fecha de expiracion -> Licencia Vitalicia (accent-secondary)
+  // - Fecha pasada -> Expirado (rojo)
+  // - Fecha futura -> Valido hasta (gris)
+  // Si la fecha es invalida, caemos a "vitalicio" para no mostrar un
+  // "Expirado" falso por un bug del backend.
+  const getProductStatus = (prod) => {
+    const exp = prod.fecha_expiracion;
+    if (!exp) {
+      return {
+        label: t('dashboard.products.lifetime'),
+        className: 'text-accent-secondary',
+      };
+    }
+    const expDate = new Date(exp);
+    if (isNaN(expDate.getTime())) {
+      return {
+        label: t('dashboard.products.lifetime'),
+        className: 'text-accent-secondary',
+      };
+    }
+    if (expDate < new Date()) {
+      return {
+        label: `${t('dashboard.products.expiredPrefix')}${formatExpirationDate(exp)}`,
+        className: 'text-red-400',
+      };
+    }
+    return {
+      label: `${t('dashboard.products.validUntilPrefix')}${formatExpirationDate(exp)}`,
+      className: 'text-text-muted',
+    };
+  };
 
   const handleStartEdit = () => {
     setStatus({ type: "", msg: "" });
@@ -315,124 +370,65 @@ export const Dashboard = () => {
             <h2 className="text-xl font-bold text-text-main">{t('dashboard.products.cardTitle')}</h2>
           </div>
 
-          {!hasVisibleContent ? (
+          {userProducts.length === 0 ? (
             <p className="text-text-muted text-sm">
               {t('dashboard.products.emptyState')}
             </p>
           ) : (
             <>
-              {/* Sub-seccion: Pre-requisitos.
-                  La lista de archivos a mostrar la decide getPrerequisites()
-                  en downloads.js segun la combinacion de productos del
-                  usuario. Esta UI solo renderiza lo que el helper devuelve. */}
-              {prerequisites.length > 0 && (
-                <div className="mb-6 p-4 md:p-5 bg-accent-secondary/5 border border-accent-secondary/30 rounded-xl">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Info size={18} className="text-accent-secondary shrink-0" />
-                    <h3 className="text-base md:text-lg font-bold text-text-main">
-                      {t('dashboard.products.systemConfig.title')}
-                    </h3>
-                  </div>
-                  <p className="text-sm text-text-muted leading-relaxed mb-4">
-                    {t('dashboard.products.systemConfig.subtitle')}
+              {/* CTA principal: abre el wizard de instalación paso a paso.
+                  Es la única vía de descarga. La descarga individual se
+                  quitó del dashboard para forzar el flujo guiado y reducir
+                  tickets de soporte. El wizard vive en
+                  components/dashboard/InstallationWizard. */}
+              {hasInstallableSteps && (
+                <div className="mb-6">
+                  <Button
+                    variant="primary"
+                    onClick={() => setIsWizardOpen(true)}
+                    className="w-full"
+                    aria-label={t('dashboard.installation.startCta')}
+                  >
+                    <Play size={18} />
+                    {t('dashboard.installation.startCta')}
+                  </Button>
+                  <p className="text-xs text-text-muted mt-2 italic text-center">
+                    {t('dashboard.installation.alreadyInstalled')}
                   </p>
-                  <span className="inline-block text-xs uppercase tracking-wider font-bold text-accent-secondary bg-accent-secondary/10 border border-accent-secondary/20 px-2.5 py-1 rounded mb-4">
-                    {t('dashboard.products.systemConfig.installFirstBadge')}
-                  </span>
-                  <ul className="space-y-3">
-                    {prerequisites.map((file) => (
-                      <li
-                        key={file.key}
-                        className="p-3 md:p-4 bg-dark-900 border border-accent-secondary/30 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors"
-                      >
-                        <div className="min-w-0 flex-1">
-                          <p className="text-text-main font-semibold text-sm truncate mb-1">
-                            {t(`dashboard.products.systemConfig.productNames.${file.key}`)}
-                          </p>
-                          <span className="text-xs text-accent-secondary font-medium">
-                            {t('dashboard.products.systemConfig.requiredBadge')}
-                          </span>
-                        </div>
-                        <a
-                          href={file.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full hover:bg-accent-secondary hover:text-dark-900 transition-all font-bold whitespace-nowrap text-center"
-                        >
-                          {t('dashboard.products.downloadButton')}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               )}
 
-              {/* Label "Tus productos" — solo si hay productos que listar abajo
-                  del Core. Separa visualmente "instala esto primero" de
-                  "lo que compraste". */}
-              {productosVisibles.length > 0 && (
-                <h3 className="text-xs uppercase tracking-wider text-text-muted font-bold mb-3">
+              {/* Lista informativa de productos del usuario. NO son
+                  botones de descarga: solo muestran el nombre y el estado
+                  (vitalicio / vigente / vencido). La descarga real ocurre
+                  dentro del wizard de instalación. */}
+              <div>
+                <h3 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">
                   {t('dashboard.products.yourProductsLabel')}
                 </h3>
-              )}
-
-              {/* Sub-seccion: Tus productos (packs + individuales, activos y vencidos).
-                  Excluye productos del sistema (que tienen su propia sub-seccion). */}
-              {productosVisibles.length > 0 && (
-                <ul className="space-y-3 max-h-[400px] overflow-y-auto pr-1">
-                  {productosVisibles.map((prod, i) => {
-                    const downloadUrl = getDownloadUrl(prod.nombre_producto);
-
-                    // LÓGICA DE SUSCRIPCIONES
-                    const isLifetime = !prod.fecha_expiracion;
-                    const expDate = new Date(prod.fecha_expiracion);
-                    const isExpired = !isLifetime && new Date() > expDate;
-
+                <div className="space-y-2">
+                  {userProducts.map((prod) => {
+                    const name =
+                      getDisplayName(prod.nombre_producto) || prod.nombre_producto;
+                    const status = getProductStatus(prod);
                     return (
-                      <li
-                        // Key estable por nombre_producto (+ sufijo si es un
-                        // unlock sintetico de applyUnlocks). NO usamos el index
-                        // porque si la lista cambia (e.g. un producto vence o
-                        // se compra uno nuevo), React reusa los elementos con
-                        // el mismo index y puede mostrar datos incorrectos.
-                        key={`${prod.nombre_producto}-${prod._unlockedFrom || 'owned'}`}
-                        className={`p-4 bg-dark-900 border ${isExpired ? 'border-red-900/50 opacity-60' : 'border-dark-600 group hover:border-accent-secondary/50'} rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors`}
+                      <div
+                        key={prod.nombre_producto}
+                        className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-3 p-3 bg-dark-900 border border-dark-700 rounded-lg"
                       >
-                        <div className="min-w-0 flex-1">
-                          <p className="text-text-main font-semibold text-sm truncate mb-1">
-                            {getDisplayName(prod.nombre_producto) || `${t('dashboard.products.defaultNamePrefix')}${i + 1}`}
-                          </p>
-
-                          {/* Banderas de estado visual */}
-                          {isLifetime ? (
-                            <span className="text-xs text-green-400 font-medium">{t('dashboard.products.lifetime')}</span>
-                          ) : isExpired ? (
-                            <span className="text-xs text-red-500 font-medium">{t('dashboard.products.expiredPrefix')}{expDate.toLocaleDateString(language)}</span>
-                          ) : (
-                            <span className="text-xs text-yellow-400 font-medium">{t('dashboard.products.validUntilPrefix')}{expDate.toLocaleDateString(language)}</span>
-                          )}
-                        </div>
-
-                        {/* Botón de descarga condicional */}
-                        {!isExpired && downloadUrl ? (
-                          <a
-                            href={downloadUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full hover:bg-accent-secondary hover:text-dark-900 transition-all font-bold whitespace-nowrap text-center"
-                          >
-                            {t('dashboard.products.downloadButton')}
-                          </a>
-                        ) : isExpired ? (
-                          <button disabled className="text-xs bg-dark-700 text-text-muted px-4 py-2 rounded-full cursor-not-allowed whitespace-nowrap text-center">
-                            {t('dashboard.products.renewButton')}
-                          </button>
-                        ) : null}
-                      </li>
+                        <span className="text-sm font-medium text-text-main">
+                          {name}
+                        </span>
+                        <span
+                          className={`text-xs font-medium ${status.className}`}
+                        >
+                          {status.label}
+                        </span>
+                      </div>
                     );
                   })}
-                </ul>
-              )}
+                </div>
+              </div>
             </>
           )}
         </div>
@@ -586,6 +582,15 @@ export const Dashboard = () => {
           </div>
         </div>
       </div>
+
+      {/* Wizard de instalación. createPortal en document.body (ver el
+          componente). Se monta siempre, isOpen controla visibilidad. */}
+      <InstallationWizard
+        isOpen={isWizardOpen}
+        onClose={() => setIsWizardOpen(false)}
+        steps={installationSteps}
+        t={t}
+      />
     </div>
   );
 };

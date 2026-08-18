@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/languageContext';
+import { useAuth } from '../hooks/useAuth';
+import { useUserName } from '../hooks/useUserName';
 import { Button } from './Button';
 import { ResourcesDropdown } from './ResourcesDropdown';
 import { MobileMenu } from './MobileMenu';
@@ -11,7 +13,15 @@ import logoSvg from '../assets/logo_logic.svg';
 
 export const Navbar = () => {
   const { t } = useLanguage();
+  const { isAuthenticated, email } = useAuth();
+  const { name: userName } = useUserName();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Identificador del usuario logueado para mostrar bajo "Zona de
+  // Miembros". Prioridad: nombre real (viene del backend via
+  // useUserName) > email prefix como fallback mientras carga.
+  const userDisplayName =
+    userName || (isAuthenticated && email ? email.split('@')[0] : '');
 
   // Cerrar el menú mobile si se redimensiona a desktop
   useEffect(() => {
@@ -55,8 +65,24 @@ export const Navbar = () => {
             </Link>
             <Link to="/contact" className="hover:text-accent-primary transition-colors">{t('nav.contact')}</Link>
             <LanguageSwitcher />
-            <Link to="/login">
-              <Button variant="secondary">{t('nav.login')}</Button>
+            <Link to={isAuthenticated ? '/dashboard' : '/login'}>
+              <Button variant="secondary">
+                {isAuthenticated ? (
+                  // Sesion iniciada: "Zona de Miembros" arriba, email
+                  // prefix (tipo nombre) abajo en letra mas chica y
+                  // tenue. flex-col con items-center para que ambas
+                  // lineas queden centradas dentro del boton.
+                  <span className="flex flex-col items-center leading-tight gap-0.5">
+                    <span className="text-sm">{t('nav.login')}</span>
+                    <span className="text-[10px] opacity-75 truncate max-w-[140px]">
+                      {userDisplayName}
+                    </span>
+                  </span>
+                ) : (
+                  // Sin sesion: solo "Iniciar sesion", texto limpio.
+                  t('nav.signIn')
+                )}
+              </Button>
             </Link>
           </div>
 
