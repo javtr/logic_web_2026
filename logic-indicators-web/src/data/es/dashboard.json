@@ -118,7 +118,7 @@
       },
       "products": {
         "title": "Descarga tus productos",
-        "description": "Haz clic en cada botón de abajo para descargar el archivo que necesites. Después sigue los mismos pasos de instalación en NinjaTrader 8 que se vieron en el tutorial anterior — uno por producto. Puedes instalarlos todos de una sola vez, conviven sin problema en la misma instalación."
+        "description": "Haz clic en cada botón de abajo para descargar el archivo que necesites. Después sigue los mismos pasos de instalación en NinjaTrader 8 que se vieron en el tutorial anterior — uno por producto, porque NinjaTrader 8 solo permite importar un archivo a la vez."
       },
       "success": {
         "title": "Reinicia NinjaTrader 8",

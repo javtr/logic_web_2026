@@ -30,9 +30,27 @@ const NAME_KEY = 'logic_user_name';
 const PORTFOLIO_URL =
   'https://members.logicindicators.com/api/v1/members/portfolio';
 
+// Title Case robusto: capitaliza la primera letra despues de cada
+// separador (espacio, guion, apostrofe). Maneja "juan perez" -> "Juan
+// Perez" y "juan-carlos" -> "Juan-Carlos". Duplicado del helper del
+// Dashboard para no acoplar modulos; si se necesitara en mas lugares
+// se mueve a src/utils/text.js.
+const toTitleCase = (str) =>
+  String(str || '')
+    .toLowerCase()
+    .split(/([\s\-']+)/)
+    .map((part) => {
+      if (!part || /^[\s\-']+$/.test(part)) return part;
+      return part.charAt(0).toUpperCase() + part.slice(1);
+    })
+    .join('');
+
 function readCachedName() {
   if (typeof window === 'undefined') return null;
-  return localStorage.getItem(NAME_KEY);
+  // Aplicamos Title Case tambien al cache leido, por si quedo
+  // guardado en formato viejo (antes de este cambio) en lowercase.
+  const cached = localStorage.getItem(NAME_KEY);
+  return cached ? toTitleCase(cached) : null;
 }
 
 export function useUserName() {
@@ -79,9 +97,11 @@ export function useUserName() {
       })
       .then((data) => {
         if (data && typeof data.nombre === 'string' && data.nombre.trim()) {
-          const trimmed = data.nombre.trim();
-          localStorage.setItem(NAME_KEY, trimmed);
-          setName(trimmed);
+          // Guardamos en Title Case para que cualquier consumidor
+          // (navbar, mobile menu, etc.) reciba el formato listo.
+          const normalized = toTitleCase(data.nombre.trim());
+          localStorage.setItem(NAME_KEY, normalized);
+          setName(normalized);
         }
       })
       .catch((err) => {

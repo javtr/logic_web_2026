@@ -10,21 +10,40 @@
 // Comportamiento por tipo de step:
 //   - tutorial (no requiere confirmacion): solo Prev + Next
 //   - prereq / products (requiere confirmacion):
-//       pending  → [☐ label corto] + Next (disabled)
-//       complete → [✓ Instalado] + Next (enabled)
+//       pending  → [☐ label corto] + Next (clickeable)
+//                  Si el usuario hace click en Next sin marcar la
+//                  casilla, la casilla se pone en rojo como senal
+//                  de que ESO es lo que falta.
+//       complete → [✓ Instalado] + Next (enabled, sin restriccion)
 //   - success: Prev + Close (en lugar de Next)
+//
+// El boton Next siempre se ve activo (no usamos `disabled`). En su
+// lugar, en el onClick validamos canAdvance: si esta listo avanza, si
+// no, dispara el feedback rojo en la confirmacion. Esto le da al
+// usuario una senal visual clara de QUE bloquea el avance, en vez
+// de un boton gris que parece roto.
 //
 // En mobile (modal angosto) el right group (confirm + Next) baja a
 // una segunda linea si no entra — flex-wrap se encarga.
 // =============================================================================
 
+import { useState, useEffect } from 'react';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import { Button } from '../Button';
 
 // Sub-componente: el boton/check de confirmacion compacto para el
 // footer. Es chico y de un solo renglon — pensado para no consumir
-// vertical. Cambia de estado pending a completed segun isCompleted.
-const ConfirmationButton = ({ isCompleted, onComplete, label, completedLabel }) => {
+// vertical. Estados:
+//   - completed: verde con check
+//   - pending + showError: rojo (senal de que esto bloquea el Next)
+//   - pending default: gris con borde sutil, hover en accent
+const ConfirmationButton = ({
+  isCompleted,
+  onComplete,
+  label,
+  completedLabel,
+  showError = false,
+}) => {
   if (isCompleted) {
     return (
       <div className="flex items-center gap-2 px-3 py-2 bg-green-500/10 border border-green-500/30 rounded-lg whitespace-nowrap">
@@ -36,14 +55,23 @@ const ConfirmationButton = ({ isCompleted, onComplete, label, completedLabel }) 
     );
   }
 
+  // pending: estilos condicionales segun si hay error activo o no.
+  const containerClass = showError
+    ? 'border-red-500 bg-red-500/10 hover:border-red-400'
+    : 'border-dark-700 bg-dark-900 hover:border-accent-secondary/50';
+  const circleClass = showError
+    ? 'border-red-500'
+    : 'border-dark-600 group-hover:border-accent-secondary';
+  const textClass = showError ? 'text-red-300' : 'text-text-main';
+
   return (
     <button
       type="button"
       onClick={onComplete}
-      className="flex items-center gap-2 px-3 py-2 bg-dark-900 border border-dark-700 hover:border-accent-secondary/50 rounded-lg transition-colors whitespace-nowrap group"
+      className={`flex items-center gap-2 px-3 py-2 border rounded-lg transition-colors whitespace-nowrap group ${containerClass}`}
     >
-      <div className="shrink-0 w-5 h-5 rounded border-2 border-dark-600 group-hover:border-accent-secondary transition-colors" />
-      <span className="text-sm font-medium text-text-main">{label}</span>
+      <div className={`shrink-0 w-5 h-5 rounded border-2 transition-colors ${circleClass}`} />
+      <span className={`text-sm font-medium ${textClass}`}>{label}</span>
     </button>
   );
 };
@@ -64,6 +92,35 @@ export const WizardControls = ({
   // Labels de la confirmacion (cortos, pensados para el footer).
   const confirmLabel = messages?.footerLabel || 'Confirmar';
   const confirmCompletedLabel = messages?.footerCompletedLabel || 'Listo';
+
+  // Estado local: cuando el usuario intenta avanzar sin haber marcado
+  // la confirmacion, marcamos esto en true para que la ConfirmationButton
+  // se ponga en rojo. Se resetea solo:
+  //   - cuando el usuario marca la casilla (isCompleted pasa a true)
+  //   - cuando cambia el step (isCompleted cambia, porque el id del
+  //     step nuevo no esta en completedSteps)
+  const [showError, setShowError] = useState(false);
+  useEffect(() => {
+    setShowError(false);
+  }, [isCompleted]);
+
+  // Handler del boton Next. Siempre se puede hacer click; lo que
+  // cambia es la accion: si esta listo avanza, si no, dispara el
+  // feedback rojo. Asi el usuario ve claramente QUE es lo que falta.
+  const handleNextClick = () => {
+    if (canAdvance) {
+      onNext();
+    } else {
+      setShowError(true);
+    }
+  };
+
+  // Al marcar la casilla, limpiamos el error inmediatamente para
+  // que la transicion rojo -> verde se vea natural.
+  const handleComplete = () => {
+    setShowError(false);
+    onComplete();
+  };
 
   return (
     // flex-wrap: en mobile el right group baja a la segunda linea
@@ -87,9 +144,10 @@ export const WizardControls = ({
         {requiresConfirmation && !isSuccess && (
           <ConfirmationButton
             isCompleted={isCompleted}
-            onComplete={onComplete}
+            onComplete={handleComplete}
             label={confirmLabel}
             completedLabel={confirmCompletedLabel}
+            showError={showError}
           />
         )}
 
@@ -101,8 +159,7 @@ export const WizardControls = ({
         ) : (
           <Button
             variant="primary"
-            onClick={onNext}
-            disabled={!canAdvance}
+            onClick={handleNextClick}
             className="shrink-0"
             aria-label={t('dashboard.installation.wizard.next')}
           >
