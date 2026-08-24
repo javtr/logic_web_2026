@@ -82,45 +82,11 @@ export const InstallationWizard = ({ isOpen, onClose, steps, t }) => {
   const isStepCompleted = completedSteps.has(currentStep.id);
   const canAdvance = !requiresCompletion || isStepCompleted;
   // Mensajes compartidos por step type (warning + confirmacion labels).
-  // Misma fuente que StepCard para que la confirmacion del footer
-  // y el warning del body se mantengan consistent.
-  //
-  // Para los prerrequisitos (Core / Engine) los labels de la
-  // confirmacion son ESPECIFICOS al archivo que se esta instalando
-  // (ej. "Ya instale el Core" vs "Ya instale el Engine"), porque el
-  // usuario tiene que saber QUE acaba de confirmar. Los overrides
-  // viven en `stepMessages.prerequisite.byKey.<file.key>` y se
-  // mezclan sobre los labels genericos de `stepMessages.prerequisite`.
+  // En el modelo simplificado, solo el paso de productos requiere
+  // confirmacion del usuario. La estructura se mantiene para extensibilidad
+  // futura, pero ahora los labels son genericos (sin variantes por tipo
+  // de archivo, porque siempre es 1 pack).
   let messages = t(`dashboard.installation.stepMessages.${currentStep.type}`) || {};
-  if (currentStep.type === 'prerequisite' && currentStep.file?.key) {
-    const byKey = messages.byKey?.[currentStep.file.key];
-    if (byKey) {
-      messages = { ...messages, ...byKey };
-    }
-  }
-
-  // Resumen de prerrequisitos para que el copy del wizard (closing
-  // note del tutorial, warning del paso de productos) se adapte al
-  // caso real del usuario. Antes el copy era estatico y siempre
-  // mencionaba Core/Engine, lo que desinformaba a usuarios con
-  // pack completo (que no necesitan nada) y a usuarios con solo
-  // DepthPack (que solo necesitan Core, no Engine).
-  //
-  // Valores posibles: 'none' (BasicPack/FullPack/vacio), 'core'
-  // (solo DepthPack), 'core+engine' (individuales, con o sin
-  // DepthPack). Se calcula UNA vez por render y se pasa al StepCard
-  // para que elija el texto correcto.
-  const prereqSummary = (() => {
-    const keys = new Set(
-      steps
-        .filter((s) => s.type === 'prerequisite')
-        .map((s) => s.file?.key)
-        .filter(Boolean),
-    );
-    if (keys.has('core') && keys.has('engine')) return 'core+engine';
-    if (keys.has('core')) return 'core';
-    return 'none';
-  })();
 
   const handlePrev = () => {
     if (!isFirst) setCurrentStepIndex((i) => i - 1);
@@ -194,7 +160,6 @@ export const InstallationWizard = ({ isOpen, onClose, steps, t }) => {
             t={t}
             isCompleted={isStepCompleted}
             onComplete={() => markStepComplete(currentStep.id)}
-            prereqSummary={prereqSummary}
           />
         </div>
 

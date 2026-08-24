@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import { LogOut, Package, Monitor, Home, BookOpen, Pencil, X, Check, Loader2, HelpCircle, AlertCircle, Play } from "lucide-react";
-import { applyUnlocks, getDisplayName, getProductCategory } from "../data/downloads";
+import { applyUnlocks, getDisplayName } from "../data/downloads";
 import { useLanguage } from '../context/languageContext';
 import { useAuth } from "../hooks/useAuth";
 import { InstallationWizard } from "../components/dashboard/InstallationWizard";
@@ -129,14 +129,16 @@ export const Dashboard = () => {
   // ===========================================================================
   // LOGICA DE PRODUCTOS + WIZARD DE INSTALACION
   //   - applyUnlocks(): enriquece la lista con los pares que se venden
-  //     juntos (Volume Profile <-> Composite, Footprint <-> Footer).
-  //   - generateInstallationSteps(): produce los pasos del wizard. La
-  //     logica de que pre-requisitos aplican (Core, Engine, ambos, nada)
-  //     vive adentro de esa funcion (que a su vez usa getPrerequisites()
-  //     en downloads.js). Si cambia una regla, se modifica solo ahi.
+  //     juntos (Volume Profile <-> Composite, Footprint <-> Footer) para
+  //     que la lista del dashboard muestre ambos aunque el backend mande
+  //     solo uno.
+  //   - generateInstallationSteps(): produce los pasos del wizard. En el
+  //     modelo simplificado siempre son 3 pasos (tutorial + pack +
+  //     reiniciar NT8). La logica de QUE pack se le asigna al usuario
+  //     vive en getAssignedPack() dentro de downloads.js.
   //   - En esta pagina SOLO se renderiza el CTA que abre el wizard. La
-  //     lista de productos y la descarga individual se quitaron para
-  //     forzar el flujo guiado y reducir tickets de soporte.
+  //     descarga directa se quito para forzar el flujo guiado y reducir
+  //     tickets de soporte.
   // ===========================================================================
   const productos = applyUnlocks(userData?.productos_activos || []);
 
@@ -157,15 +159,17 @@ export const Dashboard = () => {
   // LISTA INFORMATIVA DE PRODUCTOS DEL USUARIO
   //   - Se muestra debajo del CTA, dentro de la misma card "Tus Productos".
   //   - NO son botones de descarga: solo muestran qué productos tiene el
-  //     usuario y su estado (vitalicio / vigente hasta fecha / vencido).
-  //   - La descarga real se hace dentro del wizard de instalación.
-  //   - Filtramos los productos de sistema (Core/Engine) porque no son
-  //     productos comprados sino archivos de soporte, ya aparecen como
-  //     prerrequisitos en el wizard.
+  //     usuario licenciados y su estado (vitalicio / vigente hasta fecha /
+  //     vencido).
+  //   - La descarga real (del pack asignado) se hace dentro del wizard de
+  //     instalación. La lista refleja lo que el backend dice que el usuario
+  //     tiene activo, NO el archivo que se descarga (que es uno de los 3
+  //     packs decidido por `getAssignedPack()` en downloads.js).
+  //   - En el modelo actual, todos los productos del backend son licenciados
+  //     (los 7 indicators + los 3 packs). No hay archivos de sistema que
+  //     filtrar, `productos` se usa directo.
   // ===========================================================================
-  const userProducts = productos.filter(
-    (p) => getProductCategory(p.nombre_producto) !== 'system',
-  );
+  const userProducts = productos;
 
   // Helper: formatea la fecha de expiracion segun el idioma actual.
   // Devuelve null si la fecha no es valida. Usamos toLocaleDateString para

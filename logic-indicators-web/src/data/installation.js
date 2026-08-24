@@ -2,36 +2,34 @@
 // =============================================================================
 // Generador de pasos para el wizard de instalación del dashboard.
 //
-// Convierte la lista de productos del usuario en una secuencia ordenada de
-// pasos, cada uno con su archivo y metadata. La logica de prerrequisitos
-// (Core, Engine, ambos, ninguno) se delega a getPrerequisites() en
-// downloads.js — este modulo solo orquesta la salida.
+// En el modelo simplificado de distribución, todos los usuarios con
+// productos reciben UN SOLO pack para descargar (Basic / Full / Depth).
+// No hay mas Core/Engine como prereq, ni multiples downloads por usuario.
 //
-// ORDEN DE PASOS:
-//   1. SIEMPRE un paso de tutorial al inicio (como instalar indicadores
-//      en NinjaTrader 8). El usuario aprende el proceso general antes
-//      de bajar archivos especificos.
-//   2. Prerrequisitos (Core, Engine) si getPrerequisites() los devuelve,
-//      uno por archivo.
-//   3. UN SOLO paso consolidado con TODOS los productos del usuario
-//      (packs + individuales). Cada producto se renderiza como un boton
-//      de descarga independiente dentro del mismo step.
-//   4. Paso de cierre (tipo 'success'): reiniciar NinjaTrader 8. Sin
-//      archivo, copy de recordatorio.
+// La logica de que pack le corresponde al usuario vive en
+// `getAssignedPack()` en downloads.js — este modulo solo orquesta
+// la salida del wizard.
+//
+// ORDEN DE PASOS (3 pasos, siempre):
+//   1. Tutorial: como instalar indicadores en NinjaTrader 8.
+//   2. Pack asignado: 1 FileCard con el archivo del pack (0 si el
+//      usuario no tiene productos).
+//   3. Cierre: reiniciar NinjaTrader 8.
 //
 // SCHEMA DE UN PASO:
-//   Prerequisite step:
+//   Tutorial step:
 //     {
-//       id, type: 'prerequisite',
-//       file: { url, key, version? },
-//       titleKey, descriptionKey, imageKey (null por defecto)
+//       id: 'tutorial',
+//       type: 'tutorial',
+//       titleKey, descriptionKey, substepsKey,
+//       closingNoteKey, importantLabelKey,
 //     }
 //
-//   Products step (consolidado):
+//   Products step:
 //     {
 //       id: 'products',
 //       type: 'products',
-//       files: [{ url, name, key }, ...]   // 1 o mas productos
+//       files: [{ url, name, key }],  // 0 o 1 archivo
 //       titleKey, descriptionKey, imageKey (null por defecto)
 //     }
 //
@@ -42,34 +40,23 @@
 //       file: null,
 //       titleKey, descriptionKey, imageKey
 //     }
-//
-// imageKey queda null por defecto. Cuando agregues imagenes de instalacion:
-//   1) importa el asset en imageResolver.js
-//   2) agrega la entrada al imageMap
-//   3) referencia la key en el campo imageKey del paso (opcional)
 // =============================================================================
 
-import {
-  getPrerequisites,
-  getDownloadUrl,
-  getDisplayName,
-  getProductCategory,
-} from './downloads';
+import { getDownloadFiles } from './downloads';
 
 /**
  * Tipos de paso. Constantes para evitar strings sueltos.
  */
 export const STEP_TYPE = {
-  TUTORIAL: 'tutorial',          // siempre el primer paso
-  PREREQUISITE: 'prerequisite',  // Core / Engine
-  PRODUCTS: 'products',          // paso consolidado con N archivos
-  SUCCESS: 'success',            // paso de cierre (reiniciar NT8)
+  TUTORIAL: 'tutorial',
+  PRODUCTS: 'products',
+  SUCCESS: 'success',
 };
 
 /**
- * Genera la lista de pasos para el wizard de instalación a partir de los
- * productos del usuario. Devuelve un array (posiblemente vacío) en orden
- * de ejecución.
+ * Genera la lista de pasos para el wizard a partir de los productos
+ * del usuario. Devuelve un array (posiblemente vacio) en orden de
+ * ejecucion.
  *
  * @param {Array<{nombre_producto: string}>} productos
  *   Lista de productos del usuario (post applyUnlocks).
@@ -80,7 +67,7 @@ export const generateInstallationSteps = (productos) => {
 
   const steps = [];
 
-  // 0) Tutorial: SIEMPRE el primer paso. Enseña el proceso general de
+  // 1) Tutorial: SIEMPRE el primer paso. Enseña el proceso general de
   //    instalar indicadores en NinjaTrader 8. Sin download — el contenido
   //    es 100% i18n (substeps array). Las imagenes se referencian por
   //    key dentro del imageResolver.
@@ -94,56 +81,22 @@ export const generateInstallationSteps = (productos) => {
     importantLabelKey: 'dashboard.installation.steps.tutorial.importantLabel',
   });
 
-  // 1) Prerrequisitos (Core / Engine segun getPrerequisites).
-  //    Uno por archivo — cada uno es su propio step con su propio download.
-  //    Tambien incluye nameKey para que el StepCard muestre el nombre del
-  //    archivo (ej. "Logic Core V3.0.0") como titulo de la card, igual
-  //    que en el paso de productos.
-  const prerequisites = getPrerequisites(productos);
-  prerequisites.forEach((file) => {
+  // 2) Pack asignado al usuario. En el modelo simplificado siempre es
+  //    UN solo archivo (0 si el usuario no tiene productos, pero en ese
+  //    caso generateInstallationSteps ya retorno [] arriba).
+  const downloadFiles = getDownloadFiles(productos);
+  if (downloadFiles.length > 0) {
     steps.push({
-      id: `prereq-${file.key}`,
-      type: STEP_TYPE.PREREQUISITE,
-      file,
-      nameKey: `dashboard.installation.steps.prerequisite.${file.key}.name`,
-      titleKey: `dashboard.installation.steps.prerequisite.${file.key}.title`,
-      descriptionKey: `dashboard.installation.steps.prerequisite.${file.key}.description`,
+      id: 'products',
+      type: STEP_TYPE.PRODUCTS,
+      files: downloadFiles,
+      titleKey: 'dashboard.installation.steps.products.title',
+      descriptionKey: 'dashboard.installation.steps.products.description',
       imageKey: null,
     });
-  });
-
-  // 2) UN SOLO step consolidado con TODOS los productos del usuario.
-  //    Cada producto = una entrada en `files` → un boton de descarga
-  //    independiente. Asi el usuario ve todos sus productos juntos
-  //    en un unico paso y puede descargar los que necesite (incluyendo
-  //    varios a la vez).
-  const userProducts = productos.filter(
-    (p) => getProductCategory(p.nombre_producto) !== 'system',
-  );
-
-  if (userProducts.length > 0) {
-    const files = userProducts
-      .map((prod) => {
-        const url = getDownloadUrl(prod.nombre_producto);
-        if (!url) return null; // sin URL resoluble -> descartar
-        const name = getDisplayName(prod.nombre_producto) || prod.nombre_producto;
-        return { url, name, key: prod.nombre_producto };
-      })
-      .filter(Boolean);
-
-    if (files.length > 0) {
-      steps.push({
-        id: 'products',
-        type: STEP_TYPE.PRODUCTS,
-        files,
-        titleKey: 'dashboard.installation.steps.products.title',
-        descriptionKey: 'dashboard.installation.steps.products.description',
-        imageKey: null,
-      });
-    }
   }
 
-  // 3) Paso de éxito (cierre).
+  // 3) Paso de cierre: reiniciar NT8.
   steps.push({
     id: 'success',
     type: STEP_TYPE.SUCCESS,

@@ -31,18 +31,7 @@
     "downloadButton": "Download",
     "renewButton": "Renew",
     "emptyState": "You have no active products.",
-    "yourProductsLabel": "Your products",
-    "systemConfig": {
-      "title": "Prerequisites",
-      "subtitle": "Install these files first, before any other. They contain the base system that all Logic Indicators need to function correctly.",
-      "installFirstBadge": "Install this first",
-      "requiredBadge": "Required",
-      "productNames": {
-        "configurations": "Configurations",
-        "engine": "Logic Engine V3.0.0",
-        "core": "Logic Core V3.0.0"
-      }
-    }
+    "yourProductsLabel": "Your products"
   },
   "documentation": {
     "cardTitle": "Complete Documentation",
@@ -73,15 +62,15 @@
     "steps": {
       "tutorial": {
         "title": "How to install indicators in NinjaTrader 8",
-        "intro": "Before we continue with the files for your purchase, let's review the general install process. Every indicator follows these same steps.",
+        "intro": "Before we continue with your pack file, let's review the general install process. Every indicator follows these same steps.",
         "substeps": [
           {
-            "title": "Download the files to your computer",
-            "description": "Save each file in a folder you can remember — your Desktop is fine. You will need them in the next step."
+            "title": "Download the file to your computer",
+            "description": "Save the file in a folder you can remember — your Desktop is fine. You will need it in the next step."
           },
           {
-            "title": "Install the indicators in NinjaTrader 8",
-            "description": "Open NinjaTrader 8, then follow the two steps shown in the screenshots below to import the files you just downloaded. Each image shows one step of the process — first the import action, then the confirmation dialog.",
+            "title": "Install the pack in NinjaTrader 8",
+            "description": "Open NinjaTrader 8, then follow the two steps shown in the screenshots below to import the file you just downloaded. Each image shows one step of the process — first the import action, then the confirmation dialog.",
             "images": [
               "installation_ninja_01",
               "installation_ninja_02"
@@ -97,75 +86,26 @@
             "important": true
           }
         ],
-        "closingNote": {
-          "core+engine": "Got it. **Important:** complete each step in order. Do NOT skip ahead — Core and Engine must be installed BEFORE the products, otherwise the indicators will not work. From the next step onwards, just download each file and apply the same process.",
-          "core": "Got it. **Important:** complete each step in order. Do NOT skip ahead — Core must be installed BEFORE the product, otherwise the indicator will not work. From the next step onwards, download the file and apply the same process.",
-          "none": "Got it. From the next step onwards, download the file and apply the same process in NinjaTrader 8 shown above. If NinjaTrader 8 shows any prompts during the install, follow the on-screen instructions."
-        },
+        "closingNote": "Got it. From the next step onwards, download the file and apply the same process in NinjaTrader 8 shown above. If NinjaTrader 8 shows any prompts during the install, follow the on-screen instructions.",
         "importantLabel": "Important"
       },
-      "prerequisite": {
-        "core": {
-          "name": "Logic Core V3.0.0",
-          "title": "Download the Core file",
-          "description": "Click the button below to download it. Then follow the installation steps in NinjaTrader 8 shown in the previous tutorial."
-        },
-        "engine": {
-          "name": "Logic Engine V3.0.0",
-          "title": "Download the Engine file",
-          "description": "Click the button below to download it. Then follow the installation steps in NinjaTrader 8 shown in the previous tutorial."
-        }
-      },
       "products": {
-        "title": "Download your products",
-        "description": "Click each button below to download the file you need. Then follow the same install steps in NinjaTrader 8 shown in the previous tutorial — one at a time, because NinjaTrader 8 only lets you import one file at a time."
+        "title": "Download your pack",
+        "description": "Click the button below to download your pack. Then follow the install steps in NinjaTrader 8 shown in the previous tutorial. The licensing for the indicators you have active is validated on the backend, so you will only be able to use the ones you bought."
       },
       "success": {
         "title": "Restart NinjaTrader 8",
-        "description": "Close and reopen NinjaTrader 8 so all the new files load. After the restart, your indicators are ready to use — you can apply them to any chart.",
+        "description": "Close and reopen NinjaTrader 8 so the new file loads. After the restart, your indicators are ready to use — you can apply them to any chart.",
         "actionNote": "This is the last step. When you restart, everything is configured."
       }
     },
     "stepMessages": {
-      "prerequisite": {
-        "warningTitle": "Don't skip this step",
-        "warning": "Core and Engine must be installed in NinjaTrader 8 BEFORE installing any product. If you skip this step, the indicators will not work and you will have to start over. Do not advance until you have installed the file.",
-        "completeLabel": "I have installed this file in NinjaTrader 8",
+      "products": {
+        "completeLabel": "I have installed the pack in NinjaTrader 8",
         "completeHint": "Check this box to confirm you finished before moving on.",
         "completedLabel": "Install confirmed",
         "footerLabel": "I installed it",
-        "footerCompletedLabel": "Installed",
-        "byKey": {
-          "core": {
-            "footerLabel": "I installed the Core",
-            "footerCompletedLabel": "Core installed"
-          },
-          "engine": {
-            "footerLabel": "I installed the Engine",
-            "footerCompletedLabel": "Engine installed"
-          }
-        }
-      },
-      "products": {
-        "warningByPrereq": {
-          "core+engine": {
-            "warningTitle": "Verify Core and Engine are installed",
-            "warning": "Only proceed if Logic Core and Logic Engine are already installed in NinjaTrader 8. If you skipped those steps, go back and install them first. Installing products without the prerequisites will fail and you will have to start over."
-          },
-          "core": {
-            "warningTitle": "Verify Core is installed",
-            "warning": "Only proceed if Logic Core is already installed in NinjaTrader 8. If you skipped it, go back and install it first. Installing the product without Core will fail and you will have to start over."
-          },
-          "none": {
-            "warningTitle": "",
-            "warning": ""
-          }
-        },
-        "completeLabel": "I have installed all products in NinjaTrader 8",
-        "completeHint": "Check this box to confirm you finished before moving on.",
-        "completedLabel": "Install confirmed",
-        "footerLabel": "I installed all products",
-        "footerCompletedLabel": "All products installed"
+        "footerCompletedLabel": "Installed"
       }
     }
   }

@@ -1,37 +1,37 @@
 // src/components/dashboard/StepCard.jsx
 // =============================================================================
 // Contenido de un paso individual del wizard.
-// Variantes según step.type:
-//   - 'tutorial'     → bloque con sub-pasos (imagenes opcionales, badge
-//                     "Importante" opcional). Sin descarga. Next libre.
-//   - 'prerequisite' → un solo archivo (Core / Engine), una card con el
-//                     nombre del archivo y el boton de descarga. Warning
-//                     amber (acompana, NO bloquea — el bloqueo esta en
-//                     el footer via InstallConfirmation).
-//   - 'products'    → N archivos consolidados, una card por producto.
-//                     Warning amber.
-//   - 'success'     → paso de cierre con recordatorio de reiniciar NT8.
 //
-// La confirmacion (checkbox "ya lo instale") se movio al footer del wizard
-// (WizardControls) para que SIEMPRE este visible — antes quedaba oculta
-// al fondo del scroll y los usuarios no entendian por que Next estaba
+// En el modelo simplificado de distribución (1 pack por usuario), hay solo
+// 3 tipos de paso:
+//   - 'tutorial' → bloque con sub-pasos (imágenes opcionales, badge
+//                  "Importante" opcional). Sin descarga. Next libre.
+//   - 'products' → UN solo archivo (el pack asignado). Una card con
+//                  el nombre del pack y el botón de descarga. Sin warning
+//                  (los packs son autosuficientes).
+//   - 'success'  → paso de cierre con recordatorio de reiniciar NT8.
+//
+// La confirmación ("ya lo instalé") vive en el footer del wizard
+// (WizardControls) para que SIEMPRE esté visible. Antes quedaba oculta
+// al fondo del scroll y los usuarios no entendían por qué Next estaba
 // disabled.
 //
 // Optimizaciones de espacio vertical:
 //   - gap-3.5 en vez de gap-5 (entre bloques del step)
-//   - image max-h-[200px] (antes 260px) en el tutorial
-//   - padding p-3.5 en FileCard (antes p-4)
+//   - imágenes del tutorial: max-h-[300px], sm:max-w-[480px] (tienen
+//     espacio de sobra porque el primer paso no scrollea tanto)
+//   - padding p-3.5 en FileCard
 //   - success py-3 (antes py-6)
 // =============================================================================
 
-import { Download, Power, AlertCircle, AlertTriangle, Check } from 'lucide-react';
+import { Download, Power, AlertCircle, Check } from 'lucide-react';
 import { Button } from '../Button';
 import { ZoomableImage } from '../ImageLightbox';
 import { resolveImage } from '../../data/imageResolver';
 
-// Sub-componente FileCard: una card con el nombre del archivo como titulo
-// y el boton de descarga centrado abajo. Usado por 'prerequisite' (1 card)
-// y 'products' (N cards en lista).
+// Sub-componente FileCard: una card con el nombre del archivo como título
+// y el botón de descarga centrado abajo. En el modelo actual, el paso
+// de products siempre tiene 1 sola card (el pack asignado).
 const FileCard = ({ name, url, downloadLabel }) => (
   <div className="flex flex-col items-center gap-2.5 p-3.5 bg-dark-900 border border-dark-700 rounded-xl">
     <h4 className="text-base font-bold text-text-main text-center">
@@ -51,33 +51,9 @@ const FileCard = ({ name, url, downloadLabel }) => (
   </div>
 );
 
-// Sub-componente WarningBox: solo el warning amber (sin el checkbox de
-// confirmacion — eso vive ahora en el footer). Se muestra solo si el step
-// todavia NO esta completado (una vez confirmado, el warning se reemplaza
-// visualmente por el badge "Instalado" del footer).
-const WarningBox = ({ messages }) => {
-  if (!messages || !messages.warning) return null;
-  return (
-    <div className="flex gap-3 p-3.5 bg-amber-500/10 border border-amber-500/30 rounded-xl">
-      <AlertTriangle
-        className="text-amber-400 shrink-0 mt-0.5"
-        size={20}
-      />
-      <div className="text-sm leading-relaxed">
-        <p className="font-bold text-amber-200">
-          {messages.warningTitle}
-        </p>
-        <p className="mt-1 text-amber-200/85">
-          {messages.warning}
-        </p>
-      </div>
-    </div>
-  );
-};
-
-// Sub-componente: un sub-paso del tutorial. Numero a la izquierda, contenido
-// (titulo + descripcion + imagenes + badge "Importante") a la derecha.
-const TutorialSubStep = ({ number, substep, importantLabel, t }) => {
+// Sub-componente: un sub-paso del tutorial. Número a la izquierda, contenido
+// (título + descripción + imágenes + badge "Importante") a la derecha.
+const TutorialSubStep = ({ number, substep, importantLabel }) => {
   const hasImages = Array.isArray(substep.images) && substep.images.length > 0;
   const isImportant = substep.important === true;
   const hasImageLabels = Array.isArray(substep.imageLabels) && substep.imageLabels.length > 0;
@@ -96,10 +72,9 @@ const TutorialSubStep = ({ number, substep, importantLabel, t }) => {
           {substep.description}
         </p>
 
-        {/* Imagenes: el tutorial es el primer paso y tiene espacio
-            vertical de sobra, asi que las imagenes se renderizan mas
-            grandes (max-h-[300px], max-w-[480px] en sm+). En el resto
-            de pasos el espacio es escaso, por eso aca son grandes. */}
+        {/* Imágenes: el tutorial es el primer paso y tiene espacio
+            vertical de sobra, así que las imágenes se renderizan más
+            grandes. En el resto de pasos no hay imágenes. */}
         {hasImages && (
           <div className="flex flex-col sm:flex-row gap-3 pt-2 items-center justify-center">
             {substep.images.map((imgKey, i) => (
@@ -136,35 +111,17 @@ const TutorialSubStep = ({ number, substep, importantLabel, t }) => {
   );
 };
 
-export const StepCard = ({ step, t, isCompleted = false, onComplete, prereqSummary = 'core+engine' }) => {
+export const StepCard = ({ step, t, isCompleted = false, onComplete }) => {
   const downloadLabel = t('dashboard.installation.wizard.downloadButton') || 'Download';
-  // Mensajes compartidos por step type (warning + confirmacion labels).
-  //
-  // Para el paso de productos, los mensajes dependen de QUE
-  // prerrequisitos necesita el usuario: si tiene pack completo
-  // (prereqSummary = 'none') el warning sobre Core/Engine no aplica
-  // y se muestra una verificacion generica. Si solo tiene DepthPack
-  // (prereqSummary = 'core') el warning menciona solo Core. Para
-  // individuales (prereqSummary = 'core+engine') el warning menciona
-  // ambos. Esto evita que un usuario con FullPack vea avisos de
-  // Core/Engine que no le aplican.
-  const messages =
-    step.type === 'products'
-      ? t(`dashboard.installation.stepMessages.products.warningByPrereq.${prereqSummary}`) || {}
-      : t(`dashboard.installation.stepMessages.${step.type}`) || {};
 
   // ============================================================
   // TUTORIAL: primer paso, siempre. Lista de sub-pasos. Sin
-  // confirmacion obligatoria.
+  // confirmación obligatoria.
   // ============================================================
   if (step.type === 'tutorial') {
     const substeps = t(step.substepsKey) || [];
     const importantLabel = t(step.importantLabelKey);
-    // El closing note tambien depende de prereqSummary: si el
-    // usuario no necesita Core/Engine, la nota final NO los
-    // menciona. La key en i18n es
-    // `steps.tutorial.closingNote.<prereqSummary>`.
-    const closingNote = t(`dashboard.installation.steps.tutorial.closingNote.${prereqSummary}`);
+    const closingNote = t(step.closingNoteKey);
 
     return (
       <div className="flex flex-col gap-3.5">
@@ -185,7 +142,6 @@ export const StepCard = ({ step, t, isCompleted = false, onComplete, prereqSumma
                 number={i + 1}
                 substep={sub}
                 importantLabel={importantLabel}
-                t={t}
               />
             ))}
           </div>
@@ -225,7 +181,8 @@ export const StepCard = ({ step, t, isCompleted = false, onComplete, prereqSumma
   }
 
   // ============================================================
-  // PRODUCTOS: N archivos, una card por archivo. Warning amber.
+  // PRODUCTS: UN solo archivo (el pack asignado). Una FileCard.
+  // La confirmación vive en el footer del wizard.
   // ============================================================
   if (step.type === 'products') {
     return (
@@ -260,49 +217,12 @@ export const StepCard = ({ step, t, isCompleted = false, onComplete, prereqSumma
             />
           ))}
         </div>
-
-        {/* Solo el warning. La confirmacion vive en el footer. */}
-        <WarningBox messages={messages} />
       </div>
     );
   }
 
-  // ============================================================
-  // PREREQUISITE: un solo archivo. Warning amber.
-  // ============================================================
-  return (
-    <div className="flex flex-col gap-3.5">
-      {step.imageKey && (
-        <div className="aspect-[16/9] w-full bg-dark-900 border border-dark-700 rounded-xl overflow-hidden">
-          <ZoomableImage
-            src={resolveImage(step.imageKey)}
-            alt={t(step.titleKey)}
-            loading="lazy"
-            className="w-full h-full object-cover"
-          />
-        </div>
-      )}
-
-      <div className="space-y-1.5">
-        <h3 className="text-lg md:text-xl font-bold text-text-main leading-tight">
-          {t(step.titleKey)}
-        </h3>
-        <p className="text-sm text-text-muted leading-relaxed">
-          {t(step.descriptionKey)}
-        </p>
-      </div>
-
-      {step.file && (
-        <div className="flex flex-col items-stretch gap-2.5">
-          <FileCard
-            name={t(step.nameKey)}
-            url={step.file.url}
-            downloadLabel={downloadLabel}
-          />
-        </div>
-      )}
-
-      <WarningBox messages={messages} />
-    </div>
-  );
+  // Tipo desconocido: fallback vacío (no debería ocurrir con el modelo
+  // actual, pero evitamos un crash silencioso si se agrega un tipo nuevo
+  // sin actualizar este switch).
+  return null;
 };
