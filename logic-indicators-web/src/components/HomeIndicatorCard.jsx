@@ -17,6 +17,7 @@ export const HomeIndicatorCard = ({
   description,
   buttonText = 'Read more',
   slug,
+  pack,
 }) => {
   // Decidir qué mostrar en el slot de imagen:
   //   - 2+ contentImages  → AutoCarousel (cross-fade automático, pausa en hover)
@@ -32,10 +33,23 @@ export const HomeIndicatorCard = ({
       <div className="absolute -inset-px rounded-3xl bg-gradient-to-b from-accent-secondary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
       <div className="relative px-6 py-8 md:px-8 md:py-10 flex flex-col h-full">
-        {/* 1. Título */}
-        <h3 className="text-3xl font-bold text-text-main mb-2 transition-colors group-hover:text-accent-secondary">
-          {title}
-        </h3>
+        {/* 1. Título y Badge */}
+        <div className="flex items-start justify-between gap-4 mb-2">
+          <h3 className="text-3xl font-bold text-text-main transition-colors group-hover:text-accent-secondary">
+            {title}
+          </h3>
+          {pack && (
+            <span
+              className={`shrink-0 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mt-1 ${
+                pack.toLowerCase().includes('depth')
+                  ? 'bg-purple-500/15 text-purple-400 border border-purple-500/30 shadow-sm shadow-purple-500/20'
+                  : 'bg-accent-secondary/15 text-accent-secondary border border-accent-secondary/30 shadow-sm shadow-accent-secondary/20'
+              }`}
+            >
+              {pack}
+            </span>
+          )}
+        </div>
 
         {/* 2. Subtítulo */}
         {subtitle && (

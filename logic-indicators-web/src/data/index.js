@@ -77,8 +77,8 @@ export const INDICATOR_ORDER = [
   'bigtrades',
   'analytics',
   'algorithms',
-  'deepchart',
-  'deeplive',
+  'depthchart',
+  'depthlive',
 ];
 
 // Single source of truth para la lista de indicadores que se renderizan.

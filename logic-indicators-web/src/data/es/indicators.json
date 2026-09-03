@@ -3,6 +3,7 @@
     "id": "footprint",
     "slug": "logic-footprint",
     "imageKey": "footprint",
+    "pack": "Basic Pack",
     "name": "Logic Footprint",
     "tagline": "Radiografía del volumen y la agresividad del mercado.",
     "shortDescription": "Observa la verdadera interacción entre oferta y demanda. Detecta absorciones y desequilibrios con gráficos de clústeres de máxima claridad visual. Rendimiento sin latencia y plantillas preestablecidas listas para operar al instante.",
@@ -23,6 +24,7 @@
     "id": "footer",
     "slug": "logic-footer",
     "imageKey": "footer",
+    "pack": "Basic Pack",
     "name": "Logic Footer",
     "tagline": "Estadísticas clave y resumen del flujo de órdenes por vela.",
     "shortDescription": "Complemento esencial del Footprint con 23 métricas por vela, incluyendo Delta y Volumen. Cuenta con mapas de calor, modo Data Box interactivo, rendimiento sin latencia y plantillas listas para usar.",
@@ -43,6 +45,7 @@
     "id": "profile",
     "slug": "logic-profile",
     "imageKey": "profile",
+    "pack": "Basic Pack",
     "name": "Logic Profile",
     "tagline": "Histograma de volumen y análisis de la subasta.",
     "shortDescription": "Analiza la subasta con perfiles de volumen avanzados. Combina métricas de Delta y TPO en dos columnas, proyecta niveles clave como el POC y opera sin latencia usando plantillas listas.",
@@ -63,6 +66,7 @@
     "id": "composite",
     "slug": "logic-composite",
     "imageKey": "composite",
+    "pack": "Basic Pack",
     "name": "Logic Composite",
     "tagline": "Visión macro de la subasta y distribución del volumen.",
     "shortDescription": "Construye tu perfil a medida, anclado a los laterales, mediante dibujo manual, días previos o barras visibles, con opción de doble columna, plantillas preestablecidas y máximo rendimiento sin generar retrasos.",
@@ -83,6 +87,7 @@
     "id": "bigtrades",
     "slug": "logic-bigtrades",
     "imageKey": "bigtrades",
+    "pack": "Basic Pack",
     "name": "Logic BigTrades",
     "tagline": "Detección precisa de la actividad institucional en tiempo real.",
     "shortDescription": "Rastrea bloques de grandes órdenes institucionales, genera zonas de soporte y resistencia a partir de su actividad y visualiza fácilmente la magnitud de las operaciones mediante un histograma. Ajusta filtros y aspectos visuales al instante, sin recargar el gráfico y con máximo rendimiento.",
@@ -103,6 +108,7 @@
     "id": "analytics",
     "slug": "logic-analytics",
     "imageKey": "analytics",
+    "pack": "Basic Pack",
     "name": "Logic Analytics",
     "tagline": "Análisis estadístico profundo por segmentos de mercado.",
     "shortDescription": "Aísla y analiza porciones del mercado con precisión estadística. Obtén histogramas de volumen, delta acumulado y desviaciones estándar en cajas configurables. Rendimiento óptimo y plantillas preestablecidas listas para operar.",
@@ -123,6 +129,7 @@
     "id": "algorithms",
     "slug": "logic-algorithms",
     "imageKey": "algorithms",
+    "pack": "Basic Pack",
     "name": "Logic Algorithms",
     "tagline": "Detección automatizada de microestructura y eventos críticos del Order Flow.",
     "shortDescription": "Detecta de manera automática absorciones, desequilibrios, traders atrapados y otros eventos clave. Activa múltiples algoritmos con un solo clic, disfruta un rendimiento sin latencia y carga plantillas listas para operar.",
@@ -137,6 +144,41 @@
       "algorithms_d1",
       "algorithms_d2",
       "algorithms_d3"
+    ]
+  },
+  "depthchart": {
+    "id": "depthchart",
+    "slug": "logic-depth-chart",
+    "imageKey": "depthchart",
+    "pack": "Depth Pack",
+    "name": "Logic Depth Chart",
+    "tagline": "El mapa de liquidez institucional de Nivel 2 integrado directamente en la acción del precio para NinjaTrader 8.",
+    "shortDescription": "Lleva tu análisis de Order Flow al siguiente nivel descubriendo las intenciones de los grandes participantes antes de que el precio se mueva. Logic Depth Chart para NinjaTrader 8 rastrea y dibuja el histórico de liquidez pasiva directamente detrás y sobre cada vela de tu gráfico, acompañado de un perfil visual del libro de órdenes en vivo. Toma decisiones con total claridad al ver exactamente dónde se colocan, modifican o absorben los contratos institucionales, manteniendo todo el análisis unificado en una sola vista limpia y profesional.",
+    "longDescription": "Lleva tu análisis de Order Flow al siguiente nivel descubriendo las intenciones de los grandes participantes antes de que el precio se mueva. Logic Depth Chart para NinjaTrader 8 rastrea y dibuja el histórico de liquidez pasiva directamente detrás y sobre cada vela de tu gráfico, acompañado de un perfil visual del libro de órdenes en vivo. Toma decisiones con total claridad al ver exactamente dónde se colocan, modifican o absorben los contratos institucionales, manteniendo todo el análisis unificado en una sola vista limpia y profesional.",
+    "paragraphs": [
+      "El Mapa de Liquidez Institucional de Nivel 2: Lleva tu análisis de Order Flow al siguiente nivel descubriendo las intenciones de los grandes participantes antes de que el precio se mueva. Logic Depth Chart para NinjaTrader 8 rastrea y dibuja el histórico de liquidez pasiva directamente detrás y sobre cada vela de tu gráfico, acompañado de un perfil visual del libro de órdenes en vivo.",
+      "Decisiones con Total Claridad: Toma decisiones con total claridad al ver exactamente dónde se colocan, modifican o absorben los contratos institucionales, manteniendo todo el análisis unificado en una sola vista limpia y profesional."
+    ],
+    "contentImages": [
+      "sample_indicator"
+    ]
+  },
+  "depthlive": {
+    "id": "depthlive",
+    "slug": "logic-depth-live",
+    "imageKey": "depthlive",
+    "pack": "Depth Pack",
+    "name": "Logic Depth Live",
+    "tagline": "Visualiza la liquidez institucional y la profundidad del mercado en tiempo real con precisión absoluta.",
+    "shortDescription": "Logic Depth Live transforma tus gráficos de NinjaTrader 8 en un potente mapa de calor interactivo que te permite ver con claridad dónde se concentran las órdenes de compra y venta del dinero institucional antes de que el precio llegue a ellas. Descubre al instante la verdadera intención del mercado, detecta trampas de liquidez y analiza las operaciones agresivas en tiempo real mediante burbujas de volumen inteligentes y un panel de profundidad en vivo. Diseñado para traders que necesitan anticipar giros del precio, confirmar rupturas con confianza y tomar decisiones basadas en lo que realmente está ocurriendo en el mercado.",
+    "longDescription": "Logic Depth Live transforma tus gráficos de NinjaTrader 8 en un potente mapa de calor interactivo que te permite ver con claridad dónde se concentran las órdenes de compra y venta del dinero institucional antes de que el precio llegue a ellas. Descubre al instante la verdadera intención del mercado, detecta trampas de liquidez y analiza las operaciones agresivas en tiempo real mediante burbujas de volumen inteligentes y un panel de profundidad en vivo. Diseñado para traders que necesitan anticipar giros del precio, confirmar rupturas con confianza y tomar decisiones basadas en lo que realmente está ocurriendo en el mercado.",
+    "paragraphs": [
+      "Profundidad de Mercado en Tiempo Real: Logic Depth Live transforma tus gráficos de NinjaTrader 8 en un potente mapa de calor interactivo que te permite ver con claridad dónde se concentran las órdenes de compra y venta del dinero institucional antes de que el precio llegue a ellas.",
+      "Detección de Trampas y Operaciones Agresivas: Descubre al instante la verdadera intención del mercado, detecta trampas de liquidez y analiza las operaciones agresivas en tiempo real mediante burbujas de volumen inteligentes y un panel de profundidad en vivo.",
+      "Decisiones Basadas en Datos Reales: Diseñado para traders que necesitan anticipar giros del precio, confirmar rupturas con confianza y tomar decisiones basadas en lo que realmente está ocurriendo en el mercado."
+    ],
+    "contentImages": [
+      "sample_indicator"
     ]
   }
 }

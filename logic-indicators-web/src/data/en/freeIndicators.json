@@ -1,5 +1,31 @@
 {
   "title": "Free Indicators",
-  "subtitle": "Download our free tools and start trading smarter today.",
-  "content": "Explore our collection of free indicators built with the same quality and precision as our premium suite. These tools are perfect for getting started with order flow analysis, testing our development standards, or complementing your existing setup. Each free indicator includes basic documentation and is fully compatible with NinjaTrader 8. Download as many as you want — no registration required. If you have questions or want to upgrade to a more powerful version, our team is just one click away."
+  "subtitle": "Download our free tools and experience the power of Logic Indicators on NinjaTrader 8.",
+  "badge": "Free Version",
+  "downloadCta": "Download now",
+  "viewFullCta": "View full version",
+  "indicators": [
+    {
+      "id": "profile-free",
+      "name": "Logic Profile (Free Version)",
+      "badge": "Free",
+      "tagline": "Volume histogram and auction analysis.",
+      "imageKey": "profile",
+      "contentImages": [
+        "profile_d1",
+        "profile_d2",
+        "profile_d3"
+      ],
+      "description": "Volume Profile is the fundamental tool for understanding true market structure through Auction Market Theory. It organizes trading activity based on price, visually revealing where institutional volume is building so you can anticipate key support, resistance, and rotation areas with professional logic.",
+      "trialNotice": "This is a free trial version created for you to experience firsthand the analytical precision and zero-latency performance of our engine on NinjaTrader 8. Use it to familiarize yourself with auction reading before making the jump to the Full version.",
+      "features": [
+        "Session volume profile calculations",
+        "Point of Control (POC) and Value Area detection",
+        "Optimized, smooth performance with zero freezes",
+        "Fully compatible with NinjaTrader 8"
+      ],
+      "downloadUrl": "#",
+      "fullVersionSlug": "logic-profile"
+    }
+  ]
 }

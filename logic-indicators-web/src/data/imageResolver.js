@@ -58,6 +58,8 @@ export const imageMap = {
   bigtrades: bigtradesImage,
   analytics: analyticsImage,
   algorithms: algorithmsImage,
+  depthchart: sampleIndicatorImage,
+  depthlive: sampleIndicatorImage,
   // Variantes por profundidad de mercado (depth). Los archivos son *_d1.png,
   // *_d2.png, *_d3.png — las keys siguen esa misma convención.
   footprint_d1: footprint_d1Image,

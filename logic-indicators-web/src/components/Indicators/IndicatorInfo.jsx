@@ -29,7 +29,7 @@ import { Link } from 'react-router-dom';
 import { ZoomableImage } from '../ImageLightbox';
 import { AutoCarousel } from '../AutoCarousel';
 
-export const IndicatorInfo = ({ title, subtitle, description, image, contentImages, buttonText, slug }) => {
+export const IndicatorInfo = ({ title, subtitle, description, image, contentImages, buttonText, slug, pack }) => {
   // 2+ contentImages → AutoCarousel
   // 1 contentImage   → ZoomableImage simple
   // 0 contentImages  → fallback a `image` (legacy)
@@ -46,12 +46,25 @@ export const IndicatorInfo = ({ title, subtitle, description, image, contentImag
         md:gap-x-8
         p-4 md:p-8
       ">
-        {/* 1. Título + subtítulo
+        {/* 1. Título + subtítulo + Badge
               - mobile: fila 1 (auto-place)
               - desktop: col 1, fila 1 */}
-        <div className="w-full md:col-start-1 md:row-start-1">
-          <h3 className="text-3xl font-bold text-text-main">{title}</h3>
-          <h4 className="text-xl font-semibold text-text-muted mt-2">{subtitle}</h4>
+        <div className="w-full md:col-start-1 md:row-start-1 flex flex-col justify-start">
+          <div className="flex items-start justify-between gap-4 mb-2">
+            <h3 className="text-3xl font-bold text-text-main">{title}</h3>
+            {pack && (
+              <span
+                className={`shrink-0 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mt-1 ${
+                  pack.toLowerCase().includes('depth')
+                    ? 'bg-purple-500/15 text-purple-400 border border-purple-500/30 shadow-sm shadow-purple-500/20'
+                    : 'bg-accent-secondary/15 text-accent-secondary border border-accent-secondary/30 shadow-sm shadow-accent-secondary/20'
+                }`}
+              >
+                {pack}
+              </span>
+            )}
+          </div>
+          <h4 className="text-xl font-semibold text-text-muted">{subtitle}</h4>
         </div>
 
         {/* 2. Imagen

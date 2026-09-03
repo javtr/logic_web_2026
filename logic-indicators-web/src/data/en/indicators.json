@@ -3,6 +3,7 @@
     "id": "footprint",
     "slug": "logic-footprint",
     "imageKey": "footprint",
+    "pack": "Basic Pack",
     "name": "Logic Footprint",
     "tagline": "X-ray of volume and market aggression.",
     "shortDescription": "Observe the true interaction between supply and demand. Detect absorptions and imbalances with maximum visual clarity cluster charts. Zero-latency performance and ready-to-trade preset templates.",
@@ -23,6 +24,7 @@
     "id": "footer",
     "slug": "logic-footer",
     "imageKey": "footer",
+    "pack": "Basic Pack",
     "name": "Logic Footer",
     "tagline": "Key statistics and order flow summary per candle.",
     "shortDescription": "Essential Footprint companion with 23 metrics per candle, including Delta and Volume. Features heatmaps, interactive Data Box mode, zero-latency performance, and ready-to-use presets.",
@@ -43,6 +45,7 @@
     "id": "profile",
     "slug": "logic-profile",
     "imageKey": "profile",
+    "pack": "Basic Pack",
     "name": "Logic Profile",
     "tagline": "Volume histogram and auction analysis.",
     "shortDescription": "Analyze the auction with advanced volume profiles. Combine Delta and TPO metrics in two columns, project key levels like the POC, and trade with zero latency using ready-to-use presets.",
@@ -50,7 +53,7 @@
     "paragraphs": [
       "The Market Auction Map: Volume Profile is the fundamental tool for understanding the true market structure through Auction Market Theory. Unlike a traditional time-based chart, this indicator organizes trading activity based on price, visually revealing where institutional volume is being built. By identifying the Point of Control (POC) and the Value Area, you get a clear X-ray of acceptance and rejection zones, allowing you to anticipate key areas of support, resistance, and price rotation with professional logic.",
       "Dual Analysis and Graphical Versatility: We have designed a highly adaptable visual architecture that includes a dual-column structure. This feature allows for unprecedented customization: in each column, you can independently configure the type of information you want to see, choosing between pure Volume, Delta, TPO (Time Price Opportunity), or combinations of Volume and Delta simultaneously. All of this is backed by an immense arsenal of graphical options that guarantee a clean, aesthetic, and customized reading tailored to your visual demands.",
-      "Projection of Levels and Exact Metrics: Keeping track of structural zones is vital for decision-making. Therefore, our indicator includes unique and dynamic options for tracking the Value Area and POC. You can configure the extension of these important lines in several ways: in Naked mode (until the price tests them in the future), until the start of the next profile, or with infinite projection. Additionally, the tool provides a complete metrics panel that breaks down all the profile's statistical data, delivering the precise mathematical context of the session.",
+      "Projection of Levels and Exact Metrics: Keeping track of structural zones is vital for decision-making. Therefore, our indicator includes unique and dynamic options for tracking the Value Area and POC. Puedes configurar la extensión de estas líneas importantes de varias formas: en modo Naked (hasta que el precio las ponga a prueba en el futuro), hasta el inicio del siguiente perfil, o con una proyección infinita. Además, la herramienta te proporciona un panel de métricas completo que desglosa todos los datos estadísticos del perfil, entregándote el contexto matemático preciso de la sesión.",
       "Maximum Performance and Immediate Deployment: Calculating and rendering multiple profiles, deltas, and extended lines is usually the main cause of congestion in trading platforms. However, this indicator shares the same performance engine as the rest of our suite, ensuring zero-latency data processing and smooth navigation in NinjaTrader 8, even on the most volatile days. And to streamline your workflow, it features our integrated presets system: choose from our pre-established templates or download them from the web to have your workspace configured like a professional in a matter of clicks."
     ],
     "contentImages": [
@@ -63,6 +66,7 @@
     "id": "composite",
     "slug": "logic-composite",
     "imageKey": "composite",
+    "pack": "Basic Pack",
     "name": "Logic Composite",
     "tagline": "Macro view of the auction and volume distribution.",
     "shortDescription": "Build your custom profile anchored to the chart edges via manual drawing, prior days, or visible bars, featuring dual-column options, preset templates, and maximum performance with zero lag.",
@@ -83,6 +87,7 @@
     "id": "bigtrades",
     "slug": "logic-bigtrades",
     "imageKey": "bigtrades",
+    "pack": "Basic Pack",
     "name": "Logic BigTrades",
     "tagline": "Precise real-time detection of institutional activity.",
     "shortDescription": "Track large institutional order blocks, generate support and resistance zones from their activity, and easily visualize trade sizes with an integrated histogram. Adjust filters and visuals on the fly without chart reloads and with peak performance.",
@@ -103,6 +108,7 @@
     "id": "analytics",
     "slug": "logic-analytics",
     "imageKey": "analytics",
+    "pack": "Basic Pack",
     "name": "Logic Analytics",
     "tagline": "Deep statistical analysis by market segments.",
     "shortDescription": "Isolate and analyze market portions with statistical precision. Get volume histograms, accumulated delta, and standard deviations in configurable boxes. Optimal performance and ready-to-trade preset templates.",
@@ -123,6 +129,7 @@
     "id": "algorithms",
     "slug": "logic-algorithms",
     "imageKey": "algorithms",
+    "pack": "Basic Pack",
     "name": "Logic Algorithms",
     "tagline": "Automated detection of microstructure and critical Order Flow events.",
     "shortDescription": "Automatically detect absorptions, imbalances, trapped traders, and other key events. Activate multiple algorithms with a single click, enjoy zero-latency performance, and load ready-to-trade presets.",
@@ -137,6 +144,41 @@
       "algorithms_d1",
       "algorithms_d2",
       "algorithms_d3"
+    ]
+  },
+  "depthchart": {
+    "id": "depthchart",
+    "slug": "logic-depth-chart",
+    "imageKey": "depthchart",
+    "pack": "Depth Pack",
+    "name": "Logic Depth Chart",
+    "tagline": "The Level 2 institutional liquidity map integrated directly into price action for NinjaTrader 8.",
+    "shortDescription": "Take your Order Flow analysis to the next level by uncovering the intentions of major participants before price moves. Logic Depth Chart for NinjaTrader 8 tracks and renders historical passive liquidity directly behind and across every candle on your chart, paired with a visual live order book profile. Make decisions with total clarity by seeing exactly where institutional contracts are placed, modified, or absorbed, keeping all your analysis unified in a single, clean, professional view.",
+    "longDescription": "Take your Order Flow analysis to the next level by uncovering the intentions of major participants before price moves. Logic Depth Chart for NinjaTrader 8 tracks and renders historical passive liquidity directly behind and across every candle on your chart, paired with a visual live order book profile. Make decisions with total clarity by seeing exactly where institutional contracts are placed, modified, or absorbed, keeping all your analysis unified in a single, clean, professional view.",
+    "paragraphs": [
+      "Level 2 Institutional Liquidity Map: Take your Order Flow analysis to the next level by uncovering the intentions of major participants before price moves. Logic Depth Chart for NinjaTrader 8 tracks and renders historical passive liquidity directly behind and across every candle on your chart, paired with a visual live order book profile.",
+      "Decisions with Total Clarity: Make decisions with total clarity by seeing exactly where institutional contracts are placed, modified, or absorbed, keeping all your analysis unified in a single, clean, professional view."
+    ],
+    "contentImages": [
+      "sample_indicator"
+    ]
+  },
+  "depthlive": {
+    "id": "depthlive",
+    "slug": "logic-depth-live",
+    "imageKey": "depthlive",
+    "pack": "Depth Pack",
+    "name": "Logic Depth Live",
+    "tagline": "Visualize institutional liquidity and market depth in real time with absolute precision.",
+    "shortDescription": "Logic Depth Live transforms your NinjaTrader 8 charts into a powerful interactive heatmap, allowing you to clearly see where institutional buy and sell orders are concentrated before price reaches them. Instantly discover true market intent, detect liquidity traps, and analyze aggressive trades in real time through intelligent volume bubbles and a live depth panel. Built for traders who need to anticipate price reversals, confirm breakouts with confidence, and make decisions based on what is actually happening in the market.",
+    "longDescription": "Logic Depth Live transforms your NinjaTrader 8 charts into a powerful interactive heatmap, allowing you to clearly see where institutional buy and sell orders are concentrated before price reaches them. Instantly discover true market intent, detect liquidity traps, and analyze aggressive trades in real time through intelligent volume bubbles and a live depth panel. Built for traders who need to anticipate price reversals, confirm breakouts with confidence, and make decisions based on what is actually happening in the market.",
+    "paragraphs": [
+      "Real-Time Market Depth: Logic Depth Live transforms your NinjaTrader 8 charts into a powerful interactive heatmap, allowing you to clearly see where institutional buy and sell orders are concentrated before price reaches them.",
+      "Trap Detection and Aggressive Trading: Instantly discover true market intent, detect liquidity traps, and analyze aggressive trades in real time through intelligent volume bubbles and a live depth panel.",
+      "Decisions Based on Real Data: Built for traders who need to anticipate price reversals, confirm breakouts with confidence, and make decisions based on what is actually happening in the market."
+    ],
+    "contentImages": [
+      "sample_indicator"
     ]
   }
 }

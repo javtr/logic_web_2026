@@ -1,5 +1,31 @@
 {
   "title": "Indicadores Gratuitos",
-  "subtitle": "Descarga nuestras herramientas gratuitas y empieza a operar más inteligente hoy.",
-  "content": "Explora nuestra colección de indicadores gratuitos construidos con la misma calidad y precisión que nuestra suite premium. Estas herramientas son perfectas para iniciarte en el análisis de order flow, probar nuestros estándares de desarrollo, o complementar tu configuración actual. Cada indicador gratuito incluye documentación básica y es totalmente compatible con NinjaTrader 8. Descarga tantos como quieras — sin registro. Si tienes preguntas o quieres actualizar a una versión más potente, nuestro equipo está a un solo clic de distancia."
+  "subtitle": "Descarga nuestras herramientas gratuitas y experimenta la potencia de Logic Indicators en NinjaTrader 8.",
+  "badge": "Versión Gratuita",
+  "downloadCta": "Descargar ahora",
+  "viewFullCta": "Ver versión completa",
+  "indicators": [
+    {
+      "id": "profile-free",
+      "name": "Logic Profile (Free Version)",
+      "badge": "Gratis",
+      "tagline": "Histograma de volumen y análisis de la subasta.",
+      "imageKey": "profile",
+      "contentImages": [
+        "profile_d1",
+        "profile_d2",
+        "profile_d3"
+      ],
+      "description": "El Volume Profile es la herramienta fundamental para entender la verdadera estructura del mercado a través de la Teoría de la Subasta. Organiza la actividad operativa basándose en el precio, revelando visualmente dónde se está construyendo el volumen institucional para que puedas anticipar zonas clave de soporte, resistencia y rotación con lógica profesional.",
+      "trialNotice": "Esta es una versión de prueba gratuita creada para que compruebes de primera mano la precisión analítica y el rendimiento sin latencia de nuestro motor en NinjaTrader 8. Úsala para familiarizarte con la lectura de la subasta antes de dar el salto a la versión Full.",
+      "features": [
+        "Cálculo de perfil de volumen sobre la sesión",
+        "Detección del Punto de Control (POC) y Value Area",
+        "Rendimiento optimizado y fluido sin congelamientos",
+        "Totalmente compatible con NinjaTrader 8"
+      ],
+      "downloadUrl": "#",
+      "fullVersionSlug": "logic-profile"
+    }
+  ]
 }

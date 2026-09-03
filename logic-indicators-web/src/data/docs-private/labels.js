@@ -26,6 +26,8 @@ export const DOCS_LABELS = {
     'docs.article.logic-bigtrades':    'Logic BigTrades',
     'docs.article.logic-analytics':    'Logic Analytics',
     'docs.article.logic-algorithms':   'Logic Algorithms',
+    'docs.article.logic-depth-chart':  'Logic Depth Chart',
+    'docs.article.logic-depth-live':   'Logic Depth Live',
     'docs.article.configuration':      'General Settings',
     'docs.article.troubleshooting':    'Troubleshooting',
 
@@ -60,6 +62,8 @@ export const DOCS_LABELS = {
     'docs.article.logic-bigtrades':    'Logic BigTrades',
     'docs.article.logic-analytics':    'Logic Analytics',
     'docs.article.logic-algorithms':   'Logic Algorithms',
+    'docs.article.logic-depth-chart':  'Logic Depth Chart',
+    'docs.article.logic-depth-live':   'Logic Depth Live',
     'docs.article.configuration':      'Configuración general',
     'docs.article.troubleshooting':    'Solución de problemas',
 

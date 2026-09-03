@@ -21,6 +21,8 @@ export const DOCS_PUBLIC_LABELS = {
     'docs.article.logic-bigtrades':    'Logic BigTrades',
     'docs.article.logic-analytics':    'Logic Analytics',
     'docs.article.logic-algorithms':   'Logic Algorithms',
+    'docs.article.logic-depth-chart':  'Logic Depth Chart',
+    'docs.article.logic-depth-live':   'Logic Depth Live',
 
     // UI strings (compartidos con el módulo privado conceptualmente,
     // duplicados acá para no generar dependencia cruzada)
@@ -48,6 +50,8 @@ export const DOCS_PUBLIC_LABELS = {
     'docs.article.logic-bigtrades':    'Logic BigTrades',
     'docs.article.logic-analytics':    'Logic Analytics',
     'docs.article.logic-algorithms':   'Logic Algorithms',
+    'docs.article.logic-depth-chart':  'Logic Depth Chart',
+    'docs.article.logic-depth-live':   'Logic Depth Live',
 
     'docs.ui.search.placeholder':      'Buscar en la documentación…',
     'docs.ui.search.noResults':        'Sin resultados',
