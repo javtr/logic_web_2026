@@ -20,6 +20,20 @@ import { generateInstallationSteps } from "../data/installation";
 const toTitleCase = (str) =>
   String(str || '').toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
 
+// Icono SVG oficial de Discord
+const DiscordIcon = ({ size = 20, className = "" }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+  </svg>
+);
+
 export const Dashboard = () => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
@@ -359,230 +373,252 @@ export const Dashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        {/*
-          LAYOUT (md+):
-            Columna izquierda: Tus Productos y Suscripciones (con row-span-2,
-            crece hacia abajo segun la cantidad de productos del usuario).
-            Columna derecha: Machine ID arriba + Documentacion abajo.
-          Mobile: stack vertical en orden Products, Machine ID, Documentation.
-        */}
-
-        {/* Tus Productos y Suscripciones */}
-        <div className="md:row-span-2 bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
-          <div className="flex items-center gap-3 mb-4 text-accent-primary">
-            <Package size={24} />
-            <h2 className="text-xl font-bold text-text-main">{t('dashboard.products.cardTitle')}</h2>
-          </div>
-
-          {userProducts.length === 0 ? (
-            <p className="text-text-muted text-sm">
-              {t('dashboard.products.emptyState')}
-            </p>
-          ) : (
-            <>
-              {/* CTA principal: abre el wizard de instalación paso a paso.
-                  Es la única vía de descarga. La descarga individual se
-                  quitó del dashboard para forzar el flujo guiado y reducir
-                  tickets de soporte. El wizard vive en
-                  components/dashboard/InstallationWizard. */}
-              {hasInstallableSteps && (
-                <div className="mb-6">
-                  <Button
-                    variant="primary"
-                    onClick={() => setIsWizardOpen(true)}
-                    className="w-full"
-                    aria-label={t('dashboard.installation.startCta')}
-                  >
-                    <Play size={18} />
-                    {t('dashboard.installation.startCta')}
-                  </Button>
-                  <p className="text-xs text-text-muted mt-2 italic text-center">
-                    {t('dashboard.installation.alreadyInstalled')}
-                  </p>
-                </div>
-              )}
-
-              {/* Lista informativa de productos del usuario. NO son
-                  botones de descarga: solo muestran el nombre y el estado
-                  (vitalicio / vigente / vencido). La descarga real ocurre
-                  dentro del wizard de instalación. */}
-              <div>
-                <h3 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">
-                  {t('dashboard.products.yourProductsLabel')}
-                </h3>
-                <div className="space-y-2">
-                  {userProducts.map((prod) => {
-                    const name =
-                      getDisplayName(prod.nombre_producto) || prod.nombre_producto;
-                    const status = getProductStatus(prod);
-                    return (
-                      <div
-                        key={prod.nombre_producto}
-                        className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-3 p-3 bg-dark-900 border border-dark-700 rounded-lg"
-                      >
-                        <span className="text-sm font-medium text-text-main">
-                          {name}
-                        </span>
-                        <span
-                          className={`text-xs font-medium ${status.className}`}
-                        >
-                          {status.label}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-
-        {/* Gestión de Machine ID */}
-        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
-          <div className="flex items-center justify-between gap-3 mb-6 text-accent-secondary">
-            <div className="flex items-center gap-3">
-              <Monitor size={24} />
-              <h2 className="text-xl font-bold text-text-main">{t('dashboard.machineId.cardTitle')}</h2>
+        {/* COLUMNA IZQUIERDA: Tus Productos + Comunidad Discord */}
+        <div className="flex flex-col gap-6 md:gap-8">
+          {/* Tus Productos y Suscripciones */}
+          <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
+            <div className="flex items-center gap-3 mb-4 text-accent-primary">
+              <Package size={24} />
+              <h2 className="text-xl font-bold text-text-main">{t('dashboard.products.cardTitle')}</h2>
             </div>
-            {savedFlash && (
-              <span className="flex items-center gap-1.5 text-sm font-semibold text-accent-secondary animate-pulse">
-                <Check size={16} /> {t('dashboard.machineId.savedFlash')}
-              </span>
+
+            {userProducts.length === 0 ? (
+              <p className="text-text-muted text-sm">
+                {t('dashboard.products.emptyState')}
+              </p>
+            ) : (
+              <>
+                {/* CTA principal: abre el wizard de instalación paso a paso.
+                    Es la única vía de descarga. La descarga individual se
+                    quitó del dashboard para forzar el flujo guiado y reducir
+                    tickets de soporte. El wizard vive en
+                    components/dashboard/InstallationWizard. */}
+                {hasInstallableSteps && (
+                  <div className="mb-6">
+                    <Button
+                      variant="primary"
+                      onClick={() => setIsWizardOpen(true)}
+                      className="w-full"
+                      aria-label={t('dashboard.installation.startCta')}
+                    >
+                      <Play size={18} />
+                      {t('dashboard.installation.startCta')}
+                    </Button>
+                    <p className="text-xs text-text-muted mt-2 italic text-center">
+                      {t('dashboard.installation.alreadyInstalled')}
+                    </p>
+                  </div>
+                )}
+
+                {/* Lista informativa de productos del usuario. NO son
+                    botones de descarga: solo muestran el nombre y el estado
+                    (vitalicio / vigente / vencido). La descarga real ocurre
+                    dentro del wizard de instalación. */}
+                <div>
+                  <h3 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">
+                    {t('dashboard.products.yourProductsLabel')}
+                  </h3>
+                  <div className="space-y-2">
+                    {userProducts.map((prod) => {
+                      const name =
+                        getDisplayName(prod.nombre_producto) || prod.nombre_producto;
+                      const status = getProductStatus(prod);
+                      return (
+                        <div
+                          key={prod.nombre_producto}
+                          className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-3 p-3 bg-dark-900 border border-dark-700 rounded-lg"
+                        >
+                          <span className="text-sm font-medium text-text-main">
+                            {name}
+                          </span>
+                          <span
+                            className={`text-xs font-medium ${status.className}`}
+                          >
+                            {status.label}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </>
             )}
           </div>
 
-          {!isEditing ? (
-            <div className="space-y-5">
-              <div>
-                <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
-                  {t('dashboard.machineId.currentIdLabel')}
-                </label>
-                {currentMachineId ? (
-                  <p
-                    className="w-full bg-dark-900 border border-dark-700 text-text-main p-4 rounded-xl font-mono text-sm break-all"
-                    title={currentMachineId}
-                  >
-                    {currentMachineId}
-                  </p>
-                ) : (
-                  <p className="w-full bg-dark-900 border border-dashed border-dark-700 text-text-muted p-4 rounded-xl italic text-sm">
-                    {t('dashboard.machineId.noIdConfigured')}
-                  </p>
-                )}
-              </div>
-
-              <Button
-                onClick={handleStartEdit}
-                variant="primary"
-                className="w-full sm:w-auto"
-              >
-                <Pencil size={18} />
-                {t('dashboard.machineId.updateButton')}
-              </Button>
+          {/* Comunidad Discord */}
+          <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
+            <div className="flex items-center gap-3 mb-4 text-[#5865F2]">
+              <DiscordIcon size={26} />
+              <h2 className="text-xl font-bold text-text-main">
+                {t('dashboard.discord.cardTitle')}
+              </h2>
             </div>
-          ) : (
-            <form onSubmit={handleUpdate} className="space-y-5">
-              <div>
-                <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
-                  {t('dashboard.machineId.newIdLabel')}
-                </label>
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={draftValue}
-                  onChange={(e) => setDraftValue(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  disabled={isSaving}
-                  className="w-full bg-dark-900 border border-dark-600 text-text-main p-4 rounded-xl focus:border-accent-secondary outline-none transition-all font-mono text-sm disabled:opacity-60"
-                  placeholder={t('dashboard.machineId.newIdPlaceholder')}
-                />
-                <p className="text-xs text-text-muted mt-2">
-                  {t('dashboard.machineId.saveHint')}
-                </p>
-              </div>
 
-              {status.msg && status.type !== "loading" && (
-                <p
-                  className={`text-sm font-medium ${
-                    status.type === "success" ? "text-green-400" : "text-red-400"
-                  }`}
-                >
-                  {status.msg}
-                </p>
-              )}
+            <p className="text-text-muted mb-6 leading-relaxed text-sm md:text-base">
+              {t('dashboard.discord.description')}
+            </p>
 
-              <div className="flex flex-col-reverse sm:flex-row gap-3">
-                <Button
-                  type="button"
-                  variant="secondary"
-                  onClick={handleCancel}
-                  disabled={isSaving}
-                  className="flex-1"
-                >
-                  <X size={18} />
-                  {t('dashboard.machineId.cancelButton')}
-                </Button>
-                <Button
-                  type="submit"
-                  variant="primary"
-                  disabled={isUnchanged || isSaving}
-                  className="flex-1"
-                >
-                  {isSaving ? (
-                    <>
-                      <Loader2 size={18} className="animate-spin" />
-                      {t('dashboard.machineId.saving')}
-                    </>
-                  ) : (
-                    <>
-                      <Check size={18} />
-                      {t('dashboard.machineId.saveButton')}
-                    </>
-                  )}
-                </Button>
-              </div>
-            </form>
-          )}
+            <a
+              href={t('dashboard.discord.url')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2.5 w-full bg-[#5865F2] hover:bg-[#4752C4] text-white font-semibold py-3 px-6 rounded-xl transition-all shadow-lg shadow-[#5865F2]/20 hover:shadow-[#5865F2]/30 active:scale-[0.99]"
+            >
+              <DiscordIcon size={20} />
+              <span>{t('dashboard.discord.cta')}</span>
+            </a>
+          </div>
         </div>
 
-        {/* Documentación */}
-        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl">
-          <div className="flex items-center gap-3 mb-4 text-accent-secondary">
-            <BookOpen size={24} />
-            <h2 className="text-xl font-bold text-text-main">
-              {t('dashboard.documentation.cardTitle')}
-            </h2>
+        {/* COLUMNA DERECHA: Machine ID + Documentación */}
+        <div className="flex flex-col gap-6 md:gap-8">
+          {/* Gestión de Machine ID */}
+          <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
+            <div className="flex items-center justify-between gap-3 mb-6 text-accent-secondary">
+              <div className="flex items-center gap-3">
+                <Monitor size={24} />
+                <h2 className="text-xl font-bold text-text-main">{t('dashboard.machineId.cardTitle')}</h2>
+              </div>
+              {savedFlash && (
+                <span className="flex items-center gap-1.5 text-sm font-semibold text-accent-secondary animate-pulse">
+                  <Check size={16} /> {t('dashboard.machineId.savedFlash')}
+                </span>
+              )}
+            </div>
+
+            {!isEditing ? (
+              <div className="space-y-5">
+                <div>
+                  <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
+                    {t('dashboard.machineId.currentIdLabel')}
+                  </label>
+                  {currentMachineId ? (
+                    <p
+                      className="w-full bg-dark-900 border border-dark-700 text-text-main p-4 rounded-xl font-mono text-sm break-all"
+                      title={currentMachineId}
+                    >
+                      {currentMachineId}
+                    </p>
+                  ) : (
+                    <p className="w-full bg-dark-900 border border-dashed border-dark-700 text-text-muted p-4 rounded-xl italic text-sm">
+                      {t('dashboard.machineId.noIdConfigured')}
+                    </p>
+                  )}
+                </div>
+
+                <Button
+                  onClick={handleStartEdit}
+                  variant="primary"
+                  className="w-full sm:w-auto"
+                >
+                  <Pencil size={18} />
+                  {t('dashboard.machineId.updateButton')}
+                </Button>
+              </div>
+            ) : (
+              <form onSubmit={handleUpdate} className="space-y-5">
+                <div>
+                  <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
+                    {t('dashboard.machineId.newIdLabel')}
+                  </label>
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={draftValue}
+                    onChange={(e) => setDraftValue(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    disabled={isSaving}
+                    className="w-full bg-dark-900 border border-dark-600 text-text-main p-4 rounded-xl focus:border-accent-secondary outline-none transition-all font-mono text-sm disabled:opacity-60"
+                    placeholder={t('dashboard.machineId.newIdPlaceholder')}
+                  />
+                  <p className="text-xs text-text-muted mt-2">
+                    {t('dashboard.machineId.saveHint')}
+                  </p>
+                </div>
+
+                {status.msg && status.type !== "loading" && (
+                  <p
+                    className={`text-sm font-medium ${
+                      status.type === "success" ? "text-green-400" : "text-red-400"
+                    }`}
+                  >
+                    {status.msg}
+                  </p>
+                )}
+
+                <div className="flex flex-col-reverse sm:flex-row gap-3">
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    onClick={handleCancel}
+                    disabled={isSaving}
+                    className="flex-1"
+                  >
+                    <X size={18} />
+                    {t('dashboard.machineId.cancelButton')}
+                  </Button>
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    disabled={isUnchanged || isSaving}
+                    className="flex-1"
+                  >
+                    {isSaving ? (
+                      <>
+                        <Loader2 size={18} className="animate-spin" />
+                        {t('dashboard.machineId.saving')}
+                      </>
+                    ) : (
+                      <>
+                        <Check size={18} />
+                        {t('dashboard.machineId.saveButton')}
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </form>
+            )}
           </div>
 
-          <p className="text-text-muted mb-6 leading-relaxed">
-            {t('dashboard.documentation.description')}
-          </p>
+          {/* Documentación */}
+          <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
+            <div className="flex items-center gap-3 mb-4 text-accent-secondary">
+              <BookOpen size={24} />
+              <h2 className="text-xl font-bold text-text-main">
+                {t('dashboard.documentation.cardTitle')}
+              </h2>
+            </div>
 
-          <div className="flex flex-col sm:flex-row flex-wrap gap-3">
-            <Button
-              variant="primary"
-              onClick={() => navigate("/dashboard/docs")}
-              className="w-full sm:w-auto"
-            >
-              <BookOpen size={18} />
-              {t('dashboard.documentation.goToDocsButton')}
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={() => navigate("/dashboard/docs/installation")}
-              className="w-full sm:w-auto"
-            >
-              <BookOpen size={18} />
-              {t('dashboard.documentation.installationButton')}
-            </Button>
-            <Button
-              variant="outline"
-              onClick={() => navigate("/faq")}
-              className="w-full sm:w-auto"
-            >
-              <HelpCircle size={18} />
-              {t('dashboard.documentation.faqButton')}
-            </Button>
+            <p className="text-text-muted mb-6 leading-relaxed">
+              {t('dashboard.documentation.description')}
+            </p>
+
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+              <Button
+                variant="primary"
+                onClick={() => navigate("/dashboard/docs")}
+                className="w-full sm:w-auto"
+              >
+                <BookOpen size={18} />
+                {t('dashboard.documentation.goToDocsButton')}
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={() => navigate("/dashboard/docs/installation")}
+                className="w-full sm:w-auto"
+              >
+                <BookOpen size={18} />
+                {t('dashboard.documentation.installationButton')}
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => navigate("/faq")}
+                className="w-full sm:w-auto"
+              >
+                <HelpCircle size={18} />
+                {t('dashboard.documentation.faqButton')}
+              </Button>
+            </div>
           </div>
         </div>
       </div>

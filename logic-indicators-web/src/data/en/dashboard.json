@@ -40,6 +40,12 @@
     "installationButton": "Installation instructions",
     "faqButton": "Frequently asked questions"
   },
+  "discord": {
+    "cardTitle": "Join the Logic Indicators User Discord",
+    "description": "Get technical support, find educational material, and share your experiences with the community.",
+    "cta": "Access the Discord Channel",
+    "url": "https://discord.gg/UKxZyQUGxY"
+  },
   "error": {
     "sessionExpired": "Your session has expired. Please log in again.",
     "loadFailed": "We couldn't load your dashboard right now. Please try again in a few moments.",

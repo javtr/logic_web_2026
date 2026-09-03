@@ -40,6 +40,12 @@
     "installationButton": "Instrucciones de instalación",
     "faqButton": "Preguntas frecuentes"
   },
+  "discord": {
+    "cardTitle": "Únete al Discord de usuarios de Logic Indicators",
+    "description": "Recibe soporte técnico, encuentra material educativo y comparte tus experiencias con la comunidad.",
+    "cta": "Acceder al canal de Discord",
+    "url": "https://discord.gg/UKxZyQUGxY"
+  },
   "error": {
     "sessionExpired": "Tu sesión ha expirado. Por favor, vuelve a iniciar sesión.",
     "loadFailed": "No pudimos cargar tu panel en este momento. Inténtalo de nuevo en unos minutos.",

@@ -16,11 +16,11 @@ export const DOCS_PUBLIC_LABELS = {
 
     'docs.article.logic-footprint':    'Logic Footprint',
     'docs.article.logic-footer':       'Logic Footer',
-    'docs.article.logic-profile':      'Volume Profile',
+    'docs.article.logic-profile':      'Logic Profile',
     'docs.article.logic-composite':    'Logic Composite',
     'docs.article.logic-bigtrades':    'Logic BigTrades',
     'docs.article.logic-analytics':    'Logic Analytics',
-    'docs.article.logic-algorithms':   'Algorithms',
+    'docs.article.logic-algorithms':   'Logic Algorithms',
 
     // UI strings (compartidos con el módulo privado conceptualmente,
     // duplicados acá para no generar dependencia cruzada)
@@ -43,11 +43,11 @@ export const DOCS_PUBLIC_LABELS = {
 
     'docs.article.logic-footprint':    'Logic Footprint',
     'docs.article.logic-footer':       'Logic Footer',
-    'docs.article.logic-profile':      'Volume Profile',
+    'docs.article.logic-profile':      'Logic Profile',
     'docs.article.logic-composite':    'Logic Composite',
     'docs.article.logic-bigtrades':    'Logic BigTrades',
     'docs.article.logic-analytics':    'Logic Analytics',
-    'docs.article.logic-algorithms':   'Algorithms',
+    'docs.article.logic-algorithms':   'Logic Algorithms',
 
     'docs.ui.search.placeholder':      'Buscar en la documentación…',
     'docs.ui.search.noResults':        'Sin resultados',

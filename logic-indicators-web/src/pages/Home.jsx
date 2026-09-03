@@ -12,6 +12,22 @@ import { OrganizationJsonLd } from '../components/OrganizationJsonLd';
 import { resolveImage } from '../data/imageResolver';
 import { getActiveIndicatorIds } from '../data';
 
+// Helper para renderizar texto con marcas de negrita **texto**
+const renderFormattedText = (text) => {
+  if (typeof text !== 'string') return text;
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <strong key={index} className="font-semibold text-text-main">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+};
+
 export const Home = () => {
   const { t, language } = useLanguage();
 
@@ -67,7 +83,7 @@ export const Home = () => {
             {t('hero.title')}
           </h1>
           <p className="text-lg md:text-xl text-text-muted mb-10 max-w-2xl mx-auto leading-relaxed">
-            {t('hero.subtitle')}
+            {renderFormattedText(t('hero.subtitle'))}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
             <Link to="/pricing" className="w-full sm:w-auto">
@@ -104,9 +120,9 @@ export const Home = () => {
 
       {/* 2. SECCIÓN DE INDICADORES */}
       <section className="px-6 container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4">{t('home.suiteTitle')}</h2>
-          <p className="text-text-muted text-lg">{t('home.suiteSubtitle')}</p>
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-main tracking-tight mb-4">{t('home.suiteTitle')}</h2>
+          <p className="text-text-muted text-base md:text-lg leading-relaxed">{renderFormattedText(t('home.suiteSubtitle'))}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {featuredIndicators.map((id) => {
