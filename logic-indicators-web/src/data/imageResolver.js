@@ -43,9 +43,34 @@ import algorithms_d03Image from '../assets/indicators/algorithms_d3.png';
 import ninjaInstall01Image from '../assets/installation/ninja_install_01.png';
 import ninjaInstall02Image from '../assets/installation/ninja_install_02.png';
 
-
+// Presets individuales - Logic Footprint
+import presetFootprintAtasImbalanceDark from '../assets/presets/preset_footprint_atas_imbalance_dark.png';
+import presetFootprintAtasLight from '../assets/presets/preset_footprint_atas_light.png';
+import presetFootprintBidxaskDark from '../assets/presets/preset_footprint_bidxask_dark.png';
+import presetFootprintBidxaskLight from '../assets/presets/preset_footprint_bidxask_light.png';
+import presetFootprintCarmineSierraDark from '../assets/presets/preset_footprint_carmine_sierra_dark.png';
+import presetFootprintDale from '../assets/presets/preset_footprint_dale.png';
+import presetFootprintDeltaDark from '../assets/presets/preset_footprint_delta_dark.png';
+import presetFootprintDeltaLight from '../assets/presets/preset_footprint_delta_light.png';
+import presetFootprintFabioDcDominant from '../assets/presets/preset_footprint_fabio_dc_dominant.png';
+import presetFootprintFabioDcProfile from '../assets/presets/preset_footprint_fabio_dc_profile.png';
+import presetFootprintKaizenSierra from '../assets/presets/preset_footprint_kaizen_sierra.png';
+import presetFootprintUmarAtasDark from '../assets/presets/preset_footprint_umar_atas_dark.png';
 
 export const imageMap = {
+  // Presets Logic Footprint
+  preset_footprint_atas_imbalance_dark: presetFootprintAtasImbalanceDark,
+  preset_footprint_atas_light: presetFootprintAtasLight,
+  preset_footprint_bidxask_dark: presetFootprintBidxaskDark,
+  preset_footprint_bidxask_light: presetFootprintBidxaskLight,
+  preset_footprint_carmine_sierra_dark: presetFootprintCarmineSierraDark,
+  preset_footprint_dale: presetFootprintDale,
+  preset_footprint_delta_dark: presetFootprintDeltaDark,
+  preset_footprint_delta_light: presetFootprintDeltaLight,
+  preset_footprint_fabio_dc_dominant: presetFootprintFabioDcDominant,
+  preset_footprint_fabio_dc_profile: presetFootprintFabioDcProfile,
+  preset_footprint_kaizen_sierra: presetFootprintKaizenSierra,
+  preset_footprint_umar_atas_dark: presetFootprintUmarAtasDark,
   // Fallback / placeholder (también usado por deepchart y deeplive hasta tener imagen propia)
   sample_indicator: sampleIndicatorImage,
   // Banner de Home (entre hero y la grilla de la suite premium)

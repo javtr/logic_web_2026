@@ -25,8 +25,40 @@ import { resolveImage } from '../data/imageResolver';
 import { Download, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const PresetCard = ({ preset, cta }) => {
+  const [isDownloading, setIsDownloading] = useState(false);
   // description es opcional: si esta vacia o ausente, no se renderiza <p>
   const hasDescription = typeof preset.description === 'string' && preset.description.trim().length > 0;
+
+  const handleDownload = async (e) => {
+    e.preventDefault();
+    if (isDownloading) return;
+    setIsDownloading(true);
+
+    try {
+      const response = await fetch(preset.xmlUrl);
+      if (!response.ok) throw new Error('Download failed');
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = blobUrl;
+      const downloadName = preset.xmlUrl.split('/').pop() || `${preset.name}.xml`;
+      a.download = downloadName.endsWith('.xml') ? downloadName : `${downloadName}.xml`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(blobUrl);
+      document.body.removeChild(a);
+    } catch (err) {
+      // Fallback si fetch directo no es permitido por CORS o falla la red
+      const a = document.createElement('a');
+      a.href = preset.xmlUrl;
+      a.target = '_blank';
+      a.download = preset.xmlUrl.split('/').pop() || 'preset.xml';
+      a.click();
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   return (
     <article className="group flex flex-col h-full bg-dark-800 border border-dark-700 hover:border-accent-secondary/40 rounded-2xl overflow-hidden transition-all duration-300">
@@ -53,19 +85,18 @@ const PresetCard = ({ preset, cta }) => {
           )}
         </div>
 
-        {/* Descarga: <a target="_blank> para no perder la pagina.
-            El href viene del JSON (placeholder hasta que subas los XMLs). */}
-        <a
-          href={preset.xmlUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block mt-auto"
-        >
-          <Button variant="primary" className="w-full">
-            <Download size={16} />
+        {/* Botón de descarga forzada */}
+        <div className="mt-auto">
+          <Button
+            variant="primary"
+            className="w-full"
+            onClick={handleDownload}
+            disabled={isDownloading}
+          >
+            <Download size={16} className={isDownloading ? 'animate-bounce' : ''} />
             {cta}
           </Button>
-        </a>
+        </div>
       </div>
     </article>
   );

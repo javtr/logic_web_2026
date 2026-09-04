@@ -1,6 +1,4 @@
 {
-  "_doc": "PLACEHOLDER hasta que se suban las imagenes y los XMLs reales. Cambiar imageKey/xmlUrl por producto cuando lleguen los assets. imageKey debe existir en src/data/imageResolver.js (o se cae al fallback). El campo 'description' es opcional — si esta vacio o ausente, la card solo muestra el nombre + boton.",
-
   "pageTitle": "Plantillas de Indicadores",
   "pageSubtitle": "Archivos XML preconfigurados para cargar nuestros indicadores con los ajustes visuales y técnicos óptimos. Solo tienes que importarlos en NinjaTrader 8 y empezar a operar en segundos.",
   "cta": "Descargar",
@@ -34,290 +32,426 @@
 
   "presets": [
     {
-      "id": "footprint-default",
+      "id": "footprint-atas-imbalance-dark",
       "indicatorId": "footprint",
-      "name": "Por defecto",
-      "description": "Configuración balanceada para trading diario. Buen punto de partida para la mayoría de los usuarios.",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/footprint-default.xml"
-    },
-    {
-      "id": "footprint-advanced",
-      "indicatorId": "footprint",
-      "name": "Avanzada",
-      "description": "Ajustada para scalping y análisis de order flow de alto volumen. Más capas visuales habilitadas.",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/footprint-advanced.xml"
-    },
-    {
-      "id": "footprint-scalper",
-      "indicatorId": "footprint",
-      "name": "Scalper",
+      "name": "ATAS Imbalance Dark",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/footprint-scalper.xml"
+      "imageKey": "preset_footprint_atas_imbalance_dark",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_FootPrint/User/ATAS_IMBALANCE_DARK.xml"
     },
     {
-      "id": "footprint-swing",
+      "id": "footprint-atas-light",
       "indicatorId": "footprint",
-      "name": "Swing",
+      "name": "ATAS Light",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/footprint-swing.xml"
+      "imageKey": "preset_footprint_atas_light",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_FootPrint/User/ATAS_LIGHT.xml"
     },
     {
-      "id": "footprint-intraday",
+      "id": "footprint-bidxask-dark",
       "indicatorId": "footprint",
-      "name": "Intradía",
+      "name": "Bid x Ask Dark",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/footprint-intraday.xml"
+      "imageKey": "preset_footprint_bidxask_dark",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_FootPrint/User/BIDXASK_DARK.xml"
+    },
+    {
+      "id": "footprint-bidxask-light",
+      "indicatorId": "footprint",
+      "name": "Bid x Ask Light",
+      "description": "",
+      "imageKey": "preset_footprint_bidxask_light",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_FootPrint/User/BIDXASK_LIGHT.xml"
+    },
+    {
+      "id": "footprint-carmine-sierra-dark",
+      "indicatorId": "footprint",
+      "name": "Carmine Sierra Dark",
+      "description": "",
+      "imageKey": "preset_footprint_carmine_sierra_dark",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_FootPrint/User/CARMINE_SIERRA_DARK.xml"
+    },
+    {
+      "id": "footprint-dale",
+      "indicatorId": "footprint",
+      "name": "Dale",
+      "description": "",
+      "imageKey": "preset_footprint_dale",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_FootPrint/User/DALE.xml"
+    },
+    {
+      "id": "footprint-delta-dark",
+      "indicatorId": "footprint",
+      "name": "Delta Dark",
+      "description": "",
+      "imageKey": "preset_footprint_delta_dark",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_FootPrint/User/DELTA_DARK.xml"
+    },
+    {
+      "id": "footprint-delta-light",
+      "indicatorId": "footprint",
+      "name": "Delta Light",
+      "description": "",
+      "imageKey": "preset_footprint_delta_light",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_FootPrint/User/DELTA_LIGHT.xml"
+    },
+    {
+      "id": "footprint-fabio-dc-dominant",
+      "indicatorId": "footprint",
+      "name": "Fabio DC Dominant",
+      "description": "",
+      "imageKey": "preset_footprint_fabio_dc_dominant",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_FootPrint/User/FABIO_DC_DOMINANT.xml"
+    },
+    {
+      "id": "footprint-fabio-dc-profile",
+      "indicatorId": "footprint",
+      "name": "Fabio DC Profile",
+      "description": "",
+      "imageKey": "preset_footprint_fabio_dc_profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_FootPrint/User/FABIO_DC_PROFILE.xml"
+    },
+    {
+      "id": "footprint-kaizen-sierra",
+      "indicatorId": "footprint",
+      "name": "Kaizen Sierra",
+      "description": "",
+      "imageKey": "preset_footprint_kaizen_sierra",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_FootPrint/User/KAIZEN_SIERRA.xml"
+    },
+    {
+      "id": "footprint-umar-atas-dark",
+      "indicatorId": "footprint",
+      "name": "Umar ATAS Dark",
+      "description": "",
+      "imageKey": "preset_footprint_umar_atas_dark",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_FootPrint/User/UMAR_ATAS_DARK.xml"
     },
 
     {
-      "id": "footer-default",
+      "id": "footer-classic-dark",
       "indicatorId": "footer",
-      "name": "Por defecto",
-      "description": "Panel analítico balanceado para lectura general del mercado.",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/footer-default.xml"
-    },
-    {
-      "id": "footer-advanced",
-      "indicatorId": "footer",
-      "name": "Avanzada",
-      "description": "Panel completo de 23 métricas para análisis profundo post-operación.",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/footer-advanced.xml"
-    },
-    {
-      "id": "footer-lite",
-      "indicatorId": "footer",
-      "name": "Ligera",
+      "name": "Classic Dark",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/footer-lite.xml"
+      "imageKey": "footer",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Footer/User/CLASSIC_DARK.xml"
+    },
+    {
+      "id": "footer-classic-databox-dark",
+      "indicatorId": "footer",
+      "name": "Classic DataBox Dark",
+      "description": "",
+      "imageKey": "footer",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Footer/User/CLASSIC_DATABOX_DARK.xml"
+    },
+    {
+      "id": "footer-classic-databox-light",
+      "indicatorId": "footer",
+      "name": "Classic DataBox Light",
+      "description": "",
+      "imageKey": "footer",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Footer/User/CLASSIC_DATABOX_LIGHT.xml"
+    },
+    {
+      "id": "footer-classic-light",
+      "indicatorId": "footer",
+      "name": "Classic Light",
+      "description": "",
+      "imageKey": "footer",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Footer/User/CLASSIC_LIGHT.xml"
+    },
+    {
+      "id": "footer-heatmap",
+      "indicatorId": "footer",
+      "name": "Heatmap",
+      "description": "",
+      "imageKey": "footer",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Footer/User/HEATMAP.xml"
+    },
+    {
+      "id": "footer-heatmap-basic",
+      "indicatorId": "footer",
+      "name": "Heatmap Basic",
+      "description": "",
+      "imageKey": "footer",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Footer/User/HEATMAP_BASIC.xml"
     },
 
     {
-      "id": "profile-default",
+      "id": "profile-tpo-black-light",
       "indicatorId": "profile",
-      "name": "Por defecto",
-      "description": "Render estándar de volume profile con zonas clave destacadas.",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/profile-default.xml"
-    },
-    {
-      "id": "profile-advanced",
-      "indicatorId": "profile",
-      "name": "Avanzada",
-      "description": "Composite profile con POC/VAH/VAL y overlays por sesión.",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/profile-advanced.xml"
-    },
-    {
-      "id": "profile-developing",
-      "indicatorId": "profile",
-      "name": "En desarrollo",
+      "name": "TPO Black Light",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/profile-developing.xml"
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_BLACK_LIGHT.xml"
     },
     {
-      "id": "profile-multisession",
+      "id": "profile-tpo-magenta-2-light",
       "indicatorId": "profile",
-      "name": "Multi-sesión",
+      "name": "TPO Magenta 2 Light",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/profile-multisession.xml"
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_MAGENTA_2_LIGHT.xml"
     },
     {
-      "id": "profile-range",
+      "id": "profile-tpo-magenta-light",
       "indicatorId": "profile",
-      "name": "Rango",
+      "name": "TPO Magenta Light",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/profile-range.xml"
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_MAGENTA_LIGHT.xml"
     },
     {
-      "id": "profile-vwap",
+      "id": "profile-tpo-minimalist-light",
       "indicatorId": "profile",
-      "name": "VWAP por sesión",
+      "name": "TPO Minimalist Light",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/profile-vwap.xml"
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_MINIMALIST_LIGHT.xml"
     },
     {
-      "id": "profile-naked-poc",
+      "id": "profile-tpo-orchid-1-dark",
       "indicatorId": "profile",
-      "name": "POC desnudo",
+      "name": "TPO Orchid 1 Dark",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/profile-naked-poc.xml"
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_ORCHID_1_DARK.xml"
     },
     {
-      "id": "profile-value-area",
+      "id": "profile-tpo-orchid-2-dark",
       "indicatorId": "profile",
-      "name": "Value Area",
+      "name": "TPO Orchid 2 Dark",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/profile-value-area.xml"
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_ORCHID_2_DARK.xml"
+    },
+    {
+      "id": "profile-tpo-sierra",
+      "indicatorId": "profile",
+      "name": "TPO Sierra",
+      "description": "",
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_SIERRA.xml"
+    },
+    {
+      "id": "profile-tpo-smash-sierra",
+      "indicatorId": "profile",
+      "name": "TPO Smash Sierra",
+      "description": "",
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_SMASH_SIERRA.xml"
+    },
+    {
+      "id": "profile-tpo-tradovate",
+      "indicatorId": "profile",
+      "name": "TPO Tradovate",
+      "description": "",
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_TRADOVATE.xml"
+    },
+    {
+      "id": "profile-vp-blue-light",
+      "indicatorId": "profile",
+      "name": "VP Blue Light",
+      "description": "",
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_BLUE_LIGHT.xml"
+    },
+    {
+      "id": "profile-vp-dc-blue",
+      "indicatorId": "profile",
+      "name": "VP DC Blue",
+      "description": "",
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_DC_BLUE.xml"
+    },
+    {
+      "id": "profile-vp-dc-orange",
+      "indicatorId": "profile",
+      "name": "VP DC Orange",
+      "description": "",
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_DC_ORANGE.xml"
+    },
+    {
+      "id": "profile-vp-geometric-dark",
+      "indicatorId": "profile",
+      "name": "VP Geometric Dark",
+      "description": "",
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_GEOMETRIC_DARK.xml"
+    },
+    {
+      "id": "profile-vp-geometric-light",
+      "indicatorId": "profile",
+      "name": "VP Geometric Light",
+      "description": "",
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_GEOMETRIC_LIGHT.xml"
+    },
+    {
+      "id": "profile-vp-green-light",
+      "indicatorId": "profile",
+      "name": "VP Green Light",
+      "description": "",
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_GREEN_LIGHT.xml"
+    },
+    {
+      "id": "profile-vp-logic-dark",
+      "indicatorId": "profile",
+      "name": "VP Logic Dark",
+      "description": "",
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_LOGIC_DARK.xml"
+    },
+    {
+      "id": "profile-vp-magenta-light",
+      "indicatorId": "profile",
+      "name": "VP Magenta Light",
+      "description": "",
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_MAGENTA_LIGHT.xml"
+    },
+    {
+      "id": "profile-vp-ninja",
+      "indicatorId": "profile",
+      "name": "VP Ninja",
+      "description": "",
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_NINJA.xml"
+    },
+    {
+      "id": "profile-vp-orchid-dark",
+      "indicatorId": "profile",
+      "name": "VP Orchid Dark",
+      "description": "",
+      "imageKey": "profile",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_ORCHID_DARK.xml"
     },
 
     {
-      "id": "composite-default",
+      "id": "composite-grev-vpd-zoom-nq",
       "indicatorId": "composite",
-      "name": "Por defecto",
-      "description": "Render estándar de composite profile para la sesión activa.",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/composite-default.xml"
+      "name": "Grey VPD Zoom NQ",
+      "description": "",
+      "imageKey": "composite",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/GREV_VPD_ZOOM_NQ.xml"
     },
     {
-      "id": "composite-advanced",
+      "id": "composite-grey-balanced",
       "indicatorId": "composite",
-      "name": "Avanzada",
-      "description": "Multi-sesión con seguimiento de POC en desarrollo.",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/composite-advanced.xml"
+      "name": "Grey Balanced",
+      "description": "",
+      "imageKey": "composite",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/GREY_BALANCED.xml"
+    },
+    {
+      "id": "composite-grey-vpd",
+      "indicatorId": "composite",
+      "name": "Grey VPD",
+      "description": "",
+      "imageKey": "composite",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/GREY_VPD.xml"
+    },
+    {
+      "id": "composite-grey-vpd-zoom-es",
+      "indicatorId": "composite",
+      "name": "Grey VPD Zoom ES",
+      "description": "",
+      "imageKey": "composite",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/GREY_VPD_ZOOM_ES.xml"
+    },
+    {
+      "id": "composite-vpd-dark",
+      "indicatorId": "composite",
+      "name": "VPD Dark",
+      "description": "",
+      "imageKey": "composite",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/VPD_DARK.xml"
+    },
+    {
+      "id": "composite-vpd-nq",
+      "indicatorId": "composite",
+      "name": "VPD NQ",
+      "description": "",
+      "imageKey": "composite",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/VPD_NQ.xml"
     },
 
     {
-      "id": "bigtrades-default",
+      "id": "bigtrades-bt-footprint-es",
       "indicatorId": "bigtrades",
-      "name": "Por defecto",
-      "description": "Umbral por defecto para filtrar ejecuciones grandes.",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/bigtrades-default.xml"
-    },
-    {
-      "id": "bigtrades-advanced",
-      "indicatorId": "bigtrades",
-      "name": "Avanzada",
-      "description": "Umbrales multi-nivel con destacado por lado bid/ask.",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/bigtrades-advanced.xml"
-    },
-    {
-      "id": "bigtrades-high",
-      "indicatorId": "bigtrades",
-      "name": "Umbral alto",
+      "name": "BT Footprint ES",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/bigtrades-high.xml"
+      "imageKey": "bigtrades",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_BigTrades/User/BT_FOOTPRINT_ES.xml"
     },
     {
-      "id": "bigtrades-low",
+      "id": "bigtrades-bt-footprint-nq",
       "indicatorId": "bigtrades",
-      "name": "Umbral bajo",
+      "name": "BT Footprint NQ",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/bigtrades-low.xml"
+      "imageKey": "bigtrades",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_BigTrades/User/BT_FOOTPRINT_NQ.xml"
     },
     {
-      "id": "bigtrades-multitier",
+      "id": "bigtrades-bt-histogram-es",
       "indicatorId": "bigtrades",
-      "name": "Multi-nivel",
+      "name": "BT Histogram ES",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/bigtrades-multitier.xml"
+      "imageKey": "bigtrades",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_BigTrades/User/BT_HISTOGRAM_ES.xml"
+    },
+    {
+      "id": "bigtrades-bt-histogram-nq",
+      "indicatorId": "bigtrades",
+      "name": "BT Histogram NQ",
+      "description": "",
+      "imageKey": "bigtrades",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_BigTrades/User/BT_HISTOGRAM_NQ.xml"
     },
 
     {
-      "id": "analytics-default",
+      "id": "analytics-analytics-light",
       "indicatorId": "analytics",
-      "name": "Por defecto",
-      "description": "Configuración visual por defecto para detección de absorción/agotamiento.",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/analytics-default.xml"
-    },
-    {
-      "id": "analytics-advanced",
-      "indicatorId": "analytics",
-      "name": "Avanzada",
-      "description": "Umbrales custom y overlays multi-timeframe.",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/analytics-advanced.xml"
+      "name": "Analytics Light",
+      "description": "",
+      "imageKey": "analytics",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Analytics/User/ANALYTICS_LIGHT.xml"
     },
 
     {
-      "id": "algorithms-default",
+      "id": "algorithms-absorption-es",
       "indicatorId": "algorithms",
-      "name": "Por defecto",
-      "description": "Panel de detección de algoritmos por defecto para reconocimiento de patrones.",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/algorithms-default.xml"
-    },
-    {
-      "id": "algorithms-advanced",
-      "indicatorId": "algorithms",
-      "name": "Avanzada",
-      "description": "Todos los patrones de algoritmo habilitados con filtros personalizados.",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/algorithms-advanced.xml"
-    },
-    {
-      "id": "algorithms-iceberg",
-      "indicatorId": "algorithms",
-      "name": "Iceberg",
+      "name": "Absorption ES",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/algorithms-iceberg.xml"
+      "imageKey": "algorithms",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Algorithms/User/ABSORPTION_ES.xml"
     },
     {
-      "id": "algorithms-spoofing",
+      "id": "algorithms-absorption-mes",
       "indicatorId": "algorithms",
-      "name": "Spoofing",
+      "name": "Absorption MES",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/algorithms-spoofing.xml"
+      "imageKey": "algorithms",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Algorithms/User/ABSORPTION_MES.xml"
     },
     {
-      "id": "algorithms-layering",
+      "id": "algorithms-absorption-mnq",
       "indicatorId": "algorithms",
-      "name": "Layering",
+      "name": "Absorption MNQ",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/algorithms-layering.xml"
+      "imageKey": "algorithms",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Algorithms/User/ABSORPTION_MNQ.xml"
     },
     {
-      "id": "algorithms-absorption",
+      "id": "algorithms-absorption-nq",
       "indicatorId": "algorithms",
-      "name": "Absorción",
+      "name": "Absorption NQ",
       "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/algorithms-absorption.xml"
-    },
-    {
-      "id": "algorithms-exhaustion",
-      "indicatorId": "algorithms",
-      "name": "Agotamiento",
-      "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/algorithms-exhaustion.xml"
-    },
-    {
-      "id": "algorithms-stophunt",
-      "indicatorId": "algorithms",
-      "name": "Stop hunt",
-      "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/algorithms-stophunt.xml"
-    },
-    {
-      "id": "algorithms-momentum",
-      "indicatorId": "algorithms",
-      "name": "Momentum",
-      "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/algorithms-momentum.xml"
-    },
-    {
-      "id": "algorithms-trend",
-      "indicatorId": "algorithms",
-      "name": "Tendencia",
-      "description": "",
-      "imageKey": "sample_indicator",
-      "xmlUrl": "https://example.com/presets/algorithms-trend.xml"
+      "imageKey": "algorithms",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Algorithms/User/ABSORPTION_NQ.xml"
     }
   ]
 }
