@@ -53,17 +53,17 @@ const BASIC_QUALIFIER_INDICATORS = new Set([
 export const DISTRIBUTION_PACKS = {
   basic: {
     url: 'https://download.logicindicators.com/LOF_3_0/LOF_BasicPack_3.0.1.zip',
-    displayName: 'Logic Pack V3.0.0',
+    displayName: 'Logic Pack V3.0.1',
     key: 'pack-basic',
   },
   full: {
     url: 'https://download.logicindicators.com/LOF_3_0/LOF_FullPack_3.0.1.zip',
-    displayName: 'Logic Full Pack V3.0.0',
+    displayName: 'Logic Full Pack V3.0.1',
     key: 'pack-full',
   },
   depth: {
     url: 'https://download.logicindicators.com/LOF_3_0/LOF_DepthPack_3.0.1.zip',
-    displayName: 'Logic Depth Pack V3.0.0',
+    displayName: 'Logic Depth Pack V3.0.1',
     key: 'pack-depth',
   },
 };
