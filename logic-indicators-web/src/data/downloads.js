@@ -52,17 +52,17 @@ const BASIC_QUALIFIER_INDICATORS = new Set([
 // El `key` se usa como id interno en el wizard (no se muestra al usuario).
 export const DISTRIBUTION_PACKS = {
   basic: {
-    url: 'https://download.logicindicators.com/LOF_3_0/LOF_BasicPack_3.0.0.zip',
+    url: 'https://download.logicindicators.com/LOF_3_0/LOF_BasicPack_3.0.1.zip',
     displayName: 'Logic Pack V3.0.0',
     key: 'pack-basic',
   },
   full: {
-    url: 'https://download.logicindicators.com/LOF_3_0/LOF_FullPack_3.0.0.zip',
+    url: 'https://download.logicindicators.com/LOF_3_0/LOF_FullPack_3.0.1.zip',
     displayName: 'Logic Full Pack V3.0.0',
     key: 'pack-full',
   },
   depth: {
-    url: 'https://download.logicindicators.com/LOF_3_0/LOF_DepthPack_3.0.0.zip',
+    url: 'https://download.logicindicators.com/LOF_3_0/LOF_DepthPack_3.0.1.zip',
     displayName: 'Logic Depth Pack V3.0.0',
     key: 'pack-depth',
   },
@@ -79,9 +79,9 @@ const LICENSED_DISPLAY_NAMES = {
   'LOGIC_ANALYTICS':     'Logic Analytics',
   'LOGIC_ALGORITHMS':    'Logic Algorithms',
   'LOGIC_COMPOSITE':     'Logic Composite',
-  'LOGIC_PACK_BASICO':   'Logic Pack V3.0.0',
-  'LOGIC_PACK_DEPTH':    'Logic Depth Pack V3.0.0',
-  'LOGIC_PACK_FULL':     'Logic Full Pack V3.0.0',
+  'LOGIC_PACK_BASICO':   'Logic Pack V3.0.1',
+  'LOGIC_PACK_DEPTH':    'Logic Depth Pack V3.0.1',
+  'LOGIC_PACK_FULL':     'Logic Full Pack V3.0.1',
 };
 
 /**

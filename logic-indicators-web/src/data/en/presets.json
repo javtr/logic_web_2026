@@ -133,7 +133,7 @@
       "indicatorId": "footer",
       "name": "Classic Dark",
       "description": "",
-      "imageKey": "footer",
+      "imageKey": "preset_footer_classic_dark",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Footer/User/CLASSIC_DARK.xml"
     },
     {
@@ -141,7 +141,7 @@
       "indicatorId": "footer",
       "name": "Classic DataBox Dark",
       "description": "",
-      "imageKey": "footer",
+      "imageKey": "preset_footer_classic_databox_dark",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Footer/User/CLASSIC_DATABOX_DARK.xml"
     },
     {
@@ -149,7 +149,7 @@
       "indicatorId": "footer",
       "name": "Classic DataBox Light",
       "description": "",
-      "imageKey": "footer",
+      "imageKey": "preset_footer_classic_databox_light",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Footer/User/CLASSIC_DATABOX_LIGHT.xml"
     },
     {
@@ -157,7 +157,7 @@
       "indicatorId": "footer",
       "name": "Classic Light",
       "description": "",
-      "imageKey": "footer",
+      "imageKey": "preset_footer_classic_light",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Footer/User/CLASSIC_LIGHT.xml"
     },
     {
@@ -165,7 +165,7 @@
       "indicatorId": "footer",
       "name": "Heatmap",
       "description": "",
-      "imageKey": "footer",
+      "imageKey": "preset_footer_heatmap",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Footer/User/HEATMAP.xml"
     },
     {
@@ -173,7 +173,7 @@
       "indicatorId": "footer",
       "name": "Heatmap Basic",
       "description": "",
-      "imageKey": "footer",
+      "imageKey": "preset_footer_heatmap_basic",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Footer/User/HEATMAP_BASIC.xml"
     },
 
@@ -182,7 +182,7 @@
       "indicatorId": "profile",
       "name": "TPO Black Light",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_tpo_black_light",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_BLACK_LIGHT.xml"
     },
     {
@@ -190,7 +190,7 @@
       "indicatorId": "profile",
       "name": "TPO Magenta 2 Light",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_tpo_magenta_2_light",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_MAGENTA_2_LIGHT.xml"
     },
     {
@@ -198,7 +198,7 @@
       "indicatorId": "profile",
       "name": "TPO Magenta Light",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_tpo_magenta_light",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_MAGENTA_LIGHT.xml"
     },
     {
@@ -206,7 +206,7 @@
       "indicatorId": "profile",
       "name": "TPO Minimalist Light",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_tpo_minimalist_light",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_MINIMALIST_LIGHT.xml"
     },
     {
@@ -214,7 +214,7 @@
       "indicatorId": "profile",
       "name": "TPO Orchid 1 Dark",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_tpo_orchid_1_dark",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_ORCHID_1_DARK.xml"
     },
     {
@@ -222,7 +222,7 @@
       "indicatorId": "profile",
       "name": "TPO Orchid 2 Dark",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_tpo_orchid_2_dark",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_ORCHID_2_DARK.xml"
     },
     {
@@ -230,7 +230,7 @@
       "indicatorId": "profile",
       "name": "TPO Sierra",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_tpo_sierra",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_SIERRA.xml"
     },
     {
@@ -238,7 +238,7 @@
       "indicatorId": "profile",
       "name": "TPO Smash Sierra",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_tpo_smash_sierra",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_SMASH_SIERRA.xml"
     },
     {
@@ -246,7 +246,7 @@
       "indicatorId": "profile",
       "name": "TPO Tradovate",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_tpo_tradovate",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_TRADOVATE.xml"
     },
     {
@@ -254,7 +254,7 @@
       "indicatorId": "profile",
       "name": "VP Blue Light",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_vp_blue_light",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_BLUE_LIGHT.xml"
     },
     {
@@ -262,7 +262,7 @@
       "indicatorId": "profile",
       "name": "VP DC Blue",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_vp_dc_blue",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_DC_BLUE.xml"
     },
     {
@@ -270,7 +270,7 @@
       "indicatorId": "profile",
       "name": "VP DC Orange",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_vp_dc_orange",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_DC_ORANGE.xml"
     },
     {
@@ -278,7 +278,7 @@
       "indicatorId": "profile",
       "name": "VP Geometric Dark",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_vp_geometric_dark",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_GEOMETRIC_DARK.xml"
     },
     {
@@ -286,7 +286,7 @@
       "indicatorId": "profile",
       "name": "VP Geometric Light",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_vp_geometric_light",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_GEOMETRIC_LIGHT.xml"
     },
     {
@@ -294,7 +294,7 @@
       "indicatorId": "profile",
       "name": "VP Green Light",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_vp_green_light",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_GREEN_LIGHT.xml"
     },
     {
@@ -302,7 +302,7 @@
       "indicatorId": "profile",
       "name": "VP Logic Dark",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_vp_logic_dark",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_LOGIC_DARK.xml"
     },
     {
@@ -310,7 +310,7 @@
       "indicatorId": "profile",
       "name": "VP Magenta Light",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_vp_magenta_light",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_MAGENTA_LIGHT.xml"
     },
     {
@@ -318,7 +318,7 @@
       "indicatorId": "profile",
       "name": "VP Ninja",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_vp_ninja",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_NINJA.xml"
     },
     {
@@ -326,7 +326,7 @@
       "indicatorId": "profile",
       "name": "VP Orchid Dark",
       "description": "",
-      "imageKey": "profile",
+      "imageKey": "preset_profile_vp_orchid_dark",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/VP_ORCHID_DARK.xml"
     },
 
@@ -335,7 +335,7 @@
       "indicatorId": "composite",
       "name": "Grey VPD Zoom NQ",
       "description": "",
-      "imageKey": "composite",
+      "imageKey": "preset_composite_grey_vpd_zoom_nq",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/GREV_VPD_ZOOM_NQ.xml"
     },
     {
@@ -343,7 +343,7 @@
       "indicatorId": "composite",
       "name": "Grey Balanced",
       "description": "",
-      "imageKey": "composite",
+      "imageKey": "preset_composite_grey_balanced",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/GREY_BALANCED.xml"
     },
     {
@@ -351,7 +351,7 @@
       "indicatorId": "composite",
       "name": "Grey VPD",
       "description": "",
-      "imageKey": "composite",
+      "imageKey": "preset_composite_grey_vpd",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/GREY_VPD.xml"
     },
     {
@@ -359,7 +359,7 @@
       "indicatorId": "composite",
       "name": "Grey VPD Zoom ES",
       "description": "",
-      "imageKey": "composite",
+      "imageKey": "preset_composite_grey_vpd_zoom_es",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/GREY_VPD_ZOOM_ES.xml"
     },
     {
@@ -367,7 +367,7 @@
       "indicatorId": "composite",
       "name": "VPD Dark",
       "description": "",
-      "imageKey": "composite",
+      "imageKey": "preset_composite_vpd_dark",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/VPD_DARK.xml"
     },
     {
@@ -375,7 +375,7 @@
       "indicatorId": "composite",
       "name": "VPD NQ",
       "description": "",
-      "imageKey": "composite",
+      "imageKey": "preset_composite_vpd_nq",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/VPD_NQ.xml"
     },
 

@@ -57,6 +57,43 @@ import presetFootprintFabioDcProfile from '../assets/presets/preset_footprint_fa
 import presetFootprintKaizenSierra from '../assets/presets/preset_footprint_kaizen_sierra.png';
 import presetFootprintUmarAtasDark from '../assets/presets/preset_footprint_umar_atas_dark.png';
 
+// Presets individuales - Logic Footer
+import presetFooterClassicDark from '../assets/presets/preset_footer_classic_dark.png';
+import presetFooterClassicDataboxDark from '../assets/presets/preset_footer_classic_databox_dark.png';
+import presetFooterClassicDataboxLight from '../assets/presets/preset_footer_classic_databox_light.png';
+import presetFooterClassicLight from '../assets/presets/preset_footer_classic_light.png';
+import presetFooterHeatmap from '../assets/presets/preset_footer_heatmap.png';
+import presetFooterHeatmapBasic from '../assets/presets/preset_footer_heatmap_basic.png';
+
+// Presets individuales - Logic Profile
+import presetProfileTpoBlackLight from '../assets/presets/preset_profile_tpo_black_light.png';
+import presetProfileTpoMagenta2Light from '../assets/presets/preset_profile_tpo_magenta_2_light.png';
+import presetProfileTpoMagentaLight from '../assets/presets/preset_profile_tpo_magenta_light.png';
+import presetProfileTpoMinimalistLight from '../assets/presets/preset_profile_tpo_minimalist_light.png';
+import presetProfileTpoOrchid1Dark from '../assets/presets/preset_profile_tpo_orchid_1_dark.png';
+import presetProfileTpoOrchid2Dark from '../assets/presets/preset_profile_tpo_orchid_2_dark.png';
+import presetProfileTpoSierra from '../assets/presets/preset_profile_tpo_sierra.png';
+import presetProfileTpoSmashSierra from '../assets/presets/preset_profile_tpo_smash_sierra.png';
+import presetProfileTpoTradovate from '../assets/presets/preset_profile_tpo_tradovate.png';
+import presetProfileVpBlueLight from '../assets/presets/preset_profile_vp_blue_light.png';
+import presetProfileVpDcBlue from '../assets/presets/preset_profile_vp_dc_blue.png';
+import presetProfileVpDcOrange from '../assets/presets/preset_profile_vp_dc_orange.png';
+import presetProfileVpGeometricDark from '../assets/presets/preset_profile_vp_geometric_dark.png';
+import presetProfileVpGeometricLight from '../assets/presets/preset_profile_vp_geometric_light.png';
+import presetProfileVpGreenLight from '../assets/presets/preset_profile_vp_green_light.png';
+import presetProfileVpLogicDark from '../assets/presets/preset_profile_vp_logic_dark.png';
+import presetProfileVpMagentaLight from '../assets/presets/preset_profile_vp_magenta_light.png';
+import presetProfileVpNinja from '../assets/presets/preset_profile_vp_ninja.png';
+import presetProfileVpOrchidDark from '../assets/presets/preset_profile_vp_orchid_dark.png';
+
+// Presets individuales - Logic Composite
+import presetCompositeGreyBalanced from '../assets/presets/preset_composite_grey_balanced.png';
+import presetCompositeGreyVpdZoomEs from '../assets/presets/preset_composite_grey_vpd_zoom_es.png';
+import presetCompositeGreyVpdZoomNq from '../assets/presets/preset_composite_grey_vpd_zoom_nq.png';
+import presetCompositeGreyVpd from '../assets/presets/preset_composite_grey_vpd.png';
+import presetCompositeVpdDark from '../assets/presets/preset_composite_vpd_dark.png';
+import presetCompositeVpdNq from '../assets/presets/preset_composite_vpd_nq.png';
+
 export const imageMap = {
   // Presets Logic Footprint
   preset_footprint_atas_imbalance_dark: presetFootprintAtasImbalanceDark,
@@ -71,6 +108,43 @@ export const imageMap = {
   preset_footprint_fabio_dc_profile: presetFootprintFabioDcProfile,
   preset_footprint_kaizen_sierra: presetFootprintKaizenSierra,
   preset_footprint_umar_atas_dark: presetFootprintUmarAtasDark,
+
+  // Presets Logic Footer
+  preset_footer_classic_dark: presetFooterClassicDark,
+  preset_footer_classic_databox_dark: presetFooterClassicDataboxDark,
+  preset_footer_classic_databox_light: presetFooterClassicDataboxLight,
+  preset_footer_classic_light: presetFooterClassicLight,
+  preset_footer_heatmap: presetFooterHeatmap,
+  preset_footer_heatmap_basic: presetFooterHeatmapBasic,
+
+  // Presets Logic Profile
+  preset_profile_tpo_black_light: presetProfileTpoBlackLight,
+  preset_profile_tpo_magenta_2_light: presetProfileTpoMagenta2Light,
+  preset_profile_tpo_magenta_light: presetProfileTpoMagentaLight,
+  preset_profile_tpo_minimalist_light: presetProfileTpoMinimalistLight,
+  preset_profile_tpo_orchid_1_dark: presetProfileTpoOrchid1Dark,
+  preset_profile_tpo_orchid_2_dark: presetProfileTpoOrchid2Dark,
+  preset_profile_tpo_sierra: presetProfileTpoSierra,
+  preset_profile_tpo_smash_sierra: presetProfileTpoSmashSierra,
+  preset_profile_tpo_tradovate: presetProfileTpoTradovate,
+  preset_profile_vp_blue_light: presetProfileVpBlueLight,
+  preset_profile_vp_dc_blue: presetProfileVpDcBlue,
+  preset_profile_vp_dc_orange: presetProfileVpDcOrange,
+  preset_profile_vp_geometric_dark: presetProfileVpGeometricDark,
+  preset_profile_vp_geometric_light: presetProfileVpGeometricLight,
+  preset_profile_vp_green_light: presetProfileVpGreenLight,
+  preset_profile_vp_logic_dark: presetProfileVpLogicDark,
+  preset_profile_vp_magenta_light: presetProfileVpMagentaLight,
+  preset_profile_vp_ninja: presetProfileVpNinja,
+  preset_profile_vp_orchid_dark: presetProfileVpOrchidDark,
+
+  // Presets Logic Composite
+  preset_composite_grey_balanced: presetCompositeGreyBalanced,
+  preset_composite_grey_vpd_zoom_es: presetCompositeGreyVpdZoomEs,
+  preset_composite_grey_vpd_zoom_nq: presetCompositeGreyVpdZoomNq,
+  preset_composite_grey_vpd: presetCompositeGreyVpd,
+  preset_composite_vpd_dark: presetCompositeVpdDark,
+  preset_composite_vpd_nq: presetCompositeVpdNq,
   // Fallback / placeholder (también usado por deepchart y deeplive hasta tener imagen propia)
   sample_indicator: sampleIndicatorImage,
   // Banner de Home (entre hero y la grilla de la suite premium)
