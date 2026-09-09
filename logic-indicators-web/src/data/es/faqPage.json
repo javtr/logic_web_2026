@@ -1,50 +1,74 @@
 {
   "pageTitle": "Preguntas Frecuentes",
-  "pageSubtitle": "Todo lo que necesitas saber sobre Logic Indicators. Si no encuentras tu respuesta aquí, escríbenos.",
+  "pageSubtitle": "Resuelve las principales dudas sobre Logic Indicators, nuestros planes, herramientas, pagos y licencias. Si no encuentras la respuesta que buscas, contáctanos y estaremos encantados de ayudarte.",
   "items": [
     {
       "q": "¿Qué es Logic Indicators?",
-      "a": "Logic Indicators es una suite de indicadores profesionales para NinjaTrader 8, diseñada para traders que usan order flow, footprint y análisis de volumen en su operativa diaria. Combinamos desarrollo de alto rendimiento con un enfoque en la lectura de absorción, agotamiento y delta."
+      "a": "Logic Indicators es una suite de indicadores profesionales para NinjaTrader 8, diseñada para traders que utilizan Order Flow, Footprint y análisis de volumen en su operativa diaria.\n\nCombinamos herramientas de alto rendimiento con un sistema de configuración práctico e intuitivo, que permite alcanzar configuraciones de nivel profesional de forma sencilla mediante plantillas y configuraciones predefinidas, sin necesidad de configurar cada elemento desde cero."
     },
     {
       "q": "¿Necesito experiencia previa en trading?",
-      "a": "Los indicadores están diseñados para traders con experiencia intermedia o avanzada. Si ya operas con order flow y comprendes conceptos como delta, volumen y absorción, vas a sacar el máximo provecho desde el primer día."
+      "a": "Las herramientas están diseñadas principalmente para traders con un nivel de experiencia intermedio o avanzado. Si ya operas con Order Flow y comprendes conceptos como delta, volumen y absorción, podrás aprovechar al máximo las herramientas desde el primer día.\n\nSin embargo, si todavía estás desarrollando tu experiencia, puedes contactarnos. Con gusto te orientaremos sobre cuáles de nuestras herramientas pueden ser más adecuadas para ti, de acuerdo con tu nivel y proceso de aprendizaje."
     },
     {
       "q": "¿En qué plataformas funcionan los indicadores?",
-      "a": "Nuestros indicadores están compilados exclusivamente para NinjaTrader 8 (NinjaScript, C#). No son compatibles con NinjaTrader 7, TradingView, MetaTrader ni otras plataformas."
+      "a": "Nuestros indicadores están desarrollados y compilados exclusivamente para NinjaTrader 8 mediante NinjaScript (C#).\n\nActualmente no son compatibles con NinjaTrader 7, TradingView, MetaTrader ni con otras plataformas de trading."
+    },
+    {
+      "q": "¿Necesito tener una licencia de NinjaTrader 8 para usar Logic Indicators?",
+      "a": "No. No necesitas adquirir la licencia Lifetime de NinjaTrader 8 para utilizar nuestras herramientas.\n\nLos indicadores de Logic Indicators son desarrollos independientes y no dependen de las herramientas de Order Flow de NinjaTrader."
+    },
+    {
+      "q": "¿Se necesitan datos de Nivel 2 (Level II) para utilizar las herramientas?",
+      "a": "En la mayoría de los casos, no.\n\nLogic Profile, Logic Footprint, Logic Algorithms, Logic Big Trades y Logic Analytics funcionan utilizando datos de Nivel 1 (Level I), disponibles a través de cuentas reales, cuentas demo o cuentas de fondeo.\n\nLas herramientas de Mapas de Liquidez sí requieren datos de Nivel 2 (Market Depth), ya que utilizan información del libro de órdenes.\n\nLogic Indicators no proporciona datos de mercado. Cada usuario debe contratar y gestionar su propio proveedor de datos."
+    },
+    {
+      "q": "¿Las herramientas utilizan Tick Replay?",
+      "a": "No. Las herramientas de Logic Indicators están diseñadas para funcionar sin necesidad de activar Tick Replay.\n\nEsto permite reducir el consumo de recursos y ofrecer un funcionamiento más fluido, con menor utilización de memoria RAM y procesador.\n\nDependiendo del equipo, la cantidad de gráficos y la configuración utilizada, nuestras herramientas pueden llegar a ofrecer un rendimiento hasta 10 veces superior al de soluciones que requieren Tick Replay."
+    },
+    {
+      "q": "¿Qué requisitos mínimos debe tener mi computador?",
+      "a": "Como referencia, recomendamos cumplir con los requisitos de NinjaTrader 8:\n\n• Procesador de 64 bits de 3 GHz o superior.\n• 16 GB de memoria RAM o más.\n• Tarjeta gráfica compatible con DirectX 10 o superior.\n• Disco de estado sólido (SSD).\n• Sistema operativo Windows de 64 bits.\n\nLogic Indicators no requiere Tick Replay, lo que contribuye a un menor consumo de recursos y un mejor rendimiento."
     },
     {
       "q": "¿Puedo probar los indicadores gratis antes de comprar?",
-      "a": "Sí. Ofrecemos varios indicadores gratuitos descargables desde la sección de Indicadores Gratuitos. Son herramientas reales, con la misma calidad técnica que la suite paga, para que evalúes nuestro estándar antes de comprar."
+      "a": "Sí. Ofrecemos varios indicadores gratuitos que puedes descargar desde la sección de Indicadores Gratuitos.\n\nSon herramientas completamente funcionales y desarrolladas con el mismo estándar técnico de Logic Indicators, para que puedas conocer la calidad de nuestras soluciones antes de realizar una compra."
     },
     {
-      "q": "¿Qué tipo de soporte técnico ofrecen?",
-      "a": "Ofrecemos soporte por correo electrónico y un centro de documentación con guías, videos y preguntas frecuentes. Los usuarios del plan Suite Completa tienen soporte prioritario con tiempos de respuesta más rápidos."
+      "q": "¿Recibo material de apoyo para aprender a utilizar las herramientas?",
+      "a": "Sí. Al adquirir Logic Indicators tendrás acceso a manuales de instalación y configuración, videos explicativos y material de apoyo para cada herramienta.\n\nAdemás, nuestras plantillas predeterminadas permiten configurar gráficos completos de forma rápida y sencilla, incluso con un solo clic."
+    },
+    {
+      "q": "¿Tienen soporte técnico?",
+      "a": "Sí. Ofrecemos soporte técnico gratuito e ilimitado a nuestros usuarios a través del Discord de Logic Indicators.\n\nPuedes crear un ticket para realizar consultas sobre instalación, configuración o funcionamiento de las herramientas. También podrás solicitar asistencia para actualizar tus herramientas cuando haya nuevas versiones disponibles."
+    },
+    {
+      "q": "¿Qué ocurre después de realizar el pago?",
+      "a": "Una vez procesado el pago, recibirás un correo de confirmación con las instrucciones para completar tu registro. Deberás proporcionar tu Machine ID y los datos necesarios para crear tu usuario.\n\nLuego recibirás las instrucciones para acceder a tu Dashboard, desde donde podrás descargar tus herramientas, acceder al Discord de usuarios y consultar el material de instalación."
     },
     {
       "q": "¿Qué métodos de pago aceptan?",
-      "a": "Aceptamos pagos con tarjeta de crédito y débito (Visa, Mastercard, American Express) a través de Lemon Squeezy, y PayPal. Todas las transacciones se procesan con encriptación SSL de 256 bits."
+      "a": "Aceptamos tarjetas de crédito y débito (Visa, Mastercard y American Express) a través de Lemon Squeezy, además de PayPal.\n\nTodas las transacciones utilizan encriptación SSL de 256 bits para proteger tu información."
     },
     {
-      "q": "¿Qué incluye el plan \"De por vida\"?",
-      "a": "El plan De por vida es un pago único que te da acceso permanente a los indicadores incluidos en tu plan, más todas las actualizaciones futuras y nuevos indicadores que agreguemos a la suite, sin cargos recurrentes."
+      "q": "¿Existe alguna opción de financiación?",
+      "a": "Sí. Ofrecemos planes de financiación para los planes de por vida, con cuotas mensuales sin intereses.\n\nConsulta las opciones disponibles en la parte inferior de las tarjetas de precios del Pack De por Vida Básico y Pack De por Vida Plus."
     },
     {
-      "q": "¿Cuál es la diferencia entre el plan anual y el de por vida?",
-      "a": "El plan anual se renueva cada 12 meses e incluye todas las actualizaciones durante ese período. El plan De por vida es un pago único con acceso permanente a las actualizaciones y nuevos indicadores. A largo plazo, el plan De por vida ofrece el mejor valor."
+      "q": "¿Qué incluye el plan De por Vida (Lifetime)?",
+      "a": "Es un pago único o plan de pagos que proporciona acceso permanente a los indicadores incluidos en tu plan, junto con todas las actualizaciones y mejoras futuras de esas herramientas, sin cargos adicionales.\n\nLas nuevas herramientas desarrolladas posteriormente no están incluidas, pero como usuario de Logic Indicators tendrás acceso a descuentos especiales para adquirirlas."
+    },
+    {
+      "q": "¿Cuál es la diferencia entre el plan anual y el plan de por vida?",
+      "a": "El plan anual se renueva cada 12 meses e incluye las actualizaciones de las herramientas durante ese período.\n\nEl plan de por vida es un pago único que proporciona acceso permanente a las actualizaciones de las herramientas incluidas en tu plan. Por eso, ofrece el mejor valor para quienes planean utilizar las herramientas a largo plazo."
     },
     {
       "q": "¿Puedo usar la licencia en varias computadoras?",
-      "a": "Tu licencia está vinculada a tu Machine ID de NinjaTrader. El plan Individual incluye 1 Machine ID; el plan Suite Completa incluye 2. Si cambias de equipo, puedes transferir la licencia desactivándola en el equipo anterior."
+      "a": "La licencia está vinculada al Machine ID de NinjaTrader 8 y puede estar activa en un solo equipo a la vez.\n\nSi cambias de computador, puedes transferir tu licencia desactivándola en el equipo anterior desde tu Dashboard de Usuario y activándola posteriormente en el nuevo equipo."
     },
     {
       "q": "¿Ofrecen reembolsos?",
-      "a": "Ofrecemos reembolsos dentro de los 14 días posteriores a la compra, siempre que el indicador no haya sido utilizado en cuenta real o simulada. Para solicitarlo, contáctanos por correo electrónico."
-    },
-    {
-      "q": "¿Cómo funciona la renovación o el cambio de plan?",
-      "a": "El plan anual se renueva automáticamente cada año. Puedes cambiar entre Individual y Suite Completa en cualquier momento; el cambio se prorratea y se aplica al siguiente ciclo de facturación."
+      "a": "En casos excepcionales, podemos considerar un reembolso dentro de los 30 días posteriores a la compra si existen problemas técnicos importantes que no puedan resolverse con la asistencia de nuestro equipo.\n\nPara solicitarlo, deberás proporcionar evidencia del problema y colaborar con nuestro equipo durante el proceso de diagnóstico y solución.\n\nNo se realizan reembolsos por cambios de opinión, problemas causados por software de terceros como NinjaTrader ni incompatibilidades con configuraciones no estándar.\n\nConsulta nuestra [Política de Devoluciones](/terms) para conocer todos los términos."
     }
   ]
 }

@@ -1,50 +1,74 @@
 {
   "pageTitle": "Frequently Asked Questions",
-  "pageSubtitle": "Everything you need to know about Logic Indicators. If you can't find your answer here, reach out to us.",
+  "pageSubtitle": "Find answers to common questions about Logic Indicators, our plans, tools, payments, and licensing. If you can't find what you're looking for, contact us and we'll be happy to help.",
   "items": [
     {
       "q": "What is Logic Indicators?",
-      "a": "Logic Indicators is a professional indicator suite for NinjaTrader 8, built for traders who use order flow, footprint, and volume analysis in their daily trading. We combine high-performance development with a focus on reading absorption, exhaustion, and delta."
+      "a": "Logic Indicators is a professional indicator suite for NinjaTrader 8, designed for traders who use Order Flow, Footprint, and volume analysis in their daily trading.\n\nWe combine high-performance tools with a practical and intuitive configuration system, allowing you to achieve professional-grade setups easily through presets and pre-configured templates, without having to configure every single element from scratch."
     },
     {
       "q": "Do I need prior trading experience?",
-      "a": "The indicators are designed for intermediate or advanced traders. If you already trade with order flow and understand concepts like delta, volume, and absorption, you'll get the most out of them from day one."
+      "a": "The tools are primarily designed for intermediate or advanced traders. If you already trade with Order Flow and understand concepts like delta, volume, and absorption, you'll be able to get the most out of the tools from day one.\n\nHowever, if you're still developing your experience, feel free to contact us. We'll gladly guide you on which of our tools are most suitable for you, based on your level and learning curve."
     },
     {
       "q": "Which platforms are the indicators compatible with?",
-      "a": "Our indicators are compiled exclusively for NinjaTrader 8 (NinjaScript, C#). They are not compatible with NinjaTrader 7, TradingView, MetaTrader, or any other platform."
+      "a": "Our indicators are developed and compiled exclusively for NinjaTrader 8 using NinjaScript (C#).\n\nThey are currently not compatible with NinjaTrader 7, TradingView, MetaTrader, or any other trading platform."
+    },
+    {
+      "q": "Do I need a NinjaTrader 8 license to use Logic Indicators?",
+      "a": "No. You don't need to purchase the Lifetime license of NinjaTrader 8 to use our tools.\n\nLogic Indicators are standalone developments and do not depend on NinjaTrader's native Order Flow suite."
+    },
+    {
+      "q": "Is Level 2 (Level II) market data required to use the tools?",
+      "a": "In most cases, no.\n\nLogic Profile, Logic Footprint, Logic Algorithms, Logic Big Trades, and Logic Analytics work with Level 1 (Level I) data, available through live accounts, demo accounts, or prop firm accounts.\n\nLiquidity Map tools do require Level 2 (Market Depth) data, as they rely on full order book depth.\n\nLogic Indicators does not provide market data feeds. Each user must subscribe to and manage their own data provider."
+    },
+    {
+      "q": "Do the tools use Tick Replay?",
+      "a": "No. Logic Indicators tools are designed to operate without needing to enable Tick Replay.\n\nThis significantly reduces resource consumption and provides a smoother experience, with lower RAM and CPU usage.\n\nDepending on your computer, chart count, and configuration, our tools can deliver up to 10x better performance compared to solutions that require Tick Replay."
+    },
+    {
+      "q": "What are the minimum system requirements for my computer?",
+      "a": "As a reference, we recommend meeting NinjaTrader 8 system requirements:\n\n• 64-bit processor, 3 GHz or higher.\n• 16 GB RAM or more.\n• DirectX 10 compatible graphics card or higher.\n• Solid State Drive (SSD).\n• 64-bit Windows operating system.\n\nLogic Indicators does not require Tick Replay, which contributes to lower resource consumption and better overall performance."
     },
     {
       "q": "Can I try the indicators for free before buying?",
-      "a": "Yes. We offer several free downloadable indicators in the Free Indicators section. They are real tools, with the same technical quality as the paid suite, so you can evaluate our standard before purchasing."
+      "a": "Yes. We offer several free indicators that you can download from the Free Indicators section.\n\nThey are fully functional tools built with the exact same technical standard as the rest of Logic Indicators, so you can evaluate our quality before making a purchase."
     },
     {
-      "q": "What kind of technical support do you offer?",
-      "a": "We offer email support and a documentation center with guides, videos, and frequently asked questions. Full Suite plan users get priority support with faster response times."
+      "q": "Do I receive educational materials to learn how to use the tools?",
+      "a": "Yes. When you purchase Logic Indicators, you get access to installation and setup guides, video tutorials, and supporting documentation for each tool.\n\nIn addition, our preconfigured templates allow you to set up complete charts quickly and easily, even with a single click."
+    },
+    {
+      "q": "Do you provide technical support?",
+      "a": "Yes. We provide free, unlimited technical support to our users through the Logic Indicators Discord server.\n\nYou can open a ticket to ask questions regarding installation, configuration, or tool operation. You can also request assistance when updating your tools to newly released versions."
+    },
+    {
+      "q": "What happens after making a payment?",
+      "a": "Once your payment is processed, you will receive a confirmation email with instructions to complete your registration. You will need to provide your Machine ID and the details required to create your account.\n\nYou will then receive instructions to access your Member Dashboard, where you can download your tools, join the Discord community, and access all installation guides."
     },
     {
       "q": "What payment methods do you accept?",
-      "a": "We accept credit and debit card payments (Visa, Mastercard, American Express) through Lemon Squeezy, and PayPal. All transactions are processed with 256-bit SSL encryption."
+      "a": "We accept credit and debit cards (Visa, Mastercard, and American Express) through Lemon Squeezy, as well as PayPal.\n\nAll transactions use 256-bit SSL encryption to ensure your information remains completely secure."
+    },
+    {
+      "q": "Are there financing or installment options available?",
+      "a": "Yes. We offer financing options for our lifetime plans with interest-free monthly installments.\n\nCheck out the available options at the bottom of the pricing cards for the Basic Lifetime Pack and Plus Lifetime Pack."
     },
     {
       "q": "What does the Lifetime plan include?",
-      "a": "The Lifetime plan is a one-time payment that gives you permanent access to the indicators included in your plan, plus all future updates and new indicators we add to the suite, with no recurring charges."
+      "a": "It is a one-time payment or installment plan that provides permanent access to the indicators included in your plan, along with all future updates and improvements to those tools at no extra charge.\n\nNew tools developed in the future are not included, but as a Logic Indicators customer, you will enjoy special discounted rates to add them to your suite."
     },
     {
-      "q": "What's the difference between the annual and lifetime plans?",
-      "a": "The annual plan renews every 12 months and includes all updates during that period. The Lifetime plan is a one-time payment with permanent access to updates and new indicators. In the long run, the Lifetime plan offers the best value."
+      "q": "What is the difference between the annual plan and the lifetime plan?",
+      "a": "The annual plan renews every 12 months and includes tool updates throughout that period.\n\nThe lifetime plan is a one-time payment that provides permanent access to updates for the tools included in your plan. Therefore, it delivers the highest value for traders planning to use the tools long term."
     },
     {
-      "q": "Can I use my license on multiple computers?",
-      "a": "Your license is tied to your NinjaTrader Machine ID. The Individual plan includes 1 Machine ID; the Full Suite plan includes 2. If you switch computers, you can transfer your license by deactivating it on the previous machine."
+      "q": "Can I use the license on multiple computers?",
+      "a": "The license is tied to your NinjaTrader 8 Machine ID and can only be active on one machine at a time.\n\nIf you switch computers, you can transfer your license by deactivating it on the previous machine from your User Dashboard and subsequently activating it on the new one."
     },
     {
       "q": "Do you offer refunds?",
-      "a": "We offer refunds within 14 days of purchase, provided the indicator has not been used on a live or simulated account. To request one, contact us by email."
-    },
-    {
-      "q": "How does renewal or plan switching work?",
-      "a": "The annual plan renews automatically every year. You can switch between Individual and Full Suite at any time; the change is prorated and applied to the next billing cycle."
+      "a": "In exceptional cases, we may consider a refund within 30 days of purchase if significant technical issues arise that cannot be resolved with our support team's assistance.\n\nTo request a refund, you must provide evidence of the issue and cooperate with our team during the troubleshooting process.\n\nRefunds are not granted for change of mind, issues caused by third-party software such as NinjaTrader, or incompatible non-standard setups.\n\nPlease review our [Refund Policy](/terms) for full terms and details."
     }
   ]
 }
