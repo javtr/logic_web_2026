@@ -22,7 +22,7 @@
     },
     {
       "q": "Do you offer refunds?",
-      "a": "In exceptional cases, we may consider a refund within 30 days of purchase if significant technical issues arise that cannot be resolved with assistance from our team.\n\nTo request it, you must provide evidence of the issue and collaborate with our team during the diagnosis and troubleshooting process.\n\nNo refunds are issued for changes of mind, issues caused by third-party software such as NinjaTrader, or incompatibilities with non-standard configurations. Please review our Refund Policy to see all terms."
+      "a": "In exceptional cases, we may consider a refund within 30 days of purchase if significant technical issues arise that cannot be resolved with assistance from our team.\n\nTo request it, you must provide evidence of the issue and collaborate with our team during the diagnosis and troubleshooting process.\n\nNo refunds are issued for changes of mind, issues caused by third-party software such as NinjaTrader, or incompatibilities with non-standard configurations. Please review our [Refund Policy](/terms) to see all terms."
     },
     {
       "q": "Can I use the license on multiple computers?",

@@ -1,6 +1,62 @@
 // src/components/Accordion.jsx
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
+
+// Helper para convertir sintaxis markdown de links [texto](url) en componentes <Link> o <a>
+const renderFormattedContent = (content) => {
+  if (typeof content !== 'string') return content;
+
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  if (!linkRegex.test(content)) {
+    return content;
+  }
+
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+  linkRegex.lastIndex = 0;
+
+  while ((match = linkRegex.exec(content)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(content.substring(lastIndex, match.index));
+    }
+    const label = match[1];
+    const href = match[2];
+    const isInternal = href.startsWith('/');
+
+    if (isInternal) {
+      parts.push(
+        <Link
+          key={match.index}
+          to={href}
+          className="text-accent-secondary underline hover:text-accent-primary transition-colors font-medium"
+        >
+          {label}
+        </Link>
+      );
+    } else {
+      parts.push(
+        <a
+          key={match.index}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-accent-secondary underline hover:text-accent-primary transition-colors font-medium"
+        >
+          {label}
+        </a>
+      );
+    }
+    lastIndex = linkRegex.lastIndex;
+  }
+
+  if (lastIndex < content.length) {
+    parts.push(content.substring(lastIndex));
+  }
+
+  return parts;
+};
 
 export const AccordionItem = ({ title, content, isOpen, onClick }) => {
   return (
@@ -23,7 +79,9 @@ export const AccordionItem = ({ title, content, isOpen, onClick }) => {
       >
         {/* whitespace-pre-line respeta \n en el string del JSON, para
             soportar items con multiples parrafos y bullets simples. */}
-        <p className="text-text-muted leading-relaxed whitespace-pre-line">{content}</p>
+        <p className="text-text-muted leading-relaxed whitespace-pre-line">
+          {renderFormattedContent(content)}
+        </p>
       </div>
     </div>
   );
