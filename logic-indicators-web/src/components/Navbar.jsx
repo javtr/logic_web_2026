@@ -87,16 +87,16 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile: Language + Burger */}
-          <div className="md:hidden flex items-center gap-3">
+          <div className="md:hidden flex items-center gap-2 sm:gap-3">
             <LanguageSwitcher />
             <button
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="text-text-main p-1"
-              aria-label={t('nav.openMenu')}
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              className="text-text-main min-w-[44px] min-h-[44px] p-2.5 flex items-center justify-center rounded-lg hover:bg-white/5 active:scale-95 transition-all"
+              aria-label={isMobileMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
             >
-              <Menu />
+              <Menu size={24} />
             </button>
           </div>
         </div>

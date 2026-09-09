@@ -79,7 +79,7 @@ export const Home = () => {
         {/* Glow existente (conservado) */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent-primary/10 blur-[120px] rounded-full pointer-events-none" />
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-extrabold text-text-main tracking-tight mb-8">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-text-main tracking-tight mb-8">
             {t('hero.title')}
           </h1>
           <p className="text-lg md:text-xl text-text-muted mb-10 max-w-2xl mx-auto leading-relaxed">

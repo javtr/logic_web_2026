@@ -246,22 +246,26 @@ export const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-dark-900 flex flex-col justify-center items-center relative overflow-hidden px-6">
-      <Link to="/" className="absolute top-8 left-8 text-text-muted hover:text-text-main flex items-center gap-2 transition-colors">
-        <ArrowLeft size={20} />
-        {t('login.backToHome')}
-      </Link>
+    <div className="min-h-screen bg-dark-900 flex flex-col items-center px-4 sm:px-6 py-6 sm:py-10 relative">
+      {/* Header superior: Volver al inicio a la izquierda y Switcher de idioma a la derecha */}
+      <header className="w-full max-w-md sm:max-w-xl flex items-center justify-between z-30 mb-6 sm:mb-10">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 text-text-muted hover:text-text-main transition-colors min-h-[44px] min-w-[44px] py-2 px-2.5 rounded-lg hover:bg-white/5 active:scale-95 text-sm sm:text-base font-medium"
+          aria-label={t('login.backToHome')}
+        >
+          <ArrowLeft size={20} />
+          <span>{t('login.backToHome')}</span>
+        </Link>
 
-      {/* Switcher de idioma — esquina superior derecha, mismo nivel
-          que el boton "Volver al inicio" (top-left). Mismo componente
-          que en el Dashboard y la Navbar para mantener consistencia. */}
-      <div className="absolute top-8 right-8 z-10">
-        <LanguageSwitcher />
-      </div>
+        <div className="min-h-[44px] flex items-center">
+          <LanguageSwitcher />
+        </div>
+      </header>
 
-      <div className="w-full max-w-md z-10">
-        <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-text-main mb-3">{t('login.title')}</h1>
+      <main className="w-full max-w-md z-10 my-auto pb-8">
+        <div className="text-center mb-8 sm:mb-10">
+          <h1 className="text-3xl sm:text-4xl font-bold text-text-main mb-3">{t('login.title')}</h1>
           <p className="text-text-muted">
             {step === 1
               ? t('login.subtitleEmail')
@@ -397,7 +401,7 @@ export const Login = () => {
         <div className="mt-6">
           <CheckSpamBanner />
         </div>
-      </div>
+      </main>
     </div>
   );
 };

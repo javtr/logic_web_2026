@@ -14,7 +14,7 @@
 // Performance: usa `transform: translate3d + scale` (GPU), `touch-action: none`,
 // `will-change: transform`, y un ref para el estado de gestos para no re-renderizar
 // en cada touchmove. El body se bloquea (overflow:hidden) mientras el lightbox está abierto.
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import { useLanguage } from '../context/languageContext';
@@ -39,20 +39,57 @@ export const ZoomableImage = ({
 }) => {
   const [open, setOpen] = useState(false);
 
+  // Escuchar el evento popstate (botón atrás del móvil/navegador) solo mientras esté abierto.
+  useEffect(() => {
+    if (!open) return;
+
+    const handlePopState = () => {
+      // El navegador ya retrocedió en el historial; simplemente cerramos el modal.
+      setOpen(false);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [open]);
+
+  const handleOpen = (e) => {
+    e.stopPropagation();
+    try {
+      window.history.pushState(
+        { ...window.history.state, __lightbox: true },
+        "",
+        window.location.href
+      );
+    } catch {
+      // no-op en caso de entornos restringidos
+    }
+    setOpen(true);
+  };
+
+  const handleClose = useCallback(() => {
+    setOpen(false);
+    try {
+      if (window.history.state?.__lightbox) {
+        window.history.back();
+      }
+    } catch {
+      // no-op
+    }
+  }, []);
+
   return (
     <>
       <img
         src={src}
         alt={alt}
         loading={loading}
-        onClick={(e) => {
-          e.stopPropagation();
-          setOpen(true);
-        }}
+        onClick={handleOpen}
         className={`cursor-zoom-in ${className}`}
         {...rest}
       />
-      {open && <Lightbox src={src} alt={alt} onClose={() => setOpen(false)} />}
+      {open && <Lightbox src={src} alt={alt} onClose={handleClose} />}
     </>
   );
 };

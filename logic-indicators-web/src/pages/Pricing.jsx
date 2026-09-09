@@ -26,7 +26,7 @@ export const Pricing = () => {
         description={t('seo.pricing.description')}
         type="website"
       />
-      <div className="flex flex-col gap-24 pb-24">
+      <div className="flex flex-col gap-12 md:gap-24 pb-12 md:pb-24">
       <PromoBanner />
 
       <section className="pt-16 md:pt-32 pb-2 md:pb-8 px-6 text-center bg-[radial-gradient(ellipse_600px_200px_at_center_top,theme(colors.accent.primary/10%)_0%,transparent_70%)]">

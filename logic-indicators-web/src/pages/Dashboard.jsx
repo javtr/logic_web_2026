@@ -339,11 +339,11 @@ export const Dashboard = () => {
           <p className="text-sm md:text-base text-text-muted">{userData.mail}</p>
         </div>
 
-        <div className="flex items-center gap-2 md:gap-4 -mx-2 md:mx-0">
+        <div className="flex items-center gap-2 md:gap-4 flex-wrap">
           <LanguageSwitcher />
           <button
             onClick={() => navigate("/")}
-            className="flex items-center gap-1.5 md:gap-2 text-sm md:text-base text-text-muted hover:text-text-main transition-colors font-medium px-2 py-1 rounded-md"
+            className="flex items-center gap-1.5 md:gap-2 text-sm md:text-base text-text-muted hover:text-text-main transition-colors font-medium min-h-[40px] px-2.5 py-1.5 rounded-lg hover:bg-white/5 active:scale-95"
           >
             <Home size={18} className="md:hidden" />
             <Home size={20} className="hidden md:block" />
@@ -362,7 +362,7 @@ export const Dashboard = () => {
               logout();
               navigate("/login");
             }}
-            className="flex items-center gap-1.5 md:gap-2 text-sm md:text-base text-red-400 hover:text-red-300 transition-colors font-medium px-2 py-1 rounded-md"
+            className="flex items-center gap-1.5 md:gap-2 text-sm md:text-base text-red-400 hover:text-red-300 transition-colors font-medium min-h-[40px] px-2.5 py-1.5 rounded-lg hover:bg-white/5 active:scale-95"
           >
             <LogOut size={18} className="md:hidden" />
             <LogOut size={20} className="hidden md:block" />
@@ -445,32 +445,49 @@ export const Dashboard = () => {
             )}
           </div>
 
-          {/* Comunidad Discord */}
+          {/* Documentación */}
           <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
-            <div className="flex items-center gap-3 mb-4 text-[#5865F2]">
-              <DiscordIcon size={26} />
+            <div className="flex items-center gap-3 mb-4 text-accent-secondary">
+              <BookOpen size={24} />
               <h2 className="text-xl font-bold text-text-main">
-                {t('dashboard.discord.cardTitle')}
+                {t('dashboard.documentation.cardTitle')}
               </h2>
             </div>
 
-            <p className="text-text-muted mb-6 leading-relaxed text-sm md:text-base">
-              {t('dashboard.discord.description')}
+            <p className="text-text-muted mb-6 leading-relaxed">
+              {t('dashboard.documentation.description')}
             </p>
 
-            <a
-              href={t('dashboard.discord.url')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 w-full bg-[#5865F2] hover:bg-[#4752C4] text-white font-semibold py-3 px-6 rounded-xl transition-all shadow-lg shadow-[#5865F2]/20 hover:shadow-[#5865F2]/30 active:scale-[0.99]"
-            >
-              <DiscordIcon size={20} />
-              <span>{t('dashboard.discord.cta')}</span>
-            </a>
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+              <Button
+                variant="primary"
+                onClick={() => navigate("/dashboard/docs")}
+                className="w-full sm:w-auto"
+              >
+                <BookOpen size={18} />
+                {t('dashboard.documentation.goToDocsButton')}
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={() => navigate("/dashboard/docs/installation")}
+                className="w-full sm:w-auto"
+              >
+                <BookOpen size={18} />
+                {t('dashboard.documentation.installationButton')}
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => navigate("/faq")}
+                className="w-full sm:w-auto"
+              >
+                <HelpCircle size={18} />
+                {t('dashboard.documentation.faqButton')}
+              </Button>
+            </div>
           </div>
         </div>
 
-        {/* COLUMNA DERECHA: Machine ID + Documentación */}
+        {/* COLUMNA DERECHA: Machine ID + Comunidad Discord */}
         <div className="flex flex-col gap-6 md:gap-8">
           {/* Gestión de Machine ID */}
           <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
@@ -580,45 +597,28 @@ export const Dashboard = () => {
             )}
           </div>
 
-          {/* Documentación */}
+          {/* Comunidad Discord */}
           <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
-            <div className="flex items-center gap-3 mb-4 text-accent-secondary">
-              <BookOpen size={24} />
+            <div className="flex items-center gap-3 mb-4 text-[#5865F2]">
+              <DiscordIcon size={26} />
               <h2 className="text-xl font-bold text-text-main">
-                {t('dashboard.documentation.cardTitle')}
+                {t('dashboard.discord.cardTitle')}
               </h2>
             </div>
 
-            <p className="text-text-muted mb-6 leading-relaxed">
-              {t('dashboard.documentation.description')}
+            <p className="text-text-muted mb-6 leading-relaxed text-sm md:text-base">
+              {t('dashboard.discord.description')}
             </p>
 
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3">
-              <Button
-                variant="primary"
-                onClick={() => navigate("/dashboard/docs")}
-                className="w-full sm:w-auto"
-              >
-                <BookOpen size={18} />
-                {t('dashboard.documentation.goToDocsButton')}
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={() => navigate("/dashboard/docs/installation")}
-                className="w-full sm:w-auto"
-              >
-                <BookOpen size={18} />
-                {t('dashboard.documentation.installationButton')}
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => navigate("/faq")}
-                className="w-full sm:w-auto"
-              >
-                <HelpCircle size={18} />
-                {t('dashboard.documentation.faqButton')}
-              </Button>
-            </div>
+            <a
+              href={t('dashboard.discord.url')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2.5 w-full bg-[#5865F2] hover:bg-[#4752C4] text-white font-semibold py-3 px-6 rounded-xl transition-all shadow-lg shadow-[#5865F2]/20 hover:shadow-[#5865F2]/30 active:scale-[0.99]"
+            >
+              <DiscordIcon size={20} />
+              <span>{t('dashboard.discord.cta')}</span>
+            </a>
           </div>
         </div>
       </div>

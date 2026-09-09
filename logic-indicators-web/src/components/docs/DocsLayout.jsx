@@ -23,7 +23,8 @@
 //   - <md: solo content, sidebar en <details>, TOC oculto
 // =============================================================================
 
-import { Link } from 'react-router-dom';
+import { useRef, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, ArrowLeft, LayoutDashboard } from 'lucide-react';
 import { DocsSidebar } from './DocsSidebar';
 import { DocsContent } from './DocsContent';
@@ -35,6 +36,14 @@ import { useDocs } from '../../context/docsContext';
 
 export const DocsLayout = ({ doc, showHomeButton = false }) => {
   const { getDocsLabel, findDocInStructure, getAdjacentDocs, basePath } = useDocs();
+  const detailsRef = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (detailsRef.current) {
+      detailsRef.current.open = false;
+    }
+  }, [location.pathname]);
 
   if (!doc) {
     return (
@@ -124,7 +133,7 @@ export const DocsLayout = ({ doc, showHomeButton = false }) => {
       </div>
 
       {/* Mobile sidebar toggle (solo en <lg) */}
-      <details className="lg:hidden mb-6 group">
+      <details ref={detailsRef} className="lg:hidden mb-6 group">
         <summary className="docs-mobile-summary flex items-center justify-between px-4 py-2.5 bg-dark-800 border border-dark-700 rounded-md text-sm text-text-main cursor-pointer list-none">
           <span className="font-medium">{getDocsLabel('docs.ui.tableOfContents')}</span>
           <ChevronDown size={16} className="transition-transform group-open:rotate-180" />
