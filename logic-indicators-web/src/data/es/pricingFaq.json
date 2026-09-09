@@ -1,28 +1,32 @@
 {
   "items": [
     {
+      "q": "¿Qué ocurre después de realizar el pago?",
+      "a": "Una vez procesado el pago, recibirás un correo de confirmación con las instrucciones para completar tu registro. Deberás proporcionar tu Machine ID y los datos necesarios para crear tu usuario. Luego recibirás las instrucciones para acceder a tu Dashboard, desde donde podrás descargar tus herramientas, acceder al Discord de usuarios y consultar el material de instalación."
+    },
+    {
+      "q": "¿Existe alguna opción de financiación?",
+      "a": "Sí. Ofrecemos planes de financiación para los planes de por vida, con cuotas mensuales sin intereses. Consulta las opciones disponibles en la parte inferior de las tarjetas de precios del Pack De por Vida Básico y Pack De por vida Plus."
+    },
+    {
       "q": "¿Qué métodos de pago aceptan?",
-      "a": "Aceptamos pagos con tarjeta de crédito y débito (Visa, Mastercard, American Express) a través de Lemon Squeezy, y PayPal. Todas las transacciones se procesan con encriptación SSL de 256 bits."
+      "a": "Aceptamos tarjetas de crédito y débito (Visa, Mastercard y American Express) a través de Lemon Squeezy, además de PayPal. Todas las transacciones utilizan encriptación SSL de 256 bits para proteger tu información."
     },
     {
-      "q": "¿Qué incluye el plan \"De por vida\"?",
-      "a": "El plan De por vida es un pago único que te da acceso permanente a los indicadores incluidos en tu plan, más todas las actualizaciones futuras y nuevos indicadores que agreguemos a la suite, sin cargos recurrentes."
+      "q": "¿Qué incluye el plan \"De por Vida\"?",
+      "a": "Es un pago único o plan de pagos que te proporciona acceso permanente a los indicadores incluidos en tu plan, junto con todas las actualizaciones y mejoras futuras de esas herramientas, sin cargos adicionales.\n\nLas nuevas herramientas desarrolladas posteriormente no están incluidas, pero como usuario de Logic Indicators tendrás acceso a descuentos especiales para adquirirlas."
     },
     {
-      "q": "¿Cuál es la diferencia entre el plan anual y el de por vida?",
-      "a": "El plan anual se renueva cada 12 meses e incluye todas las actualizaciones durante ese período. El plan De por vida es un pago único con acceso permanente a las actualizaciones y nuevos indicadores. A largo plazo, el plan De por vida ofrece el mejor valor."
-    },
-    {
-      "q": "¿Puedo usar la licencia en varias computadoras?",
-      "a": "Tu licencia está vinculada a tu Machine ID de NinjaTrader. El plan Individual incluye 1 Machine ID; el plan Suite Completa incluye 2. Si cambias de equipo, puedes transferir la licencia desactivándola en el equipo anterior."
+      "q": "¿Cuál es la diferencia entre el plan anual y el plan de por vida?",
+      "a": "El plan anual se renueva cada 12 meses e incluye las actualizaciones de las herramientas durante ese período.\n\nEl plan de por vida es un pago único que te proporciona acceso permanente a las actualizaciones de las herramientas incluidas en tu plan. Por eso, ofrece el mejor valor para quienes planean utilizar las herramientas a largo plazo."
     },
     {
       "q": "¿Ofrecen reembolsos?",
-      "a": "Ofrecemos reembolsos dentro de los 14 días posteriores a la compra, siempre que el indicador no haya sido utilizado en cuenta real o simulada. Para solicitarlo, contáctanos por correo electrónico."
+      "a": "En casos excepcionales, podemos considerar un reembolso dentro de los 30 días posteriores a la compra si existen problemas técnicos importantes que no puedan resolverse con la asistencia de nuestro equipo.\n\nPara solicitarlo, deberás proporcionar evidencia del problema y colaborar con nuestro equipo durante el proceso de diagnóstico y solución.\n\nNo se realizan reembolsos por cambios de opinión, problemas causados por software de terceros como NinjaTrader, ni incompatibilidades con configuraciones no estándar. Consulta nuestra Política de Devoluciones para conocer todos los términos."
     },
     {
-      "q": "¿Cómo funciona la renovación o el cambio de plan?",
-      "a": "El plan anual se renueva automáticamente cada año. Puedes cambiar entre Individual y Suite Completa en cualquier momento; el cambio se prorratea y se aplica al siguiente ciclo de facturación."
+      "q": "¿Puedo usar la licencia en varias computadoras?",
+      "a": "La licencia está vinculada al Machine ID de NinjaTrader 8 y puede estar activa en un solo equipo a la vez.\n\nSi cambias de computador, puedes transferir tu licencia desactivándola en el equipo anterior desde tu Dashboard de Usuario y activándola posteriormente en el nuevo equipo."
     }
   ]
 }

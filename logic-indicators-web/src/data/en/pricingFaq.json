@@ -1,28 +1,32 @@
 {
   "items": [
     {
+      "q": "What happens after completing the payment?",
+      "a": "Once your payment is processed, you will receive a confirmation email with instructions to complete your registration. You will need to provide your Machine ID and the necessary information to create your user account. You will then receive instructions to access your Dashboard, where you can download your tools, join the user Discord community, and access the installation material."
+    },
+    {
+      "q": "Is there any financing option available?",
+      "a": "Yes. We offer financing plans for Lifetime licenses with interest-free monthly installments. Check the available options at the bottom of the pricing cards for the Basic Lifetime Pack and Plus Lifetime Pack."
+    },
+    {
       "q": "What payment methods do you accept?",
-      "a": "We accept credit and debit card payments (Visa, Mastercard, American Express) through Lemon Squeezy, as well as PayPal. All transactions are processed with 256-bit SSL encryption."
+      "a": "We accept credit and debit cards (Visa, Mastercard, and American Express) through Lemon Squeezy, as well as PayPal. All transactions use 256-bit SSL encryption to protect your information."
     },
     {
       "q": "What does the 'Lifetime' plan include?",
-      "a": "The Lifetime plan is a one-time payment that gives you permanent access to the indicators included in your plan, plus all future updates and any new indicators we add to the suite, with no recurring charges."
+      "a": "It is a one-time payment or payment plan that provides you with permanent access to the indicators included in your plan, along with all future updates and improvements to those tools, with no additional charges.\n\nNew tools developed in the future are not included, but as a Logic Indicators user, you will have access to special discounts to purchase them."
     },
     {
       "q": "What is the difference between the annual and lifetime plans?",
-      "a": "The annual plan renews every 12 months and includes all updates during that period. The Lifetime plan is a one-time payment with permanent access to updates and new indicators. In the long run, the Lifetime plan offers the best value."
-    },
-    {
-      "q": "Can I use the license on multiple computers?",
-      "a": "Your license is tied to your NinjaTrader Machine ID. The Individual plan includes 1 Machine ID; the Complete Suite plan includes 2. If you change computers, you can transfer the license by deactivating it on the previous machine."
+      "a": "The annual plan renews every 12 months and includes tool updates during that period.\n\nThe Lifetime plan is a one-time payment that provides permanent access to updates for the tools included in your plan. Therefore, it offers the best value for those planning to use the tools long-term."
     },
     {
       "q": "Do you offer refunds?",
-      "a": "We offer refunds within 14 days of purchase, provided the indicator has not been used on a live or simulated account. To request a refund, please contact us via email."
+      "a": "In exceptional cases, we may consider a refund within 30 days of purchase if significant technical issues arise that cannot be resolved with assistance from our team.\n\nTo request it, you must provide evidence of the issue and collaborate with our team during the diagnosis and troubleshooting process.\n\nNo refunds are issued for changes of mind, issues caused by third-party software such as NinjaTrader, or incompatibilities with non-standard configurations. Please review our Refund Policy to see all terms."
     },
     {
-      "q": "How does plan renewal or upgrading work?",
-      "a": "The annual plan renews automatically every year. You can switch between the Individual and Complete Suite plans at any time; the change is prorated and applied to the next billing cycle."
+      "q": "Can I use the license on multiple computers?",
+      "a": "The license is tied to your NinjaTrader 8 Machine ID and can be active on only one computer at a time.\n\nIf you switch computers, you can transfer your license by deactivating it on the previous machine from your User Dashboard and subsequently activating it on the new computer."
     }
   ]
 }
