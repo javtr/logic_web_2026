@@ -135,7 +135,6 @@ export const Indicators = () => {
                 contentImages={contentImages}
                 buttonText={t('indicatorsPage.readMore')}
                 slug={slug}
-                pack={t(`indicators.${id}.pack`)}
               />
             );
           })}

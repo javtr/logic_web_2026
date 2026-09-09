@@ -143,7 +143,6 @@ export const Home = () => {
                 description={t(`indicators.${id}.shortDescription`)}
                 buttonText={t('indicatorsPage.readMore')}
                 slug={t(`indicators.${id}.slug`)}
-                pack={t(`indicators.${id}.pack`)}
               />
             );
           })}
