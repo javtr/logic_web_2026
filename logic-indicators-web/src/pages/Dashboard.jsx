@@ -20,6 +20,14 @@ import { generateInstallationSteps } from "../data/installation";
 const toTitleCase = (str) =>
   String(str || '').toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
 
+// NinjaTrader Machine ID: exactamente 32 caracteres alfanuméricos en mayúsculas (A-Z, 0-9)
+const NT_MACHINE_ID_REGEX = /^[A-Z0-9]{32}$/;
+const NT_VALID_CHARS_REGEX = /^[A-Z0-9]+$/;
+
+// Sanitiza el Machine ID: elimina todos los espacios en blanco y convierte a mayúsculas
+const sanitizeMachineId = (val) =>
+  String(val || '').replace(/\s+/g, '').toUpperCase();
+
 // Icono SVG oficial de Discord
 const DiscordIcon = ({ size = 20, className = "" }) => (
   <svg
@@ -139,6 +147,9 @@ export const Dashboard = () => {
 
   const currentMachineId = userData?.machine_id_actual || "";
   const isUnchanged = draftValue === currentMachineId;
+  const hasInvalidChars = draftValue.length > 0 && !NT_VALID_CHARS_REGEX.test(draftValue);
+  const isValidFormat = NT_MACHINE_ID_REGEX.test(draftValue);
+  const isSaveDisabled = isUnchanged || isSaving || !isValidFormat;
 
   // ===========================================================================
   // LOGICA DE PRODUCTOS + WIZARD DE INSTALACION
@@ -247,9 +258,17 @@ export const Dashboard = () => {
     setIsEditing(false);
   };
 
+  const handleDraftChange = (e) => {
+    const sanitized = sanitizeMachineId(e.target.value);
+    setDraftValue(sanitized);
+    if (status.msg) {
+      setStatus({ type: "", msg: "" });
+    }
+  };
+
   const handleUpdate = async (e) => {
     e?.preventDefault?.();
-    if (isUnchanged || isSaving) return;
+    if (isSaveDisabled) return;
     setIsSaving(true);
     setStatus({ type: "loading", msg: t('dashboard.machineId.saving') });
 
@@ -372,254 +391,319 @@ export const Dashboard = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        {/* COLUMNA IZQUIERDA: Tus Productos + Comunidad Discord */}
-        <div className="flex flex-col gap-6 md:gap-8">
-          {/* Tus Productos y Suscripciones */}
-          <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
-            <div className="flex items-center gap-3 mb-4 text-accent-primary">
-              <Package size={24} />
-              <h2 className="text-xl font-bold text-text-main">{t('dashboard.products.cardTitle')}</h2>
-            </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start">
+        {/* 1. Tus Productos y Suscripciones */}
+        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
+          <div className="flex items-center gap-3 mb-4 text-accent-primary">
+            <Package size={24} />
+            <h2 className="text-xl font-bold text-text-main">{t('dashboard.products.cardTitle')}</h2>
+          </div>
 
-            {userProducts.length === 0 ? (
-              <p className="text-text-muted text-sm">
-                {t('dashboard.products.emptyState')}
-              </p>
-            ) : (
-              <>
-                {/* CTA principal: abre el wizard de instalación paso a paso.
-                    Es la única vía de descarga. La descarga individual se
-                    quitó del dashboard para forzar el flujo guiado y reducir
-                    tickets de soporte. El wizard vive en
-                    components/dashboard/InstallationWizard. */}
-                {hasInstallableSteps && (
-                  <div className="mb-6">
-                    <Button
-                      variant="primary"
-                      onClick={() => setIsWizardOpen(true)}
-                      className="w-full"
-                      aria-label={t('dashboard.installation.startCta')}
-                    >
-                      <Play size={18} />
-                      {t('dashboard.installation.startCta')}
-                    </Button>
-                    <p className="text-xs text-text-muted mt-2 italic text-center">
-                      {t('dashboard.installation.alreadyInstalled')}
-                    </p>
-                  </div>
-                )}
-
-                {/* Lista informativa de productos del usuario. NO son
-                    botones de descarga: solo muestran el nombre y el estado
-                    (vitalicio / vigente / vencido). La descarga real ocurre
-                    dentro del wizard de instalación. */}
-                <div>
-                  <h3 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">
-                    {t('dashboard.products.yourProductsLabel')}
-                  </h3>
-                  <div className="space-y-2">
-                    {userProducts.map((prod) => {
-                      const name =
-                        getDisplayName(prod.nombre_producto) || prod.nombre_producto;
-                      const status = getProductStatus(prod);
-                      return (
-                        <div
-                          key={prod.nombre_producto}
-                          className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-3 p-3 bg-dark-900 border border-dark-700 rounded-lg"
-                        >
-                          <span className="text-sm font-medium text-text-main">
-                            {name}
-                          </span>
-                          <span
-                            className={`text-xs font-medium ${status.className}`}
-                          >
-                            {status.label}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
+          {userProducts.length === 0 ? (
+            <p className="text-text-muted text-sm">
+              {t('dashboard.products.emptyState')}
+            </p>
+          ) : (
+            <>
+              {/* CTA principal: abre el wizard de instalación paso a paso.
+                  Es la única vía de descarga. La descarga individual se
+                  quitó del dashboard para forzar el flujo guiado y reducir
+                  tickets de soporte. El wizard vive en
+                  components/dashboard/InstallationWizard. */}
+              {hasInstallableSteps && (
+                <div className="mb-6">
+                  <Button
+                    variant="primary"
+                    onClick={() => setIsWizardOpen(true)}
+                    className="w-full"
+                    aria-label={t('dashboard.installation.startCta')}
+                  >
+                    <Play size={18} />
+                    {t('dashboard.installation.startCta')}
+                  </Button>
+                  <p className="text-xs text-text-muted mt-2 italic text-center">
+                    {t('dashboard.installation.alreadyInstalled')}
+                  </p>
                 </div>
-              </>
+              )}
+
+              {/* Lista informativa de productos del usuario. NO son
+                  botones de descarga: solo muestran el nombre y el estado
+                  (vitalicio / vigente / vencido). La descarga real ocurre
+                  dentro del wizard de instalación. */}
+              <div>
+                <h3 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">
+                  {t('dashboard.products.yourProductsLabel')}
+                </h3>
+                <div className="space-y-2">
+                  {userProducts.map((prod) => {
+                    const name =
+                      getDisplayName(prod.nombre_producto) || prod.nombre_producto;
+                    const status = getProductStatus(prod);
+                    return (
+                      <div
+                        key={prod.nombre_producto}
+                        className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-3 p-3 bg-dark-900 border border-dark-700 rounded-lg"
+                      >
+                        <span className="text-sm font-medium text-text-main">
+                          {name}
+                        </span>
+                        <span
+                          className={`text-xs font-medium ${status.className}`}
+                        >
+                          {status.label}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* 2. Gestión de Machine ID (NinjaTrader ID) */}
+        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
+          <div className="flex items-center justify-between gap-3 mb-6 text-accent-secondary">
+            <div className="flex items-center gap-3">
+              <Monitor size={24} />
+              <h2 className="text-xl font-bold text-text-main">{t('dashboard.machineId.cardTitle')}</h2>
+            </div>
+            {savedFlash && (
+              <span className="flex items-center gap-1.5 text-sm font-semibold text-accent-secondary animate-pulse">
+                <Check size={16} /> {t('dashboard.machineId.savedFlash')}
+              </span>
             )}
           </div>
 
-          {/* Documentación */}
-          <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
-            <div className="flex items-center gap-3 mb-4 text-accent-secondary">
-              <BookOpen size={24} />
-              <h2 className="text-xl font-bold text-text-main">
-                {t('dashboard.documentation.cardTitle')}
-              </h2>
-            </div>
+          {!isEditing ? (
+            <div className="space-y-5">
+              <div>
+                <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
+                  {t('dashboard.machineId.currentIdLabel')}
+                </label>
+                {currentMachineId ? (
+                  <p
+                    className="w-full bg-dark-900 border border-dark-700 text-text-main p-4 rounded-xl font-mono text-sm break-all"
+                    title={currentMachineId}
+                  >
+                    {currentMachineId}
+                  </p>
+                ) : (
+                  <p className="w-full bg-dark-900 border border-dashed border-dark-700 text-text-muted p-4 rounded-xl italic text-sm">
+                    {t('dashboard.machineId.noIdConfigured')}
+                  </p>
+                )}
+              </div>
 
-            <p className="text-text-muted mb-6 leading-relaxed">
-              {t('dashboard.documentation.description')}
-            </p>
-
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3">
               <Button
+                onClick={handleStartEdit}
                 variant="primary"
-                onClick={() => navigate("/dashboard/docs")}
                 className="w-full sm:w-auto"
               >
-                <BookOpen size={18} />
-                {t('dashboard.documentation.goToDocsButton')}
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={() => navigate("/dashboard/docs/installation")}
-                className="w-full sm:w-auto"
-              >
-                <BookOpen size={18} />
-                {t('dashboard.documentation.installationButton')}
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => navigate("/faq")}
-                className="w-full sm:w-auto"
-              >
-                <HelpCircle size={18} />
-                {t('dashboard.documentation.faqButton')}
+                <Pencil size={18} />
+                {t('dashboard.machineId.updateButton')}
               </Button>
             </div>
-          </div>
-        </div>
-
-        {/* COLUMNA DERECHA: Machine ID + Comunidad Discord */}
-        <div className="flex flex-col gap-6 md:gap-8">
-          {/* Gestión de Machine ID */}
-          <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
-            <div className="flex items-center justify-between gap-3 mb-6 text-accent-secondary">
-              <div className="flex items-center gap-3">
-                <Monitor size={24} />
-                <h2 className="text-xl font-bold text-text-main">{t('dashboard.machineId.cardTitle')}</h2>
-              </div>
-              {savedFlash && (
-                <span className="flex items-center gap-1.5 text-sm font-semibold text-accent-secondary animate-pulse">
-                  <Check size={16} /> {t('dashboard.machineId.savedFlash')}
-                </span>
-              )}
-            </div>
-
-            {!isEditing ? (
-              <div className="space-y-5">
-                <div>
-                  <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
-                    {t('dashboard.machineId.currentIdLabel')}
-                  </label>
-                  {currentMachineId ? (
-                    <p
-                      className="w-full bg-dark-900 border border-dark-700 text-text-main p-4 rounded-xl font-mono text-sm break-all"
-                      title={currentMachineId}
-                    >
-                      {currentMachineId}
-                    </p>
-                  ) : (
-                    <p className="w-full bg-dark-900 border border-dashed border-dark-700 text-text-muted p-4 rounded-xl italic text-sm">
-                      {t('dashboard.machineId.noIdConfigured')}
-                    </p>
-                  )}
-                </div>
-
-                <Button
-                  onClick={handleStartEdit}
-                  variant="primary"
-                  className="w-full sm:w-auto"
-                >
-                  <Pencil size={18} />
-                  {t('dashboard.machineId.updateButton')}
-                </Button>
-              </div>
-            ) : (
-              <form onSubmit={handleUpdate} className="space-y-5">
-                <div>
-                  <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block mb-2">
+          ) : (
+            <form onSubmit={handleUpdate} className="space-y-5">
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-xs font-semibold text-text-muted uppercase tracking-wider block">
                     {t('dashboard.machineId.newIdLabel')}
                   </label>
+                  <span
+                    className={`text-xs font-mono font-semibold transition-colors ${
+                      !isUnchanged && isValidFormat
+                        ? "text-green-400"
+                        : !isUnchanged && (hasInvalidChars || draftValue.length > 32)
+                        ? "text-red-400"
+                        : !isUnchanged && draftValue.length > 0
+                        ? "text-amber-400/90"
+                        : "text-text-muted"
+                    }`}
+                  >
+                    {draftValue.length}/32
+                  </span>
+                </div>
+                <div className="relative">
                   <input
                     ref={inputRef}
                     type="text"
                     value={draftValue}
-                    onChange={(e) => setDraftValue(e.target.value)}
+                    onChange={handleDraftChange}
                     onKeyDown={handleKeyDown}
                     disabled={isSaving}
-                    className="w-full bg-dark-900 border border-dark-600 text-text-main p-4 rounded-xl focus:border-accent-secondary outline-none transition-all font-mono text-sm disabled:opacity-60"
+                    autoComplete="off"
+                    spellCheck="false"
+                    className={`w-full bg-dark-900 border text-text-main p-4 rounded-xl outline-none transition-all font-mono text-sm disabled:opacity-60 pr-10 ${
+                      !isUnchanged && isValidFormat
+                        ? "border-green-500/60 focus:border-green-400 focus:ring-1 focus:ring-green-400/20"
+                        : !isUnchanged && (hasInvalidChars || draftValue.length !== 32)
+                        ? "border-red-500/60 focus:border-red-400 focus:ring-1 focus:ring-red-400/20"
+                        : "border-dark-600 focus:border-accent-secondary"
+                    }`}
                     placeholder={t('dashboard.machineId.newIdPlaceholder')}
                   />
-                  <p className="text-xs text-text-muted mt-2">
-                    {t('dashboard.machineId.saveHint')}
-                  </p>
+                  {!isUnchanged && isValidFormat && (
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 text-green-400 pointer-events-none">
+                      <Check size={18} />
+                    </div>
+                  )}
+                  {!isUnchanged && (hasInvalidChars || draftValue.length > 32) && (
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 text-red-400 pointer-events-none">
+                      <AlertCircle size={18} />
+                    </div>
+                  )}
                 </div>
 
-                {status.msg && status.type !== "loading" && (
-                  <p
-                    className={`text-sm font-medium ${
-                      status.type === "success" ? "text-green-400" : "text-red-400"
-                    }`}
-                  >
-                    {status.msg}
-                  </p>
+                {/* Mensaje de validación en vivo */}
+                {!isUnchanged && (
+                  <div className="mt-2 text-xs">
+                    {draftValue.length === 0 ? (
+                      <p className="text-red-400 flex items-center gap-1.5">
+                        <AlertCircle size={14} className="shrink-0" />
+                        {t('dashboard.machineId.validation.empty')}
+                      </p>
+                    ) : hasInvalidChars ? (
+                      <p className="text-red-400 flex items-center gap-1.5">
+                        <AlertCircle size={14} className="shrink-0" />
+                        {t('dashboard.machineId.validation.invalidChars')}
+                      </p>
+                    ) : draftValue.length < 32 ? (
+                      <p className="text-amber-400/90 flex items-center gap-1.5">
+                        <AlertCircle size={14} className="shrink-0" />
+                        {t('dashboard.machineId.validation.tooShort')
+                          .replace('{remaining}', 32 - draftValue.length)
+                          .replace('{length}', draftValue.length)}
+                      </p>
+                    ) : draftValue.length > 32 ? (
+                      <p className="text-red-400 flex items-center gap-1.5">
+                        <AlertCircle size={14} className="shrink-0" />
+                        {t('dashboard.machineId.validation.tooLong')
+                          .replace('{length}', draftValue.length)}
+                      </p>
+                    ) : (
+                      <p className="text-green-400 flex items-center gap-1.5 font-medium">
+                        <Check size={14} className="shrink-0" />
+                        {t('dashboard.machineId.validation.valid')}
+                      </p>
+                    )}
+                  </div>
                 )}
 
-                <div className="flex flex-col-reverse sm:flex-row gap-3">
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    onClick={handleCancel}
-                    disabled={isSaving}
-                    className="flex-1"
-                  >
-                    <X size={18} />
-                    {t('dashboard.machineId.cancelButton')}
-                  </Button>
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    disabled={isUnchanged || isSaving}
-                    className="flex-1"
-                  >
-                    {isSaving ? (
-                      <>
-                        <Loader2 size={18} className="animate-spin" />
-                        {t('dashboard.machineId.saving')}
-                      </>
-                    ) : (
-                      <>
-                        <Check size={18} />
-                        {t('dashboard.machineId.saveButton')}
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </form>
-            )}
+                <p className="text-xs text-text-muted mt-2">
+                  {t('dashboard.machineId.saveHint')}
+                </p>
+              </div>
+
+              {status.msg && status.type !== "loading" && (
+                <p
+                  className={`text-sm font-medium ${
+                    status.type === "success" ? "text-green-400" : "text-red-400"
+                  }`}
+                >
+                  {status.msg}
+                </p>
+              )}
+
+              <div className="flex flex-col-reverse sm:flex-row gap-3">
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={handleCancel}
+                  disabled={isSaving}
+                  className="flex-1"
+                >
+                  <X size={18} />
+                  {t('dashboard.machineId.cancelButton')}
+                </Button>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  disabled={isSaveDisabled}
+                  className="flex-1"
+                >
+                  {isSaving ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin" />
+                      {t('dashboard.machineId.saving')}
+                    </>
+                  ) : (
+                    <>
+                      <Check size={18} />
+                      {t('dashboard.machineId.saveButton')}
+                    </>
+                  )}
+                </Button>
+              </div>
+            </form>
+          )}
+        </div>
+
+        {/* 3. Documentación completa */}
+        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
+          <div className="flex items-center gap-3 mb-4 text-accent-secondary">
+            <BookOpen size={24} />
+            <h2 className="text-xl font-bold text-text-main">
+              {t('dashboard.documentation.cardTitle')}
+            </h2>
           </div>
 
-          {/* Comunidad Discord */}
-          <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
-            <div className="flex items-center gap-3 mb-4 text-[#5865F2]">
-              <DiscordIcon size={26} />
-              <h2 className="text-xl font-bold text-text-main">
-                {t('dashboard.discord.cardTitle')}
-              </h2>
-            </div>
+          <p className="text-text-muted mb-6 leading-relaxed">
+            {t('dashboard.documentation.description')}
+          </p>
 
-            <p className="text-text-muted mb-6 leading-relaxed text-sm md:text-base">
-              {t('dashboard.discord.description')}
-            </p>
-
-            <a
-              href={t('dashboard.discord.url')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 w-full bg-[#5865F2] hover:bg-[#4752C4] text-white font-semibold py-3 px-6 rounded-xl transition-all shadow-lg shadow-[#5865F2]/20 hover:shadow-[#5865F2]/30 active:scale-[0.99]"
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+            <Button
+              variant="primary"
+              onClick={() => navigate("/dashboard/docs")}
+              className="w-full sm:w-auto"
             >
-              <DiscordIcon size={20} />
-              <span>{t('dashboard.discord.cta')}</span>
-            </a>
+              <BookOpen size={18} />
+              {t('dashboard.documentation.goToDocsButton')}
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={() => navigate("/dashboard/docs/installation")}
+              className="w-full sm:w-auto"
+            >
+              <BookOpen size={18} />
+              {t('dashboard.documentation.installationButton')}
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => navigate("/faq")}
+              className="w-full sm:w-auto"
+            >
+              <HelpCircle size={18} />
+              {t('dashboard.documentation.faqButton')}
+            </Button>
           </div>
+        </div>
+
+        {/* 4. Comunidad Discord */}
+        <div className="bg-dark-800 border border-dark-700 p-6 md:p-8 rounded-2xl md:rounded-3xl h-fit">
+          <div className="flex items-center gap-3 mb-4 text-[#5865F2]">
+            <DiscordIcon size={26} />
+            <h2 className="text-xl font-bold text-text-main">
+              {t('dashboard.discord.cardTitle')}
+            </h2>
+          </div>
+
+          <p className="text-text-muted mb-6 leading-relaxed text-sm md:text-base">
+            {t('dashboard.discord.description')}
+          </p>
+
+          <a
+            href={t('dashboard.discord.url')}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2.5 w-full bg-[#5865F2] hover:bg-[#4752C4] text-white font-semibold py-3 px-6 rounded-xl transition-all shadow-lg shadow-[#5865F2]/20 hover:shadow-[#5865F2]/30 active:scale-[0.99]"
+          >
+            <DiscordIcon size={20} />
+            <span>{t('dashboard.discord.cta')}</span>
+          </a>
         </div>
       </div>
 

@@ -10,7 +10,7 @@
   },
   "indicators": {
     "title": "Order Flow Indicators for NinjaTrader 8 - Full Suite",
-    "description": "Explore our ecosystem of 7 order flow indicators for NinjaTrader 8: Footprint, Volume Profile, Big Trades, Algorithms, and more. Zero-latency performance with preset templates."
+    "description": "Explore our ecosystem of 9 order flow and market depth tools for NinjaTrader 8: Footprint, Volume Profile, Depth Chart, Depth Live, and more. Zero-latency performance with preset templates."
   },
   "indicator": {
     "titleSuffix": "for NinjaTrader 8 | Logic Indicators",

@@ -1,6 +1,29 @@
 {
   "title": "Complete Order Flow Indicator\nSuite for NinjaTrader 8",
-  "subtitle": "Explore our ecosystem of 7 professional tools. From auction analysis with Volume Profile and Composite, to precise liquidity detection with Big Trades and Footprint. Maximum zero-latency performance and ready-to-trade preset templates.",
+  "subtitle": "Explore our ecosystem of 9 professional tools. From auction analysis with Volume Profile and Footprint, to Bookmap-style market depth and liquidity visualization with Depth Chart and Depth Live. Maximum zero-latency performance and ready-to-trade preset templates.",
   "heroImage": "suite",
-  "readMore": "Read more"
+  "readMore": "Read more",
+  "advantages": [
+    {
+      "id": "ecosystem",
+      "icon": "Layers",
+      "title": "Complete 360° Ecosystem",
+      "description": "Everything you need in a single platform: from auction analysis and imbalances with Footprint and Volume Profile, to Bookmap-style liquidity and market depth tracking with Depth Chart and Depth Live.",
+      "badge": "9 unified tools"
+    },
+    {
+      "id": "performance",
+      "icon": "Zap",
+      "title": "Zero-Latency Proprietary Engine",
+      "description": "Built with ultra-optimized native architecture. Processes millions of ticks in real time without freezing your charts and loads historical data instantly, even during market opens and high-impact news.",
+      "badge": "Speed & instant loading"
+    },
+    {
+      "id": "versatility",
+      "icon": "Sliders",
+      "title": "Graphic Versatility & Presets",
+      "description": "Engineered with the highest visual standard on the market. Features dozens of configurable parameters to customize each tool in detail, alongside ready-to-import templates to tailor charts to your trading style.",
+      "badge": "Total customization"
+    }
+  ]
 }

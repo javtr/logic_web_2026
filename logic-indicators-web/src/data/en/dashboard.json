@@ -14,13 +14,21 @@
     "noIdConfigured": "No ID configured yet",
     "updateButton": "Update ID",
     "newIdLabel": "New Machine ID",
-    "newIdPlaceholder": "Paste your new ID here",
+    "newIdPlaceholder": "e.g. 97102205910DCA54FCB66BA4678CCDFC",
     "saveHint": "Enter to save · Esc to cancel",
     "cancelButton": "Cancel",
     "saveButton": "Save new ID",
     "saving": "Saving...",
     "updateSuccessFallback": "ID updated successfully",
-    "updateErrorFallback": "Error updating"
+    "updateErrorFallback": "Error updating",
+    "validation": {
+      "empty": "NinjaTrader ID cannot be empty.",
+      "invalidChars": "Only uppercase letters and numbers are allowed, without spaces or symbols.",
+      "tooShort": "{remaining} characters remaining (current: {length}/32).",
+      "tooLong": "ID exceeds 32 characters (current: {length}/32).",
+      "exactLength": "The ID must be exactly 32 characters (current: {length}/32).",
+      "valid": "Valid ID format (32 characters)."
+    }
   },
   "products": {
     "cardTitle": "Your Products",

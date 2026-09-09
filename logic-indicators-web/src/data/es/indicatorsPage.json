@@ -1,6 +1,29 @@
 {
   "title": "Suite Completa de Indicadores\nde Order Flow para NinjaTrader 8",
-  "subtitle": "Explora nuestro ecosistema de 7 herramientas profesionales. Desde el análisis de la subasta con Volume Profile y Composite, hasta la detección precisa de liquidez con Big Trades y Footprint. Máximo rendimiento sin latencia y plantillas preestablecidas listas para operar.",
+  "subtitle": "Explora nuestro ecosistema de 9 herramientas profesionales. Desde el análisis de subasta con Volume Profile y Footprint, hasta la visualización de liquidez y profundidad de mercado al estilo Bookmap con Depth Chart y Depth Live. Máximo rendimiento sin latencia y plantillas listas para operar.",
   "heroImage": "suite",
-  "readMore": "Leer más"
+  "readMore": "Leer más",
+  "advantages": [
+    {
+      "id": "ecosystem",
+      "icon": "Layers",
+      "title": "Ecosistema Completo 360°",
+      "description": "Todo lo que necesitas en una sola plataforma: desde subasta y desequilibrios con Footprint y Volume Profile, hasta el rastreo de liquidez y profundidad de mercado estilo Bookmap con Depth Chart y Depth Live.",
+      "badge": "9 herramientas unificadas"
+    },
+    {
+      "id": "performance",
+      "icon": "Zap",
+      "title": "Motor Propio de Cero Latencia",
+      "description": "Desarrollado con arquitectura nativa ultra-optimizada. Procesa millones de ticks en tiempo real sin congelar tus gráficos y carga datos históricos al instante, incluso durante aperturas y noticias de alto impacto.",
+      "badge": "Velocidad y carga instantánea"
+    },
+    {
+      "id": "versatility",
+      "icon": "Sliders",
+      "title": "Versatilidad Gráfica y Plantillas",
+      "description": "Diseñado con el estándar visual más alto del mercado. Cuenta con decenas de parámetros configurables para personalizar cada herramienta al detalle, además de plantillas listas para importar y adaptar los gráficos a tu estilo de trading.",
+      "badge": "Personalización total"
+    }
+  ]
 }
