@@ -8,7 +8,7 @@ public: true
 
 # Logic Depth Chart
 
-> **Resumen público** — para acceder al manual técnico completo, [iniciá sesión en tu cuenta](/login?next=/dashboard/docs/indicators/logic-depth-chart).
+> **Resumen público** — para acceder al manual técnico completo, [inicia sesión en tu cuenta](/login?next=/dashboard/docs/indicators/logic-depth-chart).
 
 ## ¿Qué es?
 

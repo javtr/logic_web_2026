@@ -1,21 +1,21 @@
 ---
 title: Primeros pasos
-description: Introducción a Logic Indicators y lo que necesitás para empezar.
+description: Introducción a Logic Indicators y lo que necesitas para empezar.
 order: 1
 category: intro
 ---
 
 # Primeros pasos
 
-Bienvenido a Logic Indicators. Esta guía te lleva por todo lo que necesitás para empezar a usar el suite en NinjaTrader 8.
+Bienvenido a Logic Indicators. Esta guía te lleva por todo lo que necesitas para empezar a usar la suite en NinjaTrader 8.
 
-> Artículo placeholder. Editá `src/docs/es/getting-started.md` para agregar contenido real.
+> Artículo placeholder. Edita `src/docs/es/getting-started.md` para agregar contenido real.
 
 ## Qué es Logic Indicators
 
-Logic Indicators es un suite profesional de indicadores para NinjaTrader 8, enfocado en order flow, footprint y análisis de volumen.
+Logic Indicators es una suite profesional de indicadores para NinjaTrader 8, enfocado en order flow, footprint y análisis de volumen.
 
-## Qué necesitás
+## Qué necesitas
 
 - NinjaTrader 8 instalado y licenciado
 - Feed de datos en vivo o simulado
@@ -24,4 +24,4 @@ Logic Indicators es un suite profesional de indicadores para NinjaTrader 8, enfo
 
 ## Próximos pasos
 
-Continuá con la guía de [Instalación](/docs/installation).
+Continúa con la guía de [Instalación](/docs/installation).

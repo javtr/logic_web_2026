@@ -7,7 +7,7 @@ category: indicators
 
 # Logic Footprint
 
-> Si todavía no instalaste la suite de Logic Indicators, consultá la [Guía de instalación](/docs/installation) primero.
+> Si todavía no instalaste la suite de Logic Indicators, consulta la [Guía de instalación](/docs/installation) primero.
 
 El **Logic Footprint** es el corazón de la suite de Order Flow. En lugar de mirar una vela tradicional que oculta cómo ocurrieron realmente las transacciones, el Footprint mira *dentro* de la vela para mostrarte la distribución exacta de compradores agresivos (Ask) frente a vendedores agresivos (Bid) en cada nivel de precio.
 

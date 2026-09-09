@@ -18,23 +18,23 @@
   },
   "pricing": {
     "title": "Precios - Indicadores de Order Flow para NinjaTrader 8",
-    "description": "Elegí el plan que se ajusta a tu estilo de trading. Acceso anual o de por vida a nuestros indicadores de order flow, footprint y volume profile para NinjaTrader 8. El plan De por vida es la mejor opción."
+    "description": "Elige el plan que se ajusta a tu estilo de trading. Acceso anual o de por vida a nuestros indicadores de order flow, footprint y volume profile para NinjaTrader 8. El plan De por vida es la mejor opción."
   },
   "freeIndicators": {
     "title": "Indicadores de Order Flow Gratuitos - Descarga para NinjaTrader 8",
-    "description": "Descargá indicadores gratuitos de order flow y análisis de volumen para NinjaTrader 8. Probá la calidad de nuestro desarrollo antes de comprar la suite completa. Sin registro."
+    "description": "Descarga indicadores gratuitos de order flow y análisis de volumen para NinjaTrader 8. Prueba la calidad de nuestro desarrollo antes de comprar la suite completa. Sin registro."
   },
   "presets": {
     "title": "Plantillas de Indicadores - Templates XML para NinjaTrader 8",
-    "description": "Descargá plantillas XML preconfiguradas para nuestros indicadores de order flow. Importalas en NinjaTrader 8 y empezá a operar en segundos con los ajustes visuales y técnicos óptimos."
+    "description": "Descarga plantillas XML preconfiguradas para nuestros indicadores de order flow. Impórtalas en NinjaTrader 8 y empieza a operar en segundos con los ajustes visuales y técnicos óptimos."
   },
   "contact": {
     "title": "Contacto - Logic Indicators",
-    "description": "¿Preguntas sobre nuestros indicadores de order flow, licencias o alianzas? Escribinos por Discord, Instagram o correo electrónico. Respondemos en menos de 24 horas."
+    "description": "¿Preguntas sobre nuestros indicadores de order flow, licencias o alianzas? Escríbenos por Discord, Instagram o correo electrónico. Respondemos en menos de 24 horas."
   },
   "faq": {
     "title": "Preguntas Frecuentes - Logic Indicators",
-    "description": "Todo lo que necesitás saber sobre Logic Indicators: compatibilidad, licencias, medios de pago, reembolsos y cómo funcionan los planes anual y de por vida."
+    "description": "Todo lo que necesitas saber sobre Logic Indicators: compatibilidad, licencias, medios de pago, reembolsos y cómo funcionan los planes anual y de por vida."
   },
   "docs": {
     "title": "Documentación - Logic Indicators",
@@ -50,6 +50,6 @@
   },
   "notFound": {
     "title": "Página no encontrada - Logic Indicators",
-    "description": "La página que estás buscando no existe. Volvé a la página de inicio de Logic Indicators."
+    "description": "La página que estás buscando no existe. Vuelve a la página de inicio de Logic Indicators."
   }
 }

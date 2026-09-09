@@ -8,7 +8,7 @@ public: true
 
 # Logic Depth Live
 
-> **Resumen público** — para acceder al manual técnico completo, [iniciá sesión en tu cuenta](/login?next=/dashboard/docs/indicators/logic-depth-live).
+> **Resumen público** — para acceder al manual técnico completo, [inicia sesión en tu cuenta](/login?next=/dashboard/docs/indicators/logic-depth-live).
 
 ## ¿Qué es?
 

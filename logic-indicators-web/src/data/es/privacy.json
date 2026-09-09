@@ -1,11 +1,11 @@
 {
   "pageTitle": "Política de Privacidad",
   "lastUpdated": "Julio 2026",
-  "intro": "En Logic Indicators respetamos tu privacidad y nos comprometemos a proteger la información personal que compartís con nosotros. Esta política describe qué datos recopilamos, cómo los usamos y cuáles son tus derechos.",
+  "intro": "En Logic Indicators respetamos tu privacidad y nos comprometemos a proteger la información personal que compartes con nosotros. Esta política describe qué datos recopilamos, cómo los usamos y cuáles son tus derechos.",
   "sections": [
     {
       "title": "1. Información que recopilamos",
-      "content": "Recopilamos la información que nos proporcionás directamente al crear una cuenta, suscribirte a nuestro newsletter o contactarnos por correo. Esto puede incluir tu nombre, dirección de correo electrónico, información de pago (procesada de forma segura por nuestro proveedor de pagos) y cualquier contenido que nos envíes a través de formularios. También recopilamos datos técnicos de forma automática cuando visitás nuestro sitio, como tu dirección IP, tipo de navegador, páginas visitadas y tiempos de respuesta."
+      "content": "Recopilamos la información que nos proporcionas directamente al crear una cuenta, suscribirte a nuestro newsletter o contactarnos por correo. Esto puede incluir tu nombre, dirección de correo electrónico, información de pago (procesada de forma segura por nuestro proveedor de pagos) y cualquier contenido que nos envíes a través de formularios. También recopilamos datos técnicos de forma automática cuando visitas nuestro sitio, como tu dirección IP, tipo de navegador, páginas visitadas y tiempos de respuesta."
     },
     {
       "title": "2. Cómo usamos tu información",
@@ -13,7 +13,7 @@
     },
     {
       "title": "3. Cookies y tecnologías similares",
-      "content": "Usamos cookies y tecnologías similares para recordar tus preferencias, mantener tu sesión iniciada, analizar el tráfico del sitio y personalizar contenido. Podés configurar tu navegador para rechazar todas las cookies, pero esto puede afectar el funcionamiento de ciertas partes del sitio."
+      "content": "Usamos cookies y tecnologías similares para recordar tus preferencias, mantener tu sesión iniciada, analizar el tráfico del sitio y personalizar contenido. Puedes configurar tu navegador para rechazar todas las cookies, pero esto puede afectar el funcionamiento de ciertas partes del sitio."
     },
     {
       "title": "4. Servicios de terceros",
@@ -21,7 +21,7 @@
     },
     {
       "title": "5. Tus derechos",
-      "content": "Tenés derecho a acceder, rectificar o eliminar tu información personal en cualquier momento. También podés solicitar la portabilidad de tus datos o limitar su procesamiento. Para ejercer cualquiera de estos derechos, contactanos por correo electrónico a la dirección indicada al final de esta política. Respondemos a todas las solicitudes en un plazo máximo de 30 días."
+      "content": "Tienes derecho a acceder, rectificar o eliminar tu información personal en cualquier momento. También puedes solicitar la portabilidad de tus datos o limitar su procesamiento. Para ejercer cualquiera de estos derechos, contáctanos por correo electrónico a la dirección indicada al final de esta política. Respondemos a todas las solicitudes en un plazo máximo de 30 días."
     },
     {
       "title": "6. Retención de datos",
@@ -33,7 +33,7 @@
     },
     {
       "title": "8. Contacto",
-      "content": "Si tenés preguntas sobre esta política de privacidad o sobre cómo tratamos tus datos personales, escribinos a info@logicindicators.com. Responderemos en un plazo máximo de 30 días."
+      "content": "Si tienes preguntas sobre esta política de privacidad o sobre cómo tratamos tus datos personales, escríbenos a info@logicindicators.com. Responderemos en un plazo máximo de 30 días."
     }
   ]
 }

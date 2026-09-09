@@ -105,7 +105,7 @@
       },
       "products": {
         "title": "Descarga tu pack",
-        "description": "Haz clic en el botón de abajo para descargar tu pack. Después sigue los pasos de instalación en NinjaTrader 8 que se vieron en el tutorial anterior. El licenciamiento de los indicators que tenés activos se valida en el backend, así que solo vas a poder usar los que compraste."
+        "description": "Haz clic en el botón de abajo para descargar tu pack. Después sigue los pasos de instalación en NinjaTrader 8 que se vieron en el tutorial anterior. El licenciamiento de los indicadores que tienes activos se valida en el backend, así que solo vas a poder usar los que compraste."
       },
       "success": {
         "title": "Reinicia NinjaTrader 8",

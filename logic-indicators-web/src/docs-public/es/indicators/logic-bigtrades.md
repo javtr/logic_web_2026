@@ -8,13 +8,13 @@ public: true
 
 # Logic BigTrades
 
-> **Resumen público** — para acceder al manual técnico completo, [iniciá sesión en tu cuenta](/login?next=/dashboard/docs/indicators/logic-bigtrades).
+> **Resumen público** — para acceder al manual técnico completo, [inicia sesión en tu cuenta](/login?next=/dashboard/docs/indicators/logic-bigtrades).
 
 ## ¿Qué es?
 
 El indicador **Logic BigTrades** dibuja las órdenes institucionales grandes directamente en tu gráfico en tiempo real. Cada punto, línea o burbuja representa una operación agresiva por encima de un umbral configurable de tamaño — permitiéndote ver exactamente cuándo y dónde están entrando los jugadores grandes al mercado.
 
-Es lo más cerca que podés estar de ver el order flow institucional en vivo, sin necesidad de acceso a la cinta.
+Es lo más cerca que puedes estar de ver el order flow institucional en vivo, sin necesidad de acceso a la cinta.
 
 ## Características principales
 
@@ -28,6 +28,6 @@ Es lo más cerca que podés estar de ver el order flow institucional en vivo, si
 
 Para traders que basan sus decisiones en el order flow agresivo y quieren reaccionar en tiempo real cuando un participante grande entra al mercado.
 
-## Accedé a la documentación completa
+## Accede a la documentación completa
 
-[Iniciá sesión para acceder al manual técnico →](/login?next=/dashboard/docs/indicators/logic-bigtrades)
+[Inicia sesión para acceder al manual técnico →](/login?next=/dashboard/docs/indicators/logic-bigtrades)

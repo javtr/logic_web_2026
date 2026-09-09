@@ -7,7 +7,7 @@ category: indicators
 
 # Logic Depth Live
 
-> Si todavía no instalaste la suite de Logic Indicators, consultá la [Guía de instalación](/docs/installation) primero.
+> Si todavía no instalaste la suite de Logic Indicators, consulta la [Guía de instalación](/docs/installation) primero.
 
 El indicador **Logic Depth Live** transforma tus gráficos de NinjaTrader 8 en un potente mapa de calor interactivo que te permite ver con claridad dónde se concentran las órdenes de compra y venta del dinero institucional antes de que el precio llegue a ellas.
 

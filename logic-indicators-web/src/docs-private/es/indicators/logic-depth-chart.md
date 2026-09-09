@@ -7,7 +7,7 @@ category: indicators
 
 # Logic Depth Chart
 
-> Si todavía no instalaste la suite de Logic Indicators, consultá la [Guía de instalación](/docs/installation) primero.
+> Si todavía no instalaste la suite de Logic Indicators, consulta la [Guía de instalación](/docs/installation) primero.
 
 El indicador **Logic Depth Chart** es el mapa de liquidez institucional de Nivel 2 integrado directamente en la acción del precio para NinjaTrader 8.
 

@@ -7,7 +7,7 @@ category: indicators
 
 # Logic Composite
 
-> Si todavía no instalaste la suite de Logic Indicators, consultá la [Guía de instalación](/docs/installation) primero.
+> Si todavía no instalaste la suite de Logic Indicators, consulta la [Guía de instalación](/docs/installation) primero.
 
 El indicador **Logic Composite** está diseñado para el análisis macro-estructural. Mientras que el Logic Profile estándar es perfecto para desgloses sesión por sesión, el Composite está construido para analizar bloques masivos de datos históricos o áreas de consolidación trazadas manualmente con alta precisión.
 

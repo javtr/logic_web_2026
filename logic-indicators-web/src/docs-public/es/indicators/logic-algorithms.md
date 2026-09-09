@@ -8,13 +8,13 @@ public: true
 
 # Logic Algorithms
 
-> **Resumen público** — para acceder al manual técnico completo, [iniciá sesión en tu cuenta](/login?next=/dashboard/docs/indicators/logic-algorithms).
+> **Resumen público** — para acceder al manual técnico completo, [inicia sesión en tu cuenta](/login?next=/dashboard/docs/indicators/logic-algorithms).
 
 ## ¿Qué es?
 
-La suite de **Logic Algorithms** es una colección de motores de señales automatizadas que detectan condiciones específicas de order flow y disparan alertas visuales y sonoras directamente en tu gráfico. En lugar de mirar decenas de indicadores y tratar de interpretarlos en tiempo real, los algoritmos hacen la interpretación por vos y te avisan cuando está pasando algo interesante.
+La suite de **Logic Algorithms** es una colección de motores de señales automatizadas que detectan condiciones específicas de order flow y disparan alertas visuales y sonoras directamente en tu gráfico. En lugar de mirar decenas de indicadores y tratar de interpretarlos en tiempo real, los algoritmos hacen la interpretación por ti y te avisan cuando está pasando algo interesante.
 
-Cada algoritmo está diseñado para detectar una condición particular del mercado — absorción, agotamiento, imbalances apilados, divergencias de delta, y más — para que vos te enfoques en la ejecución en lugar del análisis.
+Cada algoritmo está diseñado para detectar una condición particular del mercado — absorción, agotamiento, imbalances apilados, divergencias de delta, y más — para que tú te enfoques en la ejecución en lugar del análisis.
 
 ## Características principales
 
@@ -28,6 +28,6 @@ Cada algoritmo está diseñado para detectar una condición particular del merca
 
 Para traders que quieren que la parte pesada de la detección de patrones se maneje de forma automática y prefieren recibir señales accionables en lugar de interpretar manualmente los datos crudos de order flow.
 
-## Accedé a la documentación completa
+## Accede a la documentación completa
 
-[Iniciá sesión para acceder al manual técnico →](/login?next=/dashboard/docs/indicators/logic-algorithms)
+[Inicia sesión para acceder al manual técnico →](/login?next=/dashboard/docs/indicators/logic-algorithms)

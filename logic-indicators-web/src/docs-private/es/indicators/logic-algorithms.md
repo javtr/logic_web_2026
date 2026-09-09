@@ -7,7 +7,7 @@ category: indicators
 
 # Logic Algorithms
 
-> Si todavía no instalaste la suite de Logic Indicators, consultá la [Guía de instalación](/docs/installation) primero.
+> Si todavía no instalaste la suite de Logic Indicators, consulta la [Guía de instalación](/docs/installation) primero.
 
 El indicador **Logic Algorithms** es la herramienta definitiva de reconocimiento de patrones micro-estructurales para traders de Order Flow. En lugar de mirar fijamente un gráfico footprint intentando detectar manualmente la actividad institucional oculta, este indicador escanea automáticamente la cinta y dibuja marcadores visuales precisos directamente en tu gráfico.
 

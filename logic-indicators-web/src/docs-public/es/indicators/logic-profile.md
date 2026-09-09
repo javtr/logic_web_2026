@@ -8,13 +8,13 @@ public: true
 
 # Logic Profile
 
-> **Resumen público** — para acceder al manual técnico completo, [iniciá sesión en tu cuenta](/login?next=/dashboard/docs/indicators/logic-profile).
+> **Resumen público** — para acceder al manual técnico completo, [inicia sesión en tu cuenta](/login?next=/dashboard/docs/indicators/logic-profile).
 
 ## ¿Qué es?
 
 El indicador **Logic Profile** es una herramienta de gráficos de grado institucional que mapea el volumen operado, el delta y el tiempo (TPO) a través de niveles de precios específicos durante un período determinado. En lugar de ver lo que pasó dentro de una sola vela, ves el proceso de subasta macroscópico a lo largo de una sesión completa, una semana o un área trazada manualmente.
 
-Al identificar el Point of Control (POC), el Área de Valor (VA) y el Balance Inicial (IB), podés determinar exactamente dónde encontró el mercado su valor justo y en qué niveles es probable que los participantes institucionales defiendan sus posiciones en el futuro.
+Al identificar el Point of Control (POC), el Área de Valor (VA) y el Balance Inicial (IB), puedes determinar exactamente dónde encontró el mercado su valor justo y en qué niveles es probable que los participantes institucionales defiendan sus posiciones en el futuro.
 
 ## Características principales
 
@@ -29,6 +29,6 @@ Al identificar el Point of Control (POC), el Área de Valor (VA) y el Balance In
 
 Para traders intradiarios y de swing que quieren operar alrededor de los niveles de subasta del mercado en lugar de adivinar dónde están el soporte y la resistencia.
 
-## Accedé a la documentación completa
+## Accede a la documentación completa
 
-[Iniciá sesión para acceder al manual técnico →](/login?next=/dashboard/docs/indicators/logic-profile)
+[Inicia sesión para acceder al manual técnico →](/login?next=/dashboard/docs/indicators/logic-profile)

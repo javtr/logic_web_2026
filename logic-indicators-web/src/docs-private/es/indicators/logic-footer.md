@@ -7,7 +7,7 @@ category: indicators
 
 # Logic Footer
 
-> Si todavía no instalaste la suite de Logic Indicators, consultá la [Guía de instalación](/docs/installation) primero.
+> Si todavía no instalaste la suite de Logic Indicators, consulta la [Guía de instalación](/docs/installation) primero.
 
 El indicador **Logic Footer** es un potente motor estadístico que se sitúa en la parte inferior de tu gráfico o flota directamente por encima/debajo de tus velas. Extrae los datos puros del Order Flow de cada barra y calcula métricas cruciales como el Delta Acumulado, el Compromiso de los Traders (COT), el Delta Máx/Mín y el conteo de transacciones (Trades).
 

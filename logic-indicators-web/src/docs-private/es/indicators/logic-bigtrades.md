@@ -7,7 +7,7 @@ category: indicators
 
 # Logic BigTrades
 
-> Si todavía no instalaste la suite de Logic Indicators, consultá la [Guía de instalación](/docs/installation) primero.
+> Si todavía no instalaste la suite de Logic Indicators, consulta la [Guía de instalación](/docs/installation) primero.
 
 El indicador **Logic BigTrades** rastrea la actividad institucional agresiva detectando órdenes de mercado excepcionalmente grandes (block trades) a medida que ingresan a la cinta (tape). En lugar de leer una matriz de números que se mueve a gran velocidad, los traders pueden visualizar exactamente dónde se inyectó volumen masivo en el mercado.
 

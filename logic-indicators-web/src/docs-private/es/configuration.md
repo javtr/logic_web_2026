@@ -11,7 +11,7 @@ category: configuration
 
 ## Presets globales
 
-Los presets son configuraciones guardadas que se pueden aplicar a todos los indicadores. Usalos para cambiar entre estilos de trading (scalping, day trading, swing) al instante.
+Los presets son configuraciones guardadas que se pueden aplicar a todos los indicadores. Úsalos para cambiar entre estilos de trading (scalping, day trading, swing) al instante.
 
 ## Tema
 

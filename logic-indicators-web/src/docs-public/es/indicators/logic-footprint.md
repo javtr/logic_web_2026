@@ -1,6 +1,6 @@
 ---
 title: Logic Footprint
-description: Visualizá la distribución de volumen y delta dentro de cada vela individual.
+description: Visualiza la distribución de volumen y delta dentro de cada vela individual.
 order: 1
 category: indicators
 public: true
@@ -8,7 +8,7 @@ public: true
 
 # Logic Footprint
 
-> **Resumen público** — para acceder al manual técnico completo (todos los parámetros, opciones de configuración y mejores prácticas), [iniciá sesión en tu cuenta](/login?next=/dashboard/docs/indicators/logic-footprint).
+> **Resumen público** — para acceder al manual técnico completo (todos los parámetros, opciones de configuración y mejores prácticas), [inicia sesión en tu cuenta](/login?next=/dashboard/docs/indicators/logic-footprint).
 
 ## ¿Qué es?
 
@@ -28,8 +28,8 @@ Es la base del análisis de Order Flow: te permite detectar absorción, agotamie
 
 Para day traders, scalpers y entusiastas del order flow que necesitan leer el proceso de subasta a nivel de tick en lugar de adivinar por la forma de las velas.
 
-## Accedé a la documentación completa
+## Accede a la documentación completa
 
 El manual completo — con cada sección de configuración, explicación de parámetros y mejores prácticas — está reservado para usuarios que compraron la suite de Logic Indicators.
 
-[Iniciá sesión para acceder al manual técnico →](/login?next=/dashboard/docs/indicators/logic-footprint)
+[Inicia sesión para acceder al manual técnico →](/login?next=/dashboard/docs/indicators/logic-footprint)

@@ -7,7 +7,7 @@ category: indicators
 
 # Logic Analytics
 
-> Si todavía no instalaste la suite de Logic Indicators, consultá la [Guía de instalación](/docs/installation) primero.
+> Si todavía no instalaste la suite de Logic Indicators, consulta la [Guía de instalación](/docs/installation) primero.
 
 El indicador **Logic Analytics** es una herramienta estadística avanzada diseñada para analizar el Order Flow dentro de un rango de tiempo específico. Aísla la acción del precio dentro de una "Caja" personalizable y calcula las métricas reales del mercado, como el Volumen, Delta Positivo, Delta Negativo y el Rango de precio.
 

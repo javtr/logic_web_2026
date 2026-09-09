@@ -7,7 +7,7 @@ category: indicators
 
 # Logic Profile
 
-> Si todavía no instalaste la suite de Logic Indicators, consultá la [Guía de instalación](/docs/installation) primero.
+> Si todavía no instalaste la suite de Logic Indicators, consulta la [Guía de instalación](/docs/installation) primero.
 
 El indicador **Logic Profile** es una herramienta de gráficos de grado institucional que mapea el volumen operado, el delta y el tiempo (TPO) a través de niveles de precios específicos durante un período determinado. En lugar de ver solo lo que sucedió dentro de una sola vela, puedes observar el proceso de subasta macroscópico a lo largo de una sesión completa, una semana, o un área trazada manualmente.
 
