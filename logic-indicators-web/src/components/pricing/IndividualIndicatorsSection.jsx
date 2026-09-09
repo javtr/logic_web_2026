@@ -41,7 +41,7 @@ import { Package } from 'lucide-react';
 const ProductCard = ({ product, t, section }) => {
   // Datos del indicator primary (nombre, imageKey)
   const primaryName = t(`indicators.${product.primaryIndicatorId}.name`);
-  const primaryImageKey = t(`indicators.${product.primaryIndicatorId}.imageKey`);
+  const imageKey = product.imageKey || t(`indicators.${product.primaryIndicatorId}.imageKey`);
 
   // Si tiene secondary, lo concatenamos AL TÍTULO (no como subtítulo).
   // El usuario pidió que el secondary tenga la misma importancia visual
@@ -53,9 +53,11 @@ const ProductCard = ({ product, t, section }) => {
   const secondaryName = isBundle
     ? t(`indicators.${product.secondaryIndicatorId}.name`)
     : null;
-  const cardTitle = isBundle
-    ? `${primaryName} ${section.bundleTitleAppend.replace('{secondary}', secondaryName)}`
-    : primaryName;
+  const cardTitle = product.title
+    ? product.title
+    : isBundle
+      ? `${primaryName} ${section.bundleTitleAppend.replace('{secondary}', secondaryName)}`
+      : primaryName;
 
   return (
     <article className="group relative flex flex-col bg-dark-800 border border-dark-700 hover:border-accent-secondary/50 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-0.5">
@@ -67,11 +69,10 @@ const ProductCard = ({ product, t, section }) => {
         </div>
       )}
 
-      {/* Imagen: 1 imagen estática del primary, aspect 4:3 (compacto). No
-          usamos carousel acá — la idea es ser transaccional, no editorial. */}
+      {/* Imagen: 1 imagen estática (aspect 4:3 compacto). */}
       <div className="aspect-[4/3] w-full bg-dark-900 overflow-hidden">
         <ZoomableImage
-          src={resolveImage(primaryImageKey)}
+          src={resolveImage(imageKey)}
           alt={cardTitle}
           loading="lazy"
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -136,10 +137,10 @@ export const IndividualIndicatorsSection = () => {
       {products.length === 0 ? (
         <p className="text-center text-text-muted italic">{section.emptyMessage}</p>
       ) : (
-        // Grid responsive: 1 col (mobile) → 2 (sm) → 3 (md) → 4 (lg) → 5 (xl).
-        // 5 cols en xl acomoda los 5 productos en una sola fila en pantallas
+        // Grid responsive: 1 col (mobile) → 2 (sm) → 3 (md) → 3 (lg) → 6 (xl).
+        // 6 cols en xl acomoda los 6 productos en una sola fila en pantallas
         // grandes, lo cual da una vista tipo "catálogo" muy limpia.
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-4 max-w-7xl mx-auto">
           {products.map((product) => (
             <ProductCard
               key={product.id}

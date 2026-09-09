@@ -45,8 +45,8 @@
       "id": "lifetime",
       "name": "Lifetime",
       "billingLabel": "one-time payment",
-      "price": 737,
-      "crossedPrice": 1091,
+      "price": 884,
+      "crossedPrice": 1341,
       "highlighted": true,
       "cta": "Choose Lifetime",
       "indicators": [
@@ -61,8 +61,12 @@
       "extras": [
         { "icon": "support" }
       ],
+      "bonusIndicators": [
+        { "id": "depthchart", "label": "+ Depth Chart" },
+        { "id": "depthlive", "label": "+ Depth Live" }
+      ],
       "installments": {
-        "text": "6 payments of $125",
+        "text": "6 payments of $149",
         "disclaimer": "Discount codes apply to all installments"
       },
       "checkoutUrl": "https://example.com/checkout/lifetime"

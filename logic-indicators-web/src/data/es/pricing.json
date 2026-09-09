@@ -51,8 +51,8 @@
         "id": "plus-yearly",
         "name": "Pack Plus",
         "billingLabel": "por año",
-        "price": 708,
-        "crossedPrice": 1132,
+        "price": 737,
+        "crossedPrice": 1171,
         "highlighted": true,
         "cta": "Elegir Pack Plus",
         "indicators": [
@@ -66,6 +66,10 @@
         ],
         "extras": [
           { "icon": "support" }
+        ],
+        "bonusIndicators": [
+          { "id": "depthchart", "label": "+ Depth Chart" },
+          { "id": "depthlive", "label": "+ Depth Live" }
         ],
         "plusContent": [
           {
@@ -93,8 +97,8 @@
         "id": "basic-lifetime",
         "name": "Pack Básico",
         "billingLabel": "pago único",
-        "price": 737,
-        "crossedPrice": 1091,
+        "price": 884,
+        "crossedPrice": 1341,
         "highlighted": false,
         "cta": "Elegir Pack Básico",
         "indicators": [
@@ -109,8 +113,12 @@
         "extras": [
           { "icon": "support" }
         ],
+        "bonusIndicators": [
+          { "id": "depthchart", "label": "+ Depth Chart" },
+          { "id": "depthlive", "label": "+ Depth Live" }
+        ],
         "installments": {
-          "text": "6 pagos de $125",
+          "text": "6 pagos de $149",
           "disclaimer": "Los códigos de descuento se aplican a todas las cuotas"
         },
         "checkoutUrl": "https://example.com/checkout/basic-lifetime"
@@ -119,8 +127,8 @@
         "id": "plus-lifetime",
         "name": "Pack Plus",
         "billingLabel": "pago único",
-        "price": 1112,
-        "crossedPrice": 1779,
+        "price": 1184,
+        "crossedPrice": 1894,
         "highlighted": true,
         "cta": "Elegir Pack Plus",
         "indicators": [
@@ -134,6 +142,10 @@
         ],
         "extras": [
           { "icon": "support" }
+        ],
+        "bonusIndicators": [
+          { "id": "depthchart", "label": "+ Depth Chart" },
+          { "id": "depthlive", "label": "+ Depth Live" }
         ],
         "plusContent": [
           {
@@ -154,7 +166,7 @@
           }
         ],
         "installments": {
-          "text": "7 pagos de $159",
+          "text": "7 pagos de $169",
           "disclaimer": "Los códigos de descuento se aplican a todas las cuotas"
         },
         "checkoutUrl": "https://example.com/checkout/plus-lifetime"

@@ -13,7 +13,7 @@
         "stepNumber": 1,
         "title": "Descarga el archivo XML",
         "description": "Haz clic en el botón de descarga de la plantilla que quieras usar. El XML se guardará en tu equipo.",
-        "imageKey": "tutorial_step_1"
+        "imageKey": "download_preset"
       },
       {
         "stepNumber": 2,
@@ -25,7 +25,7 @@
           "Haz clic en 'Import Local File'."
         ],
         "note": "Puedes seleccionar e importar varios archivos XML a la vez — no hace falta repetir el proceso uno por uno.",
-        "imageKey": "tutorial_step_2"
+        "imageKey": "load_preset"
       }
     ]
   },

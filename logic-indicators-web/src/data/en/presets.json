@@ -13,7 +13,7 @@
         "stepNumber": 1,
         "title": "Download the XML file",
         "description": "Click the download button on the preset card you want to use. The XML will save to your computer.",
-        "imageKey": "tutorial_step_1"
+        "imageKey": "download_preset"
       },
       {
         "stepNumber": 2,
@@ -25,7 +25,7 @@
           "Click on 'Import Local File'."
         ],
         "note": "You can select and import several XML files at once — no need to repeat the process one by one.",
-        "imageKey": "tutorial_step_2"
+        "imageKey": "load_preset"
       }
     ]
   },

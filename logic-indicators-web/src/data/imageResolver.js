@@ -45,11 +45,14 @@ import depthliveImage from '../assets/indicators/depthlive.png';
 import depthlive_d1Image from '../assets/indicators/depthlive_d1.png';
 import depthlive_d2Image from '../assets/indicators/depthlive_d2.png';
 import depthlive_d3Image from '../assets/indicators/depthlive_d3.png';
+import depthPackImage from '../assets/indicators/depth_pack.png';
 // Imagenes del tutorial de instalacion en NinjaTrader 8.
 // Usadas en el primer paso del wizard de instalacion (segun /resources
 // en el schema del step tipo 'tutorial' en installation.js).
 import ninjaInstall01Image from '../assets/installation/ninja_install_01.png';
 import ninjaInstall02Image from '../assets/installation/ninja_install_02.png';
+import downloadPresetImage from '../assets/installation/download_preset.png';
+import loadPresetImage from '../assets/installation/load_preset.png';
 
 // Presets individuales - Logic Footprint
 import presetFootprintAtasImbalanceDark from '../assets/presets/preset_footprint_atas_imbalance_dark.png';
@@ -231,6 +234,9 @@ export const imageMap = {
   depth_chart: depthchartImage,
   depthlive: depthliveImage,
   depth_live: depthliveImage,
+  depth_pack: depthPackImage,
+  depthpack: depthPackImage,
+  'depth_pack.png': depthPackImage,
   // Variantes por profundidad de mercado (depth). Los archivos son *_d1.png,
   // *_d2.png, *_d3.png — las keys siguen esa misma convención.
   footprint_d1: footprint_d1Image,
@@ -262,11 +268,10 @@ export const imageMap = {
   depthlive_d3: depthlive_d3Image,
 
   // Tutorial de importacion de presets (pagina /resources/presets).
-  // PLACEHOLDER — apunta al fallback hasta que subas las capturas reales
-  // de NinjaTrader 8. Para reemplazarlas: importa el asset arriba, agrega
-  // la entrada aqui, y/o cambia el imageKey en presets.json.
-  tutorial_step_1: sampleIndicatorImage,
-  tutorial_step_2: sampleIndicatorImage,
+  tutorial_step_1: downloadPresetImage,
+  tutorial_step_2: loadPresetImage,
+  download_preset: downloadPresetImage,
+  load_preset: loadPresetImage,
 
   // Tutorial del wizard de instalacion (Dashboard). Estas imagenes
   // muestran el proceso general de instalar indicadores en NinjaTrader 8
