@@ -25,8 +25,8 @@
         "id": "basic-yearly",
         "name": "Pack Básico",
         "billingLabel": "por año",
-        "price": 468,
-        "crossedPrice": 748,
+        "price": 584,
+        "crossedPrice": 934,
         "highlighted": false,
         "cta": "Elegir Pack Básico",
         "indicators": [
@@ -40,6 +40,10 @@
         ],
         "extras": [
           { "icon": "support" }
+        ],
+        "bonusIndicators": [
+          { "id": "depthchart", "label": "+ Depth Chart" },
+          { "id": "depthlive", "label": "+ Depth Live" }
         ],
         "checkoutUrl": "https://example.com/checkout/basic-yearly"
       },

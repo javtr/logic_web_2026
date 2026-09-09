@@ -147,38 +147,45 @@
     ]
   },
   "depthchart": {
-    "id": "depthchart",
+    "id": "depth-chart",
     "slug": "logic-depth-chart",
     "imageKey": "depthchart",
     "pack": "Depth Pack",
     "name": "Logic Depth Chart",
-    "tagline": "The Level 2 institutional liquidity map integrated directly into price action for NinjaTrader 8.",
-    "shortDescription": "Take your Order Flow analysis to the next level by uncovering the intentions of major participants before price moves. Logic Depth Chart for NinjaTrader 8 tracks and renders historical passive liquidity directly behind and across every candle on your chart, paired with a visual live order book profile. Make decisions with total clarity by seeing exactly where institutional contracts are placed, modified, or absorbed, keeping all your analysis unified in a single, clean, professional view.",
-    "longDescription": "Take your Order Flow analysis to the next level by uncovering the intentions of major participants before price moves. Logic Depth Chart for NinjaTrader 8 tracks and renders historical passive liquidity directly behind and across every candle on your chart, paired with a visual live order book profile. Make decisions with total clarity by seeing exactly where institutional contracts are placed, modified, or absorbed, keeping all your analysis unified in a single, clean, professional view.",
+    "tagline": "Institutional liquidity heatmap and real-time DOM directly on your candles.",
+    "shortDescription": "Visualize Level 2 market depth and historical resting liquidity projected directly onto your chart candles in NinjaTrader 8. Spot institutional limit orders, absorption zones, and real support/resistance with an integrated live DOM panel and Zero-Lag performance.",
+    "longDescription": "Visualize Level 2 market depth and historical resting liquidity projected directly onto your chart candles in NinjaTrader 8. Spot institutional limit orders, absorption zones, and real support/resistance with an integrated live DOM panel and Zero-Lag performance.",
     "paragraphs": [
-      "Level 2 Institutional Liquidity Map: Take your Order Flow analysis to the next level by uncovering the intentions of major participants before price moves. Logic Depth Chart for NinjaTrader 8 tracks and renders historical passive liquidity directly behind and across every candle on your chart, paired with a visual live order book profile.",
-      "Decisions with Total Clarity: Make decisions with total clarity by seeing exactly where institutional contracts are placed, modified, or absorbed, keeping all your analysis unified in a single, clean, professional view."
+      "Institutional Liquidity on Price Action: In Order Flow trading, understanding where large market participants place their resting orders is the key to anticipating turning points rather than reacting late. Logic Depth Chart projects Level 2 market depth directly behind and over the price candles on your NinjaTrader 8 chart. Unlike standalone tools that require split-second attention on secondary screens, this indicator embeds the historical footprint of limit orders directly into your main chart, giving you immediate context between candle formations and institutional intent.",
+      "Real-Time DOM Panel and Dynamic Heatmaps: In addition to the historical trail mapped over candles, the indicator delivers a live order book profile anchored directly to the right margin of your price scale. Featuring intelligent dynamic opacity scaling, price levels with massive resting liquidity glow with vibrant intensity, while smaller background orders remain subtle. Instantly identify institutional liquidity walls, spoofing activity, and passive absorption zones where price is most likely to stall or reverse.",
+      "Interactive On-Chart HUD and Full Customization: Adapting to shifting market volatility has never been faster. Logic Depth Chart features a built-in interactive floating HUD that lets you adjust minimum volume filters, tweak maximum reference thresholds, and toggle the Heatmap or DOM panels on the fly without ever opening settings windows. Choose between solid colors, dual resistance/support heatmaps, or global spectrum palettes to perfectly match your trading workstation.",
+      "Zero-Lag Performance and Preset Ecosystem: Processing thousands of continuous order book updates can easily bog down standard trading platforms. Logic Depth Chart is engineered with our proprietary Zero-Lag acceleration architecture, ensuring ultra-smooth graphical rendering without freezing or lagging NinjaTrader 8, even during high-impact economic news releases. Furthermore, it is fully compatible with our preset ecosystem, enabling you to save and deploy your preferred visual and mathematical layouts with a single click."
     ],
     "contentImages": [
-      "sample_indicator"
+      "depthchart_d1",
+      "depthchart_d2",
+      "depthchart_d3"
     ]
   },
-  "depthlive": {
-    "id": "depthlive",
-    "slug": "logic-depth-live",
-    "imageKey": "depthlive",
-    "pack": "Depth Pack",
-    "name": "Logic Depth Live",
-    "tagline": "Visualize institutional liquidity and market depth in real time with absolute precision.",
-    "shortDescription": "Logic Depth Live transforms your NinjaTrader 8 charts into a powerful interactive heatmap, allowing you to clearly see where institutional buy and sell orders are concentrated before price reaches them. Instantly discover true market intent, detect liquidity traps, and analyze aggressive trades in real time through intelligent volume bubbles and a live depth panel. Built for traders who need to anticipate price reversals, confirm breakouts with confidence, and make decisions based on what is actually happening in the market.",
-    "longDescription": "Logic Depth Live transforms your NinjaTrader 8 charts into a powerful interactive heatmap, allowing you to clearly see where institutional buy and sell orders are concentrated before price reaches them. Instantly discover true market intent, detect liquidity traps, and analyze aggressive trades in real time through intelligent volume bubbles and a live depth panel. Built for traders who need to anticipate price reversals, confirm breakouts with confidence, and make decisions based on what is actually happening in the market.",
-    "paragraphs": [
-      "Real-Time Market Depth: Logic Depth Live transforms your NinjaTrader 8 charts into a powerful interactive heatmap, allowing you to clearly see where institutional buy and sell orders are concentrated before price reaches them.",
-      "Trap Detection and Aggressive Trading: Instantly discover true market intent, detect liquidity traps, and analyze aggressive trades in real time through intelligent volume bubbles and a live depth panel.",
-      "Decisions Based on Real Data: Built for traders who need to anticipate price reversals, confirm breakouts with confidence, and make decisions based on what is actually happening in the market."
-    ],
-    "contentImages": [
-      "sample_indicator"
-    ]
-  }
+"depthlive": {
+  "id": "depthlive",
+  "slug": "logic-depth-live",
+  "imageKey": "depthlive",
+  "pack": "Depth Pack",
+  "name": "Logic Depth Live",
+  "tagline": "Real-time institutional liquidity heatmap and market depth visualization.",
+  "shortDescription": "Uncover institutional limit orders before price moves. Visualize the real-time order book with a high-definition heatmap, split trade execution bubbles, and an intelligent live DOM profile in NinjaTrader 8.",
+  "longDescription": "Uncover institutional limit orders before price moves. Visualize the real-time order book with a high-definition heatmap, split trade execution bubbles, and an intelligent live DOM profile in NinjaTrader 8.",
+  "paragraphs": [
+    "X-Ray Vision of Institutional Liquidity: In modern electronic trading, the true intentions of large market participants are not found in historical candlesticks, but in the limit orders waiting inside the order book. Logic Depth Live transforms your NinjaTrader 8 chart into a high-fidelity, continuous liquidity heatmap, revealing exactly where passive orders are stacking up. This visual clarity enables you to spot genuine support and resistance walls instantly, detect liquidity traps, and anticipate price reactions with unmatched confidence.",
+    "Dynamic Trade Bubbles & Aggression Balance: Knowing where liquidity rests is only half the battle; seeing who consumes it completes the picture. The indicator features an intuitive volume bubble visualizer that plots aggressive market executions at the exact moment and price they occur. Featuring split-gradient coloring that differentiates aggressive buy and sell pressure, you can immediately identify market absorption, exhaustion, and aggressive initiative in the auction.",
+    "Smart Live DOM & Order Flow Columns: For precision-timed entries and exits, Depth Live provides a live depth-of-market profile paired with intelligent data columns. Monitor resting passive liquidity alongside total executed volume and net delta at every single price tick. This data layout integrates seamlessly into your chart’s right margin, giving you a comprehensive, real-time snapshot of the order book structure without cluttering your workspace.",
+    "Seamless Performance & On-Chart Control: Built for demanding traders, Depth Live features a floating interactive on-chart control HUD that allows you to fine-tune volume filters, toggle heatmap styles, and pan through historical data on the fly. Fully compatible with our suite's one-click preset system and engineered for ultra-smooth responsiveness in NinjaTrader 8, you can trade with the exact same visual depth and clarity used by professional institutions."
+  ],
+  "contentImages": [
+    "depthlive_d1",
+    "depthlive_d2",
+    "depthlive_d3"
+  ]
+}
 }

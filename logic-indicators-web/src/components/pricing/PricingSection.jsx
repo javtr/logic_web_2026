@@ -91,7 +91,22 @@ const PricingCard = ({ plan, t, bestValueText }) => {
           </li>
         ))}
 
-        {/* Extras del plan (features no-indicador, p.ej. soporte tecnico).
+        {/* Indicadores añadidos / diferenciados (ej. Depth Chart y Depth Live) */}
+        {Array.isArray(plan.bonusIndicators) && plan.bonusIndicators.map((item, i) => {
+          const id = typeof item === 'string' ? item : item.id;
+          const label = typeof item === 'object' && item.label ? item.label : `+ ${t(`indicators.${id}.name`)}`;
+          return (
+            <li key={`bonus-${id || i}`} className="flex items-center gap-3 text-sm">
+              <CheckCircle2
+                size={16}
+                className="text-purple-400 shrink-0"
+              />
+              <span className="text-purple-300 font-semibold tracking-wide">{label}</span>
+            </li>
+          );
+        })}
+
+        {/* Extras del plan (features no-indicador, p.ej. soporte técnico al final).
             Se renderizan en la misma <ul> que los indicators, separados
             visualmente por el icono distinto (LifeBuoy en vez de check). */}
         {Array.isArray(plan.extras) && plan.extras.map((extra, i) => {

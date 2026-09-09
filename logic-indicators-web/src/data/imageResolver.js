@@ -37,6 +37,14 @@ import analytics_d03Image from '../assets/indicators/analytics_d3.png';
 import algorithms_d01Image from '../assets/indicators/algorithms_d1.png';
 import algorithms_d02Image from '../assets/indicators/algorithms_d2.png';
 import algorithms_d03Image from '../assets/indicators/algorithms_d3.png';
+import depthchartImage from '../assets/indicators/depthchart.png';
+import depthchart_d1Image from '../assets/indicators/depthchart_d1.png';
+import depthchart_d2Image from '../assets/indicators/depthchart_d2.png';
+import depthchart_d3Image from '../assets/indicators/depthchart_d3.png';
+import depthliveImage from '../assets/indicators/depthlive.png';
+import depthlive_d1Image from '../assets/indicators/depthlive_d1.png';
+import depthlive_d2Image from '../assets/indicators/depthlive_d2.png';
+import depthlive_d3Image from '../assets/indicators/depthlive_d3.png';
 // Imagenes del tutorial de instalacion en NinjaTrader 8.
 // Usadas en el primer paso del wizard de instalacion (segun /resources
 // en el schema del step tipo 'tutorial' en installation.js).
@@ -94,6 +102,37 @@ import presetCompositeGreyVpd from '../assets/presets/preset_composite_grey_vpd.
 import presetCompositeVpdDark from '../assets/presets/preset_composite_vpd_dark.png';
 import presetCompositeVpdNq from '../assets/presets/preset_composite_vpd_nq.png';
 
+// Presets individuales - Logic BigTrades
+import presetBigtradesBtFootprintEs from '../assets/presets/preset_bigtrades_bt_footprint_es.png';
+import presetBigtradesBtFootprintNq from '../assets/presets/preset_bigtrades_bt_footprint_nq.png';
+import presetBigtradesBtHistogramEs from '../assets/presets/preset_bigtrades_bt_histogram_es.png';
+import presetBigtradesBtHistogramNq from '../assets/presets/preset_bigtrades_bt_histogram_nq.png';
+
+// Presets individuales - Logic Analytics
+import presetAnalyticsAnalyticsLight from '../assets/presets/preset_analytics_analytics_light.png';
+
+// Presets individuales - Logic Algorithms
+import presetAlgorithmsAbsorptionEs from '../assets/presets/preset_algorithms_absorption_es.png';
+import presetAlgorithmsAbsorptionMes from '../assets/presets/preset_algorithms_absorption_mes.png';
+import presetAlgorithmsAbsorptionMnq from '../assets/presets/preset_algorithms_absorption_mnq.png';
+import presetAlgorithmsAbsorptionNq from '../assets/presets/preset_algorithms_absorption_nq.png';
+
+// Presets individuales - Logic Depth Chart
+import presetDepthchartDualThermal from '../assets/presets/preset_depthchart_dual_thermal.png';
+import presetDepthchartSingleClassicBookmap from '../assets/presets/preset_depthchart_single_classic_bookmap.png';
+import presetDepthchartSingleFullSpectrum from '../assets/presets/preset_depthchart_single_full_spectrum.png';
+import presetDepthchartSingleNeonMagenta from '../assets/presets/preset_depthchart_single_neon_magenta.png';
+import presetDepthchartSingleObsidianGold from '../assets/presets/preset_depthchart_single_obsidian_gold.png';
+import presetDepthchartSinglePeachTwilight from '../assets/presets/preset_depthchart_single_peach_twilight.png';
+import presetDepthchartSolidFrost from '../assets/presets/preset_depthchart_solid_frost.png';
+
+// Presets individuales - Logic Depth Live
+import presetDepthliveDualThermal from '../assets/presets/preset_depthlive_dual_thermal.png';
+import presetDepthliveSingleClassicBookmap from '../assets/presets/preset_depthlive_single_classic_bookmap.png';
+import presetDepthliveSingleNeonMagenta from '../assets/presets/preset_depthlive_single_neon_magenta.png';
+import presetDepthliveSinglePeachTwilight from '../assets/presets/preset_depthlive_single_peach_twilight.png';
+import presetDepthliveSolidFrost from '../assets/presets/preset_depthlive_solid_frost.png';
+
 export const imageMap = {
   // Presets Logic Footprint
   preset_footprint_atas_imbalance_dark: presetFootprintAtasImbalanceDark,
@@ -145,6 +184,37 @@ export const imageMap = {
   preset_composite_grey_vpd: presetCompositeGreyVpd,
   preset_composite_vpd_dark: presetCompositeVpdDark,
   preset_composite_vpd_nq: presetCompositeVpdNq,
+
+  // Presets Logic BigTrades
+  preset_bigtrades_bt_footprint_es: presetBigtradesBtFootprintEs,
+  preset_bigtrades_bt_footprint_nq: presetBigtradesBtFootprintNq,
+  preset_bigtrades_bt_histogram_es: presetBigtradesBtHistogramEs,
+  preset_bigtrades_bt_histogram_nq: presetBigtradesBtHistogramNq,
+
+  // Presets Logic Analytics
+  preset_analytics_analytics_light: presetAnalyticsAnalyticsLight,
+
+  // Presets Logic Algorithms
+  preset_algorithms_absorption_es: presetAlgorithmsAbsorptionEs,
+  preset_algorithms_absorption_mes: presetAlgorithmsAbsorptionMes,
+  preset_algorithms_absorption_mnq: presetAlgorithmsAbsorptionMnq,
+  preset_algorithms_absorption_nq: presetAlgorithmsAbsorptionNq,
+
+  // Presets Logic Depth Chart
+  preset_depthchart_dual_thermal: presetDepthchartDualThermal,
+  preset_depthchart_single_classic_bookmap: presetDepthchartSingleClassicBookmap,
+  preset_depthchart_single_full_spectrum: presetDepthchartSingleFullSpectrum,
+  preset_depthchart_single_neon_magenta: presetDepthchartSingleNeonMagenta,
+  preset_depthchart_single_obsidian_gold: presetDepthchartSingleObsidianGold,
+  preset_depthchart_single_peach_twilight: presetDepthchartSinglePeachTwilight,
+  preset_depthchart_solid_frost: presetDepthchartSolidFrost,
+
+  // Presets Logic Depth Live
+  preset_depthlive_dual_thermal: presetDepthliveDualThermal,
+  preset_depthlive_single_classic_bookmap: presetDepthliveSingleClassicBookmap,
+  preset_depthlive_single_neon_magenta: presetDepthliveSingleNeonMagenta,
+  preset_depthlive_single_peach_twilight: presetDepthliveSinglePeachTwilight,
+  preset_depthlive_solid_frost: presetDepthliveSolidFrost,
   // Fallback / placeholder (también usado por deepchart y deeplive hasta tener imagen propia)
   sample_indicator: sampleIndicatorImage,
   // Banner de Home (entre hero y la grilla de la suite premium)
@@ -157,8 +227,10 @@ export const imageMap = {
   bigtrades: bigtradesImage,
   analytics: analyticsImage,
   algorithms: algorithmsImage,
-  depthchart: sampleIndicatorImage,
-  depthlive: sampleIndicatorImage,
+  depthchart: depthchartImage,
+  depth_chart: depthchartImage,
+  depthlive: depthliveImage,
+  depth_live: depthliveImage,
   // Variantes por profundidad de mercado (depth). Los archivos son *_d1.png,
   // *_d2.png, *_d3.png — las keys siguen esa misma convención.
   footprint_d1: footprint_d1Image,
@@ -182,6 +254,12 @@ export const imageMap = {
   algorithms_d1: algorithms_d01Image,
   algorithms_d2: algorithms_d02Image,
   algorithms_d3: algorithms_d03Image,
+  depthchart_d1: depthchart_d1Image,
+  depthchart_d2: depthchart_d2Image,
+  depthchart_d3: depthchart_d3Image,
+  depthlive_d1: depthlive_d1Image,
+  depthlive_d2: depthlive_d2Image,
+  depthlive_d3: depthlive_d3Image,
 
   // Tutorial de importacion de presets (pagina /resources/presets).
   // PLACEHOLDER — apunta al fallback hasta que subas las capturas reales

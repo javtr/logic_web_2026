@@ -19,8 +19,8 @@
       "id": "annual",
       "name": "Annual",
       "billingLabel": "per year",
-      "price": 468,
-      "crossedPrice": 748,
+      "price": 584,
+      "crossedPrice": 934,
       "highlighted": false,
       "cta": "Choose Annual",
       "indicators": [
@@ -34,6 +34,10 @@
       ],
       "extras": [
         { "icon": "support" }
+      ],
+      "bonusIndicators": [
+        { "id": "depthchart", "label": "+ Depth Chart" },
+        { "id": "depthlive", "label": "+ Depth Live" }
       ],
       "checkoutUrl": "https://example.com/checkout/annual"
     },

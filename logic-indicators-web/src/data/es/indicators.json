@@ -147,38 +147,45 @@
     ]
   },
   "depthchart": {
-    "id": "depthchart",
+    "id": "depth-chart",
     "slug": "logic-depth-chart",
     "imageKey": "depthchart",
     "pack": "Depth Pack",
     "name": "Logic Depth Chart",
-    "tagline": "El mapa de liquidez institucional de Nivel 2 integrado directamente en la acción del precio para NinjaTrader 8.",
-    "shortDescription": "Lleva tu análisis de Order Flow al siguiente nivel descubriendo las intenciones de los grandes participantes antes de que el precio se mueva. Logic Depth Chart para NinjaTrader 8 rastrea y dibuja el histórico de liquidez pasiva directamente detrás y sobre cada vela de tu gráfico, acompañado de un perfil visual del libro de órdenes en vivo. Toma decisiones con total claridad al ver exactamente dónde se colocan, modifican o absorben los contratos institucionales, manteniendo todo el análisis unificado en una sola vista limpia y profesional.",
-    "longDescription": "Lleva tu análisis de Order Flow al siguiente nivel descubriendo las intenciones de los grandes participantes antes de que el precio se mueva. Logic Depth Chart para NinjaTrader 8 rastrea y dibuja el histórico de liquidez pasiva directamente detrás y sobre cada vela de tu gráfico, acompañado de un perfil visual del libro de órdenes en vivo. Toma decisiones con total claridad al ver exactamente dónde se colocan, modifican o absorben los contratos institucionales, manteniendo todo el análisis unificado en una sola vista limpia y profesional.",
+    "tagline": "Mapa de calor de liquidez institucional y DOM en tiempo real sobre tus velas.",
+    "shortDescription": "Visualiza el libro de órdenes de Nivel 2 y la liquidez histórica proyectada directamente sobre las velas de tu gráfico en NinjaTrader 8. Detecta órdenes límite institucionales, absorciones y soportes/resistencias con un panel DOM en vivo y rendimiento Zero-Lag.",
+    "longDescription": "Visualiza el libro de órdenes de Nivel 2 y la liquidez histórica proyectada directamente sobre las velas de tu gráfico en NinjaTrader 8. Detecta órdenes límite institucionales, absorciones y soportes/resistencias con un panel DOM en vivo y rendimiento Zero-Lag.",
     "paragraphs": [
-      "El Mapa de Liquidez Institucional de Nivel 2: Lleva tu análisis de Order Flow al siguiente nivel descubriendo las intenciones de los grandes participantes antes de que el precio se mueva. Logic Depth Chart para NinjaTrader 8 rastrea y dibuja el histórico de liquidez pasiva directamente detrás y sobre cada vela de tu gráfico, acompañado de un perfil visual del libro de órdenes en vivo.",
-      "Decisiones con Total Claridad: Toma decisiones con total claridad al ver exactamente dónde se colocan, modifican o absorben los contratos institucionales, manteniendo todo el análisis unificado en una sola vista limpia y profesional."
+      "Liquidez Institucional sobre la Acción del Precio: En el trading de Order Flow, comprender dónde están posicionados los grandes participantes marca la diferencia entre anticipar un movimiento o quedar atrapado en él. Logic Depth Chart proyecta la profundidad del mercado (Nivel 2) directamente detrás y sobre las velas de tu gráfico en NinjaTrader 8. A diferencia de las herramientas que te obligan a mirar paneles externos, este indicador integra el rastro histórico de las órdenes límite en tu propio gráfico, permitiéndote correlacionar de inmediato la acción del precio con las verdaderas intenciones del dinero institucional.",
+      "Panel DOM en Vivo y Mapa de Calor Dinámico: Además del registro histórico sobre las velas, el indicador despliega un perfil visual del libro de órdenes en tiempo real en el borde derecho del gráfico. Gracias a su algoritmo de intensidad visual inteligente, las zonas con mayor concentración de contratos descansando en el mercado resaltan con mayor viveza, mientras que las órdenes menores quedan en un segundo plano. Podrás identificar al instante muros de liquidez, retiradas de órdenes (spoofing) y niveles de absorción pasiva donde el precio probablemente encontrará rechazo o aceleración.",
+      "Panel de Control Interactivo (HUD) y Personalización Total: Ajustar tu análisis a la volatilidad del mercado nunca había sido tan ágil. Logic Depth Chart incluye un panel de control interactivo flotante en pantalla que te permite modificar los filtros de volumen mínimo, la referencia máxima y alternar la visualización del Heatmap o del DOM con un solo clic, sin necesidad de abrir menús de configuración. Cuenta con múltiples estilos de color (sólido, mapa dual de soporte/resistencia o mapa térmico global) para que adaptes la estética visual a tu propio estilo operativo.",
+      "Rendimiento Zero-Lag y Ecosistema de Plantillas: El procesamiento continuo de millones de cambios en el libro de órdenes suele congelar las plataformas convencionales. Logic Depth Chart incorpora nuestra tecnología de aceleración gráfica Zero-Lag, garantizando una visualización ultrafluida y sin demoras en NinjaTrader 8 incluso en los momentos de mayor volatilidad de la sesión. Además, se integra plenamente con nuestro sistema de plantillas preestablecidas (presets), permitiéndote guardar y cargar tus configuraciones favoritas al instante."
     ],
     "contentImages": [
-      "sample_indicator"
+      "depthchart_d1",
+      "depthchart_d2",
+      "depthchart_d3"
     ]
   },
-  "depthlive": {
-    "id": "depthlive",
-    "slug": "logic-depth-live",
-    "imageKey": "depthlive",
-    "pack": "Depth Pack",
-    "name": "Logic Depth Live",
-    "tagline": "Visualiza la liquidez institucional y la profundidad del mercado en tiempo real con precisión absoluta.",
-    "shortDescription": "Logic Depth Live transforma tus gráficos de NinjaTrader 8 en un potente mapa de calor interactivo que te permite ver con claridad dónde se concentran las órdenes de compra y venta del dinero institucional antes de que el precio llegue a ellas. Descubre al instante la verdadera intención del mercado, detecta trampas de liquidez y analiza las operaciones agresivas en tiempo real mediante burbujas de volumen inteligentes y un panel de profundidad en vivo. Diseñado para traders que necesitan anticipar giros del precio, confirmar rupturas con confianza y tomar decisiones basadas en lo que realmente está ocurriendo en el mercado.",
-    "longDescription": "Logic Depth Live transforma tus gráficos de NinjaTrader 8 en un potente mapa de calor interactivo que te permite ver con claridad dónde se concentran las órdenes de compra y venta del dinero institucional antes de que el precio llegue a ellas. Descubre al instante la verdadera intención del mercado, detecta trampas de liquidez y analiza las operaciones agresivas en tiempo real mediante burbujas de volumen inteligentes y un panel de profundidad en vivo. Diseñado para traders que necesitan anticipar giros del precio, confirmar rupturas con confianza y tomar decisiones basadas en lo que realmente está ocurriendo en el mercado.",
-    "paragraphs": [
-      "Profundidad de Mercado en Tiempo Real: Logic Depth Live transforma tus gráficos de NinjaTrader 8 en un potente mapa de calor interactivo que te permite ver con claridad dónde se concentran las órdenes de compra y venta del dinero institucional antes de que el precio llegue a ellas.",
-      "Detección de Trampas y Operaciones Agresivas: Descubre al instante la verdadera intención del mercado, detecta trampas de liquidez y analiza las operaciones agresivas en tiempo real mediante burbujas de volumen inteligentes y un panel de profundidad en vivo.",
-      "Decisiones Basadas en Datos Reales: Diseñado para traders que necesitan anticipar giros del precio, confirmar rupturas con confianza y tomar decisiones basadas en lo que realmente está ocurriendo en el mercado."
-    ],
-    "contentImages": [
-      "sample_indicator"
-    ]
-  }
+"depthlive": {
+  "id": "depthlive",
+  "slug": "logic-depth-live",
+  "imageKey": "depthlive",
+  "pack": "Depth Pack",
+  "name": "Logic Depth Live",
+  "tagline": "Mapa de calor de profundidad de mercado y liquidez institucional en tiempo real.",
+  "shortDescription": "Descubre las órdenes del dinero institucional antes de que el precio se mueva. Visualiza el libro de órdenes en tiempo real con un mapa de calor dinámico, burbujas de operaciones divididas y un perfil DOM inteligente en NinjaTrader 8.",
+  "longDescription": "Descubre las órdenes del dinero institucional antes de que el precio se mueva. Visualiza el libro de órdenes en tiempo real con un mapa de calor dinámico, burbujas de operaciones divididas y un perfil DOM inteligente en NinjaTrader 8.",
+  "paragraphs": [
+    "Visión de Rayos X de la Liquidez Institucional: En los mercados modernos, la verdadera intención de los grandes participantes no se encuentra en las velas del pasado, sino en las órdenes límite esperando en el libro de órdenes. Logic Depth Live transforma tu gráfico de NinjaTrader 8 en un mapa de calor continuo de alta fidelidad, revelando exactamente dónde se concentra la liquidez pasiva. Esta claridad visual te permite identificar al instante muros de soporte y resistencia genuinos, detectar manipulaciones de mercado y anticipar con total precisión dónde reaccionará el precio.",
+    "Burbujas de Ejecución y Presión Compradora/Vendedora: Conocer dónde está la liquidez es solo la mitad de la ecuación; la otra mitad es ver quién la consume. El sistema incorpora un trazador dinámico de burbujas de volumen que mapea cada orden de mercado agresiva en el punto exacto de ejecución. Con una visualización de gradiente dividido que separa compras y ventas agresivas, sabrás de un vistazo si los compradores o los vendedores están dominando la subasta o si las grandes órdenes están siendo absorbidas silenciosamente por el mercado.",
+    "DOM Inteligente y Columnas de Flujo de Órdenes: Para una toma de decisiones quirúrgica, Depth Live integra un panel lateral de profundidad en vivo acompañado de columnas de análisis inteligente. Visualiza la distribución de liquidez pasiva en tiempo real junto con el volumen total ejecutado y el delta neto por cada nivel de precio. Toda esta información se sincroniza de forma armónica sobre el margen derecho del gráfico, ofreciéndote un panorama completo de la estructura del libro sin sobrecargar tu espacio de trabajo.",
+    "Fluidez Absoluta y Control Total en Pantalla: Diseñado para operadores de alta exigencia, Depth Live cuenta con un panel de control interactivo en pantalla (HUD) que te permite ajustar filtros de volumen, cambiar paletas térmicas y navegar por el historial del gráfico sin abrir ventanas de configuración. Totalmente integrado con el ecosistema de plantillas de nuestra suite y optimizado para ofrecer una respuesta visual ultra fluida en NinjaTrader 8, podrás concentrarte exclusivamente en operar con la misma ventaja visual que utilizan las firmas institucionales."
+  ],
+  "contentImages": [
+    "depthlive_d1",
+    "depthlive_d2",
+    "depthlive_d3"
+  ]
+}
 }

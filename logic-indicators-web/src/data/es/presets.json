@@ -335,6 +335,7 @@
       "indicatorId": "composite",
       "name": "Grey VPD Zoom NQ",
       "description": "",
+      "imageKey": "composite",
       "imageKey": "preset_composite_grey_vpd_zoom_nq",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/GREV_VPD_ZOOM_NQ.xml"
     },
@@ -343,6 +344,7 @@
       "indicatorId": "composite",
       "name": "Grey Balanced",
       "description": "",
+      "imageKey": "composite",
       "imageKey": "preset_composite_grey_balanced",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/GREY_BALANCED.xml"
     },
@@ -351,6 +353,7 @@
       "indicatorId": "composite",
       "name": "Grey VPD",
       "description": "",
+      "imageKey": "composite",
       "imageKey": "preset_composite_grey_vpd",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/GREY_VPD.xml"
     },
@@ -359,6 +362,7 @@
       "indicatorId": "composite",
       "name": "Grey VPD Zoom ES",
       "description": "",
+      "imageKey": "composite",
       "imageKey": "preset_composite_grey_vpd_zoom_es",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/GREY_VPD_ZOOM_ES.xml"
     },
@@ -367,6 +371,7 @@
       "indicatorId": "composite",
       "name": "VPD Dark",
       "description": "",
+      "imageKey": "composite",
       "imageKey": "preset_composite_vpd_dark",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Composite/User/VPD_DARK.xml"
     },
@@ -384,7 +389,7 @@
       "indicatorId": "bigtrades",
       "name": "BT Footprint ES",
       "description": "",
-      "imageKey": "bigtrades",
+      "imageKey": "preset_bigtrades_bt_footprint_es",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_BigTrades/User/BT_FOOTPRINT_ES.xml"
     },
     {
@@ -392,7 +397,7 @@
       "indicatorId": "bigtrades",
       "name": "BT Footprint NQ",
       "description": "",
-      "imageKey": "bigtrades",
+      "imageKey": "preset_bigtrades_bt_footprint_nq",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_BigTrades/User/BT_FOOTPRINT_NQ.xml"
     },
     {
@@ -400,7 +405,7 @@
       "indicatorId": "bigtrades",
       "name": "BT Histogram ES",
       "description": "",
-      "imageKey": "bigtrades",
+      "imageKey": "preset_bigtrades_bt_histogram_es",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_BigTrades/User/BT_HISTOGRAM_ES.xml"
     },
     {
@@ -408,7 +413,7 @@
       "indicatorId": "bigtrades",
       "name": "BT Histogram NQ",
       "description": "",
-      "imageKey": "bigtrades",
+      "imageKey": "preset_bigtrades_bt_histogram_nq",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_BigTrades/User/BT_HISTOGRAM_NQ.xml"
     },
 
@@ -417,7 +422,7 @@
       "indicatorId": "analytics",
       "name": "Analytics Light",
       "description": "",
-      "imageKey": "analytics",
+      "imageKey": "preset_analytics_analytics_light",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Analytics/User/ANALYTICS_LIGHT.xml"
     },
 
@@ -426,7 +431,7 @@
       "indicatorId": "algorithms",
       "name": "Absorption ES",
       "description": "",
-      "imageKey": "algorithms",
+      "imageKey": "preset_algorithms_absorption_es",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Algorithms/User/ABSORPTION_ES.xml"
     },
     {
@@ -434,7 +439,7 @@
       "indicatorId": "algorithms",
       "name": "Absorption MES",
       "description": "",
-      "imageKey": "algorithms",
+      "imageKey": "preset_algorithms_absorption_mes",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Algorithms/User/ABSORPTION_MES.xml"
     },
     {
@@ -442,7 +447,7 @@
       "indicatorId": "algorithms",
       "name": "Absorption MNQ",
       "description": "",
-      "imageKey": "algorithms",
+      "imageKey": "preset_algorithms_absorption_mnq",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Algorithms/User/ABSORPTION_MNQ.xml"
     },
     {
@@ -450,8 +455,106 @@
       "indicatorId": "algorithms",
       "name": "Absorption NQ",
       "description": "",
-      "imageKey": "algorithms",
+      "imageKey": "preset_algorithms_absorption_nq",
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Algorithms/User/ABSORPTION_NQ.xml"
+    },
+
+    {
+      "id": "depthchart-dual-thermal",
+      "indicatorId": "depthchart",
+      "name": "Dual Thermal",
+      "description": "",
+      "imageKey": "preset_depthchart_dual_thermal",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_DepthChart/User/DUAL_THERMAL.xml"
+    },
+    {
+      "id": "depthchart-single-classic-bookmap",
+      "indicatorId": "depthchart",
+      "name": "Single Classic Bookmap",
+      "description": "",
+      "imageKey": "preset_depthchart_single_classic_bookmap",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_DepthChart/User/SINGLE_CLASSIC_BOOKMAP.xml"
+    },
+    {
+      "id": "depthchart-single-full-spectrum",
+      "indicatorId": "depthchart",
+      "name": "Single Full Spectrum",
+      "description": "",
+      "imageKey": "preset_depthchart_single_full_spectrum",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_DepthChart/User/SINGLE_FULL_SPECTRUM.xml"
+    },
+    {
+      "id": "depthchart-single-neon-magenta",
+      "indicatorId": "depthchart",
+      "name": "Single Neon Magenta",
+      "description": "",
+      "imageKey": "preset_depthchart_single_neon_magenta",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_DepthChart/User/SINGLE_NEON_MAGENTA.xml"
+    },
+    {
+      "id": "depthchart-single-obsidian-gold",
+      "indicatorId": "depthchart",
+      "name": "Single Obsidian Gold",
+      "description": "",
+      "imageKey": "preset_depthchart_single_obsidian_gold",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_DepthChart/User/SINGLE_OBSIDIAN_GOLD.xml"
+    },
+    {
+      "id": "depthchart-single-peach-twilight",
+      "indicatorId": "depthchart",
+      "name": "Single Peach Twilight",
+      "description": "",
+      "imageKey": "preset_depthchart_single_peach_twilight",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_DepthChart/User/SINGLE_PEACH_TWILIGHT.xml"
+    },
+    {
+      "id": "depthchart-solid-frost",
+      "indicatorId": "depthchart",
+      "name": "Solid Frost",
+      "description": "",
+      "imageKey": "preset_depthchart_solid_frost",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_DepthChart/User/SOLID_FROST.xml"
+    },
+
+    {
+      "id": "depthlive-dual-thermal",
+      "indicatorId": "depthlive",
+      "name": "Dual Thermal",
+      "description": "",
+      "imageKey": "preset_depthlive_dual_thermal",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_DepthLive/User/DUAL_THERMAL.xml"
+    },
+    {
+      "id": "depthlive-single-classic-bookmap",
+      "indicatorId": "depthlive",
+      "name": "Single Classic Bookmap",
+      "description": "",
+      "imageKey": "preset_depthlive_single_classic_bookmap",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_DepthLive/User/SINGLE_CLASSIC_BOOKMAP.xml"
+    },
+    {
+      "id": "depthlive-single-neon-magenta",
+      "indicatorId": "depthlive",
+      "name": "Single Neon Magenta",
+      "description": "",
+      "imageKey": "preset_depthlive_single_neon_magenta",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_DepthLive/User/SINGLE_NEON_MAGENTA.xml"
+    },
+    {
+      "id": "depthlive-single-peach-twilight",
+      "indicatorId": "depthlive",
+      "name": "Single Peach Twilight",
+      "description": "",
+      "imageKey": "preset_depthlive_single_peach_twilight",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_DepthLive/User/SINGLE_PEACH_TWILIGHT.xml"
+    },
+    {
+      "id": "depthlive-solid-frost",
+      "indicatorId": "depthlive",
+      "name": "Solid Frost",
+      "description": "",
+      "imageKey": "preset_depthlive_solid_frost",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_DepthLive/User/SOLID_FROST.xml"
     }
   ]
 }
