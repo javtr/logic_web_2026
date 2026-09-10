@@ -15,7 +15,7 @@
       "id": "performance",
       "icon": "Zap",
       "title": "Motor Propio de Cero Latencia",
-      "description": "Desarrollado con arquitectura nativa ultra-optimizada. Procesa millones de ticks en tiempo real sin congelar tus gráficos. No requiere activar Tick Replay para procesar el histórico, reduciendo drásticamente el consumo de RAM y tiempos de carga. Además, incluye el modo UpDownTick para calcular deltas y volumen en mercados como Forex o CFDs.",
+      "description": "Desarrollado con arquitectura nativa ultra-optimizada. En tiempo real, procesa millones de ticks con fluidez absoluta y cero latencia, incluso durante aperturas y noticias de alto impacto. En datos históricos, elimina la obligación de activar Tick Replay, reduciendo drásticamente los tiempos de carga y el consumo de RAM. Además, incorpora el modo UpDownTick para mercados como Forex o CFDs.",
       "badge": "Carga ágil y fluidez en tiempo real"
     },
     {
