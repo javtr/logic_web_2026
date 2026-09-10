@@ -15,7 +15,7 @@
       "id": "performance",
       "icon": "Zap",
       "title": "Zero-Latency Proprietary Engine",
-      "description": "Built with ultra-optimized native architecture. Processes millions of ticks in real time without freezing your charts and loads historical data instantly, even during market opens and high-impact news.",
+      "description": "Built with ultra-optimized native architecture. Processes millions of ticks in real time without freezing your charts. Does not require Tick Replay to process historical data, drastically reducing RAM consumption and load times. Additionally, it includes UpDownTick mode to calculate deltas and volume in markets like Forex or CFDs.",
       "badge": "Agile loading & real-time fluidity"
     },
     {
