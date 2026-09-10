@@ -270,8 +270,10 @@ export const imageMap = {
   // Tutorial de importacion de presets (pagina /resources/presets).
   tutorial_step_1: downloadPresetImage,
   tutorial_step_2: loadPresetImage,
+  tutorial_step_3: loadPresetImage,
   download_preset: downloadPresetImage,
   load_preset: loadPresetImage,
+  apply_preset: loadPresetImage,
 
   // Tutorial del wizard de instalacion (Dashboard). Estas imagenes
   // muestran el proceso general de instalar indicadores en NinjaTrader 8

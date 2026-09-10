@@ -252,7 +252,7 @@ const TutorialStepCard = ({ step, stepLabel }) => {
 
   return (
     <article className="group flex flex-col h-full bg-dark-800 border border-dark-700 hover:border-accent-secondary/40 rounded-2xl overflow-hidden transition-all duration-300">
-      <div className="aspect-[4/3] w-full bg-dark-900 overflow-hidden">
+      <div className="aspect-[16/10] w-full bg-dark-900 overflow-hidden">
         <ZoomableImage
           src={resolveImage(step.imageKey)}
           alt={step.title}
@@ -260,17 +260,17 @@ const TutorialStepCard = ({ step, stepLabel }) => {
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
-      <div className="p-5 md:p-6 flex flex-col gap-3 flex-grow">
-        <span className="inline-block self-start px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-accent-secondary bg-accent-secondary/10 border border-accent-secondary/30 rounded-full">
+      <div className="p-4 sm:p-5 flex flex-col gap-2.5 flex-grow">
+        <span className="inline-block self-start px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider text-accent-secondary bg-accent-secondary/10 border border-accent-secondary/30 rounded-full">
           {stepLabel} {step.stepNumber}
         </span>
-        <h3 className="text-lg md:text-xl font-bold text-text-main leading-tight">
+        <h3 className="text-base md:text-lg font-bold text-text-main leading-snug">
           {step.title}
         </h3>
-        <div className="text-sm text-text-muted leading-relaxed space-y-3">
+        <div className="text-xs sm:text-sm text-text-muted leading-relaxed space-y-2.5">
           {hasDescription && <p>{step.description}</p>}
           {hasSteps && (
-            <ol className="space-y-2 pl-5 list-decimal marker:text-accent-secondary marker:font-bold">
+            <ol className="space-y-1.5 pl-4 list-decimal marker:text-accent-secondary marker:font-bold">
               {step.steps.map((s, i) => (
                 <li key={i} className="pl-1">
                   {s}
@@ -279,7 +279,7 @@ const TutorialStepCard = ({ step, stepLabel }) => {
             </ol>
           )}
           {hasNote && (
-            <p className="pt-1 border-t border-dark-700/60 text-text-muted/90 italic">
+            <p className="pt-2 border-t border-dark-700/60 text-xs text-text-muted/90 italic">
               {step.note}
             </p>
           )}
@@ -295,16 +295,16 @@ const TutorialSection = ({ tutorial }) => {
     return null;
   }
   return (
-    <section className="mb-12 md:mb-16 p-6 md:p-8 bg-dark-800/40 border border-dark-700 rounded-2xl">
+    <section className="mb-12 md:mb-16 p-5 md:p-7 bg-dark-800/40 border border-dark-700 rounded-2xl">
       <div className="text-center mb-6 md:mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-text-main mb-3">
+        <h2 className="text-2xl md:text-3xl font-bold text-text-main mb-2">
           {tutorial.title}
         </h2>
-        <p className="text-base text-text-muted max-w-2xl mx-auto leading-relaxed">
+        <p className="text-sm md:text-base text-text-muted max-w-2xl mx-auto leading-relaxed">
           {tutorial.subtitle}
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
         {tutorial.steps.map((step) => (
           <TutorialStepCard
             key={step.stepNumber}

@@ -1,31 +1,43 @@
 {
   "pageTitle": "Indicator Presets",
-  "pageSubtitle": "Pre-configured XML files to load our indicators with optimal visual and technical settings. Drop them into NinjaTrader 8 and start trading in seconds.",
+  "pageSubtitle": "Pre-configured presets to load our indicators with optimal visual and technical settings. Simply import them into NinjaTrader 8 and start trading in seconds.",
   "cta": "Download",
   "emptyMessage": "No presets available yet.",
 
   "tutorial": {
-    "title": "How to import a preset",
-    "subtitle": "Two steps and you're done. The XML file configures every visual and technical setting so you don't have to tune anything by hand.",
+    "title": "How to use your presets",
+    "subtitle": "In three simple steps. The preset automatically configures all visual and technical settings so you don't have to tune anything manually.",
     "stepLabel": "Step",
     "steps": [
       {
         "stepNumber": 1,
-        "title": "Download the XML file",
-        "description": "Click the download button on the preset card you want to use. The XML will save to your computer.",
+        "title": "Download the preset",
+        "description": "Click the download button on the preset you want to use. The file will save to your computer.",
         "imageKey": "download_preset"
       },
       {
         "stepNumber": 2,
-        "title": "Import them in NinjaTrader 8",
+        "title": "Import into NinjaTrader 8",
         "description": "Inside NinjaTrader 8:",
         "steps": [
           "Go to the Configurations button.",
           "Click on 'Import Logic Presets'.",
           "Click on 'Import Local File'."
         ],
-        "note": "You can select and import several XML files at once — no need to repeat the process one by one.",
+        "note": "You can select and import multiple files at once without repeating the process one by one.",
         "imageKey": "load_preset"
+      },
+      {
+        "stepNumber": 3,
+        "title": "Load it in your indicator",
+        "description": "In the indicator settings window:",
+        "steps": [
+          "At the top, you will find the panel to select your imported preset.",
+          "Use the buttons to load and apply the configuration to your chart.",
+          "You can make any adjustments you need and save the preset or create a new version."
+        ],
+        "note": "Feel free to customize parameters and save them as your own custom presets.",
+        "imageKey": "apply_preset"
       }
     ]
   },

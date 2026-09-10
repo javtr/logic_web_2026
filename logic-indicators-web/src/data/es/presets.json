@@ -1,31 +1,43 @@
 {
   "pageTitle": "Plantillas de Indicadores",
-  "pageSubtitle": "Archivos XML preconfigurados para cargar nuestros indicadores con los ajustes visuales y técnicos óptimos. Solo tienes que importarlos en NinjaTrader 8 y empezar a operar en segundos.",
+  "pageSubtitle": "Plantillas preconfiguradas para cargar nuestros indicadores con los ajustes visuales y técnicos óptimos. Solo tienes que importarlas en NinjaTrader 8 y empezar a operar en segundos.",
   "cta": "Descargar",
   "emptyMessage": "Aún no hay plantillas disponibles.",
 
   "tutorial": {
-    "title": "Cómo importar una plantilla",
-    "subtitle": "Dos pasos y listo. El archivo XML configura todos los ajustes visuales y técnicos para que no tengas que hacerlo manualmente.",
+    "title": "Cómo usar tus plantillas",
+    "subtitle": "En tres simples pasos. La plantilla configura todos los ajustes visuales y técnicos para que no tengas que hacerlo manualmente.",
     "stepLabel": "Paso",
     "steps": [
       {
         "stepNumber": 1,
-        "title": "Descarga el archivo XML",
-        "description": "Haz clic en el botón de descarga de la plantilla que quieras usar. El XML se guardará en tu equipo.",
+        "title": "Descarga la plantilla",
+        "description": "Haz clic en el botón de descarga de la plantilla que quieras usar. El archivo se guardará en tu equipo.",
         "imageKey": "download_preset"
       },
       {
         "stepNumber": 2,
-        "title": "Impórtalas en NinjaTrader 8",
+        "title": "Impórtala en NinjaTrader 8",
         "description": "Dentro de NinjaTrader 8:",
         "steps": [
           "Ve al botón de Configurations.",
           "Haz clic en 'Import Logic Presets'.",
           "Haz clic en 'Import Local File'."
         ],
-        "note": "Puedes seleccionar e importar varios archivos XML a la vez — no hace falta repetir el proceso uno por uno.",
+        "note": "Puedes seleccionar e importar varios archivos a la vez sin necesidad de repetir el proceso uno por uno.",
         "imageKey": "load_preset"
+      },
+      {
+        "stepNumber": 3,
+        "title": "Cárgala en tu indicador",
+        "description": "En la ventana de configuración del indicador:",
+        "steps": [
+          "En la parte superior encontrarás el panel para seleccionar la plantilla importada.",
+          "Usa los botones para cargar y aplicar la configuración a tu gráfico.",
+          "Puedes realizar las modificaciones que requieras y guardar la plantilla o crear una nueva versión."
+        ],
+        "note": "Personaliza colores y parámetros a tu gusto y guárdalos como tus propias plantillas.",
+        "imageKey": "apply_preset"
       }
     ]
   },
