@@ -19,36 +19,36 @@
       "secondaryIndicatorId": "depthlive",
       "imageKey": "depth_pack",
       "price": 250,
-      "checkoutUrl": "https://example.com/checkout/depth-pack"
+      "checkoutUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/654cbae9-aaf2-44dd-b796-772f233d2ea0"
     },
     {
       "id": "footprint-bundle",
       "primaryIndicatorId": "footprint",
       "secondaryIndicatorId": "footer",
       "price": 250,
-      "checkoutUrl": "https://example.com/checkout/footprint-footer"
+      "checkoutUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/5e5d5a9d-6f94-43fc-b535-47ea01a5380a"
     },
     {
       "id": "profile-bundle",
       "primaryIndicatorId": "profile",
       "secondaryIndicatorId": "composite",
       "price": 250,
-      "checkoutUrl": "https://example.com/checkout/profile-composite"
+      "checkoutUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/ef58c449-367a-473a-ab97-5e120db29c35"
     },
     {
       "id": "bigtrades",
       "primaryIndicatorId": "bigtrades",
-      "checkoutUrl": "https://example.com/checkout/bigtrades"
+      "checkoutUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/beb8d682-4fa2-44c3-8d35-4b9cdedde10e"
     },
     {
       "id": "analytics",
       "primaryIndicatorId": "analytics",
-      "checkoutUrl": "https://example.com/checkout/analytics"
+      "checkoutUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/9e3ccf11-7188-43cf-823c-4e70036b05b1"
     },
     {
       "id": "algorithms",
       "primaryIndicatorId": "algorithms",
-      "checkoutUrl": "https://example.com/checkout/algorithms"
+      "checkoutUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/1f134ffc-f315-4659-b49a-c2aa8cced80a"
     }
   ]
 }
