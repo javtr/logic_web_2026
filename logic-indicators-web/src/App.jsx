@@ -54,7 +54,9 @@ const MainLayout = () => {
     <div className="flex flex-col min-h-screen bg-dark-900 text-text-main font-sans">
       <Navbar />
       <main className="flex-grow">
-        <Outlet />
+        <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
     </div>

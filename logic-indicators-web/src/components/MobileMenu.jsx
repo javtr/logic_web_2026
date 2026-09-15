@@ -52,7 +52,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
     document.addEventListener('keydown', handleEscape);
 
     return () => {
-      document.body.style.overflow = previousOverflow;
+      document.body.style.overflow = previousOverflow || '';
       document.removeEventListener('keydown', handleEscape);
     };
   }, [isOpen, onClose]);
@@ -96,30 +96,31 @@ export const MobileMenu = ({ isOpen, onClose }) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="md:hidden">
-          {/* Backdrop con z-[60] para cubrir navbar sticky (z-50) */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={onClose}
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[60]"
-            aria-hidden="true"
-          />
+        <motion.div
+          key="mobile-menu-backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          onClick={onClose}
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[60] md:hidden"
+          aria-hidden="true"
+        />
+      )}
 
-          {/* Drawer con z-[70] e inset-y-0 h-[100dvh] para evitar cortes con barras móviles */}
-          <motion.aside
-            id="mobile-menu"
-            role="dialog"
-            aria-modal="true"
-            aria-label={t('nav.menu')}
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'tween', ease: 'easeOut', duration: 0.25 }}
-            className="fixed inset-y-0 right-0 h-[100dvh] max-h-[100dvh] w-[85%] max-w-[320px] bg-dark-900 border-l border-white/10 z-[70] flex flex-col shadow-2xl"
-          >
+      {isOpen && (
+        <motion.aside
+          key="mobile-menu-drawer"
+          id="mobile-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-label={t('nav.menu')}
+          initial={{ x: '100%' }}
+          animate={{ x: 0 }}
+          exit={{ x: '100%' }}
+          transition={{ type: 'tween', ease: 'easeOut', duration: 0.25 }}
+          className="fixed inset-y-0 right-0 h-[100dvh] max-h-[100dvh] w-[85%] max-w-[320px] bg-dark-900 border-l border-white/10 z-[70] flex flex-col shadow-2xl md:hidden"
+        >
             {/* Header con LanguageSwitcher integrado y botón de cerrar */}
             <div className="flex items-center justify-between h-20 px-6 border-b border-white/10 flex-shrink-0">
               <span className="text-sm font-semibold tracking-wider text-text-muted uppercase">
@@ -180,6 +181,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                   <AnimatePresence initial={false}>
                     {resourcesOpen && (
                       <motion.ul
+                        key="mobile-resources-dropdown"
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
@@ -267,8 +269,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
               </Link>
             </div>
           </motion.aside>
-        </div>
-      )}
-    </AnimatePresence>
-  );
+        )}
+      </AnimatePresence>
+    );
 };

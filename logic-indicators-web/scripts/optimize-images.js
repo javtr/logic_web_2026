@@ -142,3 +142,4 @@ main().catch((err) => {
   console.error('Error fatal en el script:', err);
   process.exit(1);
 });
+

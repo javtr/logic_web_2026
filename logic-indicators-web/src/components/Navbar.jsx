@@ -1,5 +1,5 @@
 // src/components/Navbar.jsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/languageContext';
 import { useAuth } from '../hooks/useAuth';
@@ -16,6 +16,10 @@ export const Navbar = () => {
   const { isAuthenticated, email } = useAuth();
   const { name: userName } = useUserName();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleCloseMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(false);
+  }, []);
 
   // Identificador del usuario logueado para mostrar bajo "Zona de
   // Miembros". Prioridad: nombre real (viene del backend via
@@ -105,7 +109,7 @@ export const Navbar = () => {
       {/* Mobile Drawer Menu */}
       <MobileMenu
         isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
+        onClose={handleCloseMobileMenu}
       />
     </>
   );
