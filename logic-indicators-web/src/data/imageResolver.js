@@ -53,6 +53,7 @@ import ninjaInstall01Image from '../assets/installation/ninja_install_01.png';
 import ninjaInstall02Image from '../assets/installation/ninja_install_02.png';
 import downloadPresetImage from '../assets/installation/download_preset.png';
 import loadPresetImage from '../assets/installation/load_preset.png';
+import configurePresetImage from '../assets/installation/configure_preset.png';
 
 // Presets individuales - Logic Footprint
 import presetFootprintAtasImbalanceDark from '../assets/presets/preset_footprint_atas_imbalance_dark.png';
@@ -270,10 +271,11 @@ export const imageMap = {
   // Tutorial de importacion de presets (pagina /resources/presets).
   tutorial_step_1: downloadPresetImage,
   tutorial_step_2: loadPresetImage,
-  tutorial_step_3: loadPresetImage,
+  tutorial_step_3: configurePresetImage,
   download_preset: downloadPresetImage,
   load_preset: loadPresetImage,
-  apply_preset: loadPresetImage,
+  apply_preset: configurePresetImage,
+  configure_preset: configurePresetImage,
 
   // Tutorial del wizard de instalacion (Dashboard). Estas imagenes
   // muestran el proceso general de instalar indicadores en NinjaTrader 8

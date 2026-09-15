@@ -37,7 +37,7 @@
           "You can make any adjustments you need and save the preset or create a new version."
         ],
         "note": "Feel free to customize parameters and save them as your own custom presets.",
-        "imageKey": "apply_preset"
+        "imageKey": "configure_preset"
       }
     ]
   },

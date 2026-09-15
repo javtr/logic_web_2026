@@ -37,7 +37,7 @@
           "Puedes realizar las modificaciones que requieras y guardar la plantilla o crear una nueva versión."
         ],
         "note": "Personaliza colores y parámetros a tu gusto y guárdalos como tus propias plantillas.",
-        "imageKey": "apply_preset"
+        "imageKey": "configure_preset"
       }
     ]
   },
