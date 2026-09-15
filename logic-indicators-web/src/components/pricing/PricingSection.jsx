@@ -177,9 +177,21 @@ const PricingCard = ({ plan, t, bestValueText }) => {
           <p className="text-xs uppercase tracking-wider text-accent-primary font-bold mb-2">
             {t('pricing.installmentsTitle')}
           </p>
-          <p className="text-sm font-semibold text-accent-primary">
-            {plan.installments.text}
-          </p>
+          {plan.installments.checkoutUrl ? (
+            <a
+              href={plan.installments.checkoutUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-accent-primary hover:text-accent-primary/80 transition-colors py-1 px-3 rounded-lg bg-accent-primary/10 hover:bg-accent-primary/20 border border-accent-primary/30 group/inst"
+            >
+              <span>{plan.installments.text}</span>
+              <span className="transition-transform group-hover/inst:translate-x-0.5" aria-hidden="true">&rarr;</span>
+            </a>
+          ) : (
+            <p className="text-sm font-semibold text-accent-primary">
+              {plan.installments.text}
+            </p>
+          )}
           <p className="text-xs text-text-muted mt-1 leading-snug">
             {plan.installments.disclaimer}
           </p>

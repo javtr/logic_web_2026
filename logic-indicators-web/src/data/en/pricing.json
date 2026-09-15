@@ -39,7 +39,7 @@
         { "id": "depthchart", "label": "+ Depth Chart" },
         { "id": "depthlive", "label": "+ Depth Live" }
       ],
-      "checkoutUrl": "https://example.com/checkout/annual"
+      "checkoutUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/223f63c8-ffa5-4d00-a779-876e97b1be67"
     },
     {
       "id": "lifetime",
@@ -67,9 +67,10 @@
       ],
       "installments": {
         "text": "6 payments of $149",
-        "disclaimer": "Discount codes apply to all installments"
+        "disclaimer": "Discount codes apply to all installments",
+        "checkoutUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/8f58153a-1080-4bf9-84d3-27032292eb02"
       },
-      "checkoutUrl": "https://example.com/checkout/lifetime"
+      "checkoutUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/d9662c98-bb79-4562-85b5-40326f01057c"
     }
   ]
 }
