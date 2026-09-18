@@ -89,7 +89,7 @@
             "note": "curso"
           }
         ],
-        "checkoutUrl": "https://example.com/checkout/plus-yearly"
+        "checkoutUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/cb7ccc70-d3e9-417a-b4d5-d1cacec667a4"
       }
     },
     "lifetime": {
@@ -168,9 +168,10 @@
         ],
         "installments": {
           "text": "7 pagos de $169",
-          "disclaimer": "Los códigos de descuento se aplican a todas las cuotas"
+          "disclaimer": "Los códigos de descuento se aplican a todas las cuotas",
+          "checkoutUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/c1ef87b0-edd6-4989-9348-fbdde607e4bc"
         },
-        "checkoutUrl": "https://example.com/checkout/plus-lifetime"
+        "checkoutUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/0e69f39a-e367-4f6e-8827-47da09ff413a"
       }
     }
   }
