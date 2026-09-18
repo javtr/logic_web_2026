@@ -1,0 +1,56 @@
+{
+  "alert": "¡Importante: No cierres esta ventana hasta completar el formulario de solicitud!",
+  "title": "Activación de Licencia",
+  "subtitle": "Gracias por adquirir Logic Indicators. Sigue estos sencillos pasos para activar tus herramientas en NinjaTrader 8.",
+  "step1": {
+    "badge": "Paso 1",
+    "title": "Obtén el Machine ID de tu NinjaTrader 8",
+    "description": "El Machine ID es un código alfanumérico único generado por NinjaTrader 8 para tu ordenador. Es indispensable para emitir tu licencia oficial.",
+    "instructions": [
+      "Abre tu plataforma NinjaTrader 8.",
+      "En el menú superior de la ventana principal (Control Center), haz clic en Help (Ayuda).",
+      "Selecciona la opción About (Acerca de).",
+      "Localiza el campo Machine ID, selecciónalo, cópialo por completo y pégalo en el formulario."
+    ],
+    "imageHint": "Haz clic en la captura para ampliarla y ver la ubicación exacta."
+  },
+  "step2": {
+    "badge": "Paso 2",
+    "title": "Envía tus datos de activación",
+    "subtitle": "Ingresa el mismo correo con el que realizaste la compra para asociar tu licencia correctamente."
+  },
+  "form": {
+    "name": "Nombre completo",
+    "namePlaceholder": "Tu nombre y apellido",
+    "machineId": "Machine ID de NinjaTrader 8",
+    "machineIdPlaceholder": "Ej: A1B2-C3D4-E5F6-7890-ABCD-EF01",
+    "email": "Correo electrónico de compra",
+    "emailPlaceholder": "el-correo-de-tu-compra@ejemplo.com",
+    "message": "Notas o comentarios adicionales (Opcional)",
+    "messagePlaceholder": "¿Algún detalle adicional sobre tu compra o consulta?",
+    "submit": "Enviar Solicitud de Activación",
+    "sending": "Enviando solicitud...",
+    "errors": {
+      "required": "Este campo es obligatorio",
+      "email": "Por favor ingresa un correo electrónico válido",
+      "machineIdMin": "Por favor ingresa un Machine ID válido",
+      "captcha": "Por favor confirma que no eres un robot",
+      "generic": "Ocurrió un error al enviar la solicitud. Por favor intenta nuevamente o contáctanos por WhatsApp."
+    },
+    "success": {
+      "title": "¡Solicitud enviada con éxito!",
+      "description": "Tu información ha sido recibida correctamente por nuestro equipo de activaciones.",
+      "deliveryTime": "Recibirás en tu correo los archivos de tu licencia y el software en un plazo máximo de 1 día hábil (8:00 AM a 5:00 PM GMT-4).",
+      "spamWarning": "Por favor asegúrate de revisar tu carpeta de correo no deseado (Spam) o promociones, ya que ocasionalmente el correo puede llegar allí.",
+      "supportTitle": "¿Tienes alguna inquietud con tu activación?",
+      "sendAnother": "Enviar otra solicitud"
+    }
+  },
+  "support": {
+    "title": "¿Necesitas asistencia con tu licencia?",
+    "description": "Si tienes cualquier inquietud no dudes en contactar directamente a nuestro equipo técnico:",
+    "email": "info@logicindicators.com",
+    "whatsapp": "+57 311 3006826",
+    "whatsappUrl": "https://wa.me/573113006826?text=Hola,%20acabo%20de%20adquirir%20Logic%20Indicators%20y%20necesito%20apoyo%20con%20mi%20licencia."
+  }
+}

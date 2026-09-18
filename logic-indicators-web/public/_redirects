@@ -11,6 +11,7 @@
 # ---------- Renombres simples ----------
 /buy                    /pricing                   301
 /education              /                          301
+/lic                    /license                   301
 
 # ---------- Sección "Free" ----------
 # El nuevo sitio tiene /resources/free-indicators (single page) en vez de

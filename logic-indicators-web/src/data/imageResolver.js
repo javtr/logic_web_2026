@@ -54,6 +54,7 @@ import ninjaInstall02Image from '../assets/installation/ninja_install_02.png';
 import downloadPresetImage from '../assets/installation/download_preset.png';
 import loadPresetImage from '../assets/installation/load_preset.png';
 import configurePresetImage from '../assets/installation/configure_preset.png';
+import machineIdImage from '../assets/installation/machine_id.jpg';
 
 // Presets individuales - Logic Footprint
 import presetFootprintAtasImbalanceDark from '../assets/presets/preset_footprint_atas_imbalance_dark.png';
@@ -284,6 +285,7 @@ export const imageMap = {
   // a las imagenes desde el sub-step 2 ("Install the indicators in NT8").
   installation_ninja_01: ninjaInstall01Image,
   installation_ninja_02: ninjaInstall02Image,
+  machine_id: machineIdImage,
 
   
 };

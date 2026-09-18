@@ -32,6 +32,10 @@
     "title": "Contact - Logic Indicators",
     "description": "Questions about our order flow indicators, licensing, or partnerships? Reach us by Discord, Instagram, or email. We respond within 24 hours."
   },
+  "license": {
+    "title": "License Activation - Logic Indicators",
+    "description": "Official license activation form for Logic Indicators on NinjaTrader 8. Submit your Machine ID and receive your software and license files."
+  },
   "faq": {
     "title": "Frequently Asked Questions - Logic Indicators",
     "description": "Everything you need to know about Logic Indicators: compatibility, licensing, payment methods, refunds, and how the annual vs lifetime plans work."

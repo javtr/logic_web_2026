@@ -48,6 +48,7 @@ const Terms = lazy(() => import('./pages/Terms').then((m) => ({ default: m.Terms
 const NotFound = lazy(() => import('./pages/NotFound').then((m) => ({ default: m.NotFound })));
 const Indicators = lazy(() => import('./pages/Indicators').then((m) => ({ default: m.Indicators })));
 const Pricing = lazy(() => import('./pages/Pricing').then((m) => ({ default: m.Pricing })));
+const License = lazy(() => import('./pages/License').then((m) => ({ default: m.License })));
 
 const MainLayout = () => {
   return (
@@ -87,6 +88,8 @@ function App() {
               <Route path="/free/*" element={<Navigate to="/resources/free-indicators" replace />} />
               <Route path="/resources/presets" element={<Presets />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/license" element={<License />} />
+              <Route path="/lic" element={<Navigate to="/license" replace />} />
               <Route path="/faq" element={<Faq />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
