@@ -23,7 +23,7 @@
     "name": "Nombre completo",
     "namePlaceholder": "Tu nombre y apellido",
     "machineId": "Machine ID de NinjaTrader 8",
-    "machineIdPlaceholder": "Ej: 7425D1F35AA514712131E35C26E91074",
+    "machineIdPlaceholder": "Ej: 4F8A9C2B1D7E6A5F0E8C4A7B2D9E1F3A",
     "machineIdLengthHint": "caracteres",
     "email": "Correo electrónico de compra",
     "emailPlaceholder": "el-correo-de-tu-compra@ejemplo.com",
