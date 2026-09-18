@@ -83,6 +83,8 @@ function App() {
               <Route path="/docs/*" element={<DocsPublic />} />
               <Route path="/resources/docs" element={<Navigate to="/docs/indicators/logic-footprint" replace />} />
               <Route path="/resources/free-indicators" element={<FreeIndicators />} />
+              <Route path="/free" element={<Navigate to="/resources/free-indicators" replace />} />
+              <Route path="/free/*" element={<Navigate to="/resources/free-indicators" replace />} />
               <Route path="/resources/presets" element={<Presets />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/faq" element={<Faq />} />
