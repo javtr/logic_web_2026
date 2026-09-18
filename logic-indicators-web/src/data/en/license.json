@@ -23,7 +23,8 @@
     "name": "Full Name",
     "namePlaceholder": "Your first and last name",
     "machineId": "NinjaTrader 8 Machine ID",
-    "machineIdPlaceholder": "e.g. A1B2-C3D4-E5F6-7890-ABCD-EF01",
+    "machineIdPlaceholder": "e.g. 7425D1F35AA514712131E35C26E91074",
+    "machineIdLengthHint": "characters",
     "email": "Purchase Email Address",
     "emailPlaceholder": "your-purchase-email@example.com",
     "message": "Additional notes or comments (Optional)",
@@ -33,7 +34,7 @@
     "errors": {
       "required": "This field is required",
       "email": "Please enter a valid email address",
-      "machineIdMin": "Please enter a valid Machine ID",
+      "machineIdFormat": "The Machine ID must contain exactly 32 alphanumeric characters (no spaces or hyphens)",
       "captcha": "Please verify that you are not a robot",
       "generic": "An error occurred while submitting your request. Please try again or reach out to our WhatsApp support."
     },
@@ -54,3 +55,4 @@
     "whatsappUrl": "https://wa.me/573113006826?text=Hello,%20I%20just%20purchased%20Logic%20Indicators%20and%20need%20assistance%20with%20my%20license."
   }
 }
+

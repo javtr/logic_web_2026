@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MACHINE_ID_REGEX = /^[A-Z0-9]{32}$/;
 
 // Claves de producción oficiales para el formulario de Licencia (template_6r8ymzt)
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_g9gfwit';
@@ -72,8 +73,8 @@ export const LicenseForm = () => {
 
     if (!data.idmachine.trim()) {
       newErrors.idmachine = t('license.form.errors.required');
-    } else if (data.idmachine.trim().length < 5) {
-      newErrors.idmachine = t('license.form.errors.machineIdMin');
+    } else if (!MACHINE_ID_REGEX.test(data.idmachine.trim())) {
+      newErrors.idmachine = t('license.form.errors.machineIdFormat');
     }
 
     if (!data.email.trim()) {
@@ -87,7 +88,12 @@ export const LicenseForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const newData = { ...formData, [name]: value };
+    let finalValue = value;
+    if (name === 'idmachine') {
+      // Eliminar espacios y guiones automáticamente y convertir a mayúsculas
+      finalValue = value.replace(/[\s-]+/g, '').toUpperCase();
+    }
+    const newData = { ...formData, [name]: finalValue };
     setFormData(newData);
     if (touched[name]) {
       setErrors(validate(newData));
@@ -290,9 +296,20 @@ export const LicenseForm = () => {
 
             {/* Campo: Machine ID */}
             <div>
-              <label htmlFor="lic-machine" className="block text-sm font-medium text-text-main mb-1.5">
-                {t('license.form.machineId')} <span className="text-red-400">*</span>
-              </label>
+              <div className="flex items-center justify-between mb-1.5">
+                <label htmlFor="lic-machine" className="block text-sm font-medium text-text-main">
+                  {t('license.form.machineId')} <span className="text-red-400">*</span>
+                </label>
+                <span
+                  className={`text-xs font-mono transition-colors ${
+                    formData.idmachine.length === 32
+                      ? 'text-emerald-400 font-semibold'
+                      : 'text-text-muted'
+                  }`}
+                >
+                  {formData.idmachine.length}/32 {t('license.form.machineIdLengthHint')}
+                </span>
+              </div>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-muted">
                   <Cpu size={18} className={errors.idmachine ? 'text-red-400' : ''} />
@@ -301,6 +318,7 @@ export const LicenseForm = () => {
                   id="lic-machine"
                   name="idmachine"
                   type="text"
+                  maxLength={32}
                   value={formData.idmachine}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -309,6 +327,8 @@ export const LicenseForm = () => {
                   className={`w-full bg-dark-900 border text-text-main font-mono text-sm rounded-xl pl-10 pr-3.5 py-3 outline-none transition-all tracking-wider ${
                     errors.idmachine
                       ? 'border-red-500/50 focus:border-red-500 focus:ring-1 focus:ring-red-500/50'
+                      : formData.idmachine.length === 32
+                      ? 'border-emerald-500/50 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500'
                       : 'border-dark-700 focus:border-accent-primary focus:ring-1 focus:ring-accent-primary'
                   }`}
                 />
@@ -431,3 +451,4 @@ export const LicenseForm = () => {
     </div>
   );
 };
+
