@@ -13,10 +13,11 @@ const MESSAGE_MIN_LENGTH = 10;
 // EmailJS y reCAPTCHA keys — se leen de variables de entorno
 // (definidas en .env, ver .env.example para documentacion).
 // Vite expone al cliente SOLO las variables que arrancan con VITE_.
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+// Se configuran las claves de produccion oficiales como valores por defecto garantizados.
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_g9gfwit';
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_7vyrf6s';
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'QyQP72Hg4ObCGjDYM';
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LdmJucpAAAAAPN--0vzj_7NuxLvMHqsRDrOkpxO';
 
 // -----------------------------------------------------------------------------
 // MODO DESARROLLO: lee de variable de entorno.
@@ -24,19 +25,11 @@ const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 // En desarrollo local (.env):   VITE_IS_LOCAL_TESTING=true
 // En producción (Cloudflare):   VITE_IS_LOCAL_TESTING=false
 //
-// CRITICO: si esto queda en 'true' en producción, el reCAPTCHA queda
-// deshabilitado y cualquiera puede hacer spam al formulario. El flag
-// DEBE estar en 'false' en el ambiente de producción.
-//
-// FALLBACK DE SEGURIDAD: si no hay RECAPTCHA_SITE_KEY configurada,
-// forzamos modo local. El componente ReCAPTCHA crashea toda la app
-// si se monta sin sitekey, asi que mejor mostrar el banner de modo
-// local que romper la página entera. Esto solo aplica si el dev no
-// configuro el .env (o si production deployo sin las env vars).
+// Si no está explícitamente en 'true', reCAPTCHA está siempre activo en producción.
 // -----------------------------------------------------------------------------
-const HAS_RECAPTCHA_KEY = Boolean(import.meta.env.VITE_RECAPTCHA_SITE_KEY);
+const HAS_RECAPTCHA_KEY = Boolean(RECAPTCHA_SITE_KEY);
 const IS_LOCAL_TESTING =
-  import.meta.env.VITE_IS_LOCAL_TESTING === 'true' || !HAS_RECAPTCHA_KEY;
+  import.meta.env.VITE_IS_LOCAL_TESTING === 'true';
 
 export const ContactForm = () => {
   const { t } = useLanguage();
@@ -162,7 +155,7 @@ export const ContactForm = () => {
         handleSuccess();
       })
       .catch((error) => {
-        if (import.meta.env.DEV) console.error("Error EmailJS:", error);
+        console.error("Error EmailJS:", error);
         setStatus('error');
       });
   };

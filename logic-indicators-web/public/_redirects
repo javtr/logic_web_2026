@@ -8,10 +8,6 @@
 # ---------- Top-level (sin equivalente en el nuevo sitio) ----------
 /risk                   /                          301
 
-# ---------- Mismo path en el nuevo sitio ----------
-/indicators             /indicators                301
-/contact                /contact                   301
-
 # ---------- Renombres simples ----------
 /buy                    /pricing                   301
 /education              /                          301
