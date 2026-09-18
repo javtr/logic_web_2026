@@ -38,6 +38,17 @@
 /indicator/logic-big-trades     /indicators/logic-bigtrades  301
 /indicator/logic-algorithms     /indicators/logic-algorithms  301
 
+# ---------- URLs históricas /app/... (del sitio anterior) ----------
+/app/es/indicators.html         /indicators                 301
+/app/en/indicators.html         /indicators                 301
+/app/es/buy.html                /pricing                    301
+/app/en/buy.html                /pricing                    301
+/app/es/order_an.html           /indicators/logic-analytics 301
+/app/es/order_pack.html         /pricing                    301
+/app/en/order_of.html           /indicators/logic-footprint 301
+/app/en/order_vp.html           /indicators/logic-profile   301
+/app/*                          /                           301
+
 # ---------- Catch-all SPA ----------
 # Cualquier URL que no matchee los redirects anteriores (ej. /pricing,
 # /indicators/logic-footprint, /dashboard, etc.) se sirve con index.html
