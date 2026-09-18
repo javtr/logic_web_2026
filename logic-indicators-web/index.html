@@ -6,31 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0a0a0a" />
     <meta name="description" content="Professional order flow, footprint, volume profile, and big trades indicators for NinjaTrader 8. Zero-latency performance, institutional-grade analytics, and preset templates ready to trade." />
-    <!--
-      El <title> y la <meta description> de abajo son FALLBACKS estáticos.
-      El componente <SEO> (en src/components/SEO.jsx) los reemplaza con los
-      valores específicos de cada página / idioma al hidratar React.
-      Mantener sincronizados con src/data/{en,es}/seo.json (defaultTitle y
-      defaultDescription) para que el primer paint y los crawlers de Google
-      que no ejecutan JS vean información coherente.
-    -->
-    <title>Logic Indicators - Order Flow Software for NinjaTrader 8</title>
-    <!--
-      Script inline pre-React: setea el atributo lang del <html> leyendo
-      la preferencia guardada en localStorage por LanguageContext.
-      Se ejecuta SINCRONICAMENTE antes del primer paint, asi no hay
-      flash del idioma incorrecto (ej: muestra "Members Area" en EN
-      durante un frame antes de saltar a "Zona de Miembros" en ES).
+    <title>Logic Indicators | Order Flow Software for NinjaTrader 8</title>
 
-      Limitacion conocida: crawlers que no ejecutan JS (algunos de
-      Google, motores alternativos, herramientas de validacion) ven
-      SIEMPRE lang="en" porque ese es el valor del HTML estatico.
-      La deteccion del idioma para SEO se hace via el atributo
-      hreflang en el componente <SEO> y la metadata OG. El patron
-      de "toggle por UI sin prefijo de URL" no es el ideal para
-      SEO multilingue (lo ideal seria /en/* y /es/*), pero es
-      aceptable para un sitio pequeno.
-    -->
+    <!-- Open Graph / WhatsApp / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Logic Indicators" />
+    <meta property="og:url" content="https://logicindicators.com/" />
+    <meta property="og:title" content="Logic Indicators | Order Flow Software for NinjaTrader 8" />
+    <meta property="og:description" content="Professional order flow, footprint, volume profile, and big trades indicators for NinjaTrader 8. Zero-latency performance and institutional-grade analytics." />
+    <meta property="og:image" content="https://logicindicators.com/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://logicindicators.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="600" />
+    <meta property="og:image:alt" content="Logic Indicators Suite for NinjaTrader 8" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Logic Indicators | Order Flow Software for NinjaTrader 8" />
+    <meta name="twitter:description" content="Professional order flow, footprint, volume profile, and big trades indicators for NinjaTrader 8. Zero-latency performance and institutional-grade analytics." />
+    <meta name="twitter:image" content="https://logicindicators.com/og-image.jpg" />
     <script>
       (function() {
         try {

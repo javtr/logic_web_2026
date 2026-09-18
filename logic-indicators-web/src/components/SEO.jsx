@@ -88,7 +88,7 @@ export const SEO = ({
   // una URL absoluta, la usamos tal cual.
   let finalImageUrl;
   if (!image) {
-    finalImageUrl = `${SITE_URL}${resolveImage(DEFAULT_OG_IMAGE_KEY)}`;
+    finalImageUrl = `${SITE_URL}/og-image.jpg`;
   } else if (image.startsWith('http://') || image.startsWith('https://')) {
     finalImageUrl = image;
   } else {
