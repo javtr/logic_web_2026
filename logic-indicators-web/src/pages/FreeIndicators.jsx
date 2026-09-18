@@ -125,6 +125,8 @@ export const FreeIndicators = () => {
                     <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
                       <a
                         href={item.downloadUrl || '#'}
+                        target={item.downloadUrl && item.downloadUrl !== '#' ? '_blank' : undefined}
+                        rel={item.downloadUrl && item.downloadUrl !== '#' ? 'noopener noreferrer' : undefined}
                         className="w-full sm:w-auto"
                         onClick={(e) => {
                           if (item.downloadUrl === '#' || !item.downloadUrl) {
