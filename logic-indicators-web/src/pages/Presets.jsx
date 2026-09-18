@@ -17,20 +17,27 @@
 // =============================================================================
 
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/languageContext';
+import { useAuth } from '../hooks/useAuth';
 import { SEO } from '../components/SEO';
 import { Button } from '../components/Button';
 import { ZoomableImage } from '../components/ImageLightbox';
 import { resolveImage } from '../data/imageResolver';
-import { Download, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Download, ChevronLeft, ChevronRight, Lock, LogIn, X } from 'lucide-react';
 
-const PresetCard = ({ preset, cta }) => {
+const PresetCard = ({ preset, cta, isAuthenticated, onRequireAuth }) => {
   const [isDownloading, setIsDownloading] = useState(false);
   // description es opcional: si esta vacia o ausente, no se renderiza <p>
   const hasDescription = typeof preset.description === 'string' && preset.description.trim().length > 0;
 
   const handleDownload = async (e) => {
     e.preventDefault();
+    if (!isAuthenticated) {
+      onRequireAuth(preset);
+      return;
+    }
     if (isDownloading) return;
     setIsDownloading(true);
 
@@ -48,7 +55,7 @@ const PresetCard = ({ preset, cta }) => {
       a.click();
       window.URL.revokeObjectURL(blobUrl);
       document.body.removeChild(a);
-    } catch (err) {
+    } catch {
       // Fallback si fetch directo no es permitido por CORS o falla la red
       const a = document.createElement('a');
       a.href = preset.xmlUrl;
@@ -105,7 +112,7 @@ const PresetCard = ({ preset, cta }) => {
 // Fila scrolleable con controles en la parte inferior (progress bar + flechas).
 // Se usa para TODOS los indicators. Las flechas se ocultan automaticamente
 // cuando no hay overflow (1-3 cards en pantallas anchas).
-const ScrollablePresetRow = ({ presets, cta }) => {
+const ScrollablePresetRow = ({ presets, cta, isAuthenticated, onRequireAuth }) => {
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -165,7 +172,12 @@ const ScrollablePresetRow = ({ presets, cta }) => {
             data-preset-card
             className="shrink-0 w-[260px] sm:w-[280px] md:w-[300px] lg:w-[320px] snap-start"
           >
-            <PresetCard preset={preset} cta={cta} />
+            <PresetCard
+              preset={preset}
+              cta={cta}
+              isAuthenticated={isAuthenticated}
+              onRequireAuth={onRequireAuth}
+            />
           </div>
         ))}
       </div>
@@ -190,12 +202,7 @@ const ScrollablePresetRow = ({ presets, cta }) => {
           />
         </div>
 
-        {/* Flechas: ghost style, small, centradas horizontalmente.
-            Siempre ambas visibles — el `disabled` indica cuando no hay hacia
-            donde ir (overflow 0 o ya en el extremo). El hover se anula con
-            `disabled:hover:*` para que no parezca interactivo. NO usamos
-            `cursor-not-allowed` porque muestra el cursor de "X tachada" del
-            SO, y preferimos que el cursor quede neutro. */}
+        {/* Flechas: ghost style, small, centradas horizontalmente. */}
         <div className="flex items-center justify-center gap-2">
           <button
             type="button"
@@ -221,7 +228,7 @@ const ScrollablePresetRow = ({ presets, cta }) => {
   );
 };
 
-const PresetSection = ({ indicatorId, presets, cta, t }) => {
+const PresetSection = ({ indicatorId, presets, cta, isAuthenticated, onRequireAuth, t }) => {
   const indicatorName = t(`indicators.${indicatorId}.name`);
 
   return (
@@ -235,7 +242,12 @@ const PresetSection = ({ indicatorId, presets, cta, t }) => {
         </span>
       </div>
 
-      <ScrollablePresetRow presets={presets} cta={cta} />
+      <ScrollablePresetRow
+        presets={presets}
+        cta={cta}
+        isAuthenticated={isAuthenticated}
+        onRequireAuth={onRequireAuth}
+      />
     </section>
   );
 };
@@ -317,8 +329,114 @@ const TutorialSection = ({ tutorial }) => {
   );
 };
 
+// Modal de aviso cuando un usuario no autenticado intenta descargar una plantilla
+const AuthRequiredModal = ({ isOpen, onClose, t }) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
+  const handleGoToLogin = () => {
+    onClose();
+    navigate('/login?next=/resources/presets');
+  };
+
+  const modalData = t('presets.authModal') || {};
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          key="auth-modal-backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          onClick={onClose}
+          className="fixed inset-0 z-[80] bg-black/75 backdrop-blur-sm flex items-center justify-center p-4"
+          aria-hidden="true"
+        >
+          <motion.div
+            key="auth-modal-dialog"
+            initial={{ opacity: 0, scale: 0.95, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 15 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-md bg-dark-800 border border-dark-700 rounded-2xl p-6 sm:p-8 shadow-2xl text-center"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="auth-modal-title"
+          >
+            {/* Botón de cerrar (X) */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 text-text-muted hover:text-text-main p-1.5 rounded-lg hover:bg-white/5 transition-colors"
+              aria-label={modalData.cancelCta || 'Cerrar'}
+            >
+              <X size={20} />
+            </button>
+
+            {/* Icono Candado */}
+            <div className="mx-auto w-16 h-16 rounded-2xl bg-accent-primary/10 border border-accent-primary/25 flex items-center justify-center mb-5 text-accent-primary">
+              <Lock size={30} />
+            </div>
+
+            {/* Título y Mensaje */}
+            <h3 id="auth-modal-title" className="text-xl sm:text-2xl font-bold text-text-main mb-3">
+              {modalData.title}
+            </h3>
+            <p className="text-sm text-text-muted leading-relaxed mb-5">
+              {modalData.description}
+            </p>
+
+            {/* Nota de beneficio */}
+            {modalData.perkNote && (
+              <div className="mb-6 py-2.5 px-3.5 rounded-xl bg-dark-900/70 border border-white/5 text-xs text-text-muted leading-snug">
+                💡 {modalData.perkNote}
+              </div>
+            )}
+
+            {/* Acciones */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button
+                variant="primary"
+                className="w-full justify-center order-1 sm:order-2"
+                onClick={handleGoToLogin}
+              >
+                <LogIn size={16} />
+                {modalData.loginCta}
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full justify-center order-2 sm:order-1"
+                onClick={onClose}
+              >
+                {modalData.cancelCta}
+              </Button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
 export const Presets = () => {
   const { t } = useLanguage();
+  const { isAuthenticated } = useAuth();
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
+  const handleRequireAuth = () => {
+    setIsAuthModalOpen(true);
+  };
+
   const section = t('presets');
   const presets = Array.isArray(section.presets) ? section.presets : [];
   const tutorial = section.tutorial;
@@ -369,12 +487,21 @@ export const Presets = () => {
                 indicatorId={indicatorId}
                 presets={indicatorPresets}
                 cta={t('presets.cta')}
+                isAuthenticated={isAuthenticated}
+                onRequireAuth={handleRequireAuth}
                 t={t}
               />
             ))}
           </div>
         )}
       </div>
+
+      {/* Modal de acceso exclusivo */}
+      <AuthRequiredModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        t={t}
+      />
     </>
   );
 };

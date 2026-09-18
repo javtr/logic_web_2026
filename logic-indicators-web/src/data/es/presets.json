@@ -4,6 +4,14 @@
   "cta": "Descargar",
   "emptyMessage": "Aún no hay plantillas disponibles.",
 
+  "authModal": {
+    "title": "Acceso Exclusivo para Miembros",
+    "description": "Para descargar las plantillas oficiales de configuración, debes iniciar sesión con tu cuenta registrada en Logic Indicators.",
+    "loginCta": "Iniciar sesión",
+    "cancelCta": "Continuar explorando",
+    "perkNote": "El acceso a todas las plantillas está incluido al adquirir cualquiera de nuestros indicadores."
+  },
+
   "tutorial": {
     "title": "Cómo usar tus plantillas",
     "subtitle": "En tres simples pasos. La plantilla configura todos los ajustes visuales y técnicos para que no tengas que hacerlo manualmente.",

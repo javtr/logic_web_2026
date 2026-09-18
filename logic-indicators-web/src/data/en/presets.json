@@ -4,6 +4,14 @@
   "cta": "Download",
   "emptyMessage": "No presets available yet.",
 
+  "authModal": {
+    "title": "Exclusive Member Access",
+    "description": "To download official configuration presets, please log in with your registered Logic Indicators account.",
+    "loginCta": "Log in",
+    "cancelCta": "Keep browsing",
+    "perkNote": "Access to all presets is included with the purchase of any of our indicators."
+  },
+
   "tutorial": {
     "title": "How to use your presets",
     "subtitle": "In three simple steps. The preset automatically configures all visual and technical settings so you don't have to tune anything manually.",
