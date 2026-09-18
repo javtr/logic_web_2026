@@ -128,12 +128,23 @@
   <!-- FREE INDICATORS -->
   <url>
     <loc>https://logicindicators.com/resources/free-indicators</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/resources/free-indicators"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/resources/free-indicators"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/resources/free-indicators"/>
+  </url>
+
+  <!-- PRESETS -->
+  <url>
+    <loc>https://logicindicators.com/resources/presets</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/resources/presets"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/resources/presets"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/resources/presets"/>
   </url>
 
   <!-- CONTACT -->
