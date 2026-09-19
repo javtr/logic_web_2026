@@ -16,6 +16,7 @@
 //   <FAQSection namespace="pricingFaq" titleKey="pricing.faqTitle" />
 import { useLanguage } from '../context/languageContext';
 import { Accordion } from './Accordion';
+import { FaqJsonLd } from './FaqJsonLd';
 
 export const FAQSection = ({ titleKey = 'home.faqTitle', namespace = 'homeFaq' }) => {
   const { t } = useLanguage();
@@ -30,6 +31,7 @@ export const FAQSection = ({ titleKey = 'home.faqTitle', namespace = 'homeFaq' }
 
   return (
     <section className="px-6 container mx-auto">
+      <FaqJsonLd items={data?.items} />
       <h2 className="text-3xl font-bold text-center text-text-main mb-12">{t(titleKey)}</h2>
       <Accordion items={items} />
     </section>

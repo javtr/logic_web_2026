@@ -93,6 +93,25 @@ function App() {
               <Route path="/faq" element={<Faq />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
+
+              {/* Redirecciones de URLs legadas (compatibilidad histórica) */}
+              <Route path="/buy" element={<Navigate to="/pricing" replace />} />
+              <Route path="/education" element={<Navigate to="/" replace />} />
+              <Route path="/risk" element={<Navigate to="/" replace />} />
+              <Route path="/indicator" element={<Navigate to="/indicators" replace />} />
+              <Route path="/indicator/logic-order-flow" element={<Navigate to="/indicators/logic-footprint" replace />} />
+              <Route path="/indicator/logic-volume-profile" element={<Navigate to="/indicators/logic-profile" replace />} />
+              <Route path="/indicator/logic-analytics" element={<Navigate to="/indicators/logic-analytics" replace />} />
+              <Route path="/indicator/logic-big-trades" element={<Navigate to="/indicators/logic-bigtrades" replace />} />
+              <Route path="/indicator/logic-algorithms" element={<Navigate to="/indicators/logic-algorithms" replace />} />
+              <Route path="/indicator/*" element={<Navigate to="/indicators" replace />} />
+              <Route path="/article/volume-profile-guide" element={<Navigate to="/docs/indicators/logic-profile" replace />} />
+              <Route path="/article/wyckoff-method" element={<Navigate to="/docs/indicators/logic-profile" replace />} />
+              <Route path="/article" element={<Navigate to="/docs/indicators/logic-footprint" replace />} />
+              <Route path="/article/*" element={<Navigate to="/docs/indicators/logic-footprint" replace />} />
+              <Route path="/policies" element={<Navigate to="/privacy" replace />} />
+              <Route path="/install" element={<Navigate to="/docs/indicators/logic-footprint" replace />} />
+              <Route path="/edge-analyzer" element={<Navigate to="/indicators" replace />} />
             </Route>
 
             {/* RUTAS PRIVADAS (Zona de Miembros, sin layout público) */}

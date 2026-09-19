@@ -2,26 +2,10 @@
 <!--
   sitemap.xml — Logic Indicators
   =============================================================================
-  Sitemap estático con TODAS las URLs públicas del sitio. El sitio es
-  bilingüe (en/es) pero ambos idiomas viven en el mismo path (el usuario
-  cambia el idioma por UI, no por URL). Por eso cada <url> tiene su
-  par <xhtml:link rel="alternate" hreflang="..."> en ambos idiomas,
-  más un <xhtml:link rel="alternate" hreflang="x-default"> apuntando
-  al idioma por defecto (en).
-
-  Si en el futuro agregás una página pública, agregala acá con la
-  misma estructura (incluyendo los <xhtml:link> en los 3 hreflang).
-
-  Cuándo actualizar este archivo:
-    - Cada vez que se agrega una nueva ruta pública.
-    - Si cambia el slug de una ruta existente.
-    - NO es necesario actualizar para cambios de contenido (los
-      indicadores mantienen el mismo slug).
-
-  No incluimos:
-    - /dashboard/* (privado, no debe indexarse)
-    - /login (privado)
-    - /resources/docs (es redirect a /docs/.../logic-footprint, ya cubierto)
+  Sitemap estático con TODAS las URLs públicas del sitio.
+  Soporta indexación bilingüe (en/es) con directrices oficiales de Google:
+    - hreflang="en" y x-default: https://logicindicators.com/...
+    - hreflang="es":             https://logicindicators.com/...?lang=es
   =============================================================================
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -30,184 +14,256 @@
   <!-- HOME -->
   <url>
     <loc>https://logicindicators.com/</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/"/>
   </url>
 
   <!-- INDICATORS (lista) -->
   <url>
     <loc>https://logicindicators.com/indicators</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/indicators"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/indicators"/>
   </url>
 
-  <!-- INDICATORS (detalle por slug) — 7 indicators -->
+  <!-- INDICATORS (detalle por slug) — 9 indicators -->
   <url>
     <loc>https://logicindicators.com/indicators/logic-footprint</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/indicators/logic-footprint"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-footprint"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-footprint?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/indicators/logic-footprint"/>
   </url>
   <url>
     <loc>https://logicindicators.com/indicators/logic-footer</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/indicators/logic-footer"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-footer"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-footer?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/indicators/logic-footer"/>
   </url>
   <url>
     <loc>https://logicindicators.com/indicators/logic-profile</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/indicators/logic-profile"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-profile"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-profile?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/indicators/logic-profile"/>
   </url>
   <url>
     <loc>https://logicindicators.com/indicators/logic-composite</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/indicators/logic-composite"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-composite"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-composite?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/indicators/logic-composite"/>
   </url>
   <url>
     <loc>https://logicindicators.com/indicators/logic-bigtrades</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/indicators/logic-bigtrades"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-bigtrades"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-bigtrades?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/indicators/logic-bigtrades"/>
   </url>
   <url>
     <loc>https://logicindicators.com/indicators/logic-analytics</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/indicators/logic-analytics"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-analytics"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-analytics?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/indicators/logic-analytics"/>
   </url>
   <url>
     <loc>https://logicindicators.com/indicators/logic-algorithms</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/indicators/logic-algorithms"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-algorithms"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-algorithms?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/indicators/logic-algorithms"/>
+  </url>
+  <url>
+    <loc>https://logicindicators.com/indicators/logic-depth-chart</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/indicators/logic-depth-chart"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-depth-chart?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/indicators/logic-depth-chart"/>
+  </url>
+  <url>
+    <loc>https://logicindicators.com/indicators/logic-depth-live</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/indicators/logic-depth-live"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/indicators/logic-depth-live?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/indicators/logic-depth-live"/>
   </url>
 
   <!-- PRICING -->
   <url>
     <loc>https://logicindicators.com/pricing</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/pricing"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/pricing"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/pricing?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/pricing"/>
   </url>
 
   <!-- FREE INDICATORS -->
   <url>
     <loc>https://logicindicators.com/resources/free-indicators</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/resources/free-indicators"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/resources/free-indicators"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/resources/free-indicators?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/resources/free-indicators"/>
   </url>
 
   <!-- PRESETS -->
   <url>
     <loc>https://logicindicators.com/resources/presets</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/resources/presets"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/resources/presets"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/resources/presets?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/resources/presets"/>
   </url>
 
   <!-- CONTACT -->
   <url>
     <loc>https://logicindicators.com/contact</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/contact"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/contact?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/contact"/>
   </url>
 
   <!-- LICENSE -->
   <url>
     <loc>https://logicindicators.com/license</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/license"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/license"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/license?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/license"/>
   </url>
 
   <!-- FAQ -->
   <url>
     <loc>https://logicindicators.com/faq</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/faq"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/faq"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/faq?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/faq"/>
   </url>
 
-  <!-- DOCS (página de entrada — redirige a /docs/indicators/logic-footprint) -->
+  <!-- DOCS PÚBLICA (7 guías técnicas) -->
   <url>
     <loc>https://logicindicators.com/docs/indicators/logic-footprint</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/docs/indicators/logic-footprint"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/docs/indicators/logic-footprint"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/docs/indicators/logic-footprint?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/docs/indicators/logic-footprint"/>
+  </url>
+  <url>
+    <loc>https://logicindicators.com/docs/indicators/logic-footer</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/docs/indicators/logic-footer"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/docs/indicators/logic-footer?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/docs/indicators/logic-footer"/>
+  </url>
+  <url>
+    <loc>https://logicindicators.com/docs/indicators/logic-profile</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/docs/indicators/logic-profile"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/docs/indicators/logic-profile?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/docs/indicators/logic-profile"/>
+  </url>
+  <url>
+    <loc>https://logicindicators.com/docs/indicators/logic-composite</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/docs/indicators/logic-composite"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/docs/indicators/logic-composite?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/docs/indicators/logic-composite"/>
+  </url>
+  <url>
+    <loc>https://logicindicators.com/docs/indicators/logic-bigtrades</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/docs/indicators/logic-bigtrades"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/docs/indicators/logic-bigtrades?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/docs/indicators/logic-bigtrades"/>
+  </url>
+  <url>
+    <loc>https://logicindicators.com/docs/indicators/logic-analytics</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/docs/indicators/logic-analytics"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/docs/indicators/logic-analytics?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/docs/indicators/logic-analytics"/>
+  </url>
+  <url>
+    <loc>https://logicindicators.com/docs/indicators/logic-algorithms</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/docs/indicators/logic-algorithms"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/docs/indicators/logic-algorithms?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/docs/indicators/logic-algorithms"/>
   </url>
 
   <!-- LEGAL -->
   <url>
     <loc>https://logicindicators.com/privacy</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/privacy"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/privacy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/privacy?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/privacy"/>
   </url>
   <url>
     <loc>https://logicindicators.com/terms</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/terms"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/terms"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/terms?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/terms"/>
   </url>
 

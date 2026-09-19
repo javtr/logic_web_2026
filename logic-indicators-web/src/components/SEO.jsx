@@ -96,14 +96,18 @@ export const SEO = ({
     finalImageUrl = `${SITE_URL}${resolveImage(image)}`;
   }
 
-  // Hreflang: misma URL para en y es (toggle por UI). Añadimos x-default
-  // apuntando a la versión en (idioma por defecto del sitio).
-  const hreflangLinks = SUPPORTED_LANGUAGES.map((loc) => (
-    <link key={loc} rel="alternate" hrefLang={loc} href={url} />
-  ));
-  hreflangLinks.push(
-    <link key="x-default" rel="alternate" hrefLang="x-default" href={url} />
-  );
+  // URLs por idioma para hreflang y canonical (Google Search Central compliant):
+  // La versión por defecto (en) vive en la URL base; la versión en español vive en ?lang=es.
+  const baseUrl = `${SITE_URL}${path}`;
+  const enUrl = baseUrl;
+  const esUrl = `${baseUrl}?lang=es`;
+  const canonicalUrl = language === 'es' ? esUrl : enUrl;
+
+  const hreflangLinks = [
+    <link key="en" rel="alternate" hrefLang="en" href={enUrl} />,
+    <link key="es" rel="alternate" hrefLang="es" href={esUrl} />,
+    <link key="x-default" rel="alternate" hrefLang="x-default" href={enUrl} />,
+  ];
 
   return (
     <Helmet>
@@ -116,13 +120,10 @@ export const SEO = ({
       <meta name="description" content={finalDescription} />
       {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-      {/* Canonical: versión "oficial" de esta URL. Google la usa para
-          consolidar señales si encuentra la misma página con otros
-          parámetros. */}
-      <link rel="canonical" href={url} />
+      {/* Canonical: versión oficial de esta página según el idioma activo */}
+      <link rel="canonical" href={canonicalUrl} />
 
-      {/* Hreflang i18n (mismo path en ambos idiomas, el usuario cambia
-          por UI — no por subdominio ni prefijo de URL). */}
+      {/* Hreflang i18n conforme a las directrices de Google */}
       {hreflangLinks}
 
       {/* Open Graph — previews en Facebook, LinkedIn, Slack, WhatsApp, Discord, etc. */}
@@ -130,7 +131,7 @@ export const SEO = ({
       <meta property="og:type" content={type} />
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDescription} />
-      <meta property="og:url" content={url} />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={finalImageUrl} />
       <meta property="og:locale" content={OG_LOCALES[language] || OG_LOCALES.en} />
       {/* og:locale:alternate declara los otros locales disponibles */}

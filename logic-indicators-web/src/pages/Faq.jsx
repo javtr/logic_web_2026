@@ -4,6 +4,8 @@
 import { useLanguage } from '../context/languageContext';
 import { SEO } from '../components/SEO';
 import { Accordion } from '../components/Accordion';
+import { FaqJsonLd } from '../components/FaqJsonLd';
+import { BreadcrumbJsonLd } from '../components/BreadcrumbJsonLd';
 
 export const Faq = () => {
   const { t } = useLanguage();
@@ -20,6 +22,13 @@ export const Faq = () => {
         title={t('seo.faq.title')}
         description={t('seo.faq.description')}
         type="website"
+      />
+      <FaqJsonLd items={data.items} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: t('nav.home') || 'Home', path: '/' },
+          { name: data.pageTitle || 'FAQ', path: '/faq' },
+        ]}
       />
       <article className="max-w-3xl mx-auto px-4 md:px-6 pt-32 pb-24 text-text-main">
       {/* Header */}

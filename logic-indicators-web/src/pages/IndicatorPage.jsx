@@ -13,6 +13,8 @@ import { SEO } from '../components/SEO';
 import { getActiveIndicatorIds } from '../data';
 import { resolveImage } from '../data/imageResolver';
 import { IndicatorDetail } from '../components/Indicators/IndicatorDetail';
+import { ProductJsonLd } from '../components/ProductJsonLd';
+import { BreadcrumbJsonLd } from '../components/BreadcrumbJsonLd';
 
 export const IndicatorPage = () => {
   const { slug } = useParams();
@@ -71,6 +73,19 @@ export const IndicatorPage = () => {
         description={indicatorDescription}
         image={imageKey}
         type="product"
+      />
+      <ProductJsonLd
+        name={name}
+        description={indicatorDescription}
+        image={resolveImage(imageKey)}
+        url={`https://logicindicators.com/indicators/${slug}`}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: t('nav.home') || 'Home', path: '/' },
+          { name: t('nav.indicators') || 'Indicators', path: '/indicators' },
+          { name, path: `/indicators/${slug}` },
+        ]}
       />
       <IndicatorDetail
         title={name}

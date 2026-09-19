@@ -46,6 +46,22 @@
 /app/en/order_vp.html           /indicators/logic-profile   301
 /app/*                          /                           301
 
+# ---------- Artículos y Educación legados ----------
+/article/volume-profile-guide   /docs/indicators/logic-profile    301
+/article/futures-trading-guide-1 /docs/indicators/logic-footprint 301
+/article/ninja-trader-guide     /docs/indicators/logic-footprint  301
+/article/mini-micro-futures     /docs/indicators/logic-footprint  301
+/article/wyckoff-method         /docs/indicators/logic-profile    301
+/article                        /docs/indicators/logic-footprint  301
+/article/*                      /docs/indicators/logic-footprint  301
+
+# ---------- Páginas institucionales y utilidades legadas ----------
+/indicator                      /indicators                       301
+/indicator/*                    /indicators                       301
+/policies                       /privacy                          301
+/install                        /docs/indicators/logic-footprint  301
+/edge-analyzer                  /indicators                       301
+
 # ---------- Catch-all SPA ----------
 # Cualquier URL que no matchee los redirects anteriores (ej. /pricing,
 # /indicators/logic-footprint, /dashboard, etc.) se sirve con index.html

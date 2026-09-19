@@ -31,10 +31,17 @@ export const OrganizationJsonLd = () => {
     '@type': 'Organization',
     name: 'Logic Indicators',
     url: SITE_URL,
-    logo: `${SITE_URL}/favicon.svg`,
+    logo: `${SITE_URL}/og-image.jpg`,
+    image: `${SITE_URL}/og-image.jpg`,
     description:
       'Professional order flow, footprint, volume profile, and big trades indicators for NinjaTrader 8.',
     sameAs: SOCIAL_URLS,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      email: 'info@logicindicators.com',
+      contactType: 'customer support',
+      availableLanguage: ['English', 'Spanish'],
+    },
   };
 
   return (

@@ -32,12 +32,20 @@ const LANGUAGE_STORAGE_KEY = 'logic-preferred-language';
 // esto se vuelve a tocar.
 const NON_SPANISH_FALLBACK = 'en';
 
-// Resuelve el idioma inicial con prioridad de 3 niveles.
+// Resuelve el idioma inicial con prioridad de 4 niveles:
+//   1) Query param en la URL (?lang=es o ?lang=en) -> Permite a Googlebot rastrear e indexar cada idioma
+//   2) localStorage['logic-preferred-language'] (decisión explícita del usuario)
+//   3) navigator.language (auto-detección: si es* -> 'es', sino siguiente tier)
+//   4) fallback 'en'
 function getInitialLanguage() {
-  // Tier 1: localStorage. Validamos contra SUPPORTED_LANGUAGES por si
-  // quedo basura de antes o alguien lo edito a mano.
   if (typeof window !== 'undefined') {
     try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang')?.toLowerCase();
+      if (urlLang && SUPPORTED_LANGUAGES.includes(urlLang)) {
+        return urlLang;
+      }
+
       const stored = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
       if (stored && SUPPORTED_LANGUAGES.includes(stored)) {
         return stored;
@@ -47,13 +55,13 @@ function getInitialLanguage() {
     }
   }
 
-  // Tier 2: navegador. startsWith('es') cubre es, es-AR, es-MX, es-CO, etc.
+  // Tier 3: navegador. startsWith('es') cubre es, es-AR, es-MX, es-CO, etc.
   if (typeof navigator !== 'undefined' && navigator.language) {
     const browserLang = navigator.language.toLowerCase();
     if (browserLang.startsWith('es')) return 'es';
   }
 
-  // Tier 3: fallback final.
+  // Tier 4: fallback final.
   return NON_SPANISH_FALLBACK;
 }
 

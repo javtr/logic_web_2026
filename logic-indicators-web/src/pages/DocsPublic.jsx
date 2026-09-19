@@ -19,6 +19,7 @@ import { SEO } from '../components/SEO';
 import { DocsProvider } from '../context/DocsProvider';
 import { useDocs } from '../context/docsContext';
 import { DocsLayout } from '../components/docs';
+import { BreadcrumbJsonLd } from '../components/BreadcrumbJsonLd';
 import {
   DOCS_PUBLIC_STRUCTURE as DOCS_STRUCTURE,
   DOCS_PUBLIC_LABELS as DOCS_LABELS,
@@ -52,6 +53,15 @@ const DocsPublicInner = () => {
         type="article"
         noindex={!doc}
       />
+      {doc && (
+        <BreadcrumbJsonLd
+          items={[
+            { name: t('nav.home') || 'Home', path: '/' },
+            { name: t('nav.docs') || 'Documentation', path: '/docs' },
+            { name: doc.frontmatter?.title || 'Guide', path: `/docs/${slug}` },
+          ]}
+        />
+      )}
       <DocsLayout doc={doc} />
     </>
   );
