@@ -110,15 +110,11 @@
       },
       "tutorial": {
         "title": "How to install indicators in NinjaTrader 8",
-        "intro": "Before we continue with your pack file, let's review the general install process. Every indicator follows these same steps.",
+        "intro": "Before we continue with your product file, let's review the general install process. Every indicator follows these same steps.",
         "substeps": [
           {
             "title": "Download the file to your computer",
-            "description": "Save the file in a folder you can remember — your Desktop is fine. You will need it in the next step."
-          },
-          {
-            "title": "Install the pack in NinjaTrader 8",
-            "description": "Open NinjaTrader 8, then follow the two steps shown in the screenshots below to import the file you just downloaded. Each image shows one step of the process — first the import action, then the confirmation dialog.",
+            "description": "Save the file in a folder you can remember — your Desktop is fine. You will need it in the next step.",
             "images": [
               "installation_ninja_01",
               "installation_ninja_02"
@@ -127,6 +123,10 @@
               "Step 1 of 2",
               "Step 2 of 2"
             ]
+          },
+          {
+            "title": "Install the product in NinjaTrader 8",
+            "description": "Open NinjaTrader 8, then follow the two steps shown in the screenshots below to import the file you just downloaded. Each image shows one step of the process — first the import action, then the confirmation dialog."
           },
           {
             "title": "Wait for the confirmation, then restart NinjaTrader 8",
@@ -138,8 +138,8 @@
         "importantLabel": "Important"
       },
       "products": {
-        "title": "Download your pack",
-        "description": "Click the button below to download your pack. Then follow the install steps in NinjaTrader 8 shown in the previous tutorial. The licensing for the indicators you have active is validated on the backend, so you will only be able to use the ones you bought."
+        "title": "Download your product",
+        "description": "Click the button below to download your product. Then follow the install steps in NinjaTrader 8 shown in the previous tutorial."
       },
       "success": {
         "title": "Restart NinjaTrader 8",
@@ -149,7 +149,7 @@
     },
     "stepMessages": {
       "products": {
-        "completeLabel": "I have installed the pack in NinjaTrader 8",
+        "completeLabel": "I have installed the product in NinjaTrader 8",
         "completeHint": "Check this box to confirm you finished before moving on.",
         "completedLabel": "Install confirmed",
         "footerLabel": "I installed it",
