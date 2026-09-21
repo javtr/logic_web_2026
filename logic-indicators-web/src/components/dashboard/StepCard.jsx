@@ -82,11 +82,11 @@ const TutorialSubStep = ({ number, substep, importantLabel }) => {
             vertical de sobra, así que las imágenes se renderizan más
             grandes. En el resto de pasos no hay imágenes. */}
         {hasImages && (
-          <div className="flex flex-col sm:flex-row gap-3 pt-2 items-center justify-center">
+          <div className="flex flex-col md:flex-row flex-wrap gap-3 pt-2 items-center justify-center">
             {substep.images.map((imgKey, i) => (
               <div
                 key={imgKey}
-                className="relative w-full sm:w-auto sm:max-w-[480px] bg-dark-800 border border-dark-700 rounded-lg overflow-hidden"
+                className={`relative w-full ${substep.images.length === 3 ? 'md:w-[calc(33.333%-0.5rem)] md:max-w-none' : 'sm:w-auto sm:max-w-[480px]'} bg-dark-800 border border-dark-700 rounded-lg overflow-hidden`}
               >
                 {hasImageLabels && substep.imageLabels[i] && (
                   <span className="absolute top-1.5 left-1.5 z-10 px-1.5 py-0.5 bg-dark-900/85 backdrop-blur-sm text-[10px] font-bold text-text-main rounded border border-dark-700">

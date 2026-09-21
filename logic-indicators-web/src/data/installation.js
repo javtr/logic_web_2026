@@ -42,7 +42,7 @@
 //     }
 // =============================================================================
 
-import { getDownloadFiles } from './downloads';
+import { getDownloadFiles } from './downloads.js';
 
 /**
  * Tipos de paso. Constantes para evitar strings sueltos.
@@ -67,10 +67,21 @@ export const generateInstallationSteps = (productos) => {
 
   const steps = [];
 
-  // 1) Tutorial: SIEMPRE el primer paso. Enseña el proceso general de
-  //    instalar indicadores en NinjaTrader 8. Sin download — el contenido
-  //    es 100% i18n (substeps array). Las imagenes se referencian por
-  //    key dentro del imageResolver.
+  // 1) Desinstalación previa: explica cómo remover versiones anteriores en NinjaTrader 8
+  //    (remover todos los archivos que empiezan por LOF). Si es primera instalación,
+  //    el usuario puede avanzar libremente con Next.
+  steps.push({
+    id: 'uninstall',
+    type: STEP_TYPE.TUTORIAL,
+    titleKey: 'dashboard.installation.steps.uninstall.title',
+    descriptionKey: 'dashboard.installation.steps.uninstall.intro',
+    substepsKey: 'dashboard.installation.steps.uninstall.substeps',
+    closingNoteKey: 'dashboard.installation.steps.uninstall.closingNote',
+    importantLabelKey: 'dashboard.installation.steps.uninstall.importantLabel',
+  });
+
+  // 2) Tutorial: cómo instalar indicadores en NinjaTrader 8. Sin download —
+  //    el contenido es 100% i18n (substeps array).
   steps.push({
     id: 'tutorial',
     type: STEP_TYPE.TUTORIAL,

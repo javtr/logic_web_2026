@@ -75,6 +75,38 @@
       "versionLabel": "Current version"
     },
     "steps": {
+      "uninstall": {
+        "title": "Uninstall any previous version in NinjaTrader 8",
+        "intro": "If you already have a previous version of the indicators installed on your system, you must uninstall it first before proceeding to avoid library conflicts or errors in NinjaTrader 8. If this is your first time installing, click Next.",
+        "substeps": [
+          {
+            "title": "Open NinjaTrader 8 and open the uninstall tool",
+            "description": "Open NinjaTrader 8 and follow the three steps shown in the screenshots below to remove previous assemblies. In the top menu, go to Tools (Step 1) and click on Remove NinjaScript Assembly... (Step 2).",
+            "images": [
+              "uninstall_ninja_01",
+              "uninstall_ninja_02",
+              "uninstall_ninja_03"
+            ],
+            "imageLabels": [
+              "Step 1 of 3",
+              "Step 2 of 3",
+              "Step 3 of 3"
+            ]
+          },
+          {
+            "title": "Remove all files starting with LOF",
+            "description": "In the 'Remove NinjaScript Assembly' window (Step 3), you must select and remove ALL files and assemblies that begin with the letters LOF (for example: LOFData, LOFDepthData, LOFDepthEngine, LOFEngine, LOF_FullPack, LOF_BasicPack, LOF_DepthPack, etc.). Select them and click the Remove button to completely delete them.",
+            "important": true
+          },
+          {
+            "title": "Restart NinjaTrader 8 if you uninstalled files",
+            "description": "If you removed files from a previous version, close NinjaTrader 8 completely and reopen it before installing the new package. This restart ensures NinjaTrader 8 memory is clean and free of conflicts.",
+            "important": true
+          }
+        ],
+        "closingNote": "Note: If this is your first time installing Logic Indicators and you do not have any previous version in NinjaTrader 8, you do not need to do anything here. Click Next to proceed directly to the installation process.",
+        "importantLabel": "Important"
+      },
       "tutorial": {
         "title": "How to install indicators in NinjaTrader 8",
         "intro": "Before we continue with your pack file, let's review the general install process. Every indicator follows these same steps.",

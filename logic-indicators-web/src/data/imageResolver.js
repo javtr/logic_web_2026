@@ -51,6 +51,9 @@ import depthPackImage from '../assets/indicators/depth_pack.png';
 // en el schema del step tipo 'tutorial' en installation.js).
 import ninjaInstall01Image from '../assets/installation/ninja_install_01.png';
 import ninjaInstall02Image from '../assets/installation/ninja_install_02.png';
+import uninstall01Image from '../assets/installation/uninstall_01.png';
+import uninstall02Image from '../assets/installation/uninstall_02.png';
+import uninstall03Image from '../assets/installation/uninstall_03.png';
 import downloadPresetImage from '../assets/installation/download_preset.png';
 import loadPresetImage from '../assets/installation/load_preset.png';
 import configurePresetImage from '../assets/installation/configure_preset.png';
@@ -285,6 +288,9 @@ export const imageMap = {
   // a las imagenes desde el sub-step 2 ("Install the indicators in NT8").
   installation_ninja_01: ninjaInstall01Image,
   installation_ninja_02: ninjaInstall02Image,
+  uninstall_ninja_01: uninstall01Image,
+  uninstall_ninja_02: uninstall02Image,
+  uninstall_ninja_03: uninstall03Image,
   machine_id: machineIdImage,
 
   
