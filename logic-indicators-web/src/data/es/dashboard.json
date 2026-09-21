@@ -71,7 +71,8 @@
       "finish": "Finalizar",
       "close": "Cerrar",
       "closeAriaLabel": "Cerrar el proceso de instalación",
-      "downloadButton": "Descargar"
+      "downloadButton": "Descargar",
+      "versionLabel": "Versión actual"
     },
     "steps": {
       "tutorial": {

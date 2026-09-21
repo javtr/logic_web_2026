@@ -71,7 +71,8 @@
       "finish": "Finish",
       "close": "Close",
       "closeAriaLabel": "Close the installation process",
-      "downloadButton": "Download"
+      "downloadButton": "Download",
+      "versionLabel": "Current version"
     },
     "steps": {
       "tutorial": {

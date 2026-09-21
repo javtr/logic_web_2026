@@ -29,10 +29,10 @@ import { Button } from '../Button';
 import { ZoomableImage } from '../ImageLightbox';
 import { resolveImage } from '../../data/imageResolver';
 
-// Sub-componente FileCard: una card con el nombre del archivo como título
-// y el botón de descarga centrado abajo. En el modelo actual, el paso
-// de products siempre tiene 1 sola card (el pack asignado).
-const FileCard = ({ name, url, downloadLabel }) => (
+// Sub-componente FileCard: una card con el nombre del archivo como título,
+// el botón de descarga centrado y un indicador sutil de la versión actual abajo.
+// En el modelo actual, el paso de products siempre tiene 1 sola card (el pack asignado).
+const FileCard = ({ name, url, version, downloadLabel, versionLabel }) => (
   <div className="flex flex-col items-center gap-2.5 p-3.5 bg-dark-900 border border-dark-700 rounded-xl">
     <h4 className="text-base font-bold text-text-main text-center">
       {name}
@@ -48,6 +48,12 @@ const FileCard = ({ name, url, downloadLabel }) => (
         <span>{downloadLabel}</span>
       </Button>
     </a>
+    {version && (
+      <div className="flex items-center gap-1.5 text-xs text-text-muted mt-0.5">
+        <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400" />
+        <span>{versionLabel || 'Versión actual'}: <strong className="text-text-main font-mono">v{version}</strong></span>
+      </div>
+    )}
   </div>
 );
 
@@ -113,6 +119,7 @@ const TutorialSubStep = ({ number, substep, importantLabel }) => {
 
 export const StepCard = ({ step, t, isCompleted = false, onComplete }) => {
   const downloadLabel = t('dashboard.installation.wizard.downloadButton') || 'Download';
+  const versionLabel = t('dashboard.installation.wizard.versionLabel') || 'Versión actual';
 
   // ============================================================
   // TUTORIAL: primer paso, siempre. Lista de sub-pasos. Sin
@@ -213,7 +220,9 @@ export const StepCard = ({ step, t, isCompleted = false, onComplete }) => {
               key={file.key}
               name={file.name}
               url={file.url}
+              version={file.version}
               downloadLabel={downloadLabel}
+              versionLabel={versionLabel}
             />
           ))}
         </div>

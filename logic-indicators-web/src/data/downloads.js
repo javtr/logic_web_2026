@@ -48,22 +48,26 @@ const BASIC_QUALIFIER_INDICATORS = new Set([
   'LOGIC_COMPOSITE',
 ]);
 
+// Version actual del software (se aplica a todos los packs).
+// Para subir de version en el futuro, solo actualiza esta constante.
+export const SOFTWARE_VERSION = '3.0.3';
+
 // Catalogo de los 3 packs descargables (URL + display + key).
 // El `key` se usa como id interno en el wizard (no se muestra al usuario).
 export const DISTRIBUTION_PACKS = {
   basic: {
-    url: 'https://download.logicindicators.com/LOF_3_0/LOF_BasicPack_3.0.2.zip',
-    displayName: 'Logic Pack V3.0.2',
+    url: 'https://download.logicindicators.com/LOF_3_0/LOF_BasicPack.zip',
+    displayName: 'Logic Pack',
     key: 'pack-basic',
   },
   full: {
-    url: 'https://download.logicindicators.com/LOF_3_0/LOF_FullPack_3.0.2.zip',
-    displayName: 'Logic Full Pack V3.0.2',
+    url: 'https://download.logicindicators.com/LOF_3_0/LOF_FullPack.zip',
+    displayName: 'Logic Full Pack',
     key: 'pack-full',
   },
   depth: {
-    url: 'https://download.logicindicators.com/LOF_3_0/LOF_DepthPack_3.0.2.zip',
-    displayName: 'Logic Depth Pack V3.0.2',
+    url: 'https://download.logicindicators.com/LOF_3_0/LOF_DepthPack.zip',
+    displayName: 'Logic Depth Pack',
     key: 'pack-depth',
   },
 };
@@ -79,9 +83,9 @@ const LICENSED_DISPLAY_NAMES = {
   'LOGIC_ANALYTICS':     'Logic Analytics',
   'LOGIC_ALGORITHMS':    'Logic Algorithms',
   'LOGIC_COMPOSITE':     'Logic Composite',
-  'LOGIC_PACK_BASICO':   'Logic Pack V3.0.2',
-  'LOGIC_PACK_DEPTH':    'Logic Depth Pack V3.0.2',
-  'LOGIC_PACK_FULL':     'Logic Full Pack V3.0.2',
+  'LOGIC_PACK_BASICO':   'Logic Pack',
+  'LOGIC_PACK_DEPTH':    'Logic Depth Pack',
+  'LOGIC_PACK_FULL':     'Logic Full Pack',
 };
 
 /**
@@ -133,7 +137,12 @@ export const getDownloadFiles = (productos) => {
   const packKey = getAssignedPack(productos);
   if (!packKey) return [];
   const pack = DISTRIBUTION_PACKS[packKey];
-  return [{ url: pack.url, name: pack.displayName, key: pack.key }];
+  return [{
+    url: pack.url,
+    name: pack.displayName,
+    key: pack.key,
+    version: SOFTWARE_VERSION,
+  }];
 };
 
 /**
