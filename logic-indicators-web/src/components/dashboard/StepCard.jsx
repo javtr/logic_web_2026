@@ -24,7 +24,7 @@
 //   - success py-3 (antes py-6)
 // =============================================================================
 
-import { Download, Power, AlertCircle, Check } from 'lucide-react';
+import { Download, Power, AlertCircle, Check, Info } from 'lucide-react';
 import { Button } from '../Button';
 import { ZoomableImage } from '../ImageLightbox';
 import { resolveImage } from '../../data/imageResolver';
@@ -132,10 +132,16 @@ export const StepCard = ({ step, t, isCompleted = false, onComplete }) => {
 
     return (
       <div className="flex flex-col gap-3.5">
-        <div className="space-y-1.5">
+        <div className="space-y-2.5">
           <h3 className="text-lg md:text-xl font-bold text-text-main leading-tight">
             {t(step.titleKey)}
           </h3>
+          {step.noticeKey && t(step.noticeKey) && (
+            <div className="flex items-start gap-2.5 p-3 md:p-3.5 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-300 text-xs md:text-sm leading-relaxed">
+              <Info size={18} className="shrink-0 mt-0.5 text-emerald-400" />
+              <span className="font-medium">{t(step.noticeKey)}</span>
+            </div>
+          )}
           <p className="text-sm text-text-muted leading-relaxed">
             {t(step.descriptionKey)}
           </p>

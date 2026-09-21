@@ -74,6 +74,7 @@ export const generateInstallationSteps = (productos) => {
     id: 'uninstall',
     type: STEP_TYPE.TUTORIAL,
     titleKey: 'dashboard.installation.steps.uninstall.title',
+    noticeKey: 'dashboard.installation.steps.uninstall.notice',
     descriptionKey: 'dashboard.installation.steps.uninstall.intro',
     substepsKey: 'dashboard.installation.steps.uninstall.substeps',
     closingNoteKey: 'dashboard.installation.steps.uninstall.closingNote',

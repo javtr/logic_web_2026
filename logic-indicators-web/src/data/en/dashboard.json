@@ -77,7 +77,8 @@
     "steps": {
       "uninstall": {
         "title": "Uninstall any previous version in NinjaTrader 8",
-        "intro": "If you already have a previous version of the indicators installed on your system, you must uninstall it first before proceeding to avoid library conflicts or errors in NinjaTrader 8. If this is your first time installing, click Next.",
+        "notice": "If this is your first time installing Logic Indicators and you do not have any previous version in NinjaTrader 8, you do not need to do anything here. Click Next to proceed directly to the installation process.",
+        "intro": "If you already have a previous version of the indicators installed on your system, you must uninstall it first before proceeding to avoid library conflicts or errors in NinjaTrader 8. Follow the steps shown below:",
         "substeps": [
           {
             "title": "Open NinjaTrader 8 and open the uninstall tool",
@@ -104,7 +105,7 @@
             "important": true
           }
         ],
-        "closingNote": "Note: If this is your first time installing Logic Indicators and you do not have any previous version in NinjaTrader 8, you do not need to do anything here. Click Next to proceed directly to the installation process.",
+        "closingNote": "Once the previous version is uninstalled and NinjaTrader 8 has been restarted, click Next to proceed to the installation tutorial.",
         "importantLabel": "Important"
       },
       "tutorial": {
