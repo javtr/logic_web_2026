@@ -27,6 +27,7 @@ import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
 import { ScrollToTopButton } from './components/ScrollToTopButton';
 import { HelpWidget } from './components/HelpWidget';
+import { CookieBanner } from './components/CookieBanner';
 import { PrivateRoute } from './components/PrivateRoute';
 import { PageLoader } from './components/PageLoader';
 
@@ -71,6 +72,7 @@ function App() {
         <ScrollToTop />
         <ScrollToTopButton />
         <HelpWidget />
+        <CookieBanner />
         <Suspense fallback={<PageLoader />}>
           <Routes>
             {/* RUTAS PÚBLICAS (con navbar + footer) */}

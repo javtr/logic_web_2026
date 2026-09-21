@@ -35,6 +35,7 @@ import enIndividualPricing from './en/individualPricing.json';
 import enCommon from './en/common.json';
 import enPresets from './en/presets.json';
 import enLicense from './en/license.json';
+import enCookies from './en/cookies.json';
 
 import esNav from './es/nav.json';
 import esHero from './es/hero.json';
@@ -61,6 +62,7 @@ import esIndividualPricing from './es/individualPricing.json';
 import esCommon from './es/common.json';
 import esPresets from './es/presets.json';
 import esLicense from './es/license.json';
+import esCookies from './es/cookies.json';
 
 export const SUPPORTED_LANGUAGES = ['en', 'es'];
 export const DEFAULT_LANGUAGE = 'en';
@@ -131,6 +133,7 @@ const dictionaries = {
     common: enCommon,
     presets: enPresets,
     license: enLicense,
+    cookies: enCookies,
   },
   es: {
     nav: esNav,
@@ -158,6 +161,7 @@ const dictionaries = {
     common: esCommon,
     presets: esPresets,
     license: esLicense,
+    cookies: esCookies,
   },
 };
 
