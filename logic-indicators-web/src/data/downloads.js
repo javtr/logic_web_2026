@@ -50,7 +50,7 @@ const BASIC_QUALIFIER_INDICATORS = new Set([
 
 // Version actual del software (se aplica a todos los packs).
 // Para subir de version en el futuro, solo actualiza esta constante.
-export const SOFTWARE_VERSION = '3.0.3';
+export const SOFTWARE_VERSION = '3.0.2';
 
 // Catalogo de los 3 packs descargables (URL + display + key).
 // El `key` se usa como id interno en el wizard (no se muestra al usuario).
