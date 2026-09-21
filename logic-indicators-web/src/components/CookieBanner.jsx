@@ -82,7 +82,7 @@ export const CookieBanner = () => {
         }
       `}
     >
-      <div className="bg-dark-900/95 backdrop-blur-md border border-dark-700/90 shadow-2xl rounded-2xl p-4 sm:p-5 flex flex-col gap-3.5">
+      <div className="bg-dark-900/95 backdrop-blur-md border border-dark-700/90 shadow-2xl rounded-2xl p-4 sm:p-5 flex flex-col gap-3.5 max-h-[90vh] overflow-y-auto">
         {/* Cabecera con icono */}
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-accent-primary/15 text-accent-primary flex items-center justify-center shrink-0">
@@ -126,3 +126,4 @@ export const CookieBanner = () => {
     </aside>
   );
 };
+
