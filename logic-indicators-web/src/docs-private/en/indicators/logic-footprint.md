@@ -1,114 +1,155 @@
 ---
 title: Logic Footprint
-description: Advanced Order Flow chart showing Bid/Ask volume, Delta, and profiles inside every single candle.
+description: Technical manual and complete reference for bar-by-bar multi-column Order Flow charts on NinjaTrader 8.
 order: 1
 category: indicators
 ---
 
 # Logic Footprint
 
-> If you haven't installed the Logic Indicators suite yet, please check the [Installation Guide](/docs/installation) first.
+> **The flagship microstructural Order Flow chart for NinjaTrader 8.**  
+> Reveals the exact mathematical distribution of aggressive buying (Ask) and selling (Bid) orders executed at every price level, stacked diagonal imbalances, and intra-bar profiles with a modular up-to-3-column architecture per candle.
 
-The **Logic Footprint** is the core of the Order Flow suite. Instead of looking at a traditional candlestick that hides how trading actually occurred, the Footprint looks *inside* the candle to show you the exact distribution of aggressive market buyers (Ask) versus aggressive market sellers (Bid) at every single price level.
+---
 
-By visualizing the internal auction process, traders can spot institutional absorption, aggressive trapped traders, and true market imbalances in real-time, completely removing the guesswork from price action.
+## 1. On-Chart Visual Components and Interpretation
 
-## Core Components
+The indicator breaks down internal candle anatomy through the following high-precision visual elements:
 
-The Logic Footprint is designed around a highly flexible "Flex Grid" system. A single candle can display up to 3 independent data columns side-by-side:
+### 1. Bid x Ask Numerical Cells (Diagonal Auction Match)
+* **What it plots:** Two numerical figures separated by a cross or space at every price tick of the candle.
+  * The number on the left represents contracts executed at the Bid (aggressive market sellers hitting passive liquidity).
+  * The number on the right represents contracts executed at the Ask (aggressive market buyers lifting passive liquidity).
+* **Interpretation:** The auction is evaluated diagonally: comparing the Ask at a given price against the Bid of the price tick directly below.
 
-1. **Thin Candle (Spine):** A minimalist representation of the traditional Open/High/Low/Close candlestick, ensuring you never lose track of basic price action.
+### 2. Diagonal Imbalances
+* **What it plots:** When Ask volume exceeds the opposite diagonal Bid by the configured multiplier (e.g., 3.1:1 or 310%), the number glows **Bright Green** (buying imbalance). When Bid volume exceeds the upper diagonal Ask, it glows **Bright Red** (selling imbalance).
+* **Stacked Imbalances:** The occurrence of 3 or more consecutive imbalances in the same direction marks an institutional aggressive thrust that functions as support or resistance upon future re-tests.
 
-2. **Data Columns (1, 2, and 3):** You can stack up to three columns per candle. For example, Column 1 can show text for **BidAsk**, Column 2 can draw a **ProfileRight** showing Delta, and Column 3 can show total **Volume**.
+### 3. Intra-Candle Point of Control (POC)
+* **What it plots:** A solid bounding box (default Yellow or Gold) enclosing the exact price tick where the highest volume or delta was transacted within that candle.
+* **Interpretation:**
+  * *POC at the base of a green candle:* Confirms institutional support driving the move.
+  * *POC at the top wick of a green candle:* Warns of passive limit absorption; aggressive buyers were stopped by institutional limit sell orders (potential bull trap).
 
-3. **Imbalances:** Highlights specific price levels where buyers overwhelmingly overpowered sellers diagonally (or vice-versa).
+### 4. Embedded Profile Mode (`ProfileLeft` / `ProfileRight`)
+* **What it plots:** Replaces rectangular numerical boxes with horizontal histogram bars proportional to volume or delta at that tick.
+* **Interpretation:** Transforms the candle into an intra-bar micro-profile to evaluate candle shape at a glance: "D" shape (balance), "P" shape (short covering/trend high), or "b" shape (long liquidation/trend low).
 
-4. **Point of Control (POC):** Draws a distinct border around the price level with the highest activity (Volume, Delta, or Trades) inside that specific candle.
+### 5. Thermal Heatmaps
+* **What it plots:** 5-tier color gradients applied to cell backgrounds based on volume concentration or delta intensity.
+* **Interpretation:** Instantly highlights where primary liquidity clustered without needing to read every individual digit.
 
-5. **Zoomed Out View (LOD):** A dynamic Level of Detail system. As you zoom out your chart (squishing the candles together), the Footprint text automatically morphs into a Mini-Volume Profile, and if you zoom out further, it turns back into standard candlesticks to prevent screen clutter.
+### 6. Dynamic Level of Detail (LOD Zoom Out)
+* **What it plots:** When zooming out, numbers are smoothly removed to prevent visual clutter, displaying clean mini-profiles. Zooming out further smoothly renders crisp, solid candlesticks.
 
-## Interactive Tools
+---
 
-Logic Footprint is designed to be completely automatic. It does not require manual drawing buttons. Instead, it interacts directly with your mouse wheel:
+## 2. Interactive Tools and Toolbar Controls
 
-- **Dynamic Zooming:** Simply scroll your mouse wheel to zoom in and out. The indicator will fluidly transition between full Footprint numbers, visual volume profiles, and zoomed-out standard candles without needing to touch the settings.
+* **`[VP]` Button on the Master Toolbar (`_LOF Control Panel`):**
+  * Clicking `[VP]` instantly toggles between full numerical footprint (*Bid x Ask*) and *Intra-Bar Volume Profile* mode.
+  * Enables seamless transitions from micro-numerical analysis to rapid structural shape reading with a single touch.
+* **Dynamic Intelligent Zoom:**
+  * Utilizing mouse wheel or time-scale adjustments automatically prompts the LOD engine to adapt visual density, ensuring 60 FPS responsiveness at all times.
 
-## Configuration Settings
+---
 
-### 1. General Settings
+## 3. Configuration Settings (Parameter-by-Parameter Reference)
 
-- **Tick Multiplier:** Groups price levels together. For example, in the ES (S&P 500), setting this to **4** will group 4 ticks (1 full point) into a single row, drastically reducing noise and making the footprint easier to read.
+### Group: General Settings
+* **`Instance Name`** *(String | Default: "LOF_FootPrint")*: Unique identifier in the suite.
+* **`Instance Color`** *(Brush | Default: DodgerBlue)*: Color label in the master toolbar.
+* **`Enable Indicator`** *(Bool | Default: True)*: Master toggle for visual rendering.
+* **`Tick Data Mode`** *(Enum: BidAsk, UpDownTick | Default: BidAsk)*: Always maintain on `BidAsk` for genuine tick-by-tick order flow processing.
+* **`Tick Multiplier`** *(Int | Default: 1 | Range: 1 to 20)*: Aggregates contiguous ticks into a single price row.  
+  * *Recommendations:* `1` for ES, Crude Oil, or Treasuries; `2` to `4` for NQ to compact vertical scaling and enhance readability.
+* **`Zero-Lag Engine Mode`** *(Enum: Disabled, Smooth, Balanced, MaxPerformance | Default: Disabled)*: Frame rate optimization cadence.
+* **`Layer Mode`** *(Enum: BehindPrice, Normal, TopMost | Default: Normal)*: Graphical z-order placement.
 
-- **Zero-Lag Engine Mode:** Controls the graphic refresh rate. Options are **Smooth**, **Balanced**, **Max Performance**, or **Disabled** (real-time 60 FPS). Use **Balanced** for optimal performance on heavy charts.
+### Groups: Column 1, Column 2, and Column 3 (Modular Columns)
+* **`Enable Column`** *(Bool | Default: True on Col 1 & 2 / False on Col 3)*: Enables or disables each of the 3 columns per candle.
+* **`Column Width (%)`** *(Int | Default: 50 on Col 1 & 2)*: Candle width allocation among active columns.
+* **`Column Separation Margin`** *(Int | Default: 2)*: Pixel spacing between adjacent columns.
+* **`Text Value Type`** *(Enum: None, Volume, Trades, BidAsk, Delta, DeltaPct, Bid, Ask | Default: Delta on Col 1 / BidAsk on Col 2)*:  
+  Defines which numerical metric prints in the cell.
+* **`Text Alignment`** *(Enum: Left, Center, Right | Default: Right on Col 1 / Center on Col 2)*: Typography alignment within the cell.
+* **`Cell Type`** *(Enum: Full, ProfileLeft, ProfileRight | Default: ProfileRight on Col 1 / Full on Col 2)*:
+  * `Full`: Rectangular bounding box filling the tick slot.
+  * `ProfileLeft / ProfileRight`: Horizontal histogram bar growing toward center.
+* **`Cell Profile Metric`** *(Enum: Volume, Delta, DeltaPct, Trades, Bid, Ask)*: Data used to size profile bar width.
+* **`Cell Color Type`** *(Enum: Delta, BidColor, AskColor, Custom, Heatmaps)*: Background coloring scheme.
+* **`Cell Opacity`** *(Enum: Volume, Delta, DeltaPct, Trades, None)*: Regulates cell transparency based on metric density.
+* **`Min / Max Opacity (%)`** *(Int | Default: 10% to 100%)*: Transparency limits.
+* **`POC Type`** *(Enum: Volume, Metric, None | Default: Volume on Col 2)*: Selects Point of Control calculation metric.
+* **`POC Color / Border Thickness`** *(Default: Yellow / 2f)*: Visual style of the POC boundary.
+* **`Minimum Filter (Hide Below)`** *(Int | Default: 0)*: Conceals data in cells falling below this volume filter.
 
-### 2. Column Settings (1, 2, and 3)
+### Group: Imbalances (Diagonal Ratio & Net Difference)
+* **`Enable Ratio Imbalances`** *(Bool | Default: True)*: Activates diagonal multiplication imbalance detection.
+* **`Imbalance Ratio (x:1)`** *(Double | Default: 3.1 | Range: 2.5 to 4.0)*: Required multiplier (e.g., `3.1` requires buying volume to exceed diagonal selling by 310%).
+* **`Min Volume (Ratio)`** *(Int | Default: 10)*: Minimum contracts required to qualify for imbalance evaluation.  
+  * *Recommendations:* ES `80` to `150`; NQ `15` to `30`.
+* **`Imbalance Color Buys (Ask) / Sells (Bid)`** *(Brush | Default: Lime / Red)*: Colors for imbalance numbers.
+* **`Enable Difference Imbalances`** *(Bool | Default: True)*: Evaluates imbalances by absolute contract subtraction ($\text{Ask} - \text{Bid}_{\text{diagonal}}$).
+* **`Net Difference (Subtraction)`** *(Double | Default: 100)*: Net contracts required.
+* **`Difference Color Buys / Sells`** *(Default: Cyan / DarkOrange)*: Visual colors for difference imbalances.
 
-Each of the 3 columns has identical, independent settings so you can build your perfect footprint:
+### Group: Relative Maximum Value (Heatmap Normalization)
+* **`Scale Mode (Relative)`** *(Enum: Bar, CustomSession, Visible, AllData, Manual | Default: Bar)*:
+  * `Bar`: Normalizes color and profile bars against the peak volume of that specific candle.
+  * `CustomSession`: Normalizes against the highest volume recorded during configured session hours.
+  * `Visible`: Normalizes against candles currently visible on screen.
+  * `Manual`: Normalizes against static user-defined limits.
+* **`Scale Intensity (%)`** *(Int | Default: 100)*: Color gradient sensitivity.
 
-- **Enable Column:** Turns the column on or off (Column 1 is always on).
+### Heatmap Groups: (Volume, Delta, Ask, Bid)
+* Each group includes **5 configurable thermal tiers** (Level 1 minimum to Level 5 maximum) to progressively shade cell backgrounds based on contract concentration.
 
-- **Text Value Type:** What numbers to display. Choose between **BidAsk**, **Volume**, **Delta**, **DeltaPct**, **Trades**, **Bid**, **Ask**, or **None**.
+### Group: Texts (Typography & Contrast)
+* **`Base Text Size`** *(Int | Default: 13)*: Maximum font size.
+* **`Auto-Contrast`** *(Bool | Default: True)*: Automatically flips number font between black and white based on cell background darkness.
+* **`Abbreviate (k, M)`** *(Bool | Default: True)*: Abbreviates large figures (e.g., `1.5k` instead of `1500`).
+* **`Text Internal Margin`** *(Int | Default: 2)*: Padding preventing text from touching cell edges.
 
-- **Cell Type:** How to draw the background shape. **Full** fills the entire cell box. **ProfileLeft** or **ProfileRight** draws horizontal histogram bars inside the candle.
+### Group: Zoomed Out View (Adaptive LOD)
+* **`Auto Candle Width`** *(Bool | Default: True)*: Smoothly adjusts candle slot width when zooming.
+* **`Threshold to Hide Texts`** *(Int | Default: 60)*: Pixel distance between bars below which numbers are hidden.
+* **`Footprint to Profile Threshold`** *(Int | Default: 40)*: Pixel width below which candles transition to mini volume profiles.
+* **`Profile to Bars Threshold`** *(Int | Default: 20)*: Pixel width below which profiles collapse into standard candlesticks.
+* **`Bullish / Bearish / Doji Candle Colors`** *(Default: Lime / Red / Gray at 70% opacity)*: Candlestick colors for wide zoom-out views.
 
-- **Cell Color Type:** Defines how the cell is colored. **HeatmapVolume** colors it based on intensity. **Delta** colors it green/red based on who won that level. **Custom** uses a solid flat color.
+---
 
-- **Cell Opacity:** Makes high-volume nodes darker and low-volume nodes highly transparent.
+## 4. Best Practices and Pro Trading Strategies
 
-- **POC Type:** Highlights the maximum node of the candle. Can be based on **Volume** or the **Metric** currently displayed in the column.
+### A. Reading Stacked Imbalances
+* When **3 or more consecutive buying imbalances (Green)** print during a breakout candle, that price block marks institutional aggression.
+* **Execution Strategy:** Avoid chasing price at candle extremes. Await a technical pullback testing the stacked imbalance zone. If selling delta dries up upon re-test and price prints a rejection, enter long with a protective stop placed just below the lowest imbalance level.
 
-### 3. Relative Maximum Value (Scale Mode)
+### B. Absorption Setups at Candle Extremes
+* **Ceiling Absorption Trap (Buying Absorption):**
+  * Observe a bullish candle sporting an upper wick.
+  * At the peak price tick, heavy buying volume appears (e.g., `500` on Ask), yet price fails to push higher and the lower tick closes with a selling imbalance.
+  * The **candle POC is trapped at the extreme high**.
+  * **Interpretation:** Breakout buyers lifted the offer aggressively but were completely absorbed by passive limit sell orders. High-probability short reversal trigger.
+* **Finished vs. Unfinished Auctions:**
+  * When a candle wick extreme prints a zero on the opposing side (e.g., `0 x 85`), the auction completed: no participant was willing to bid higher. This serves as an objective structural ceiling for Stop Loss placement.
 
-This critical section defines how the indicator calculates the "Intensity" (Heatmap/Opacity) of the colors:
+### C. Recommended Footprint Settings by Instrument
 
-- **Scale Mode (Relative):**
+| Parameter | E-mini S&P 500 (`ES`) | E-mini Nasdaq (`NQ`) | Crude Oil (`CL`) | Gold (`GC`) |
+| :--- | :--- | :--- | :--- | :--- |
+| **`Tick Multiplier`** | `1` tick (0.25 pt) | `2` to `4` ticks (0.50 - 1.0 pt) | `1` tick (0.01) | `1` tick (0.10) |
+| **`Imbalance Ratio`** | `3.1` (or 300%) | `3.5` to `4.0` | `3.0` | `3.0` |
+| **`Min Volume (Ratio)`** | `80` to `150` contracts | `15` to `30` contracts | `25` to `50` contracts | `20` to `40` contracts |
+| **`Col 1 Setup`** | Delta Profile | Delta Profile | Delta Profile | Volume Profile |
+| **`Col 2 Setup`** | Bid x Ask with Volume POC | Bid x Ask with Volume POC | Bid x Ask with Volume POC | Bid x Ask with Volume POC |
 
-  - **Bar:** Compares the volume against the highest volume *inside that specific candle*.
+---
 
-  - **Visible:** Compares the volume against the highest volume currently visible *on your screen*.
+## Next Steps and Related Tools
 
-  - **CustomSession:** Compares the volume against the highest volume traded during the defined Custom Session hours.
-
-  - **Manual:** Compares the volume against a fixed number you type below (e.g., 5000 contracts).
-
-### 4. Texts
-
-- **Auto-Contrast:** Automatically flips the text color to **Auto-Contrast Dark** or **Auto-Contrast Light** depending on the background cell color, ensuring numbers are always readable.
-
-- **Abbreviate (k, M):** Shortens large numbers (e.g., 1,500 becomes 1.5k) to keep the footprint narrow and clean.
-
-### 5. Imbalances
-
-- **Enable Ratio Imbalances:** Compares the Bid and Ask diagonally.
-
-- **Imbalance Ratio (x:1):** The multiplier required to trigger an imbalance. Default is **3.0** (meaning 300% more volume on one side).
-
-- **Min Volume (Ratio):** The minimum amount of contracts required to even consider the ratio.
-
-- **Enable Difference Imbalances:** Triggers an imbalance based on pure contract difference (e.g., Ask minus Bid > 100 contracts), ignoring the ratio.
-
-### 6. Heatmaps (Volume, Ask, Bid)
-
-If your Column's **Cell Color Type** is set to a Heatmap, these settings define the 5 color tiers. Level 1 is for the lowest volume (coldest), and Level 5 is for the highest volume (hottest).
-
-### 7. Zoomed Out View (LOD)
-
-- **Footprint to Profile Threshold:** The pixel distance between candles where the indicator will stop rendering text and switch to drawing Mini-Volume Profiles.
-
-- **Profile to Bars Threshold:** The pixel distance where it will stop drawing profiles and switch to simple, zoomed-out candlesticks.
-
-- **Profile Opacity Mode:** How to shade the zoomed-out profiles.
-
-## Best Practices & Tips
-
-- **The Golden Setup:** A very popular setup is turning on 2 columns. Column 1: **Cell Type** set to **Full**, **Value Type** set to **BidAsk**. Column 2: **Cell Type** set to **ProfileRight**, **Value Type** set to **Volume**. This gives you exact numbers on the left and a visual shape on the right.
-
-- **Use the Tick Multiplier:** If you trade Nasdaq (NQ) or Gold (GC), a standard tick-by-tick footprint is too fast and noisy. Set the **Tick Multiplier** to **4** or **10** to group the tape into clear, readable zones.
-
-- **Visible Scaling for Heatmaps:** If you want your heatmaps to highlight the true high-volume nodes of the day, change your **Scale Mode (Relative)** to **Visible** instead of **Bar**. This prevents quiet, low-volume candles from glowing bright red/green.
-
-## See Also
-
-- [Logic Footer](/docs/indicators/logic-footer) — Adds cumulative delta and bar statistics to the bottom of your footprint.
-
-- [Logic Algorithms](/docs/indicators/logic-algorithms) — Automatically points out traps and absorptions inside the footprint.
+* **[Logic Footer](/dashboard/docs/indicators/logic-footer):** Pair your footprint with bar-by-bar delta and 27-metric telemetry.
+* **[Logic Algorithms](/dashboard/docs/indicators/logic-algorithms):** Automate the detection of trapped traders, exhaustion, and absorption signals without manual calculations.
+* **[General Settings](/dashboard/docs/configuration):** Learn how to save your footprint templates for ES and NQ in NinjaTrader 8.

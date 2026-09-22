@@ -1,128 +1,174 @@
 ---
 title: Logic Footer
-description: Panel estadístico exhaustivo que muestra volumen, delta, métricas acumulativas y datos de transacciones por vela.
+description: Manual técnico y referencia del centro de telemetría de Order Flow y 27 métricas cuantitativas en NinjaTrader 8.
 order: 2
 category: indicators
 ---
 
 # Logic Footer
 
-> Si todavía no instalaste la suite de Logic Indicators, consulta la [Guía de instalación](/docs/installation) primero.
+> **Suite cuantitativa de telemetría y diagnóstico microestructural barra a barra para NinjaTrader 8.**  
+> Calcula y desglosa en tiempo real hasta 27 métricas de volumen, delta acumulado, agresiones, absorciones y conteo de trades al pie de cada vela o mediante tarjetas flotantes.
 
-El indicador **Logic Footer** es un potente motor estadístico que se sitúa en la parte inferior de tu gráfico o flota directamente por encima/debajo de tus velas. Extrae los datos puros del Order Flow de cada barra y calcula métricas cruciales como el Delta Acumulado, el Compromiso de los Traders (COT), el Delta Máx/Mín y el conteo de transacciones (Trades).
+---
 
-Al traducir los complejos datos de los ticks en una cuadrícula codificada por colores y fácil de leer, los traders pueden detectar divergencias al instante (ej. el precio sube pero el Delta es muy negativo), evaluar el verdadero esfuerzo detrás de una ruptura y monitorear el cambio de momentum en la sesión.
+## 1. Componentes Visuales en el Gráfico y su Interpretación
 
-## Componentes Principales
+El indicador ofrece dos modalidades independientes y complementarias de presentación visual en pantalla:
 
-El indicador cuenta con dos motores de renderizado independientes que pueden usarse juntos o por separado:
+### A. Modalidad 1: Fixed Footer (Pie Fijo en la Base)
+* **Ubicación:** Se ancla en la parte inferior del panel de precios.
+* **Alineación Vertical:** Cada columna de datos coincide de forma vertical con el ancho y la posición exacta de su vela en el gráfico.
+* **Panel de Etiquetas:** Una columna lateral configurable a la izquierda o derecha que identifica con claridad el nombre abreviado de cada métrica activa.
+* **Mapas de Calor de 5 Niveles:** Cada celda aplica gradientes térmicos automáticos que intensifican su color u opacidad según la relevancia estadística del valor frente al resto de la sesión.
 
-1. **Fixed Footer (Footer Fijo):** Una cuadrícula estadística tradicional anclada en la parte inferior del gráfico. Incluye etiquetas de fila a la izquierda o derecha y es perfecta para rastrear cambios macroeconómicos (como el Delta Acumulado o el Volumen de la Sesión).
+### B. Modalidad 2: Floating DataBox (Caja Flotante en la Vela)
+* **Ubicación:** Una tarjeta compacta anclada directamente por encima o por debajo de cada vela a una distancia regulable en ticks (`DataBox Distance`).
+* **Propósito:** Permite seguir las métricas críticas inmediatas (como Delta y Volumen) sin desviar la mirada de la acción del precio.
 
-2. **Floating DataBox (Caja de Datos Flotante):** Una caja de estadísticas compacta y flotante que se sitúa automáticamente arriba o abajo de las velas. Ideal para mantener los ojos en la acción del precio mientras se monitorean las métricas inmediatas de la barra.
+---
 
-3. **Heatmaps Dinámicos (Mapas de calor):** En lugar de mostrar solo números, el fondo de las celdas cambia de color o de opacidad en función de lo fuerte que sea el valor en comparación con el resto del mercado.
+## 2. Catálogo Exhaustivo de las 27 Métricas Cuantitativas
 
-4. **Auto-Fit Engine (Auto-Ajuste):** Comprime automáticamente la escala de precio del gráfico para que las velas nunca se oculten detrás del Footer o el DataBox.
+Logic Footer procesa el flujo de órdenes tick a tick para desglosar 27 métricas clasificadas en seis familias analíticas:
 
-## Herramientas Interactivas (Barra superior)
+### Métricas de Volumen
+1. **`Total Volume`:** Volumen total de contratos negociados en la barra.
+2. **`Buy Volume`:** Volumen ejecutado al Ask (compradores agresivos barriendo el libro).
+3. **`Sell Volume`:** Volumen ejecutado al Bid (vendedores agresivos barriendo el libro).
+4. **`Cumulative Volume`:** Suma continua del volumen transado desde el inicio de la sesión.
 
-Logic Footer incluye una barra de herramientas de acceso rápido en tu gráfico para alternar elementos visuales sin abrir la configuración del indicador:
+### Métricas de Delta y Agresividad
+5. **`Delta`:** Diferencia neta entre compras y ventas agresivas ($\text{Ask Vol} - \text{Bid Vol}$).
+6. **`Delta %`:** Proporción porcentual del delta respecto al volumen total de la barra ($\text{Delta} / \text{Total Vol} \times 100$).
+7. **`Ask %`:** Porcentaje de compras agresivas sobre el volumen total.
+8. **`Bid %`:** Porcentaje de ventas agresivas sobre el volumen total.
+9. **`Cumulative Delta`:** Suma continua del delta desde el inicio de la sesión.
+10. **`Max Delta`:** El delta más alto alcanzado en cualquier momento de la vida de la vela.
+11. **`Min Delta`:** El delta más bajo alcanzado en cualquier momento de la vida de la vela.
+12. **`Delta Change`:** Variación neta de delta respecto a la vela inmediatamente anterior.
 
-- **FT:** Muestra u oculta instantáneamente el Fixed Footer en la parte inferior del gráfico.
+### Métricas Microestructurales y de Extremos (COT)
+13. **`COT High` *(Commitment of Traders Since High)*:** Delta neto acumulado exclusivamente desde el instante en que la vela marcó su precio máximo. Un valor fuertemente negativo indica que entraron vendedores agresivos inmediatamente tras tocar el máximo.
+14. **`COT Low` *(Commitment of Traders Since Low)*:** Delta neto acumulado exclusivamente desde el instante en que la vela marcó su precio mínimo. Un valor fuertemente positivo indica que entraron compradores agresivos inmediatamente tras tocar el mínimo.
+15. **`Top Delta`:** Delta negociado exclusivamente en el tick superior de la vela.
+16. **`Bottom Delta`:** Delta negociado exclusivamente en el tick inferior de la vela.
+17. **`Cumulative Delta %`:** Porcentaje del delta acumulado respecto al volumen acumulado de la sesión.
 
-- **DB:** Muestra u oculta instantáneamente el Floating DataBox pegado a las velas.
+### Métricas de Transacciones (Trades)
+18. **`Total Trades`:** Cantidad total de transacciones individuales ejecutadas dentro de la barra.
+19. **`Buy Trades`:** Cantidad de transacciones ejecutadas al Ask.
+20. **`Sell Trades`:** Cantidad de transacciones ejecutadas al Bid.
+21. **`Cumulative Trades`:** Total de transacciones acumuladas en la sesión.
 
-## Opciones de Configuración
+### Métricas de Desbalance (Imbalances)
+22. **`Imb (Ratio)`:** Cantidad de desbalances diagonales por ratio detectados en la barra.
+23. **`Net Ratio`:** Desbalances compradores menos desbalances vendedores por ratio.
+24. **`Imb (Diff)`:** Cantidad de desbalances por diferencia neta de contratos detectados.
+25. **`Net Diff`:** Desbalance neto por diferencia en contratos.
 
-Debido a que el Fixed Footer y el Floating DataBox son totalmente independientes, tienen sus propias secciones de configuración dedicadas:
+### Métricas de Dimensión y Tiempo
+26. **`Range (Ticks)`:** Amplitud vertical total de la vela medida en ticks desde el máximo hasta el mínimo.
+27. **`Time (Duration)`:** Tiempo transcurrido en segundos para la formación completa de la barra (crucial para velas de volumen, ticks o rango).
 
-### 1. Configuración General (General Settings)
+---
 
-- **Zero-Lag Engine Mode:** Controla la tasa de actualización gráfica para optimizar la CPU. Las opciones incluyen **Smooth**, **Balanced**, **Max Performance** o **Disabled** (tiempo real). Usa **Balanced** en gráficos pesados.
+## 3. Herramientas y Controles Interactivos
 
-- **Layer Mode & Priority:** Define si el footer se dibuja detrás o delante de otros elementos del gráfico (**BehindPrice**, **Normal**, **TopMost**).
+* **Botón `[FT]` en la barra flotante de la suite (`_LOF Control Panel`):**
+  * Alterna instantáneamente la visibilidad del pie de página fijo (`Show / Hide Fixed Footer`) con un solo clic. Permite encender la tabla en momentos de toma de decisiones o apagarla para obtener máxima área de velas.
+* **Auto-Alineación Dinámica:**
+  * Al hacer zoom o desplazarse en el gráfico, tanto el Fixed Footer como el DataBox recalculan sus posiciones y anchos para mantener una alineación perfecta con cada barra.
 
-### 2. Gráficos de Footer y DataBox (Graphics)
+---
 
-Estas dos secciones controlan la estética visual de sus respectivos paneles:
+## 4. Opciones de Configuración (Parámetro por Parámetro)
 
-- **Enable...:** Interruptor maestro para encender o apagar el panel.
+### Grupo: Footer Graphics (Apariencia del Pie Fijo)
+* **`Enable Fixed Footer`** *(Bool | Default: True)*: Habilita la tabla de pie de página en la base del gráfico.
+* **`Auto-Fit Footer Scale`** *(Bool | Default: False)*: Adapta automáticamente la escala del gráfico para que las velas no se superpongan con el panel.
+* **`Base Color Vol / Trades`** *(Brush | Default: Goldenrod)*: Color base para celdas de volumen y transacciones.
+* **`Base Color Buy / Ask`** *(Brush | Default: Green)*: Color para métricas de agresión compradora.
+* **`Base Color Sell / Bid`** *(Brush | Default: Crimson)*: Color para métricas de agresión vendedora.
+* **`Footer Background Color`** *(Brush | Default: DimGray)*: Fondo de la tabla.
+* **`Min / Max Opacity (%)`** *(Int | Default: 20% a 80%)*: Rango de transparencia para los mapas de calor de las celdas.
+* **`Font Size`** *(Int | Default: 11)*: Tamaño de la tipografía para las cifras numéricas.
+* **`Row Padding`** *(Int | Default: 2)*: Separación vertical interna entre filas.
+* **`Show Footer Labels`** *(Bool | Default: True)*: Muestra u oculta la columna lateral con los nombres de las métricas.
+* **`Footer Labels Position`** *(Enum: Left, Right, Hidden | Default: Left)*: Ubicación del panel de nombres.
+* **`Footer Labels Width`** *(Float | Default: 90f)*: Ancho en píxeles asignado a la columna de nombres.
+* **`Text Color Mode`** *(Enum: AutoContrast, CustomColor, SameAsCell | Default: AutoContrast)*:
+  * `AutoContrast`: El texto conmuta automáticamente entre blanco y negro según la luminancia del fondo para asegurar una lectura perfecta.
+* **`Enable Footer Heatmap`** *(Bool | Default: True)*: Enciende el gradiente térmico de fondo en las celdas.
 
-- **Auto-Fit Scale:** Si está activado, el eje Y del gráfico se encogerá automáticamente para hacer espacio para el panel.
+### Grupo: Footer Metrics (Selección de Filas del Pie Fijo)
+* Contiene **27 casillas de verificación booleanas** (`FooterShowVolTotal`, `FooterShowDelta`, `FooterShowMaxDelta`, `FooterShowCotHigh`, etc.) para encender o apagar de forma individual cada una de las 27 filas.
 
-- **Colors & Opacities:** Define los colores base para Volumen, Ask, Bid y métricas Custom. Puedes establecer una **Min Opacity** y **Max Opacity** para el fondo de las celdas.
+### Grupos: DataBox Graphics & DataBox Metrics (Caja Flotante)
+* **`Enable Floating DataBox`** *(Bool | Default: False)*: Activa la tarjeta flotante adherida a cada vela.
+* **`DataBox Distance (Ticks)`** *(Int | Default: 4)*: Separación en ticks entre el extremo de la vela y la caja.
+* **`Fixed DataBox Width (%)`** *(Int | Default: 80)*: Ancho de la caja en relación con el espacio horizontal de la barra.
+* **`DataBox Metrics`**: Casillas de verificación idénticas para seleccionar qué datos específicos aparecen dentro de la tarjeta flotante.
 
-- **Text Color Mode:**
+### Grupo: Max Value Scale Mode (Modo de Escala de Calor)
+* **`Max Calculation Mode`** *(Enum: Off, CustomSession, VisibleBars, AllData, Manual | Default: CustomSession)*:  
+  Define contra qué universo de datos se calculan los máximos del mapa térmico:
+  * `CustomSession`: Normaliza los valores térmicos según los máximos registrados en el horario configurado en `Custom Session Start` y `End`.
+  * `VisibleBars`: Normaliza el calor únicamente con las barras visibles en la pantalla actual.
+  * `AllData`: Utiliza el historial completo cargado.
+  * `Manual`: Respeta los valores numéricos fijos configurados en el grupo `Manual Value`.
+* **`Scale Intensity (%)`** *(Int | Default: 100)*: Sensibilidad del gradiente de color.
+* **`Reset Delta per Session`** *(Bool | Default: True)*: Reinicia el cómputo de delta acumulado al inicio de cada nueva sesión diaria.
 
-  - **AutoContrast:** El texto cambia automáticamente a blanco o negro dependiendo del color de fondo de la celda para asegurar su lectura.
+### Grupos de Calor: Heatmap (Vol & Trades, Ask, Bid, Range & Time)
+* Cada grupo dispone de **5 niveles de color configurables** (del Nivel 1 mínimo al Nivel 5 máximo) para colorear gradualmente las celdas según su magnitud cuantitativa.
 
-  - **SameAsCell:** El texto toma el color exacto del fondo de la celda (útil si pones la opacidad de la celda en 0 y solo quieres el texto de color).
+### Grupo: Zoomed Out View (Nivel de Detalle - LOD)
+* **`Hide Labels (Candle Width)`** *(Int | Default: 20)*: Ancho de vela en píxeles por debajo del cual se ocultan las etiquetas de texto.
+* **`Hide DataBox (Candle Width)`** *(Int | Default: 50)*: Ancho por debajo del cual se apaga el DataBox flotante para evitar saturar la pantalla.
+* **`Hide Footer (Candle Width)`** *(Int | Default: 10)*: Ancho mínimo para ocultar los números del pie fijo al hacer zoom out total.
 
-  - **CustomColor:** Fuerza a que todo el texto use un color manual específico.
+### Grupo: General Settings
+* **`Instance Name`** *(String | Default: "LOF_Footer")*: Identificador en la suite.
+* **`Instance Color`** *(Brush | Default: Cyan)*: Color identificativo en el panel de control maestro.
+* **`Tick Data Mode`** *(Enum: BidAsk, UpDownTick | Default: BidAsk)*: Mantener siempre en `BidAsk` para procesar órdenes reales.
+* **`Zero-Lag Engine Mode`** *(Enum: Disabled, Smooth, Balanced, MaxPerformance | Default: Disabled)*: Optimización de refresco visual.
 
-- **Show Labels / Labels Position:** Muestra u oculta los títulos descriptivos (ej. "Vol", "Del") y los posiciona a la izquierda (**Left**) o derecha (**Right**).
+---
 
-- **DataBox Distance (Ticks):** A qué distancia (en ticks) flota el DataBox del máximo/mínimo de la vela.
+## 5. Mejores Prácticas y Consejos de Trading
 
-### 3. Modo de Escala de Valor Máximo (Scale Mode)
+### A. La Tríada Clásica de Validación de Tendencia: Delta, Delta % y Max/Min Delta
+Una vela con cuerpo amplio puede validarse o desmentirse observando tres datos del Footer:
 
-Esta sección dicta cómo el indicador calcula la intensidad (color/opacidad) de las celdas:
+1. **Validación de Vela Alcista Sana:**
+   * La vela cierra verde en precio.
+   * `Delta` es positivo y `Delta %` supera el `+20%`.
+   * `Max Delta` es alto y `Min Delta` es prácticamente cero o insignificante.
+   * **Interpretación:** Los compradores dominaron la subasta de principio a fin; no existió oposición vendedora. La tendencia tiene alta probabilidad de continuar.
+2. **Detección de Agotamiento (Absorción Pasiva en Máximos):**
+   * La vela cierra alcista con mecha superior.
+   * `Delta` es muy bajo o negativo (ej. `-80`), a pesar de ser una vela verde en precio.
+   * `Max Delta` fue de `+600`, pero terminó cerrando cerca de cero.
+   * **Interpretación:** Hubo un intento agresivo de compra que fue absorbido por completo. Alerta inmediata de giro bajista o trampa de ruptura.
 
-- **Max Calculation Mode:**
+### B. Señales de Reversión con COT High y COT Low
+* **COT High (En Máximos):** Si el precio ataca una resistencia y la métrica `COT High` marca un valor fuertemente negativo (ej. `-400` contratos en ES), significa que tan pronto como se marcó el precio más alto, los vendedores institucionales entraron a golpear el Bid agresivamente.
+* **COT Low (En Mínimos):** Si tras tocar un soporte la métrica `COT Low` marca un valor fuertemente positivo (ej. `+500`), los compradores institucionales entraron inmediatamente al mercado agresivo, asegurando el suelo de la vela.
 
-  - **VisibleBars:** Compara la celda contra el valor más alto actualmente visible en tu pantalla.
+### C. Las 6 Métricas Esenciales Recomendadas para el Día a Día
+Para no sobrecargar la pantalla con 27 filas, la configuración profesional estándar más eficiente consiste en activar únicamente estas 6 métricas en el **Fixed Footer**:
+1. **`Total Volume`:** Esfuerzo total transado.
+2. **`Delta`:** Resultado neto del balance comprador/vendedor.
+3. **`Delta %`:** Fuerza relativa del sesgo institucional.
+4. **`Max Delta`:** Máximo empuje comprador alcanzado.
+5. **`Min Delta`:** Máximo empuje vendedor alcanzado.
+6. **`Cumulative Delta`:** Dirección del flujo de fondo de la sesión.
 
-  - **CustomSession:** Compara la celda contra el valor más alto dentro del horario definido en Custom Session.
+---
 
-  - **AllData:** Compara contra todo el historial cargado en el gráfico.
+## Siguientes Pasos y Herramientas Relacionadas
 
-  - **Manual:** Compara la celda contra límites fijos que defines manualmente en la sección "Manual Value".
-
-- **Reset Delta per Session:** Si se activa, el Delta Acumulado se reinicia a cero al inicio de una nueva sesión operativa.
-
-### 4. Valores Manuales (Manual Value)
-
-Si tu *Scale Mode* está configurado en **Manual**, esta sección define los límites de techo. Por ejemplo, si configuras *Total Volume* en 5000, cualquier vela con 5000+ contratos de volumen brillará con la máxima intensidad (100% de opacidad o Heatmap Nivel 5).
-
-### 5. Métricas (Footer Metrics & DataBox Metrics)
-
-Selecciona exactamente qué filas de datos quieres mostrar en cada panel. Puedes mostrar más de 20 estadísticas diferentes, incluyendo:
-
-- **Total / Buy / Sell Volume:** Volumen estándar operado.
-
-- **Delta & Delta (%):** La diferencia neta entre compradores y vendedores agresivos.
-
-- **Max / Min Delta:** El Delta más alto y más bajo alcanzado *durante* la formación de la vela.
-
-- **COT High / COT Low:** "Compromiso de los Traders". Mide el Delta acumulado exclusivamente desde que la vela hizo su Máximo o Mínimo.
-
-- **Top / Bottom Delta:** El Delta ejecutado precisamente en el tick extremo superior o extremo inferior de la vela.
-
-- **Cumulative Delta / Cum Volume:** Acumulaciones a lo largo de toda la sesión.
-
-- **Bar Range & Time (Duration):** Cuántos ticks abarca la vela y cuántos segundos tardó en cerrar.
-
-### 6. Mapas de Calor (Heatmaps)
-
-Si activas **Footer/DataBox Heatmap** en la sección de gráficos, el indicador ignorará la opacidad y usará una escala de color de 5 niveles. El Nivel 1 representa actividad baja/fría, mientras que el Nivel 5 representa actividad institucional extrema. Puedes personalizar los colores de cada nivel.
-
-### 7. Vista Alejada (Zoomed Out View)
-
-Para evitar que la pantalla se vuelva un caos al alejar el zoom, el sistema de Nivel de Detalle (LOD) oculta elementos automáticamente:
-
-- **Hide Labels / DataBox / Footer (Candle Width):** El ancho mínimo en píxeles que debe tener una vela. Si la vela se vuelve más delgada que este valor al hacer zoom, el panel o texto respectivo desaparecerá automáticamente.
-
-## Mejores Prácticas y Tips
-
-- **Divide la Carga Visual:** Un excelente setup es habilitar el **Floating DataBox** para mostrar solo 2 métricas: *Delta* y *Volumen* (para lectura rápida), mientras usas el **Fixed Footer** en la parte inferior para mostrar estadísticas macro como el *Delta Acumulado*, *Max/Min Delta* y *COT*.
-
-- **Usa el Auto-Fit:** Mantén siempre encendido el **Footer Auto-Fit**. Esto asegura que tus velas nunca queden enterradas detrás de la cuadrícula de datos en la parte inferior de tu pantalla.
-
-- **Identifica Absorciones con Max/Min Delta:** Si una vela alcista cierra con un Delta altamente positivo, pero su *Min Delta* fue extremadamente negativo durante la barra, significa que los vendedores intentaron empujar el mercado hacia abajo, fueron absorbidos y los compradores tomaron el control.
-
-## Ver también
-
-- [Logic Footprint](/docs/indicators/logic-footprint) — Observa el volumen distribuido dentro de la vela.
-
-- [Logic Analytics](/docs/indicators/logic-analytics) — Dibuja cajas estadísticas personalizadas sobre áreas específicas de la acción del precio.
+* **[Logic Footprint](/dashboard/docs/indicators/logic-footprint):** Inspecciona los niveles de precio exactos donde se distribuyeron los contratos del Footer.
+* **[Logic Analytics](/dashboard/docs/indicators/logic-analytics):** Aísla consolidaciones y rangos dentro de cajas estadísticas de esfuerzo contra resultado.
+* **[Configuración General](/dashboard/docs/configuration):** Aprende a utilizar el botón `[FT]` del panel de control y a gestionar plantillas visuales en NinjaTrader 8.

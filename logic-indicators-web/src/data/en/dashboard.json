@@ -96,7 +96,7 @@
           },
           {
             "title": "Remove all files starting with LOF",
-            "description": "In the 'Remove NinjaScript Assembly' window (Step 3), you must select and remove ALL files and assemblies that begin with the letters LOF (for example: LOFData, LOFDepthData, LOFDepthEngine, LOFEngine, LOF_FullPack, LOF_BasicPack, LOF_DepthPack, etc.). Select them and click the Remove button to completely delete them.",
+            "description": "In the 'Remove NinjaScript Assembly' window (Step 3), select and remove ALL components and packages starting with the letters LOF (for example: LOF_FullPack, LOF_BasicPack, LOF_DepthPack, or any previous LOF release). Select them and click the Remove button to completely delete them.",
             "important": true
           },
           {

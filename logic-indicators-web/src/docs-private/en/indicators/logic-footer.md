@@ -1,128 +1,174 @@
 ---
 title: Logic Footer
-description: Comprehensive bar statistics panel displaying volume, delta, cumulative metrics, and trade data.
+description: Technical manual and complete reference for bar-by-bar Order Flow quantitative telemetry and 27 metrics on NinjaTrader 8.
 order: 2
 category: indicators
 ---
 
 # Logic Footer
 
-> If you haven't installed the Logic Indicators suite yet, please check the [Installation Guide](/docs/installation) first.
+> **Bar-by-bar quantitative microstructural telemetry and diagnostic suite for NinjaTrader 8.**  
+> Computes and dissects in real time up to 27 metrics covering volume, cumulative delta, aggression, absorption, and trade counts at the foot of each candle or via hovering DataBoxes.
 
-The **Logic Footer** indicator is a powerful statistical engine that sits at the bottom of your chart or hovers directly above/below your candles. It extracts the raw Order Flow data of every single bar and calculates crucial metrics such as Cumulative Delta, Commitment of Traders (COT), Max/Min Delta, and Trade Counts.
+---
 
-By translating complex tick data into an easy-to-read, color-coded grid, traders can instantly spot divergences (e.g., price going up while Delta is heavily negative), evaluate the true effort behind a breakout, and monitor the shifting momentum of the session.
+## 1. On-Chart Visual Components and Interpretation
 
-## Core Components
+The indicator features two independent and complementary visual presentation modes:
 
-The indicator features two independent rendering engines that can be used together or separately:
+### A. Mode 1: Fixed Footer (Bottom-Docked Grid)
+* **Location:** Docked at the bottom of the chart price pane.
+* **Vertical Alignment:** Each data column aligns vertically with the exact width and coordinate of its corresponding chart candle.
+* **Labels Panel:** A configurable side panel on the left or right clearly identifying abbreviated names for each active metric.
+* **5-Tier Heatmaps:** Cells apply automatic thermal gradients that intensify in color or opacity according to statistical significance relative to the session baseline.
 
-1. **Fixed Footer:** A traditional statistical grid locked at the bottom of the chart. It includes row labels on the left or right side and is perfect for tracking macroeconomic shifts (like Cumulative Delta or Session Volume).
+### B. Mode 2: Floating DataBox (Candle-Attached Card)
+* **Location:** A compact card anchored directly above or below each candle at a configurable tick distance (`DataBox Distance`).
+* **Purpose:** Enables tracking critical immediate metrics (such as Delta and Volume) without averting your eyes from price action.
 
-2. **Floating DataBox:** A compact, floating statistics box that hovers automatically above or below the price candles. Ideal for keeping your eyes on the price action while monitoring immediate bar metrics (like Bar Delta or Max/Min Delta).
+---
 
-3. **Dynamic Heatmaps:** Instead of just showing numbers, the cell backgrounds change color or opacity based on how strong the value is compared to the rest of the market.
+## 2. Comprehensive 27-Metric Quantitative Catalog
 
-4. **Auto-Fit Engine:** Automatically compresses the chart's price scale so the candlesticks never hide behind the Footer or DataBox.
+Logic Footer processes order flow tick by tick across six analytical families:
 
-## Interactive Tools (Toolbar)
+### Volume Metrics
+1. **`Total Volume`:** Total contracts traded across the bar.
+2. **`Buy Volume`:** Volume executed at the Ask (aggressive market buyers lifting the offer).
+3. **`Sell Volume`:** Volume executed at the Bid (aggressive market sellers hitting the bid).
+4. **`Cumulative Volume`:** Continuous volume sum since the start of the session.
 
-Logic Footer includes a quick-access toolbar on your chart to toggle visual elements without opening the indicator settings:
+### Delta and Aggression Metrics
+5. **`Delta`:** Net difference between aggressive buying and selling ($\text{Ask Vol} - \text{Bid Vol}$).
+6. **`Delta %`:** Percentage proportion of delta relative to total bar volume ($\text{Delta} / \text{Total Vol} \times 100$).
+7. **`Ask %`:** Percentage of aggressive buying over total volume.
+8. **`Bid %`:** Percentage of aggressive selling over total volume.
+9. **`Cumulative Delta`:** Continuous running sum of delta since session open.
+10. **`Max Delta`:** Highest delta value reached at any point during the life of the candle.
+11. **`Min Delta`:** Lowest delta value reached at any point during the life of the candle.
+12. **`Delta Change`:** Net delta change compared to the preceding candle.
 
-- **FT:** Instantly shows or hides the Fixed Footer at the bottom of the chart.
+### Microstructural and Extreme Metrics (COT)
+13. **`COT High` *(Commitment of Traders Since High)*:** Net delta accumulated strictly since the candle formed its highest price. A strongly negative value indicates aggressive sellers entered immediately after the high was touched.
+14. **`COT Low` *(Commitment of Traders Since Low)*:** Net delta accumulated strictly since the candle formed its lowest price. A strongly positive value indicates aggressive buyers stepped in immediately after the low was touched.
+15. **`Top Delta`:** Delta traded exclusively on the topmost price tick of the candle.
+16. **`Bottom Delta`:** Delta traded exclusively on the bottommost price tick of the candle.
+17. **`Cumulative Delta %`:** Cumulative delta expressed as a percentage of total session volume.
 
-- **DB:** Instantly shows or hides the Floating DataBox attached to the candles.
+### Transaction Metrics (Trades)
+18. **`Total Trades`:** Total individual executions or transactions within the bar.
+19. **`Buy Trades`:** Quantity of transactions executed at the Ask.
+20. **`Sell Trades`:** Quantity of transactions executed at the Bid.
+21. **`Cumulative Trades`:** Total transactions accumulated throughout the session.
 
-## Configuration Settings
+### Imbalance Metrics
+22. **`Imb (Ratio)`:** Count of diagonal buy/sell ratio imbalances detected in the bar.
+23. **`Net Ratio`:** Buy ratio imbalances minus sell ratio imbalances.
+24. **`Imb (Diff)`:** Count of net volume difference imbalances detected.
+25. **`Net Diff`:** Net contract difference imbalance.
 
-Because the Fixed Footer and the Floating DataBox are fully independent, they have their own dedicated configuration sections:
+### Dimensional and Temporal Metrics
+26. **`Range (Ticks)`:** Total candle amplitude in ticks from high to low.
+27. **`Time (Duration)`:** Elapsed time in seconds to complete the candle (crucial on volume, tick, or range bars).
 
-### 1. General Settings
+---
 
-- **Zero-Lag Engine Mode:** Controls the graphic refresh rate to optimize CPU usage. Options include **Smooth**, **Balanced**, **Max Performance**, or **Disabled** (real-time). Use **Balanced** for heavy charts.
+## 3. Interactive Tools and Toolbar Controls
 
-- **Layer Mode & Priority:** Defines if the footer renders behind or in front of other chart elements (**BehindPrice**, **Normal**, **TopMost**).
+* **`[FT]` Button on the Master Toolbar (`_LOF Control Panel`):**
+  * Instantly toggles the Fixed Footer visibility (`Show / Hide Fixed Footer`) with a single click. Ideal for toggling tabular data on during entries and off for maximized candlestick area.
+* **Dynamic Auto-Alignment:**
+  * When zooming or panning, both the Fixed Footer and Floating DataBoxes automatically recalculate coordinates to maintain perfect alignment with each bar.
 
-### 2. Footer Graphics & DataBox Graphics
+---
 
-These two sections control the visual aesthetics of the respective panels:
+## 4. Configuration Settings (Parameter-by-Parameter Reference)
 
-- **Enable...:** Master switch to turn the panel on or off.
+### Group: Footer Graphics (Fixed Footer Appearance)
+* **`Enable Fixed Footer`** *(Bool | Default: True)*: Enables the bottom tabular footer.
+* **`Auto-Fit Footer Scale`** *(Bool | Default: False)*: Compresses price scale upward so candles never overlap the footer.
+* **`Base Color Vol / Trades`** *(Brush | Default: Goldenrod)*: Base color for volume and trade cells.
+* **`Base Color Buy / Ask`** *(Brush | Default: Green)*: Base color for buyer aggression data.
+* **`Base Color Sell / Bid`** *(Brush | Default: Crimson)*: Base color for seller aggression data.
+* **`Footer Background Color`** *(Brush | Default: DimGray)*: Table background fill.
+* **`Min / Max Opacity (%)`** *(Int | Default: 20% to 80%)*: Cell heatmap opacity range.
+* **`Font Size`** *(Int | Default: 11)*: Numeric typography size.
+* **`Row Padding`** *(Int | Default: 2)*: Vertical padding between table rows.
+* **`Show Footer Labels`** *(Bool | Default: True)*: Toggles the descriptive metric title column.
+* **`Footer Labels Position`** *(Enum: Left, Right, Hidden | Default: Left)*: Placement of label column.
+* **`Footer Labels Width`** *(Float | Default: 90f)*: Pixel width for metric label column.
+* **`Text Color Mode`** *(Enum: AutoContrast, CustomColor, SameAsCell | Default: AutoContrast)*:
+  * `AutoContrast`: Text automatically shifts between black and white based on cell background luminance for optimal contrast.
+* **`Enable Footer Heatmap`** *(Bool | Default: True)*: Enables background thermal gradients in cells.
 
-- **Auto-Fit Scale:** If enabled, the chart's Y-axis will shrink automatically to make room for the panel.
+### Group: Footer Metrics (Row Selection)
+* Features **27 boolean checkboxes** (`FooterShowVolTotal`, `FooterShowDelta`, `FooterShowMaxDelta`, `FooterShowCotHigh`, etc.) to toggle each metric row individually.
 
-- **Colors & Opacities:** Define the base colors for Volume, Ask, Bid, and Custom metrics. You can set a **Min Opacity** and **Max Opacity** for the cell backgrounds.
+### Groups: DataBox Graphics & DataBox Metrics (Floating Card)
+* **`Enable Floating DataBox`** *(Bool | Default: False)*: Enables hovering cards above/below candles.
+* **`DataBox Distance (Ticks)`** *(Int | Default: 4)*: Tick separation from candle extreme to card.
+* **`Fixed DataBox Width (%)`** *(Int | Default: 80)*: Card width relative to candle horizontal slot.
+* **`DataBox Metrics`**: Identical checkboxes to pick which metrics appear inside floating cards.
 
-- **Text Color Mode:**
+### Group: Max Value Scale Mode (Heatmap Scaling)
+* **`Max Calculation Mode`** *(Enum: Off, CustomSession, VisibleBars, AllData, Manual | Default: CustomSession)*:  
+  Defines the data pool for heatmap normalization:
+  * `CustomSession`: Normalizes against highs recorded during custom session hours.
+  * `VisibleBars`: Normalizes exclusively against bars visible on screen.
+  * `AllData`: Evaluates entire loaded chart history.
+  * `Manual`: Normalizes against static limits in `Manual Value`.
+* **`Scale Intensity (%)`** *(Int | Default: 100)*: Heatmap color gradient sensitivity.
+* **`Reset Delta per Session`** *(Bool | Default: True)*: Resets cumulative delta to zero at the start of each daily session.
 
-  - **AutoContrast:** Text automatically switches to black or white depending on the cell's background color to ensure readability.
+### Heatmap Groups: (Vol & Trades, Ask, Bid, Range & Time)
+* Each group includes **5 configurable color tiers** (Level 1 minimum to Level 5 maximum) to shade cells progressively based on volume and order aggression.
 
-  - **SameAsCell:** Text takes the exact color of the cell's background (useful if you set cell opacity to 0 and only want colored text).
+### Group: Zoomed Out View (Level of Detail - LOD)
+* **`Hide Labels (Candle Width)`** *(Int | Default: 20)*: Candle pixel width below which text labels hide.
+* **`Hide DataBox (Candle Width)`** *(Int | Default: 50)*: Candle width below which DataBoxes hide to prevent clutter.
+* **`Hide Footer (Candle Width)`** *(Int | Default: 10)*: Candle width below which footer numbers hide on wide zoom-out.
 
-  - **CustomColor:** Forces all text to use a specific manual color.
+### Group: General Settings
+* **`Instance Name`** *(String | Default: "LOF_Footer")*: Suite identifier.
+* **`Instance Color`** *(Brush | Default: Cyan)*: Master toolbar indicator color.
+* **`Tick Data Mode`** *(Enum: BidAsk, UpDownTick | Default: BidAsk)*: Always maintain on `BidAsk` for real order flow.
+* **`Zero-Lag Engine Mode`** *(Enum: Disabled, Smooth, Balanced, MaxPerformance | Default: Disabled)*: Refresh rate optimization.
 
-- **Show Labels / Labels Position:** Toggles the descriptive titles (e.g., "Vol", "Del") and positions them on the **Left** or **Right**.
+---
 
-- **DataBox Distance (Ticks):** How far away the floating DataBox hovers from the high/low of the candle.
+## 5. Best Practices and Pro Trading Strategies
 
-### 3. Max Value Scale Mode
+### A. The Classic Trend Confirmation Triad: Delta, Delta %, and Max/Min Delta
+Physical candle size can be confirmed or invalidated using three key Footer metrics:
 
-This section dictates how the indicator calculates the intensity (color/opacity) of the cells:
+1. **Healthy Bullish Continuation:**
+   * Candle closes green.
+   * `Delta` is positive and `Delta %` exceeds `+20%`.
+   * `Max Delta` is high while `Min Delta` remains near zero or negligible.
+   * **Interpretation:** Buyers controlled the auction from start to finish without meaningful seller pushback. The trend holds strong continuation potential.
+2. **Exhaustion / Passive Absorption Trap at Highs:**
+   * Candle closes bullish with an upper rejection wick.
+   * `Delta` is very low or negative (e.g., `-80`), despite the candle closing green.
+   * `Max Delta` touched `+600`, but faded near zero by bar close.
+   * **Interpretation:** Aggressive buying was completely absorbed by passive limit orders. Immediate warning of an impending bearish reversal or breakout trap.
 
-- **Max Calculation Mode:**
+### B. Reversal Triggers with COT High and COT Low
+* **COT High (At Resistance):** When price tests a resistance level and `COT High` registers a heavy negative print (e.g., `-400` contracts in ES), institutional sellers hit the bid aggressively the moment the high was touched.
+* **COT Low (At Support):** When price tests support and `COT Low` registers a heavy positive print (e.g., `+500`), institutional buyers stepped in aggressively, securing the candle low.
 
-  - **VisibleBars:** Compares the cell against the highest value currently visible on your screen.
+### C. The 6 Essential Daily Metrics
+To prevent chart clutter from all 27 rows, the recommended standard setup enables these 6 rows in the **Fixed Footer**:
+1. **`Total Volume`:** Total effort expended.
+2. **`Delta`:** Net auction result.
+3. **`Delta %`:** Relative strength of institutional bias.
+4. **`Max Delta`:** Maximum bullish push achieved.
+5. **`Min Delta`:** Maximum bearish push achieved.
+6. **`Cumulative Delta`:** Macro directional flow of the session.
 
-  - **CustomSession:** Compares the cell against the highest value within your defined Custom Session hours.
+---
 
-  - **AllData:** Compares against the entire loaded chart history.
+## Next Steps and Related Tools
 
-  - **Manual:** Compares the cell against fixed limits you manually define in the "Manual Value" section below.
-
-- **Reset Delta per Session:** If enabled, Cumulative Delta resets to zero at the start of a new trading session.
-
-### 4. Manual Value
-
-If your *Scale Mode* is set to **Manual**, this section defines the ceiling limits. For example, if you set *Total Volume* to 5000, any candle with 5000+ volume will glow with maximum intensity (100% opacity or Level 5 Heatmap).
-
-### 5. Footer Metrics & DataBox Metrics
-
-Select exactly which rows of data you want to display in each panel. You can display over 20 different statistics, including:
-
-- **Total / Buy / Sell Volume:** Standard traded volume.
-
-- **Delta & Delta (%):** The net difference between aggressive buyers and sellers.
-
-- **Max / Min Delta:** The highest and lowest Delta reached *during* the formation of the candle.
-
-- **COT High / COT Low:** "Commitment of Traders". Measures the Delta accumulated exclusively since the candle made its High or Low.
-
-- **Top / Bottom Delta:** The Delta executed precisely at the extreme high tick or extreme low tick of the candle.
-
-- **Cumulative Delta / Cum Volume:** Accumulations across the entire session.
-
-- **Bar Range & Time (Duration):** How many ticks the candle spans and how many seconds it took to close.
-
-### 6. Heatmaps (Ask, Bid, Vol & Trades, Range & Time)
-
-If you enable **Footer/DataBox Heatmap** in the graphics section, the indicator will ignore opacity and instead use a 5-tier color scale. Level 1 represents cold/low activity, while Level 5 represents extreme institutional activity. You can customize the specific colors for every tier.
-
-### 7. Zoomed Out View
-
-To prevent the screen from becoming a mess when you zoom out, the Level of Detail (LOD) system automatically hides elements:
-
-- **Hide Labels / DataBox / Footer (Candle Width):** The minimum pixel width a candle must have. If the candle gets thinner than this value due to zooming out, the respective panel or text will automatically disappear.
-
-## Best Practices & Tips
-
-- **Split the Workload:** A great setup is enabling the **Floating DataBox** to show only 2 metrics: *Delta* and *Volume* (for immediate reading), while using the **Fixed Footer** at the bottom to show macro stats like *Cumulative Delta*, *Max/Min Delta*, and *COT*.
-
-- **Use Auto-Fit:** Always keep **Footer Auto-Fit** turned ON. This ensures your candlesticks never get buried behind the data grid at the bottom of your screen.
-
-- **Identify Absorption with Max/Min Delta:** If a bullish candle closes with a highly positive Delta, but its *Min Delta* was extremely negative during the bar, it means sellers tried to push the market down, got absorbed, and buyers took control.
-
-## See Also
-
-- [Logic Footprint](/docs/indicators/logic-footprint) — View the volume distributed inside the candle.
-
-- [Logic Analytics](/docs/indicators/logic-analytics) — Draw custom statistical boxes over specific areas of price action.
+* **[Logic Footprint](/dashboard/docs/indicators/logic-footprint):** Inspect exact price distributions for contracts summarized in the Footer.
+* **[Logic Analytics](/dashboard/docs/indicators/logic-analytics):** Isolate consolidations inside quantitative effort vs. result boxes.
+* **[General Settings](/dashboard/docs/configuration):** Learn how to utilize the `[FT]` toolbar button and manage templates in NinjaTrader 8.

@@ -1,50 +1,107 @@
 ---
-title: Installation
-description: Step-by-step guide to install Logic Indicators on NinjaTrader 8.
+title: Installation and Updates
+description: Step-by-step guide for fresh installation and updates of Logic Indicators in NinjaTrader 8.
 order: 2
 category: intro
 ---
 
-# Installation
+# Installation and Updates
 
-This guide describes the installation procedure for Logic Indicators on NinjaTrader 8. The full process takes approximately five minutes.
+This guide covers the official procedure for installing for the first time or updating the **Logic Indicators** suite in NinjaTrader 8. The entire process takes less than five minutes when followed in sequence.
 
-## Requirements
+---
 
-- **NinjaTrader 8** installed (latest stable version recommended).
-- **Windows 10 or 11** with administrator privileges.
-- An active **Logic Indicators** subscription.
-- A **Logic Indicators** account with at least one product assigned.
+## Prerequisites
 
-## Installation steps
+Before beginning, ensure you meet the following:
+* **NinjaTrader 8** installed on your system (official 64-bit release).
+* **Windows 10 or 11** with administrator permissions.
+* An active account at **Logic Indicators** with your product available for download in the [Members Area](/dashboard).
+* Your **NinjaTrader ID (Machine ID)** linked in the Dashboard to validate your license.
 
-1. **Download the file.** Go to your [Members area](/dashboard) and click the **Descargar** button next to the product you want to install. The file is a `.zip` archive and must not be unzipped.
+---
 
-2. **Import the file into NinjaTrader 8.** Open NinjaTrader 8, navigate to the **Tools** tab, select **Import**, and then select **Ninja Script Add-on**. Choose the `.zip` file downloaded in the previous step.
+## Fresh Installation vs. Update
 
-3. **Restart NinjaTrader 8.** This step is **mandatory**. NinjaTrader only registers the indicators after a full application restart. If you skip this step, the indicators will not appear in the indicator list and any attempt to add them to a chart will produce an error.
+* **First-time installation:** You do not have any prior version of Logic Indicators in NinjaTrader 8. Jump directly to [Section 2: Installation Procedure](#2-installation-procedure).
+* **Updating an existing version:** It is **mandatory** to uninstall previous assemblies before importing the new archive to prevent memory conflicts in NinjaTrader 8. Start with [Section 1: Uninstalling Previous Versions](#1-uninstalling-previous-versions-updates-only).
 
-4. **Load the indicators on a chart.** Once NinjaTrader has restarted, open a chart, right-click on it, select **Indicators**, locate the Logic indicator you want to add (for example, `Logic Footprint` or `Logic Profile`), and confirm.
+---
 
-If the indicators appear in the list and load correctly, the installation is complete.
+## 1. Uninstalling Previous Versions (Updates Only)
 
-## If the indicators stop working
+If you already have an earlier version of the suite installed on your computer, follow these three steps to ensure a completely clean platform:
 
-The Logic indicators are licensed to a specific Machine ID (called **MachineID** inside NinjaTrader). This identifier may change without notice in the following situations:
+1. **Access the NinjaTrader 8 uninstall tool:**  
+   Open NinjaTrader 8. In the Control Center window, go to the top menu **Tools** and select **Remove NinjaScript Assembly...**.
 
-- The workstation is reformatted.
-- The user migrates to a new workstation.
-- Major operating system changes occur (motherboard replacement, hardware swap, or significant Windows updates).
-- NinjaTrader is reinstalled from scratch.
+2. **Remove all files starting with LOF:**  
+   In the list displayed on screen, select and remove **ALL** files and packages that begin with the letters **LOF** (for example: `LOF_FullPack`, `LOF_BasicPack`, `LOF_DepthPack`, or any prior package). Click the **Remove** button to delete them completely.
 
-When this happens, NinjaTrader's MachineID no longer matches the one registered to your account, and the indicators refuse to load. To resolve the issue:
+3. **Restart NinjaTrader 8:**  
+   Once the assemblies have been removed, **completely close NinjaTrader 8 and launch it again** before installing the new file. This prior restart is essential to clear old libraries from NinjaScript memory.
 
-1. **Locate the MachineID inside NinjaTrader 8.** This value is usually found under **Help → About** or in the indicator configuration panel.
-2. **Open your [Members area](/dashboard)** and compare the value with the **NinjaTrader ID** field shown in the top-left card.
-3. **If the values do not match**, copy the value shown in NinjaTrader and paste it into the **NinjaTrader ID** field on the dashboard, then save. The dashboard is the source of truth: once both values match, the indicators will work again after the next NinjaTrader restart.
+---
 
-## Additional support
+## 2. Installation Procedure
 
-- For further issues, see the [Troubleshooting](/dashboard/docs/troubleshooting) guide.
-- [Go to your Members area](/dashboard) to download indicators or manage your subscription.
-- If the problem persists, [contact our support team](https://wa.me/573113006826).
+Follow these steps for fresh installations and updates alike:
+
+1. **Download your product archive:**  
+   Log in to your [Members Area](/dashboard), locate your product card, and click the **Download** button.  
+   * The file will download as a `.zip` archive.  
+   * **Do not unzip the archive:** NinjaTrader 8 requires the raw `.zip` file intact as downloaded. Save it to an easy-to-find folder (such as your Desktop or Downloads folder).
+
+2. **Import the file in NinjaTrader 8:**  
+   With NinjaTrader 8 open, navigate to the top menu **Tools**, hover over **Import**, and select **NinjaScript Add-On...**.
+
+3. **Select the `.zip` file:**  
+   Browse to the folder where your downloaded file was saved, select it, and click **Open**.
+
+4. **Accept the NinjaTrader security notice (if prompted):**  
+   If NinjaTrader 8 displays a warning dialog reminding you only to install scripts from trusted sources, check **Don't show this message again** and click **OK** to proceed.
+
+5. **Confirm successful import:**  
+   After a few seconds, NinjaTrader 8 will show a success dialog: *"NinjaTrader successfully imported all scripts contained in the NinjaScript Archive file"*. Click **OK**.
+
+6. **Restart NinjaTrader 8 (Mandatory Step):**  
+   **Close NinjaTrader 8 completely and reopen it.**  
+   *Important:* NinjaTrader compiles and registers indicators only upon a clean application restart. If you skip this restart, indicators will not appear in your chart menus.
+
+---
+
+## 3. Loading and Verifying on a Chart
+
+After restarting, verify that the installation completed successfully:
+
+1. Open any price chart in NinjaTrader 8.
+2. Right-click anywhere on the chart and choose **Indicators** (or press `Ctrl + I`).
+3. In the top-left list of available indicators, locate the **Logic Indicators** category or tools prefixed with `Logic...` (e.g., `Logic Footprint`, `Logic Profile`, `Logic Depth Chart`, etc.).
+4. Select your indicator, click **Add** to move it to the active list (bottom left), adjust parameters as needed, and click **OK**.
+
+If the indicator displays and renders properly on your chart, the installation is fully complete.
+
+---
+
+## 4. Machine ID Management and Sync
+
+The Logic Indicators suite is tied to the **Machine ID** generated by NinjaTrader 8 on your PC. This identifier may change in the following scenarios:
+* Formatting or clean reinstall of Windows.
+* Migrating to a new PC.
+* Major computer hardware upgrades or replacements.
+* Clean reinstall of NinjaTrader 8.
+
+### If your indicators do not load or show a licensing alert:
+1. Open NinjaTrader 8 and go to **Help → About**.
+2. Copy the alphanumeric string displayed in the **Machine ID** field.
+3. Open your [Members Area](/dashboard) and compare it against the **NinjaTrader ID** field on the top-left card.
+4. If they differ, paste the current Machine ID into your dashboard and click save.
+5. After saving and upon the next restart of NinjaTrader 8 with an active internet connection, your indicators will resume functioning normally.
+
+---
+
+## Need Further Help?
+
+* Consult our **[Troubleshooting Guide](/dashboard/docs/troubleshooting)** for compilation or assembly issues.
+* Learn about presets and workspace setup in **[General Settings](/dashboard/docs/configuration)**.
+* Contact our team through [Official WhatsApp Support](https://wa.me/573113006826).

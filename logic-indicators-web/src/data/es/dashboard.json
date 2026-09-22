@@ -96,7 +96,7 @@
           },
           {
             "title": "Remueve todos los archivos que comienzan con LOF",
-            "description": "En la ventana 'Remove NinjaScript Assembly' (Paso 3), debes seleccionar y remover TODOS los archivos y paquetes que comiencen con las letras LOF (por ejemplo: LOFData, LOFDepthData, LOFDepthEngine, LOFEngine, LOF_FullPack, LOF_BasicPack, LOF_DepthPack, etc.). Selecciónalos y haz clic en el botón Remove para eliminarlos por completo.",
+            "description": "En la ventana 'Remove NinjaScript Assembly' (Paso 3), debes seleccionar y remover TODOS los componentes y paquetes que comiencen con las letras LOF (por ejemplo: LOF_FullPack, LOF_BasicPack, LOF_DepthPack o cualquier versión previa de LOF). Selecciónalos y haz clic en el botón Remove para eliminarlos por completo.",
             "important": true
           },
           {

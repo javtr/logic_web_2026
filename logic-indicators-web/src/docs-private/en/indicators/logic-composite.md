@@ -1,112 +1,183 @@
 ---
 title: Logic Composite
-description: Macro-level Volume and TPO Profile tool. Draw manual profiles or anchor massive historical data blocks to the screen edge.
+description: Technical manual and complete reference for macro Volume Profile, Delta, and screen-docked TPO on NinjaTrader 8.
 order: 4
 category: indicators
 ---
 
 # Logic Composite
 
-> If you haven't installed the Logic Indicators suite yet, please check the [Installation Guide](/docs/installation) first.
+> **Macrostructural and multi-session profiling station for NinjaTrader 8.**  
+> Condenses weeks, months, or custom historical ranges into synchronized dual-column profiles docked to your screen, projecting institutional control prices and value areas across your entire intraday chart.
 
-The **Logic Composite** indicator is designed for macro-structural analysis. While the standard Logic Profile is perfect for session-by-session breakdowns, the Composite is built to analyze massive chunks of historical data or highly specific, manually drawn areas of consolidation.
+---
 
-Traders use the Logic Composite to build "Composite Profiles" that span multiple days, weeks, or even months, pinning them to the side of the screen to identify major historical support and resistance zones that standard intraday profiles simply cannot see.
+## 1. On-Chart Visual Components and Interpretation
 
-## Core Components
+The indicator renders an organized macro-reading framework comprising the following visual elements:
 
-The Composite engine shares the powerful dual-column architecture of the standard Logic Profile, but alters how the data is framed and anchored to the screen:
+### 1. Synchronized Dual-Column Structure (Column 1 and Column 2)
+* **Column 1 (Primary Structural):** Typically configured to display general *Volume Profile*. Plots the accumulated distribution of contracts traded at each price level.
+* **Column 2 (Dynamic Complementary):** Can be set to display *Delta Profile* (net buyer/seller bias per tick) or *TPO Market Profile* (time distribution via letters or blocks).
 
-1. **Macro Data Columns:** Displays Volume, Delta, or TPO (Market Profile) data. Instead of attaching to specific candles, it spans a massive block of the chart.
+### 2. High Volume Nodes (HVN)
+* **What it plots:** Prominent widened horizontal zones of the volume histogram.
+* **Interpretation:** Represents areas of consensus and institutional value acceptance. The market tends to rotate and consolidate within these nodes; breakout trades are discouraged inside a macro HVN.
 
-2. **Fixed Screen Anchors:** You can lock the profile to the **Left** or **Right** edge of your screen so it stays visible while you scroll through the chart.
+### 3. Low Volume Nodes (LVN)
+* **What it plots:** Narrow valleys or indentations in the profile.
+* **Interpretation:** Represents institutional price rejection where price moved rapidly due to thin liquidity. Functions as firm support or resistance upon initial re-test. If price breaches an LVN, it typically rockets through it toward the next HVN.
 
-3. **Value Area (VA) & POC:** Calculates the macro Point of Control and Value Area. Because it analyzes larger datasets, these lines act as major historical boundaries.
+### 4. Macro Point of Control (POC Line)
+* **What it plots:** The exact price tick where the largest volume was traded over the entire consolidated period, highlighted with a solid line and distinctive bar color (default Orange or Red).
+* **Interpretation:** The institutional center of gravity and fair balance price of the macro auction.
 
-4. **Metrics Panel:** An optional floating text box that summarizes the total Volume, Delta, and Range of the entire composite structure.
+### 5. Value Area (VAH / VAL)
+* **What it plots:** Shaded visual band enclosing the configured volume percentage (default 70% of total volume).
+* **Boundaries:** Value Area High (VAH) and Value Area Low (VAL) mark the upper and lower borders of fair value for the macro auction.
 
-## Interactive Tools (Toolbar & Mouse)
+### 6. Full-Screen Extension Lines (*ScreenLeft*)
+* **What it plots:** When enabled on the POC, VAH, or VAL, the line does not terminate inside the profile frame; it projects horizontally across the entire chart window all the way to the left screen border.
+* **Interpretation:** Allows surgical intraday observation on 1-minute or 5-minute candles of how price reacts to major levels established weeks earlier.
 
-Logic Composite introduces an exclusive manual drawing system, allowing you to treat profiles like drawing tools (similar to a Fibonacci retracement):
+### 7. Macro Quantitative Metrics Box
+* **What it displays:** A numerical summary docked at the top or bottom computing Total Traded Volume, Net Delta, Tick Range, and key POC/VAH/VAL price levels.
 
-- **Draw (Toolbar):** Click this button, then click and drag horizontally on your chart to trace a custom profile over a specific price swing or consolidation zone. The profile will instantly calculate the volume inside that box.
+---
 
-- **Edit (Toolbar):** Enables Edit Mode. You can click and drag the left or right edges of any manually drawn profile to adjust its time span. Click the floating red 'X' above the profile to delete it.
+## 2. Interactive Tools and Toolbar Controls
 
-- **Reset (Toolbar):** Deletes all manual drawings and restores the default automatic profiles.
+* **`[Draw]` Button on the Master Toolbar (`_LOF Control Panel`):**
+  * When clicked (or when Range Mode is set to `ManualDraw`), the cursor enters interactive range selection mode.
+  * Click on your starting historical bar and click a second time on your ending bar: the Composite calculates immediately across that exact temporal window.
+* **Fixed Viewport Docking:**
+  * The profile maintains its dock to the screen edge according to `Total Width (Pixels)` and `Screen Margin (Pixels)`. You can scroll backward in time to inspect past market sessions while the composite remains fixed without obstructing candlestick action.
 
-## Configuration Settings
+---
 
-### 1. General Settings
+## 3. Configuration Settings (Parameter-by-Parameter Reference)
 
-- **Zero-Lag Engine Mode:** Controls the rendering speed to optimize CPU usage when calculating massive historical profiles. Use **Balanced** or **Max Performance** if you are calculating months of data.
+### Group: Composite Settings (Range and Screen Setup)
+* **`Range Mode`** *(Enum: VisibleBars, AllLoadedBars, DaysBack, WeeksBack, MonthsBack, CustomDate, ManualDraw | Default: VisibleBars)*:  
+  Defines the analytical time horizon:
+  * `VisibleBars`: Computes dynamically using only the candles currently visible on screen.
+  * `AllLoadedBars`: Consolidates all chart history loaded in NinjaTrader 8.
+  * `DaysBack / WeeksBack / MonthsBack`: Automatically aggregates the last $N$ days, weeks, or months.
+  * `CustomDate`: Anchors calculation to a specific historical date.
+  * `ManualDraw`: Enables mouse-drawn custom ranges via the `[Draw]` tool.
+* **`Periods Back (If applicable)`** *(Int | Default: 2)*: Number of retrospective periods to consolidate.
+* **`Custom Date (If applicable)`** *(DateTime | Default: Current Date)*: Anchor date for `CustomDate` mode.
+* **`TPO Bracket (Minutes)`** *(Int | Default: 30)*: Duration in minutes assigned to each time bracket for TPO columns (standard: 30 min).
+* **`Total Width (Pixels)`** *(Int | Default: 300 | Range: 100 to 800)*: Total horizontal width allocated to the profile on screen.
+* **`Screen Margin (Pixels)`** *(Int | Default: 10)*: Pixel padding between the profile and the NinjaTrader 8 window edge.
+* **`Alignment`** *(Enum: Left, Right | Default: Right)*: Docks the profile to the right or left margin of the screen.
 
-- **Layer Mode & Priority:** Defines if the composite sits behind the price candles, in front of them, or on top of everything (**TopMost**).
+### Group: Profile Settings
+* **`Session Mode`** *(Enum: Continuous, Custom | Default: Continuous)*:
+  * `Continuous`: Processes all transactions without time restrictions (full 24h ETH session).
+  * `Custom`: Restricts calculation to specified hours in `Start Time` and `End Time` (e.g., RTH 09:30 to 16:00).
+* **`Value Area (%)`** *(Double | Default: 70.0 | Range: 50.0 to 95.0)*: Percentage of total volume used to calculate the Value Area (institutional standard: 70%).
 
-### 2. Composite Settings (The Core Engine)
+### Group: Multipliers & Compression (Tick Compaction)
+* **`Bar Spacing (px)`** *(Int | Default: 0)*: Vertical pixel spacing between price steps (0 = contiguous bars).
+* **`VP: Tick Multiplier`** *(Int | Default: 2 | Range: 1 to 20)*: Tick aggregation for Volume Profile. In NQ or volatile assets, grouping 2 to 4 ticks compacts the histogram for enhanced clarity.
+* **`VP: Box Visual Mode`** *(Enum: Summation, MaximumPeak | Default: Summation)*:
+  * `Summation`: Sums volume of grouped ticks.
+  * `MaximumPeak`: Displays peak volume of the dominant tick in the group.
+* **`VP: POC Calculation`** *(Enum: OriginalMaximumPeak, AdjustedSummation | Default: OriginalMaximumPeak)*: Point of Control calculation method.
+* **`D: Tick Multiplier`** *(Int | Default: 2)*: Tick grouping for Delta column.
+* **`TPO: Tick Multiplier`** *(Int | Default: 2)*: Tick grouping for TPO column.
 
-This is the most important section, defining *what* data the profile analyzes:
+### Groups: Col. 1 General & Col. 2 General
+* **`Enable Column`** *(Bool | Default: True on C1 / True on C2)*: Enables or disables the respective column.
+* **`Column Width (%)`** *(Int | Default: 50)*: Screen width distribution between columns (e.g., 50% for C1 and 50% for C2).
+* **`Used Width (%)`** *(Int | Default: 80)*: Horizontal span utilized by bars before reaching maximum column width.
+* **`Profile Type`** *(Enum: Volume, Delta, DeltaOverVolume, VolumeAndDelta, DeltaAndVolume, TPO | Default: Volume on C1 / Delta on C2)*: Selects the data type calculated and rendered in the column (Volume, Delta, or TPO).
+* **`Highlight Open/Close`** *(Bool | Default: False)*: Visual markers at opening and closing prices of the consolidated macro span.
 
-- **Range Mode:** 
+### Groups: C1 / C2 Volume Profile
+* **`Draw Style`** *(Enum: Bars, Geometry | Default: Bars)*:
+  * `Bars`: Traditional discrete horizontal bar histogram.
+  * `Geometry`: Smooth high-definition continuous polygon contour.
+* **`Alignment`** *(Enum: Left, Right | Default: Right on C1 / Left on C2)*: Growth direction of bars (enables mirror-style opposing profiles).
+* **`Fill Color / Fill Opacity`** *(Default: Silver, 80%)*: Profile body color and opacity.
+* **`Enable Stacked Bid/Ask`** *(Bool | Default: False)*: Splits each volume bar internally to show exact proportions of Ask buys and Bid sells.
 
-  - **VisibleBars:** Dynamically calculates a profile using ONLY the candles currently visible on your screen. It morphs as you scroll.
+### Groups: C1 / C2 Delta Profile
+* **`Bid Color / Ask Color`** *(Default: Red / SpringGreen)*: Colors for negative and positive net delta levels.
+* **`Fill Opacity / Border Opacity`** *(Default: 20% / 100%)*: Delta histogram transparency.
+* **`Custom Width (%)`** *(Int | Default: 50)*: Width percentage assigned to delta histogram inside its column.
 
-  - **AllLoadedBars:** Calculates a massive profile using every single candle loaded on the chart.
+### Groups: C1 / C2 TPO (Market Profile)
+* **`Visualization`** *(Enum: Blocks, Letters, BlocksAndLetters, Geometry | Default: Blocks)*: Visual rendering via monochromatic blocks, classic letters (A, B, C...), or geometry.
+* **`Color Mode`** *(Enum: Solid, Heatmap | Default: Solid)*: Enables 5-tier chronological thermal heatmap from open (blue) to close (red).
+* **`Font Size / Letter Color`** *(Default: 10 / White)*: Typography settings for TPO letters.
 
-  - **DaysBack / WeeksBack / MonthsBack:** Generates a profile spanning the last X periods.
+### Groups: C1 / C2 POC (Point of Control)
+* **`Highlight in VP / Delta / TPO`** *(Bool | Default: True)*: Accents the highest volume price tick with distinctive color.
+* **`Color / Fill Opacity`** *(Default: Orange / 100%)*: POC block color and fill.
+* **`Enable POC Line`** *(Bool | Default: True)*: Plots horizontal reference line at the POC tick.
+* **`Line Style / Thickness`** *(Default: Solid / 2)*: Line stroke styling.
+* **`Line Extension`** *(Enum: Column, CompositeBox, ScreenLeft | Default: ScreenLeft)*:  
+  **Crucial setting:**
+  * `Column`: Confined inside the column.
+  * `CompositeBox`: Extends across both columns (C1 + C2).
+  * `ScreenLeft`: **Extends line horizontally across the entire screen to the left edge**, projecting the macro POC directly under live execution candles.
+* **`Show Label / Show Price`** *(Default: True)*: Displays "POC" label and exact numeric price.
 
-  - **ManualDraw:** Turns off automatic profiles entirely and only calculates profiles you draw by hand using the Toolbar.
+### Groups: C1 / C2 Value Area
+* **`Enable VA`** *(Bool | Default: True)*: Toggles 70% volume area background shading.
+* **`Color / Fill Opacity`** *(Default: CornflowerBlue / 80%)*: Value Area color and opacity.
+* **`Enable VA Line`** *(Bool | Default: True)*: Plots upper (VAH) and lower (VAL) boundary lines.
+* **`Line Extension`** *(Enum: Column, CompositeBox, ScreenLeft | Default: ScreenLeft)*: Projects macro VAH and VAL lines across the entire chart to the left edge.
 
-- **Periods Back:** Works in tandem with the Days/Weeks/Months setting (e.g., set to 5 Days Back).
+### Group: Metrics (Quantitative Summary)
+* **`Enable Metrics`** *(Bool | Default: False)*: Enables floating statistics box.
+* **`Block Position`** *(Enum: Top, Bottom | Default: Bottom)*: Docking position inside the composite frame.
+* **`Show Volume / Show Delta / Show Range / Show POC`**: Boolean toggles for metric displays.
 
-- **Total Width & Margin (Pixels):** Sets exactly how wide the fixed profile should be on your screen, and how far away from the edge it should hover.
+### Group: General Settings
+* **`Historical Load Speed`** *(Enum: Standard_DeltaEnabled, Medium_NoDelta, Fast_NoDelta, Ultra_NoDelta | Default: Fast_NoDelta)*:  
+  **Historical loading speed optimizer:**
+  * `Fast_NoDelta` / `Ultra_NoDelta`: Aggregates historical data to load weeks or months of volume in seconds (recommended when using Volume Profile).
+  * `Standard_DeltaEnabled`: Processes tick-by-tick order flow with exact Delta calculations.
+* **`Instance Name`** *(String | Default: "LOF_Composite")*: Suite identifier.
+* **`Layer Mode`** *(Enum: BehindPrice, Normal, TopMost | Default: Normal)*: Z-order rendering mode.
 
-- **Alignment:** Locks the composite to the **Left** or **Right** side of your monitor.
+---
 
-### 3. Multipliers & Compression
+## 4. Best Practices and Pro Trading Strategies
 
-- **Tick Multiplier:** Compresses the data. For macroscopic profiles (e.g., 3 months of ES data), a multiplier of 10 or 20 is highly recommended to smooth out the shape and prevent CPU overload.
+### A. Identifying Structural Support and Resistance (HVN vs. LVN)
+The structural roadmap provided by **Logic Composite** prevents trading against institutional flow:
 
-### 4. C1 & C2 General (Column Setup)
+1. **High Volume Node (HVN) Rules:**
+   * An HVN marks a price zone where institutional buyers and sellers agreed that price represented fair value.
+   * When price revisits a macro HVN, momentum typically stalls into a rotational or consolidation phase. **Avoid trading breakouts within a macro HVN; seek mean reversions toward the POC or take profits on trend positions**.
+2. **Low Volume Node (LVN) Rules:**
+   * An LVN marks institutional price rejection. Price traversed this zone rapidly due to liquidity voids.
+   * **Trading Trigger:** LVN boundaries function as **uncompromising support and resistance**. If price pulls back into a 2-week macro LVN and prints an absorption on the intraday chart, enter with a tight stop beyond the LVN edge. If price penetrates the LVN, it will traverse it rapidly toward the adjacent HVN.
 
-Just like the Logic Profile, you have two independent columns:
+### B. The Advantage of `ScreenLeft` Extension Lines
+* Set `Line Extension` to **`ScreenLeft`** on the **POC**, **VAH**, and **VAL**.
+* By projecting to the left screen boundary, these lines cross underneath your 1-minute, 5-minute, or range bars.
+* This allows you to execute intraday scalps with multi-week institutional context constantly visible on your primary execution screen.
 
-- **Profile Type:** Choose between **Volume**, **Delta**, **TPO**, **VolumeAndDelta**, etc.
+### C. Recommended Configurations by Trading Style
+* **For Futures Day Traders (ES / NQ):**
+  * `Range Mode`: `DaysBack` with `Periods Back = 5` (displays the rolling 1-week composite).
+  * Column 1: `Volume Profile` right-aligned.
+  * Column 2: `Delta Profile` left-aligned.
+  * `Historical Load Speed`: `Fast_NoDelta` for immediate chart initialization.
+* **For Swing Traders & Weekend Preparation:**
+  * `Range Mode`: `WeeksBack` with `Periods Back = 4` or `MonthsBack = 1` to `3`.
+  * Column 1: `Volume Profile` in `Geometry` mode.
+  * Column 2: `TPO` in `Blocks` mode with chronological thermal heatmap enabled.
 
-- **Column Width & Fill Percentage:** Adjusts the thickness of the column on your screen.
+---
 
-- **Highlight Open/Close:** Places visual markers at the opening and closing prices of the composite range.
+## Next Steps and Related Tools
 
-### 5. Sub-Components (VP, Delta, TPO, VA, POC, Frame)
-
-For each column, you can configure the internal drawing logic:
-
-- **Draw Style:** Choose between traditional **Bars** or smooth **Geometry** polygons.
-
-- **Alignment:** You can flip the profile (e.g., have the Volume bars grow from Right to Left to point towards the price).
-
-- **Lines & Extensions (VA & POC):** You can set the POC and VA lines to extend to the edge of the **Column**, span the entire **CompositeBox**, or shoot all the way across to the **ScreenLeft**.
-
-- **Frame & Background:** Draws a solid, semi-transparent box behind the composite so it doesn't get lost visually if it overlaps with price candles.
-
-### 6. Metrics
-
-- **Enable Metrics:** Shows a text block detailing the exact stats of the macro profile.
-
-- **Block Position:** Set the text block to the **Top** or **Bottom** of the composite structure.
-
-- **Show...:** Individually toggle metrics like Total Volume, Delta, Range, Max Delta, and specific POC/VAH prices.
-
-## Best Practices & Tips
-
-- **The Dynamic Visible Profile:** Set your *Range Mode* to **VisibleBars**, align the composite to the **Left**, and set the *Frame Background* opacity to 10%. As you scroll left and right through your chart, the profile will update instantly, giving you a perfect read of the current structure in view.
-
-- **Use Manual Mode for Swing Analysis:** Change the *Range Mode* to **ManualDraw**. Whenever the market enters a tight range or consolidation, click **Draw** on the toolbar and drag a box over it. You will instantly see exactly where the heavy volume (the POC) is trapped inside that box, predicting where the breakout might originate.
-
-- **Heavy Data Optimization:** If you are using **AllLoadedBars** on a 1-Minute chart with 100 days of history, increase your **Tick Multiplier** to 10. This compresses the data and keeps NinjaTrader running flawlessly.
-
-## See Also
-
-- [Logic Profile](/docs/indicators/logic-profile) — The standard session-by-session profile generator.
-
-- [Logic Footprint](/docs/indicators/logic-footprint) — Zoom in to see the exact volume distribution inside the individual candles.
+* **[Logic Profile](/dashboard/docs/indicators/logic-profile):** Standard session-by-session profiles (RTH, ETH, intraday splits).
+* **[Logic Footprint](/dashboard/docs/indicators/logic-footprint):** Examine tick-by-tick order flow inside candles testing macro HVN and LVN levels.
+* **[General Settings](/dashboard/docs/configuration):** Learn how to save your composite templates and optimize workspace load performance.

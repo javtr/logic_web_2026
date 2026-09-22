@@ -12,7 +12,7 @@
     },
     {
       "q": "¿En qué plataformas funcionan los indicadores?",
-      "a": "Nuestros indicadores están desarrollados y compilados exclusivamente para NinjaTrader 8 mediante NinjaScript (C#).\n\nActualmente no son compatibles con NinjaTrader 7, TradingView, MetaTrader ni con otras plataformas de trading."
+      "a": "Nuestros indicadores están desarrollados y compilados exclusivamente para NinjaTrader 8 mediante NinjaScript.\n\nActualmente no son compatibles con NinjaTrader 7, TradingView, MetaTrader ni con otras plataformas de trading."
     },
     {
       "q": "¿Necesito tener una licencia de NinjaTrader 8 para usar Logic Indicators?",

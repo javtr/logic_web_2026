@@ -37,7 +37,9 @@ export const DOCS_STRUCTURE = [
       { slug: 'indicators/logic-composite', labelKey: 'docs.article.logic-composite', order: 4 },
       { slug: 'indicators/logic-bigtrades', labelKey: 'docs.article.logic-bigtrades', order: 5 },
       { slug: 'indicators/logic-analytics', labelKey: 'docs.article.logic-analytics', order: 6 },
-      { slug: 'indicators/logic-algorithms',labelKey: 'docs.article.logic-algorithms',order: 7 },
+      { slug: 'indicators/logic-algorithms', labelKey: 'docs.article.logic-algorithms', order: 7 },
+      { slug: 'indicators/logic-depth-chart',labelKey: 'docs.article.logic-depth-chart',order: 8 },
+      { slug: 'indicators/logic-depth-live', labelKey: 'docs.article.logic-depth-live', order: 9 },
     ],
   },
   {
