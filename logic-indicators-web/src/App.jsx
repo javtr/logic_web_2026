@@ -50,6 +50,8 @@ const NotFound = lazy(() => import('./pages/NotFound').then((m) => ({ default: m
 const Indicators = lazy(() => import('./pages/Indicators').then((m) => ({ default: m.Indicators })));
 const Pricing = lazy(() => import('./pages/Pricing').then((m) => ({ default: m.Pricing })));
 const License = lazy(() => import('./pages/License').then((m) => ({ default: m.License })));
+const Blog = lazy(() => import('./pages/Blog').then((m) => ({ default: m.Blog })));
+const BlogPost = lazy(() => import('./pages/BlogPost').then((m) => ({ default: m.BlogPost })));
 
 const MainLayout = () => {
   return (
@@ -89,6 +91,8 @@ function App() {
               <Route path="/free" element={<Navigate to="/resources/free-indicators" replace />} />
               <Route path="/free/*" element={<Navigate to="/resources/free-indicators" replace />} />
               <Route path="/resources/presets" element={<Presets />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/license" element={<License />} />
               <Route path="/lic" element={<Navigate to="/license" replace />} />

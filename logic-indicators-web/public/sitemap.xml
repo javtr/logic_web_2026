@@ -247,6 +247,26 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/docs/indicators/logic-algorithms"/>
   </url>
 
+  <!-- BLOG -->
+  <url>
+    <loc>https://logicindicators.com/blog</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/blog?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/blog"/>
+  </url>
+  <url>
+    <loc>https://logicindicators.com/blog/como-detectar-absorciones-institucionales</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://logicindicators.com/blog/como-detectar-absorciones-institucionales"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://logicindicators.com/blog/como-detectar-absorciones-institucionales?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://logicindicators.com/blog/como-detectar-absorciones-institucionales"/>
+  </url>
+
   <!-- LEGAL -->
   <url>
     <loc>https://logicindicators.com/privacy</loc>

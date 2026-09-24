@@ -10,8 +10,10 @@
   "menu": "Menú",
   "switchLanguage": "Cambiar idioma",
   "freeIndicators": "Gratis",
+  "blog": "Blog",
   "resourcesDropdown": {
     "docs": "Documentación",
+    "blog": "Blog & Artículos",
     "freeIndicators": "Indicadores Gratuitos",
     "presets": "Plantillas"
   }

@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronDown, BookOpen, Gift, BarChart3, MessageCircle, Tag, Sliders } from 'lucide-react';
+import { X, ChevronDown, BookOpen, Gift, BarChart3, MessageCircle, Tag, Sliders, Newspaper } from 'lucide-react';
 import { useLanguage } from '../context/languageContext';
 import { useAuth } from '../hooks/useAuth';
 import { useUserName } from '../hooks/useUserName';
@@ -73,13 +73,18 @@ export const MobileMenu = ({ isOpen, onClose }) => {
     return location.pathname === to || location.pathname.startsWith(to);
   };
 
-  const isResourcesActive = location.pathname.startsWith('/resources');
+  const isResourcesActive = location.pathname.startsWith('/resources') || location.pathname.startsWith('/blog');
 
   const resourceLinks = [
     {
       to: '/resources/docs',
       icon: BookOpen,
       label: t('nav.resourcesDropdown.docs'),
+    },
+    {
+      to: '/blog',
+      icon: Newspaper,
+      label: t('nav.resourcesDropdown.blog'),
     },
     {
       to: '/resources/free-indicators',
