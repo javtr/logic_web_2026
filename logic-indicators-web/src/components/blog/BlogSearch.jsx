@@ -36,3 +36,4 @@ export const BlogSearch = ({ query, onChangeQuery }) => {
     </div>
   );
 };
+

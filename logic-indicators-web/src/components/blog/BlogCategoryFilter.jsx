@@ -35,3 +35,4 @@ export const BlogCategoryFilter = ({ categories = [], activeCategory = 'all', on
     </div>
   );
 };
+

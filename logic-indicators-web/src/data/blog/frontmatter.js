@@ -113,3 +113,4 @@ export function extractHeadings(markdown) {
 
   return headings;
 }
+

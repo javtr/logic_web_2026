@@ -47,3 +47,4 @@ export const ArticleJsonLd = ({ post }) => {
     </Helmet>
   );
 };
+

@@ -104,3 +104,4 @@ export const BlogFeaturedCard = ({ post }) => {
     </article>
   );
 };
+
