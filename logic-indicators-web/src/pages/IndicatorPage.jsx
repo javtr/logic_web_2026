@@ -66,6 +66,10 @@ export const IndicatorPage = () => {
   const indicatorTitle = `${name} ${t('seo.indicator.titleSuffix')}`;
   const indicatorDescription = `${tagline} ${shortDescription ? ` ${shortDescription}` : ''} ${t('seo.indicator.descriptionSuffix')}`.trim();
 
+  const reqKey = `indicators.${indicatorId}.requirement`;
+  const reqVal = t(reqKey);
+  const requirement = reqVal !== reqKey ? reqVal : null;
+
   return (
     <>
       <SEO
@@ -90,6 +94,7 @@ export const IndicatorPage = () => {
       <IndicatorDetail
         title={name}
         subtitle={tagline}
+        requirement={requirement}
         image={resolveImage(imageKey)}
         contentImages={contentImages}
         paragraphs={paragraphs}

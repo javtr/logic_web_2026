@@ -26,7 +26,7 @@ import { useState } from 'react';
 import { useLanguage } from '../../context/languageContext';
 import { Button } from '../Button';
 import { ToggleSwitch } from '../ToggleSwitch';
-import { CheckCircle2, GraduationCap, Headphones } from 'lucide-react';
+import { CheckCircle2, GraduationCap, Headphones, Info } from 'lucide-react';
 
 const CURRENCY_SYMBOL = '$';
 
@@ -220,6 +220,8 @@ export const PricingSection = ({
   // declararlo igual mantiene el orden estable entre renders de EN y ES.
   const [isLifetime, setIsLifetime] = useState(defaultIsLifetime);
 
+  const dataRequirementNote = section.dataRequirementNote;
+
   // EN: plans = [Annual, Lifetime] (array plano, sin toggle)
   if (Array.isArray(plans)) {
     return (
@@ -239,6 +241,14 @@ export const PricingSection = ({
             />
           ))}
         </div>
+        {dataRequirementNote && (
+          <div className="mt-8 text-center">
+            <p className="text-xs md:text-sm text-text-muted flex items-center justify-center gap-1.5 max-w-2xl mx-auto">
+              <Info size={14} className="text-purple-400 shrink-0" />
+              <span>*{dataRequirementNote}</span>
+            </p>
+          </div>
+        )}
       </section>
     );
   }
@@ -271,6 +281,14 @@ export const PricingSection = ({
           />
         ))}
       </div>
+      {dataRequirementNote && (
+        <div className="mt-8 text-center">
+          <p className="text-xs md:text-sm text-text-muted flex items-center justify-center gap-1.5 max-w-2xl mx-auto">
+            <Info size={14} className="text-purple-400 shrink-0" />
+            <span>*{dataRequirementNote}</span>
+          </p>
+        </div>
+      )}
     </section>
   );
 };

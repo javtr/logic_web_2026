@@ -153,6 +153,7 @@
     "pack": "Depth Pack",
     "name": "Logic Depth Chart",
     "tagline": "Mapa de calor de liquidez institucional y DOM en tiempo real sobre tus velas.",
+    "requirement": "Requisito técnico: Requiere feed de datos con Nivel 2 (Market Depth / Profundidad).",
     "shortDescription": "Visualiza el libro de órdenes de Nivel 2 y la liquidez histórica proyectada directamente sobre las velas de tu gráfico en NinjaTrader 8. Detecta órdenes límite institucionales, absorciones y soportes/resistencias con un panel DOM en vivo y rendimiento Zero-Lag.",
     "longDescription": "Visualiza el libro de órdenes de Nivel 2 y la liquidez histórica proyectada directamente sobre las velas de tu gráfico en NinjaTrader 8. Detecta órdenes límite institucionales, absorciones y soportes/resistencias con un panel DOM en vivo y rendimiento Zero-Lag.",
     "paragraphs": [
@@ -174,6 +175,7 @@
   "pack": "Depth Pack",
   "name": "Logic Depth Live",
   "tagline": "Mapa de calor de profundidad de mercado y liquidez institucional en tiempo real.",
+  "requirement": "Requisito técnico: Requiere feed de datos con Nivel 2 (Market Depth / Profundidad).",
   "shortDescription": "Descubre las órdenes del dinero institucional antes de que el precio se mueva. Visualiza el libro de órdenes en tiempo real con un mapa de calor dinámico, burbujas de operaciones divididas y un perfil DOM inteligente en NinjaTrader 8.",
   "longDescription": "Descubre las órdenes del dinero institucional antes de que el precio se mueva. Visualiza el libro de órdenes en tiempo real con un mapa de calor dinámico, burbujas de operaciones divididas y un perfil DOM inteligente en NinjaTrader 8.",
   "paragraphs": [

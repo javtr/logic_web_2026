@@ -153,6 +153,7 @@
     "pack": "Depth Pack",
     "name": "Logic Depth Chart",
     "tagline": "Institutional liquidity heatmap and real-time DOM directly on your candles.",
+    "requirement": "Technical requirement: Requires Level 2 (Market Depth / DOM) data feed.",
     "shortDescription": "Visualize Level 2 market depth and historical resting liquidity projected directly onto your chart candles in NinjaTrader 8. Spot institutional limit orders, absorption zones, and real support/resistance with an integrated live DOM panel and Zero-Lag performance.",
     "longDescription": "Visualize Level 2 market depth and historical resting liquidity projected directly onto your chart candles in NinjaTrader 8. Spot institutional limit orders, absorption zones, and real support/resistance with an integrated live DOM panel and Zero-Lag performance.",
     "paragraphs": [
@@ -174,6 +175,7 @@
   "pack": "Depth Pack",
   "name": "Logic Depth Live",
   "tagline": "Real-time institutional liquidity heatmap and market depth visualization.",
+  "requirement": "Technical requirement: Requires Level 2 (Market Depth / DOM) data feed.",
   "shortDescription": "Uncover institutional limit orders before price moves. Visualize the real-time order book with a high-definition heatmap, split trade execution bubbles, and an intelligent live DOM profile in NinjaTrader 8.",
   "longDescription": "Uncover institutional limit orders before price moves. Visualize the real-time order book with a high-definition heatmap, split trade execution bubbles, and an intelligent live DOM profile in NinjaTrader 8.",
   "paragraphs": [

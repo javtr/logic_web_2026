@@ -19,6 +19,7 @@
       "secondaryIndicatorId": "depthlive",
       "imageKey": "depth_pack",
       "price": 250,
+      "requirementNote": "Requires Level 2 (Market Depth) data",
       "checkoutUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/9e34d438-2af1-43ba-81b4-2997f70b320b"
     },
     {

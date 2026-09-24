@@ -22,11 +22,13 @@ import { Button } from '../Button';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/languageContext';
 import { ZoomableImage } from '../ImageLightbox';
+import { Info } from 'lucide-react';
 import imgSample from '../../assets/indicators/sample_image.png';
 
 export const IndicatorDetail = ({
   title,
   subtitle,
+  requirement = null,
   image,
   contentImages = [],
   paragraphs = [],
@@ -41,6 +43,14 @@ export const IndicatorDetail = ({
       {/* 1. Título + subtítulo */}
       <h1 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4">{title}</h1>
       <h2 className="text-xl md:text-2xl text-accent-primary mb-3 md:mb-4">{subtitle}</h2>
+
+      {/* Requisito de datos (ej. Nivel 2 en Depth Live y Depth Chart) */}
+      {requirement && (
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/25 text-purple-300 text-xs sm:text-sm font-medium mb-6">
+          <Info size={16} className="text-purple-400 shrink-0" />
+          <span>{requirement}</span>
+        </div>
+      )}
 
       {/* 2. Imagen de cabecera */}
       <ZoomableImage

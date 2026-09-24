@@ -15,6 +15,8 @@
     "lifetime": "De por vida"
   },
 
+  "dataRequirementNote": "Depth Live y Depth Chart requieren suscripción a datos de Nivel 2 (Market Depth / Profundidad).",
+
   "extras": {
     "support": "Soporte técnico"
   },
@@ -42,8 +44,8 @@
           { "icon": "support" }
         ],
         "bonusIndicators": [
-          { "id": "depthchart", "label": "+ Depth Chart" },
-          { "id": "depthlive", "label": "+ Depth Live" }
+          { "id": "depthchart", "label": "+ Depth Chart*" },
+          { "id": "depthlive", "label": "+ Depth Live*" }
         ],
         "checkoutUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/68a68b70-07b0-49d6-ac90-00279aaba733"
       },
@@ -68,8 +70,8 @@
           { "icon": "support" }
         ],
         "bonusIndicators": [
-          { "id": "depthchart", "label": "+ Depth Chart" },
-          { "id": "depthlive", "label": "+ Depth Live" }
+          { "id": "depthchart", "label": "+ Depth Chart*" },
+          { "id": "depthlive", "label": "+ Depth Live*" }
         ],
         "plusContent": [
           {
@@ -114,8 +116,8 @@
           { "icon": "support" }
         ],
         "bonusIndicators": [
-          { "id": "depthchart", "label": "+ Depth Chart" },
-          { "id": "depthlive", "label": "+ Depth Live" }
+          { "id": "depthchart", "label": "+ Depth Chart*" },
+          { "id": "depthlive", "label": "+ Depth Live*" }
         ],
         "installments": {
           "text": "6 pagos de $149",
@@ -145,8 +147,8 @@
           { "icon": "support" }
         ],
         "bonusIndicators": [
-          { "id": "depthchart", "label": "+ Depth Chart" },
-          { "id": "depthlive", "label": "+ Depth Live" }
+          { "id": "depthchart", "label": "+ Depth Chart*" },
+          { "id": "depthlive", "label": "+ Depth Live*" }
         ],
         "plusContent": [
           {

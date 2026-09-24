@@ -5,6 +5,10 @@
       "a": "Once your payment is processed, you will receive a confirmation email with instructions to complete your registration. You will need to provide your Machine ID and the necessary information to create your user account. You will then receive instructions to access your Dashboard, where you can download your tools, join the user Discord community, and access the installation material."
     },
     {
+      "q": "Is Level 2 (Level II) market data required to use the tools?",
+      "a": "Logic Profile, Logic Footprint, Logic Algorithms, Logic Big Trades, and Logic Analytics work with standard Level 1 (Level I) market data.\n\nLogic Depth Chart and Logic Depth Live do require a Level 2 (Market Depth) data subscription from your broker or data provider, as they process full order book depth.\n\nLogic Indicators does not provide market data feeds; each user connects their own broker feed (Rithmic, CQG, Tradovate, Interactive Brokers, etc.)."
+    },
+    {
       "q": "Is there any financing option available?",
       "a": "Yes. We offer financing plans for Lifetime licenses with interest-free monthly installments. Check the available options at the bottom of the pricing cards for the Basic Lifetime Pack and Plus Lifetime Pack."
     },

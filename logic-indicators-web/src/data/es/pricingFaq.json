@@ -5,6 +5,10 @@
       "a": "Una vez procesado el pago, recibirás un correo de confirmación con las instrucciones para completar tu registro. Deberás proporcionar tu Machine ID y los datos necesarios para crear tu usuario. Luego recibirás las instrucciones para acceder a tu Dashboard, desde donde podrás descargar tus herramientas, acceder al Discord de usuarios y consultar el material de instalación."
     },
     {
+      "q": "¿Se necesitan datos de Nivel 2 (Level II) para utilizar las herramientas?",
+      "a": "Logic Profile, Logic Footprint, Logic Algorithms, Logic Big Trades y Logic Analytics funcionan utilizando datos estándar de Nivel 1 (Level I).\n\nLogic Depth Chart y Logic Depth Live sí requieren suscripción a datos de Nivel 2 (Market Depth) de tu broker o proveedor de datos, ya que procesan la profundidad del libro de órdenes.\n\nLogic Indicators no comercializa datos de mercado; cada usuario gestiona su conexión con su broker o proveedor de datos (Rithmic, CQG, Tradovate, Interactive Brokers, etc.)."
+    },
+    {
       "q": "¿Existe alguna opción de financiación?",
       "a": "Sí. Ofrecemos planes de financiación para los planes de por vida, con cuotas mensuales sin intereses. Consulta las opciones disponibles en la parte inferior de las tarjetas de precios del Pack De por Vida Básico y Pack De por vida Plus."
     },

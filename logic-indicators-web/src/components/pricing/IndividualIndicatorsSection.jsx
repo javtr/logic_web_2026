@@ -36,7 +36,7 @@ import { useLanguage } from '../../context/languageContext';
 import { Button } from '../Button';
 import { ZoomableImage } from '../ImageLightbox';
 import { resolveImage } from '../../data/imageResolver';
-import { Package } from 'lucide-react';
+import { Package, Info } from 'lucide-react';
 
 const ProductCard = ({ product, t, section }) => {
   // Datos del indicator primary (nombre, imageKey)
@@ -97,6 +97,14 @@ const ProductCard = ({ product, t, section }) => {
             / {section.defaultBillingPeriod}
           </span>
         </div>
+
+        {/* Requisito de datos (ej. Nivel 2 en Depth Pack) */}
+        {product.requirementNote && (
+          <div className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-300 text-[11px] font-medium leading-tight">
+            <Info size={13} className="shrink-0 text-purple-400" />
+            <span>{product.requirementNote}</span>
+          </div>
+        )}
 
         {/* Botón: <a> con target="_blank" para que el checkout abra en
             pestaña nueva y el usuario no pierda la nuestra. */}

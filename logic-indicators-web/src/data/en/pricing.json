@@ -10,6 +10,8 @@
   "plusContentTitle": "Plus Content (Courses Included)",
   "installmentsTitle": "Installments",
 
+  "dataRequirementNote": "Depth Live and Depth Chart require a Level 2 (Market Depth) data subscription.",
+
   "extras": {
     "support": "Technical Support"
   },
@@ -36,8 +38,8 @@
         { "icon": "support" }
       ],
       "bonusIndicators": [
-        { "id": "depthchart", "label": "+ Depth Chart" },
-        { "id": "depthlive", "label": "+ Depth Live" }
+        { "id": "depthchart", "label": "+ Depth Chart*" },
+        { "id": "depthlive", "label": "+ Depth Live*" }
       ],
       "checkoutUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/223f63c8-ffa5-4d00-a779-876e97b1be67"
     },
@@ -62,8 +64,8 @@
         { "icon": "support" }
       ],
       "bonusIndicators": [
-        { "id": "depthchart", "label": "+ Depth Chart" },
-        { "id": "depthlive", "label": "+ Depth Live" }
+        { "id": "depthchart", "label": "+ Depth Chart*" },
+        { "id": "depthlive", "label": "+ Depth Live*" }
       ],
       "installments": {
         "text": "6 payments of $149",
