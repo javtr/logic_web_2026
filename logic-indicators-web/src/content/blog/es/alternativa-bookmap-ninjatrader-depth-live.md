@@ -107,3 +107,4 @@ Al integrar **Logic Depth Live** directamente en NinjaTrader 8, obtienes toda la
 ---
 
 > *¿Quieres experimentar la lectura de liquidez en tiempo real sobre tus propios gráficos? Conoce todos los detalles de [Logic Depth Live](/indicators/depthlive) o descarga la suite completa para NinjaTrader 8 con nuestra prueba gratuita de 14 días.*
+

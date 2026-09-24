@@ -127,11 +127,6 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="hover:text-accent-primary transition-colors">
-                  {t('footer.blog')}
-                </Link>
-              </li>
-              <li>
                 <Link to="/contact" className="hover:text-accent-primary transition-colors">
                   {t('footer.contact')}
                 </Link>

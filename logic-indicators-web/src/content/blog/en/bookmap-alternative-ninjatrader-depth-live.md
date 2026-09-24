@@ -107,3 +107,4 @@ By incorporating **Logic Depth Live** directly into NinjaTrader 8, you retain th
 ---
 
 > *Ready to visualize institutional liquidity directly on your charts? Explore the full capabilities of [Logic Depth Live](/indicators/depthlive), or test drive the complete NinjaTrader 8 suite with our 14-day free trial.*
+

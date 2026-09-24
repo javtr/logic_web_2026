@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, BookOpen, Gift, Sliders, Newspaper } from 'lucide-react';
+import { ChevronDown, BookOpen, Gift, Sliders } from 'lucide-react';
 import { useLanguage } from '../context/languageContext';
 
 export const ResourcesDropdown = () => {
@@ -47,11 +47,6 @@ export const ResourcesDropdown = () => {
       to: '/resources/docs',
       icon: BookOpen,
       label: t('nav.resourcesDropdown.docs'),
-    },
-    {
-      to: '/blog',
-      icon: Newspaper,
-      label: t('nav.resourcesDropdown.blog'),
     },
     {
       to: '/resources/free-indicators',
