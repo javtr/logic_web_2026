@@ -47,7 +47,7 @@ export const BlogCTA = () => {
             className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold text-sm border border-white/10 transition-all duration-200"
           >
             <ShieldCheck size={16} className="text-accent-primary" />
-            <span>{language === 'es' ? 'Descargar versión gratuita' : 'Download free trial'}</span>
+            <span>{language === 'es' ? 'Descargar indicadores gratuitos' : 'Download free indicators'}</span>
           </Link>
         </div>
       </div>

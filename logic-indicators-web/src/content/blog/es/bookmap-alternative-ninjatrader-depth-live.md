@@ -1,7 +1,7 @@
 ---
 title: "Alternativa a Bookmap en NinjaTrader 8: Cómo Leer el Mapa de Calor de Liquidez con Depth Live"
-slug: "alternativa-bookmap-ninjatrader-depth-live"
-alternateSlug: "bookmap-alternative-ninjatrader-depth-live"
+slug: "bookmap-alternative-ninjatrader-depth-live"
+alternateSlug: "alternativa-bookmap-ninjatrader-depth-live"
 description: "Descubre cómo visualizar la liquidez institucional histórica y las órdenes del libro en tiempo real dentro de NinjaTrader 8 sin pagar costosas suscripciones mensuales externas."
 date: "2026-09-24"
 author: "Equipo Logic Indicators"
@@ -106,5 +106,5 @@ Al integrar **Logic Depth Live** directamente en NinjaTrader 8, obtienes toda la
 
 ---
 
-> *¿Quieres experimentar la lectura de liquidez en tiempo real sobre tus propios gráficos? Conoce todos los detalles de [Logic Depth Live](/indicators/depthlive) o descarga la suite completa para NinjaTrader 8 con nuestra prueba gratuita de 14 días.*
+> *¿Quieres experimentar la lectura de liquidez en tiempo real sobre tus propios gráficos? Conoce todos los detalles de [Logic Depth Live](/indicators/depthlive) o descubre la [Logic Suite](/pricing) completa para NinjaTrader 8.*
 

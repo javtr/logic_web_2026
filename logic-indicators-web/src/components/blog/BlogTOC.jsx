@@ -35,13 +35,13 @@ export const BlogTOC = ({ headings = [] }) => {
   if (!headings || headings.length === 0) return null;
 
   return (
-    <nav className="sticky top-28 bg-dark-800/50 backdrop-blur-md border border-white/10 rounded-2xl p-5 shadow-lg">
+    <nav className="bg-dark-800/50 backdrop-blur-md border border-white/10 rounded-2xl p-5 shadow-lg">
       <div className="flex items-center gap-2 text-xs font-bold text-text-muted uppercase tracking-wider mb-4 pb-3 border-b border-white/5">
         <AlignLeft size={14} className="text-accent-primary" />
         <span>{language === 'es' ? 'En este artículo' : 'In this article'}</span>
       </div>
 
-      <ul className="space-y-2.5 text-xs max-h-[70vh] overflow-y-auto scrollbar-thin pr-2">
+      <ul className="space-y-2.5 text-xs max-h-[45vh] overflow-y-auto scrollbar-thin pr-2">
         {headings.map(({ level, text, slug }) => {
           const isActive = activeSlug === slug;
           return (

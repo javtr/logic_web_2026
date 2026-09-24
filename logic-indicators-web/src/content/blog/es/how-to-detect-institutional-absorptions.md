@@ -1,7 +1,7 @@
 ---
 title: "Cómo Detectar Absorciones Institucionales en Máximos con Footprint y Big Trades"
-slug: "como-detectar-absorciones-institucionales"
-alternateSlug: "how-to-detect-institutional-absorptions"
+slug: "how-to-detect-institutional-absorptions"
+alternateSlug: "como-detectar-absorciones-institucionales"
 description: "Aprende a identificar el rastro exacto donde las grandes manos absorben la liquidez del mercado en máximos de sesión, evitando trampas de rompimiento y operando con ventaja microestructural."
 date: "2026-09-24"
 author: "Equipo Logic Indicators"
@@ -130,4 +130,4 @@ Para dominar este setup:
 
 ---
 
-> *¿Listo para ver lo que otros no pueden ver? Explora las capacidades de [Logic Footprint](/indicators/footprint) y [Logic Big Trades](/indicators/bigtrades), o descarga la suite completa para NinjaTrader 8 con nuestra prueba gratuita de 14 días.*
+> *¿Listo para ver lo que otros no pueden ver? Explora las capacidades de [Logic Footprint](/indicators/footprint) y [Logic Big Trades](/indicators/bigtrades), o descubre la [Logic Suite](/pricing) completa para NinjaTrader 8.*

@@ -1,7 +1,7 @@
 ---
 title: "How to Detect Institutional Absorptions at Session Highs with Footprint and Big Trades"
-slug: "como-detectar-absorciones-institucionales"
-alternateSlug: "how-to-detect-institutional-absorptions"
+slug: "how-to-detect-institutional-absorptions"
+alternateSlug: "como-detectar-absorciones-institucionales"
 description: "Learn how to spot the exact footprint where large institutional players absorb market liquidity at session highs, avoiding breakout traps and trading with a microstructural edge."
 date: "2026-09-24"
 author: "Logic Indicators Team"
@@ -130,4 +130,4 @@ To master this setup:
 
 ---
 
-> *Ready to see what conventional charts hide? Explore [Logic Footprint](/indicators/footprint) and [Logic Big Trades](/indicators/bigtrades), or download the complete NinjaTrader 8 suite with our 14-day free trial.*
+> *Ready to see what conventional charts hide? Explore [Logic Footprint](/indicators/footprint) and [Logic Big Trades](/indicators/bigtrades), or discover the complete [Logic Suite](/pricing) for NinjaTrader 8.*

@@ -28,6 +28,11 @@ export const BlogPost = () => {
     return <Navigate to="/blog" replace />;
   }
 
+  // Si se accedió por un slug alternativo (ej. en español), normalizar a la URL oficial en inglés
+  if (slug !== post.slug) {
+    return <Navigate to={`/blog/${post.slug}`} replace />;
+  }
+
   const { frontmatter, content, headings } = post;
   const { title, description, date, author, category, readTime, coverImage, tags } =
     frontmatter;
@@ -206,7 +211,7 @@ export const BlogPost = () => {
           </main>
 
           {/* Columna Lateral Flotante (4 columnas) */}
-          <aside className="hidden lg:block lg:col-span-4 space-y-6">
+          <aside className="hidden lg:block lg:col-span-4 sticky top-28 self-start space-y-6">
             <BlogTOC headings={headings} />
 
             {/* Banner de Producto Destacado en el Sidebar */}
