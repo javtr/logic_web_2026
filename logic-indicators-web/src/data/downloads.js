@@ -19,9 +19,9 @@
 //
 // REGLAS DE ASIGNACION (primera que matchea gana):
 //   1. user tiene LOGIC_PACK_FULL  -> 'full'
-//   2. user tiene [indicator OR LOGIC_PACK_BASICO] AND LOGIC_PACK_DEPTH
+//   2. user tiene [indicator OR LOGIC_PACK_BASICO OR LOGIC_PACK_FOOTPRINT] AND LOGIC_PACK_DEPTH
 //                                  -> 'full'
-//   3. user tiene [indicator OR LOGIC_PACK_BASICO]
+//   3. user tiene [indicator OR LOGIC_PACK_BASICO OR LOGIC_PACK_FOOTPRINT]
 //                                  -> 'basic'
 //   4. user tiene solo LOGIC_PACK_DEPTH
 //                                  -> 'depth'
@@ -46,6 +46,8 @@ const BASIC_QUALIFIER_INDICATORS = new Set([
   'LOGIC_ANALYTICS',
   'LOGIC_ALGORITHMS',
   'LOGIC_COMPOSITE',
+  'LOGIC_PACK_FOOTPRINT',
+  'PACK_FOOTPRINT',
 ]);
 
 // Version actual del software (se aplica a todos los packs).
@@ -86,6 +88,9 @@ const LICENSED_DISPLAY_NAMES = {
   'LOGIC_PACK_BASICO':   'Logic Pack',
   'LOGIC_PACK_DEPTH':    'Logic Depth Pack',
   'LOGIC_PACK_FULL':     'Logic Full Pack',
+  'LOGIC_PACK_FOOTPRINT': 'Logic Footprint Pack',
+  'PACK_FOOTPRINT':       'Logic Footprint Pack',
+  '12':                   'Logic Footprint Pack',
 };
 
 /**
@@ -102,14 +107,30 @@ const LICENSED_DISPLAY_NAMES = {
 export const getAssignedPack = (productos) => {
   if (!Array.isArray(productos) || productos.length === 0) return null;
 
-  const nombres = new Set(productos.map((p) => p.nombre_producto));
+  const nombres = new Set(
+    productos.flatMap((p) => [
+      p.nombre_producto,
+      p.codigo_producto,
+      p.codigo,
+      p.code,
+      p.id_producto === 12 || p.id === 12 ? 'LOGIC_PACK_FOOTPRINT' : null,
+    ].filter(Boolean))
+  );
 
   // Regla 1: Full Pack comprado directo.
   if (nombres.has('LOGIC_PACK_FULL')) return 'full';
 
   const qualifiesForBasic =
-    productos.some((p) => BASIC_QUALIFIER_INDICATORS.has(p.nombre_producto)) ||
-    nombres.has('LOGIC_PACK_BASICO');
+    productos.some((p) =>
+      BASIC_QUALIFIER_INDICATORS.has(p.nombre_producto) ||
+      BASIC_QUALIFIER_INDICATORS.has(p.codigo_producto) ||
+      BASIC_QUALIFIER_INDICATORS.has(p.codigo) ||
+      p.id_producto === 12 ||
+      p.id === 12
+    ) ||
+    nombres.has('LOGIC_PACK_BASICO') ||
+    nombres.has('LOGIC_PACK_FOOTPRINT') ||
+    nombres.has('PACK_FOOTPRINT');
 
   const hasDepth = nombres.has('LOGIC_PACK_DEPTH');
 
