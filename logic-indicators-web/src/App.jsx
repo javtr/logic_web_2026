@@ -23,6 +23,7 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageProvider';
 import { Navbar } from './components/Navbar';
+import { TopAnnouncementBanner } from './components/TopAnnouncementBanner';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
 import { ScrollToTopButton } from './components/ScrollToTopButton';
@@ -56,6 +57,7 @@ const BlogPost = lazy(() => import('./pages/BlogPost').then((m) => ({ default: m
 const MainLayout = () => {
   return (
     <div className="flex flex-col min-h-screen bg-dark-900 text-text-main font-sans">
+      <TopAnnouncementBanner />
       <Navbar />
       <main className="flex-grow">
         <Suspense fallback={<PageLoader />}>

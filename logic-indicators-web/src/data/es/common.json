@@ -12,5 +12,17 @@
   "carousel": {
     "goTo": "Ir al slide {n}",
     "slideOf": "Slide {n} de {total}"
+  },
+  "topBanner": {
+    "enabled": true,
+    "badge": "NEW",
+    "discount": "15% OFF",
+    "prefix": "por el Lanzamiento de",
+    "product": "Logic Indicators 3.0",
+    "codeLabel": "Usa el código:",
+    "code": "LOGIC3",
+    "copied": "¡Copiado!",
+    "copyAria": "Copiar código de descuento LOGIC3",
+    "link": "/pricing"
   }
 }
