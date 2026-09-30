@@ -57,8 +57,10 @@ const BlogPost = lazy(() => import('./pages/BlogPost').then((m) => ({ default: m
 const MainLayout = () => {
   return (
     <div className="flex flex-col min-h-screen bg-dark-900 text-text-main font-sans">
-      <TopAnnouncementBanner />
-      <Navbar />
+      <header className="sticky top-0 z-50 w-full">
+        <TopAnnouncementBanner />
+        <Navbar />
+      </header>
       <main className="flex-grow">
         <Suspense fallback={<PageLoader />}>
           <Outlet />

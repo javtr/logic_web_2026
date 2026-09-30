@@ -41,7 +41,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-dark-900/60 backdrop-blur-md">
+      <nav className="w-full border-b border-white/10 bg-dark-900/60 backdrop-blur-md">
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
           {/* Logo (SVG) */}
           <Link to="/" aria-label={t('common.logoAria')}>
