@@ -174,7 +174,7 @@ const PricingCard = ({ plan, t, bestValueText }) => {
           separar visualmente del bloque de precio que está arriba. */}
       {plan.installments && (
         <div className="mt-4 pt-4 border-t border-dark-700 text-center">
-          <p className="text-xs uppercase tracking-wider text-accent-primary font-bold mb-2">
+          <p className="text-xs uppercase tracking-wider text-accent-secondary font-bold mb-2">
             {t('pricing.installmentsTitle')}
           </p>
           {plan.installments.checkoutUrl ? (
@@ -182,13 +182,13 @@ const PricingCard = ({ plan, t, bestValueText }) => {
               href={plan.installments.checkoutUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-accent-primary hover:text-accent-primary/80 transition-colors py-1 px-3 rounded-lg bg-accent-primary/10 hover:bg-accent-primary/20 border border-accent-primary/30 group/inst"
+              className="inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-accent-secondary hover:text-accent-secondary/80 transition-colors py-1 px-3 rounded-lg bg-accent-secondary/10 hover:bg-accent-secondary/20 border border-accent-secondary/30 group/inst"
             >
               <span>{plan.installments.text}</span>
               <span className="transition-transform group-hover/inst:translate-x-0.5" aria-hidden="true">&rarr;</span>
             </a>
           ) : (
-            <p className="text-sm font-semibold text-accent-primary">
+            <p className="text-sm font-semibold text-accent-secondary">
               {plan.installments.text}
             </p>
           )}

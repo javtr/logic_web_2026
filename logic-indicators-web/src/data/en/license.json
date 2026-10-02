@@ -36,7 +36,7 @@
       "email": "Please enter a valid email address",
       "machineIdFormat": "The Machine ID must contain exactly 32 alphanumeric characters (no spaces or hyphens)",
       "captcha": "Please verify that you are not a robot",
-      "generic": "An error occurred while submitting your request. Please try again or reach out to our WhatsApp support."
+      "generic": "An error occurred while submitting your request. Please try again or reach out to us via Discord or email."
     },
     "success": {
       "title": "Information submitted successfully!",
@@ -51,8 +51,8 @@
     "title": "Need help with your license?",
     "description": "If you have any questions or concerns, feel free to contact our technical support directly:",
     "email": "info@logicindicators.com",
-    "whatsapp": "+57 311 3006826",
-    "whatsappUrl": "https://wa.me/573113006826?text=Hello,%20I%20just%20purchased%20Logic%20Indicators%20and%20need%20assistance%20with%20my%20license."
+    "discord": "Discord Community",
+    "discordUrl": "https://discord.gg/UKxZyQUGxY"
   }
 }
 
