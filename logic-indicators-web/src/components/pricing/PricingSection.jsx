@@ -26,7 +26,7 @@ import { useState } from 'react';
 import { useLanguage } from '../../context/languageContext';
 import { Button } from '../Button';
 import { ToggleSwitch } from '../ToggleSwitch';
-import { CheckCircle2, GraduationCap, Headphones, Info } from 'lucide-react';
+import { CheckCircle2, GraduationCap, Headphones, Info, ExternalLink } from 'lucide-react';
 
 const CURRENCY_SYMBOL = '$';
 
@@ -127,9 +127,19 @@ const PricingCard = ({ plan, t, bestValueText }) => {
       {/* Plus content — solo en planes Plus (ES). Lista de cursos. */}
       {Array.isArray(plan.plusContent) && plan.plusContent.length > 0 && (
         <div className="mt-6 pt-6 border-t border-dark-700">
-          <p className="text-xs uppercase tracking-wider text-accent-secondary font-bold mb-3">
-            {t('pricing.plusContentTitle')}
-          </p>
+          <a
+            href={plan.plusContentUrl || t('pricing.plusContentUrl') || 'https://3ctrading.gumroad.com/l/logic-pack-plus'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider text-accent-secondary font-bold mb-3 hover:text-accent-secondary/80 hover:underline underline-offset-4 transition-all group/plus"
+          >
+            <span>{t('pricing.plusContentTitle')}</span>
+            <ExternalLink
+              size={13}
+              className="shrink-0 transition-transform group-hover/plus:translate-x-0.5 group-hover/plus:-translate-y-0.5"
+              aria-hidden="true"
+            />
+          </a>
           <ul className="space-y-2">
             {plan.plusContent.map((item, i) => (
               <li key={i} className="text-sm text-text-muted leading-snug">
