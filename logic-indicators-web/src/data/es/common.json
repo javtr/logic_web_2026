@@ -15,7 +15,7 @@
   },
   "topBanner": {
     "enabled": true,
-    "targetDate": "2026-10-05T00:00:00-05:00",
+    "targetDate": "2026-10-05T23:59:59-05:00",
     "discount": "15% OFF",
     "prefix": "por el Lanzamiento de",
     "product": "Logic Indicators 3.0",
