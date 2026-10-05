@@ -54,17 +54,24 @@ export const TopAnnouncementBanner = () => {
   // Actualizador del temporizador cada segundo
   useEffect(() => {
     if (!banner?.targetDate) return;
-    setTimeLeft(calculateTimeLeft(banner.targetDate));
+    const initialTime = calculateTimeLeft(banner.targetDate);
+    setTimeLeft(initialTime);
+
+    if (initialTime?.isExpired) return;
 
     const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft(banner.targetDate));
+      const updatedTime = calculateTimeLeft(banner.targetDate);
+      setTimeLeft(updatedTime);
+      if (updatedTime?.isExpired) {
+        clearInterval(timer);
+      }
     }, 1000);
 
     return () => clearInterval(timer);
   }, [banner?.targetDate]);
 
-  // Si no está configurado o está deshabilitado, no renderiza nada
-  if (!banner || banner.enabled !== true) {
+  // Si no está configurado, está deshabilitado o el contador ya expiró, no renderiza nada
+  if (!banner || banner.enabled !== true || timeLeft?.isExpired) {
     return null;
   }
 
