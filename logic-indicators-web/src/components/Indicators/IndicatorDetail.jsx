@@ -22,7 +22,7 @@ import { Button } from '../Button';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/languageContext';
 import { ZoomableImage } from '../ImageLightbox';
-import { Info } from 'lucide-react';
+import { Info, ShoppingCart, ArrowLeft } from 'lucide-react';
 import imgSample from '../../assets/indicators/sample_image.png';
 
 export const IndicatorDetail = ({
@@ -33,6 +33,7 @@ export const IndicatorDetail = ({
   contentImages = [],
   paragraphs = [],
   content = '',
+  buyUrl = '/pricing',
 }) => {
   const { t } = useLanguage();
 
@@ -78,11 +79,18 @@ export const IndicatorDetail = ({
         <p className="text-base sm:text-lg leading-relaxed">{content}</p>
       )}
 
-      {/* 4. Botón volver */}
-      <div className="mt-6 md:mt-8">
+      {/* 4. Botones de acción: Comprar y Volver a Indicadores */}
+      <div className="mt-8 md:mt-12 pt-6 border-t border-dark-750 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+        <Link to={buyUrl} className="inline-block">
+          <Button variant="primary" className="w-full sm:w-auto text-base sm:text-lg px-8 py-3 shadow-lg shadow-accent-primary/20 flex items-center justify-center gap-2">
+            <ShoppingCart size={20} />
+            <span>{t('indicatorPage.buy')}</span>
+          </Button>
+        </Link>
         <Link to="/indicators" className="inline-block">
-          <Button variant="outline" className="text-lg px-8 py-3">
-            {t('indicatorPage.back')}
+          <Button variant="outline" className="w-full sm:w-auto text-base sm:text-lg px-8 py-3 flex items-center justify-center gap-2">
+            <ArrowLeft size={20} />
+            <span>{t('indicatorPage.back')}</span>
           </Button>
         </Link>
       </div>
