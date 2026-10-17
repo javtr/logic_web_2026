@@ -248,8 +248,8 @@ export const TopAnnouncementBanner = () => {
                 <span className="font-bold">{timeLeft.minutes}</span>
                 <span className="text-[9px] sm:text-[10px] text-white/75 font-sans font-medium ml-0.5 mr-1.5">M</span>
 
-                <span className="font-bold text-[#86efac]">{timeLeft.seconds}</span>
-                <span className="text-[9px] sm:text-[10px] text-[#86efac]/80 font-sans font-medium ml-0.5">S</span>
+                <span className="font-bold">{timeLeft.seconds}</span>
+                <span className="text-[9px] sm:text-[10px] text-white/75 font-sans font-medium ml-0.5">S</span>
               </div>
             </div>
           )}
