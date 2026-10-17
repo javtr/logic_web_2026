@@ -114,12 +114,53 @@ export const TopAnnouncementBanner = () => {
   return (
     <aside
       aria-label="Announcement"
-      className="w-full relative border-b border-black/30 text-white shadow-md select-none transition-colors overflow-hidden"
-      style={{
-        background: 'linear-gradient(90deg, #560b19 0%, #8b0f1c 55%, #bd121c 100%)'
-      }}
+      className="w-full relative border-b border-black/30 text-white shadow-md select-none transition-colors overflow-hidden banner-fluid-bg"
     >
-      <div className="container mx-auto px-3 sm:px-4 py-2 sm:py-2.5 flex items-center justify-center text-xs sm:text-sm font-sans">
+      {/* Estilos CSS Scoped para la animación (100% GPU-accelerated, 0 reflow/repaint de layout) */}
+      <style>{`
+        @keyframes bannerFluidBg {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        @keyframes bannerLightSweep {
+          0% { transform: translate3d(-180%, 0, 0); }
+          28%, 100% { transform: translate3d(360%, 0, 0); }
+        }
+        @keyframes bannerCyberPulse {
+          0%, 100% {
+            box-shadow: 0 0 0 0 rgba(134, 239, 172, 0);
+            border-color: rgba(255, 255, 255, 0.45);
+          }
+          50% {
+            box-shadow: 0 0 12px 2px rgba(134, 239, 172, 0.45);
+            border-color: rgba(134, 239, 172, 0.9);
+          }
+        }
+        .banner-fluid-bg {
+          background: linear-gradient(90deg, #500916 0%, #820e1a 25%, #b6121c 50%, #820e1a 75%, #500916 100%);
+          background-size: 200% 100%;
+          animation: bannerFluidBg 14s ease infinite;
+        }
+        .banner-sweep-layer {
+          animation: bannerLightSweep 5.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+          will-change: transform;
+        }
+        .banner-code-pulse {
+          animation: bannerCyberPulse 3.5s ease-in-out infinite;
+        }
+      `}</style>
+
+      {/* Haz de luz láser/scanner diagonal que barre el banner periódicamente */}
+      <div
+        className="pointer-events-none absolute inset-y-0 -skew-x-12 z-0 banner-sweep-layer"
+        style={{
+          width: '45%',
+          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.02) 20%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0.02) 80%, transparent 100%)',
+        }}
+      />
+
+      <div className="container mx-auto px-3 sm:px-4 py-2 sm:py-2.5 flex items-center justify-center text-xs sm:text-sm font-sans relative z-10">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-x-3 gap-y-1.5 text-center flex-wrap">
           {/* Bloque: Texto de Oferta y Píldora del Código */}
           <div className="inline-flex items-center flex-wrap justify-center gap-1.5 sm:gap-2 leading-tight">
@@ -135,14 +176,14 @@ export const TopAnnouncementBanner = () => {
               </span>
             </Link>
 
-            {/* Píldora del Código Promocional con Copiado Rápido */}
+            {/* Píldora del Código Promocional con Efecto Cyber Pulse */}
             {banner.code && (
               <button
                 type="button"
                 onClick={handleCopyCode}
                 aria-label={banner.copyAria || `Copiar ${banner.code}`}
                 title={banner.copyAria || `Copiar ${banner.code}`}
-                className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-0.5 rounded-full border border-white/45 bg-white/5 hover:bg-white/15 hover:border-white/70 active:scale-95 transition-all cursor-pointer text-xs font-bold tracking-wider text-white group shadow-sm focus:outline-none focus:ring-1 focus:ring-white/50"
+                className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-0.5 rounded-full border bg-white/5 hover:bg-white/15 active:scale-95 transition-all cursor-pointer text-xs font-bold tracking-wider text-white group shadow-sm focus:outline-none focus:ring-1 focus:ring-white/50 banner-code-pulse"
               >
                 {copied ? (
                   <>
@@ -183,13 +224,19 @@ export const TopAnnouncementBanner = () => {
           {/* Bloque: Temporizador Regresivo */}
           {timeLeft && !timeLeft.isExpired && (
             <div className="inline-flex items-center gap-1.5 sm:gap-2">
+              {/* Radar / Beacon de transmisión en vivo */}
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+
               <span className="text-white/80 font-bold text-[10px] sm:text-xs tracking-wider uppercase select-none">
                 {banner.endsIn || 'TERMINA EN:'}
               </span>
 
               {/* Píldora del Contador (01D 12H 30M 29S) */}
               <div
-                className="inline-flex items-center px-2.5 sm:px-3 py-0.5 rounded-full border border-white/45 bg-black/15 font-mono text-xs sm:text-sm font-semibold tracking-tight text-white shadow-inner"
+                className="inline-flex items-center px-2.5 sm:px-3 py-0.5 rounded-full border border-white/45 bg-black/25 font-mono text-xs sm:text-sm font-semibold tracking-tight text-white shadow-inner backdrop-blur-xs"
                 title={`${banner.endsIn || 'Termina en:'} ${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}
               >
                 <span className="font-bold">{timeLeft.days}</span>
@@ -201,8 +248,8 @@ export const TopAnnouncementBanner = () => {
                 <span className="font-bold">{timeLeft.minutes}</span>
                 <span className="text-[9px] sm:text-[10px] text-white/75 font-sans font-medium ml-0.5 mr-1.5">M</span>
 
-                <span className="font-bold">{timeLeft.seconds}</span>
-                <span className="text-[9px] sm:text-[10px] text-white/75 font-sans font-medium ml-0.5">S</span>
+                <span className="font-bold text-[#86efac]">{timeLeft.seconds}</span>
+                <span className="text-[9px] sm:text-[10px] text-[#86efac]/80 font-sans font-medium ml-0.5">S</span>
               </div>
             </div>
           )}
