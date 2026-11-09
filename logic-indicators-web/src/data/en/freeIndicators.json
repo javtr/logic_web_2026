@@ -8,6 +8,7 @@
     {
       "id": "profile-free",
       "name": "Logic Profile (Free Version)",
+      "shortName": "Logic Profile",
       "badge": "Free",
       "tagline": "Volume histogram and auction analysis.",
       "imageKey": "profile",
@@ -24,8 +25,30 @@
         "Optimized, smooth performance with zero freezes",
         "Fully compatible with NinjaTrader 8"
       ],
-      "downloadUrl": "https://logic-indicators.lemonsqueezy.com/buy/50285261-9077-44fa-a6b1-04dd0a82cd95",
+      "downloadUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/50285261-9077-44fa-a6b1-04dd0a82cd95",
       "fullVersionSlug": "logic-profile"
+    },
+    {
+      "id": "poc-free",
+      "name": "Logic POC (Free Version)",
+      "shortName": "Logic POC",
+      "badge": "Free",
+      "tagline": "Instantly identify the exact price where major institutions concentrated their volume on every single bar.",
+      "imageKey": "poc",
+      "contentImages": [
+        "poc_01"
+      ],
+      "description": "Most traders operate blind relying solely on traditional candlestick charts, unaware of the exact price level where the real battle between buyers and sellers occurred. Logic POC elevates your market reading to the next level by uncovering the Point of Control (POC) on every candle: the precise level where the highest volume was traded. This allows you to identify rejection zones, detect institutional absorptions, and confirm key support and resistance levels with complete confidence.\n\nDesigned to keep your charts clean and functional, the indicator adapts dynamically to your workflow: zoom out for a high-level view of POC levels with clarity; zoom in to instantly reveal a detailed volume distribution profile inside every bar. All engineered into an ultra-smooth visual experience that never slows down your NinjaTrader 8, empowering you to make fast, accurate decisions even during peak volatility.",
+      "trialNotice": "This free version gives you access to the precision and clarity standards of Logic Indicators at zero cost. It is the ideal tool to refine your entries and exits on NinjaTrader 8 and experience firsthand the advantage of trading with real volume before stepping up to our advanced Order Flow and professional Footprint suite.",
+      "features": [
+        "Bar-by-Bar Automatic POC Detection: Effortlessly pinpoint the exact price level where the highest volume concentrated in each candle.",
+        "Smart Volume-Based Coloring: Visual alert system with dynamic color coding that immediately highlights candles with extraordinary institutional activity or absorption.",
+        "Dynamic Zoom Visualization: Enjoy an uncluttered overview when zoomed out and inspect detailed internal volume distribution when zooming in.",
+        "Ultra-Smooth Performance: Engineered for maximum speed and stability, ensuring your charts never experience freezes or lag.",
+        "On-Chart Control Panel: Adjust colors, opacities, and margins with a single click right from a convenient button on your chart, without interrupting your trading."
+      ],
+      "downloadUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/f3e5b21f-b90f-4176-bb98-2749e8878716",
+      "fullVersionSlug": "logic-footprint"
     }
   ]
 }

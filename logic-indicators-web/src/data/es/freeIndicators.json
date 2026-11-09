@@ -8,6 +8,7 @@
     {
       "id": "profile-free",
       "name": "Logic Profile (Free Version)",
+      "shortName": "Logic Profile",
       "badge": "Gratis",
       "tagline": "Histograma de volumen y análisis de la subasta.",
       "imageKey": "profile",
@@ -24,8 +25,30 @@
         "Rendimiento optimizado y fluido sin congelamientos",
         "Totalmente compatible con NinjaTrader 8"
       ],
-      "downloadUrl": "https://logic-indicators.lemonsqueezy.com/buy/50285261-9077-44fa-a6b1-04dd0a82cd95",
+      "downloadUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/5bb86c28-5f54-4b23-a50a-a7a14f0639b5",
       "fullVersionSlug": "logic-profile"
+    },
+    {
+      "id": "poc-free",
+      "name": "Logic POC (Free Version)",
+      "shortName": "Logic POC",
+      "badge": "Gratis",
+      "tagline": "Identifica al instante el precio exacto donde las grandes instituciones concentraron su volumen en cada vela.",
+      "imageKey": "poc",
+      "contentImages": [
+        "poc_01"
+      ],
+      "description": "La mayoría de los traders operan a ciegas utilizando únicamente velas tradicionales, sin saber en qué nivel exacto de precio ocurrió la verdadera batalla entre compradores y vendedores. Logic POC lleva tu lectura de mercado a otro nivel al revelar el Point of Control (POC) en cada vela: el nivel preciso donde se negoció el mayor volumen. Esto te permite identificar zonas de rechazo, detectar absorciones institucionales y confirmar niveles clave de soporte y resistencia con total confianza.\n\nDiseñado para mantener tus gráficos limpios y funcionales, el indicador se adapta automáticamente a tu ritmo de trabajo: cuando alejas el gráfico, te muestra las zonas de POC con total elegancia y nitidez; al hacer zoom, despliega de inmediato un perfil de volumen detallado dentro de cada vela. Todo integrado en una experiencia visual ultra fluida que no ralentiza tu NinjaTrader 8, permitiéndote tomar decisiones rápidas y precisas incluso en los momentos de mayor volatilidad.",
+      "trialNotice": "Esta versión gratuita te permite acceder al estándar de precisión y claridad de Logic Indicators sin ningún costo. Es la herramienta ideal para mejorar tus puntos de entrada y salida en NinjaTrader 8, y comprobar de primera mano la ventaja de operar viendo el volumen real antes de dar el paso a nuestras herramientas avanzadas de Order Flow y Footprint profesional.",
+      "features": [
+        "Detección Automática del POC Vela a Vela: Descubre sin esfuerzo el nivel de precio exacto donde se concentró la mayor negociación de cada barra.",
+        "Colores Inteligentes por Volumen: Sistema de alerta visual por niveles de color que resalta de inmediato las velas con actividad institucional extraordinaria o absorción.",
+        "Visualización Dinámica con Zoom: Disfruta de un gráfico despejado cuando tienes una vista panorámica y observa la distribución interna del volumen al acercarte a la vela.",
+        "Rendimiento Ultra Fluido: Desarrollado para operar con máxima rapidez y estabilidad, garantizando que tu gráfico nunca sufra pausas ni congelamientos.",
+        "Panel de Control Integrado en Pantalla: Modifica colores, opacidades y márgenes con un solo clic desde un botón cómodo en tu gráfico, sin pausar tu operativa."
+      ],
+      "downloadUrl": "https://logic-indicators.lemonsqueezy.com/checkout/buy/a9dbcf94-35d6-4674-a8a4-e468ca143dd1",
+      "fullVersionSlug": "logic-footprint"
     }
   ]
 }

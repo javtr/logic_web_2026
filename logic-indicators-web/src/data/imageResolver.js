@@ -46,6 +46,8 @@ import depthlive_d1Image from '../assets/indicators/depthlive_d1.png';
 import depthlive_d2Image from '../assets/indicators/depthlive_d2.png';
 import depthlive_d3Image from '../assets/indicators/depthlive_d3.png';
 import depthPackImage from '../assets/indicators/depth_pack.png';
+import pocImage from '../assets/indicators/poc.png';
+import poc_d01Image from '../assets/indicators/poc_d1.png';
 // Imagenes del tutorial de instalacion en NinjaTrader 8.
 // Usadas en el primer paso del wizard de instalacion (segun /resources
 // en el schema del step tipo 'tutorial' en installation.js).
@@ -83,6 +85,7 @@ import presetFooterHeatmapBasic from '../assets/presets/preset_footer_heatmap_ba
 
 // Presets individuales - Logic Profile
 import presetProfileTpoBlackLight from '../assets/presets/preset_profile_tpo_black_light.png';
+import presetProfileTpoLogicDark from '../assets/presets/preset_profile_tpo_logic_dark.png';
 import presetProfileTpoMagenta2Light from '../assets/presets/preset_profile_tpo_magenta_2_light.png';
 import presetProfileTpoMagentaLight from '../assets/presets/preset_profile_tpo_magenta_light.png';
 import presetProfileTpoMinimalistLight from '../assets/presets/preset_profile_tpo_minimalist_light.png';
@@ -166,6 +169,7 @@ export const imageMap = {
 
   // Presets Logic Profile
   preset_profile_tpo_black_light: presetProfileTpoBlackLight,
+  preset_profile_tpo_logic_dark: presetProfileTpoLogicDark,
   preset_profile_tpo_magenta_2_light: presetProfileTpoMagenta2Light,
   preset_profile_tpo_magenta_light: presetProfileTpoMagentaLight,
   preset_profile_tpo_minimalist_light: presetProfileTpoMinimalistLight,
@@ -239,6 +243,8 @@ export const imageMap = {
   depth_chart: depthchartImage,
   depthlive: depthliveImage,
   depth_live: depthliveImage,
+  poc: pocImage,
+  logic_poc: pocImage,
   depth_pack: depthPackImage,
   depthpack: depthPackImage,
   'depth_pack.png': depthPackImage,
@@ -271,6 +277,10 @@ export const imageMap = {
   depthlive_d1: depthlive_d1Image,
   depthlive_d2: depthlive_d2Image,
   depthlive_d3: depthlive_d3Image,
+  poc_d1: poc_d01Image,
+  poc_d2: poc_d01Image,
+  poc_01: poc_d01Image,
+  poc_02: poc_d01Image,
 
   // Tutorial de importacion de presets (pagina /resources/presets).
   tutorial_step_1: downloadPresetImage,

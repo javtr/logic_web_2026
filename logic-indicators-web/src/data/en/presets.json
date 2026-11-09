@@ -206,6 +206,14 @@
       "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_BLACK_LIGHT.xml"
     },
     {
+      "id": "profile-tpo-logic-dark",
+      "indicatorId": "profile",
+      "name": "TPO Logic Dark",
+      "description": "",
+      "imageKey": "preset_profile_tpo_logic_dark",
+      "xmlUrl": "https://download.logicindicators.com/Templates/Presets/LOF_Profile/User/TPO_LOGIC_DARK.xml"
+    },
+    {
       "id": "profile-tpo-magenta-2-light",
       "indicatorId": "profile",
       "name": "TPO Magenta 2 Light",
