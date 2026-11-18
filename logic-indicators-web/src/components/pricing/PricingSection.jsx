@@ -233,7 +233,6 @@ export const PricingSection = ({
 
   const dataRequirementNote = section.dataRequirementNote;
   const currencyCode = section.currencyCode || 'USD';
-  const morTaxNote = section.morTaxNote;
 
   const isArrayLayout = Array.isArray(plans);
   const currentPlans = isArrayLayout
@@ -269,19 +268,12 @@ export const PricingSection = ({
         ))}
       </div>
 
-      {(dataRequirementNote || morTaxNote) && (
-        <div className="mt-8 text-center space-y-2 max-w-2xl mx-auto">
-          {dataRequirementNote && (
-            <p className="text-xs md:text-sm text-text-muted flex items-center justify-center gap-1.5">
-              <Info size={14} className="text-purple-400 shrink-0" />
-              <span>*{dataRequirementNote}</span>
-            </p>
-          )}
-          {morTaxNote && (
-            <p className="text-xs text-text-muted/85 leading-relaxed">
-              {morTaxNote}
-            </p>
-          )}
+      {dataRequirementNote && (
+        <div className="mt-8 text-center">
+          <p className="text-xs md:text-sm text-text-muted flex items-center justify-center gap-1.5 max-w-2xl mx-auto">
+            <Info size={14} className="text-purple-400 shrink-0" />
+            <span>*{dataRequirementNote}</span>
+          </p>
         </div>
       )}
     </section>

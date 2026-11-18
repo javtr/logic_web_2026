@@ -88,7 +88,7 @@ const ProductCard = ({ product, t, section }) => {
         </div>
 
         <div className="flex flex-col gap-0.5">
-          <div className="flex items-baseline gap-1">
+          <div className="flex items-baseline gap-1.5">
             <span className="text-2xl font-extrabold text-text-main">
               {/* Override por producto: si el JSON define `price` en un
                   product, ese gana. Si no, cae al defaultPrice global. */}
@@ -161,12 +161,6 @@ export const IndividualIndicatorsSection = () => {
             />
           ))}
         </div>
-      )}
-
-      {section.morTaxNote && (
-        <p className="mt-8 text-center text-xs text-text-muted/85 max-w-2xl mx-auto leading-relaxed">
-          {section.morTaxNote}
-        </p>
       )}
     </section>
   );
