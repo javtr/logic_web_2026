@@ -6,9 +6,8 @@
   "emptyMessage": "No individual indicators available right now.",
 
   "defaultPrice": 197,
-  "defaultBillingPeriod": "USD · One-time payment",
+  "defaultBillingPeriod": "One-time payment",
   "currencySymbol": "$",
-  "morTaxNote": "All prices are in USD. Applicable local sales tax / VAT is calculated at checkout by our authorized Merchant of Record.",
 
   "bundleBadge": "Bundle",
   "bundleTitleAppend": "+ {secondary}",

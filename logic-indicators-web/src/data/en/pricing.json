@@ -23,7 +23,7 @@
     {
       "id": "annual",
       "name": "Annual",
-      "billingLabel": "USD — Billed annually (Recurring subscription · Cancel anytime)",
+      "billingLabel": "Billed annually (Recurring subscription · Cancel anytime)",
       "price": 584,
       "crossedPrice": 934,
       "highlighted": false,
@@ -49,7 +49,7 @@
     {
       "id": "lifetime",
       "name": "Lifetime",
-      "billingLabel": "USD — One-time payment (Lifetime access)",
+      "billingLabel": "One-time payment (Lifetime access)",
       "price": 884,
       "crossedPrice": 1341,
       "highlighted": true,

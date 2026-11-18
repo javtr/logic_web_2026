@@ -29,7 +29,7 @@
       "basic": {
         "id": "basic-yearly",
         "name": "Pack Básico",
-        "billingLabel": "USD — Facturación anual (Suscripción recurrente · Cancela cuando quieras)",
+        "billingLabel": "Facturación anual (Suscripción recurrente · Cancela cuando quieras)",
         "price": 584,
         "crossedPrice": 934,
         "highlighted": false,
@@ -55,7 +55,7 @@
       "plus": {
         "id": "plus-yearly",
         "name": "Pack Plus",
-        "billingLabel": "USD — Facturación anual (Suscripción recurrente · Cancela cuando quieras)",
+        "billingLabel": "Facturación anual (Suscripción recurrente · Cancela cuando quieras)",
         "price": 737,
         "crossedPrice": 1171,
         "highlighted": true,
@@ -101,7 +101,7 @@
       "basic": {
         "id": "basic-lifetime",
         "name": "Pack Básico",
-        "billingLabel": "USD — Pago único (Acceso de por vida)",
+        "billingLabel": "Pago único (Acceso de por vida)",
         "price": 884,
         "crossedPrice": 1341,
         "highlighted": false,
@@ -132,7 +132,7 @@
       "plus": {
         "id": "plus-lifetime",
         "name": "Pack Plus",
-        "billingLabel": "USD — Pago único (Acceso de por vida)",
+        "billingLabel": "Pago único (Acceso de por vida)",
         "price": 1184,
         "crossedPrice": 1894,
         "highlighted": true,

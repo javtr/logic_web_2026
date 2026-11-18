@@ -6,9 +6,8 @@
   "emptyMessage": "No hay indicadores individuales disponibles por el momento.",
 
   "defaultPrice": 197,
-  "defaultBillingPeriod": "USD · Pago único",
+  "defaultBillingPeriod": "Pago único",
   "currencySymbol": "$",
-  "morTaxNote": "Todos los precios están en USD. Los impuestos locales o IVA aplicables se calculan al momento del pago por nuestro Merchant of Record autorizado.",
 
   "bundleBadge": "Paquete",
   "bundleTitleAppend": "+ {secondary}",
