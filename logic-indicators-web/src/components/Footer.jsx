@@ -7,6 +7,7 @@
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/languageContext';
 import { getActiveIndicatorIds } from '../data';
+import { ComplianceDisclaimers } from './ComplianceDisclaimers';
 import { MessageCircle, Mail, ShieldCheck } from 'lucide-react';
 import logoSvg from '../assets/logo_logic.svg';
 
@@ -136,6 +137,15 @@ export const Footer = () => {
                   {t('footer.faq')}
                 </Link>
               </li>
+              <li>
+                <a
+                  href={`mailto:${t('footer.supportEmail')}`}
+                  className="inline-flex items-center gap-1.5 hover:text-accent-primary transition-colors"
+                >
+                  <Mail size={14} className="shrink-0" />
+                  <span>{t('footer.supportEmail')}</span>
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -153,6 +163,11 @@ export const Footer = () => {
                   {t('footer.terms')}
                 </Link>
               </li>
+              <li>
+                <Link to="/refund-policy" className="hover:text-text-main transition-colors">
+                  {t('footer.refund')}
+                </Link>
+              </li>
             </ul>
             <div className="mt-6 p-4 rounded-lg bg-dark-800 border border-dark-700 flex items-center gap-3">
               <ShieldCheck className="text-accent-primary" size={24} />
@@ -163,8 +178,11 @@ export const Footer = () => {
           </div>
         </div>
 
+        {/* Descargos legales estándar (CFTC Rule 4.41 & NinjaTrader Trademark) */}
+        <ComplianceDisclaimers />
+
         {/* Copyright (i18n) */}
-        <div className="border-t border-dark-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-text-muted">
+        <div className="border-t border-dark-700/80 pt-6 mt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-text-muted">
           <p>{t('footer.copyright').replace('{year}', currentYear)}</p>
           <p>{t('footer.tagline')}</p>
         </div>

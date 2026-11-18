@@ -17,7 +17,7 @@
     },
     {
       "title": "4. Third-Party Services",
-      "content": "To operate our service we use trusted third-party providers that may process personal data on our behalf: Lemon Squeezy (payment processing), the hosting infrastructure provider, and analytics services. All of these providers comply with recognized security standards and only process the data necessary to provide their service."
+      "content": "To operate our service we use trusted third-party providers that may process personal data on our behalf: our authorized Merchant of Record (payment processing and tax compliance), the hosting infrastructure provider, and analytics services. All of these providers comply with recognized security standards and only process the data necessary to provide their service."
     },
     {
       "title": "5. Your Rights",

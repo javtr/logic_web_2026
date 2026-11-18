@@ -34,7 +34,7 @@ export const LegalPage = ({ data }) => {
 
       {/* Intro */}
       {data.intro && (
-        <p className="text-text-muted leading-relaxed text-lg mb-12">
+        <p className="text-text-muted leading-relaxed text-lg mb-12 whitespace-pre-line">
           {data.intro}
         </p>
       )}
@@ -42,11 +42,11 @@ export const LegalPage = ({ data }) => {
       {/* Sections */}
       <div className="space-y-10">
         {data.sections.map((section, i) => (
-          <section key={i}>
+          <section key={section.id || i} id={section.id || undefined} className="scroll-mt-28">
             <h2 className="text-2xl font-bold text-text-main mb-3">
               {section.title}
             </h2>
-            <p className="text-text-muted leading-relaxed text-base">
+            <p className="text-text-muted leading-relaxed text-base whitespace-pre-line">
               {section.content}
             </p>
           </section>

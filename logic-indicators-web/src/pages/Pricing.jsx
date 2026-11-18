@@ -15,6 +15,7 @@ import { PricingSection } from '../components/pricing/PricingSection';
 import { IndividualIndicatorsSection } from '../components/pricing/IndividualIndicatorsSection';
 import { TrustSection } from '../components/pricing/TrustSection';
 import { FAQSection } from '../components/FAQSection';
+import { ComplianceDisclaimers } from '../components/ComplianceDisclaimers';
 
 export const Pricing = () => {
   const { t } = useLanguage();
@@ -49,6 +50,10 @@ export const Pricing = () => {
       <TrustSection />
 
       <FAQSection namespace="pricingFaq" titleKey="pricing.faqTitle" />
+
+      <section className="px-6 container mx-auto max-w-5xl">
+        <ComplianceDisclaimers compact />
+      </section>
     </div>
     </>
   );

@@ -14,7 +14,7 @@
     },
     {
       "q": "¿Qué métodos de pago aceptan?",
-      "a": "Aceptamos tarjetas de crédito y débito (Visa, Mastercard y American Express) a través de Lemon Squeezy, además de PayPal. Todas las transacciones utilizan encriptación SSL de 256 bits para proteger tu información."
+      "a": "Aceptamos tarjetas de crédito y débito (Visa, Mastercard y American Express), además de PayPal, a través de nuestro Merchant of Record autorizado. Todas las transacciones utilizan encriptación SSL de 256 bits para proteger tu información."
     },
     {
       "q": "¿Qué incluye el plan \"De por Vida\"?",
@@ -26,7 +26,7 @@
     },
     {
       "q": "¿Ofrecen reembolsos?",
-      "a": "En casos excepcionales, podemos considerar un reembolso dentro de los 30 días posteriores a la compra si existen problemas técnicos importantes que no puedan resolverse con la asistencia de nuestro equipo.\n\nPara solicitarlo, deberás proporcionar evidencia del problema y colaborar con nuestro equipo durante el proceso de diagnóstico y solución.\n\nNo se realizan reembolsos por cambios de opinión, problemas causados por software de terceros como NinjaTrader, ni incompatibilidades con configuraciones no estándar. Consulta nuestra [Política de Devoluciones](/terms) para conocer todos los términos."
+      "a": "Sí. Ofrecemos un reembolso completo dentro de los 14 días calendario posteriores a la compra si tu licencia de software aún no ha sido generada o activada para un Machine ID de NinjaTrader® 8, o si existe un defecto técnico verificable que nuestro equipo no logre resolver.\n\nUna vez generada o activada la licencia tras la entrega digital inmediata, no se realizan reembolsos por cambio de opinión ni fallos de software de terceros. Para solicitar un reembolso o cancelar una suscripción recurrente, escribe a info@logicindicators.com. Consulta nuestra [Política de Reembolsos](/refund-policy)."
     },
     {
       "q": "¿Puedo usar la licencia en varias computadoras?",

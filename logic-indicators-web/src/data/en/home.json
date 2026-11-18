@@ -31,12 +31,12 @@
   "faqTitle": "Frequently Asked Questions",
   "trust": {
     "title": "100% Secure Transactions",
-    "subtitle": "Your financial information is fully protected. We process all transactions through Lemon Squeezy, one of the most recognized and secure payment platforms globally, ensuring bank-grade encryption (AES-256). We never store your card details or financial information at any point.",
+    "subtitle": "Your financial information is fully protected. We process all transactions through our authorized Merchant of Record payment platform, ensuring bank-grade encryption (AES-256). We never store your card details or financial information at any point.",
     "sslBadge": "End-to-end encrypted payments.",
     "sslBadge2": "100% secure and encrypted transactions.",
     "paymentMethods": {
       "title": "Accepted Payment Methods",
-      "methods": ["Lemon Squeezy", "Visa", "Mastercard", "American Express", "PayPal"]
+      "methods": ["Authorized Merchant of Record", "Visa", "Mastercard", "American Express", "PayPal"]
     }
   },
   "ctaTitle": "Ready to Elevate Your Trading?",

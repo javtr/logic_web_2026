@@ -1,0 +1,32 @@
+{
+  "pageTitle": "Política de Reembolsos y Cancelaciones",
+  "lastUpdated": "Noviembre 2026",
+  "intro": "Por favor, lee atentamente esta Política de Reembolsos y Cancelaciones antes de adquirir cualquier licencia de software o suscripción de Logic Indicators para NinjaTrader® 8.",
+  "sections": [
+    {
+      "id": "delivery",
+      "title": "1. Entrega Digital del Software",
+      "content": "Todos los productos de Logic Indicators son plugins de software descargables de escritorio (archivos .zip NinjaScript Add-On para NinjaTrader® 8). La entrega se realiza de forma digital tras la compra, junto con la activación de la licencia vinculada a tu Machine ID único de NinjaTrader® 8 y las guías de instalación."
+    },
+    {
+      "id": "eligibility",
+      "title": "2. Condiciones y Plazo de Reembolso (14 Días)",
+      "content": "Ofrecemos una política de reembolso transparente de 14 días calendario desde la fecha de compra bajo las siguientes condiciones:\n\n• Licencias no activadas: Tienes derecho a un reembolso completo dentro de los 14 días posteriores a la compra si aún no has generado ni activado tu licencia de software para un Machine ID de NinjaTrader® 8.\n• Defectos técnicos verificables: Si experimentas un fallo técnico reproducible en nuestro software dentro de una instalación estándar y soportada de NinjaTrader® 8 que nuestro equipo técnico no logre resolver tras colaborar contigo en el diagnóstico, emitiremos un reembolso completo dentro de los 14 días posteriores a la compra.\n• Casos no elegibles: No se otorgan reembolsos por cambio de opinión una vez que la licencia haya sido generada o activada, por pérdidas operativas, por falta de feeds de datos de mercado de terceros (como Nivel 2 para Depth Chart / Depth Live), ni por fallos atribuibles a software de terceros."
+    },
+    {
+      "id": "digital-waiver",
+      "title": "3. Contenido Digital y Derecho de Desistimiento (UE / Reino Unido)",
+      "content": "De conformidad con la normativa de comercio digital (incluyendo la Directiva de Derechos del Consumidor de la UE y el Reglamento de Contratos de Consumo del Reino Unido), al completar tu compra y solicitar la entrega digital inmediata y la activación de licencia por Machine ID, aceptas expresamente el inicio inmediato del contrato digital y reconoces la renuncia al derecho legal de desistimiento una vez generada o activada la licencia, salvo en caso de software defectuoso o cuando la ley local obligatoria disponga lo contrario."
+    },
+    {
+      "id": "subscriptions",
+      "title": "4. Cancelación de Suscripciones Recurrentes",
+      "content": "Los planes recurrentes (como la suscripción anual) se renuevan automáticamente al final de cada ciclo salvo cancelación previa. Puedes cancelar tu suscripción en cualquier momento antes de la próxima fecha de cobro sin penalización:\n\n• Desde el enlace del Portal de Cliente incluido en tu correo de confirmación enviado por nuestro Merchant of Record autorizado.\n• O escribiendo a info@logicindicators.com con tu correo y referencia de compra al menos 24 horas antes de la renovación.\n\nAl cancelar, no se realizarán cobros futuros y tu licencia permanecerá activa hasta finalizar el período ya pagado."
+    },
+    {
+      "id": "how-to-request",
+      "title": "5. Cómo Solicitar un Reembolso",
+      "content": "Para solicitar un reembolso o cancelar un plan recurrente, escribe a info@logicindicators.com desde el correo utilizado en la compra, indicando tu número de orden y una breve descripción (o capturas/registros si reportas un inconveniente técnico). Los reembolsos aprobados se devuelven al medio de pago original a través de nuestro procesador de pagos / Merchant of Record autorizado."
+    }
+  ]
+}

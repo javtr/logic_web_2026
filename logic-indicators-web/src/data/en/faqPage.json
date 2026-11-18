@@ -48,7 +48,7 @@
     },
     {
       "q": "What payment methods do you accept?",
-      "a": "We accept credit and debit cards (Visa, Mastercard, and American Express) through Lemon Squeezy, as well as PayPal.\n\nAll transactions use 256-bit SSL encryption to ensure your information remains completely secure."
+      "a": "We accept credit and debit cards (Visa, Mastercard, and American Express) as well as PayPal through our authorized Merchant of Record.\n\nAll transactions use 256-bit SSL encryption to ensure your information remains completely secure."
     },
     {
       "q": "Are there financing or installment options available?",
@@ -68,7 +68,7 @@
     },
     {
       "q": "Do you offer refunds?",
-      "a": "In exceptional cases, we may consider a refund within 30 days of purchase if significant technical issues arise that cannot be resolved with our support team's assistance.\n\nTo request a refund, you must provide evidence of the issue and cooperate with our team during the troubleshooting process.\n\nRefunds are not granted for change of mind, issues caused by third-party software such as NinjaTrader, or incompatible non-standard setups.\n\nPlease review our [Refund Policy](/terms) for full terms and details."
+      "a": "Yes. We offer a full refund within 14 calendar days of purchase if your software license has not yet been generated/activated for a NinjaTrader® 8 Machine ID, or if a verifiable technical defect cannot be resolved by our support team.\n\nOnce a digital software license is generated/activated upon immediate delivery, refunds are not granted for change of mind or third-party software issues. To request a refund or cancel a recurring subscription, contact info@logicindicators.com.\n\nPlease review our full [Refund Policy](/refund-policy) for all terms and details."
     }
   ]
 }

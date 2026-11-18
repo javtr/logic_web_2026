@@ -1,0 +1,32 @@
+{
+  "pageTitle": "Refund & Cancellation Policy",
+  "lastUpdated": "November 2026",
+  "intro": "Please read this Refund & Cancellation Policy carefully before purchasing any Logic Indicators software license or subscription for NinjaTrader® 8.",
+  "sections": [
+    {
+      "id": "delivery",
+      "title": "1. Digital Software Delivery",
+      "content": "All Logic Indicators products are downloadable desktop software plugins (.zip NinjaScript Add-On files for NinjaTrader® 8). Delivery is fulfilled digitally after purchase, together with license activation linked to your unique NinjaTrader® 8 Machine ID and installation documentation."
+    },
+    {
+      "id": "eligibility",
+      "title": "2. 14-Day Refund Eligibility & Conditions",
+      "content": "We offer a transparent 14-calendar-day refund policy from the date of purchase under the following conditions:\n\n• Unactivated Licenses: You are eligible for a full refund within 14 days of purchase if your software license has not yet been generated or activated for a NinjaTrader® 8 Machine ID.\n• Verified Technical Defects: If you experience a reproducible technical defect in our software on a standard, supported NinjaTrader® 8 installation that cannot be resolved by our technical support team after collaborating on diagnostics, we will issue a full refund within 14 days of purchase.\n• Non-Eligible Cases: Refunds are not granted for change of mind once a license has been generated/activated, trading losses, lack of required third-party market data feeds (such as Level 2 data for Depth Chart / Depth Live), or issues caused by third-party software."
+    },
+    {
+      "id": "digital-waiver",
+      "title": "3. Digital Content & Right of Withdrawal (EU / UK)",
+      "content": "In accordance with digital commerce regulations (including the EU Consumer Rights Directive and UK Consumer Contracts Regulations), by completing your purchase and requesting immediate digital delivery and Machine ID license activation, you expressly consent to immediate performance of the digital contract and acknowledge that you waive the statutory right of withdrawal once the license is generated or activated, except where the software is defective or a refund is required by mandatory local law."
+    },
+    {
+      "id": "subscriptions",
+      "title": "4. Subscription & Recurring Billing Cancellation",
+      "content": "Recurring plans (such as Annual subscriptions) automatically renew at the end of each billing cycle unless canceled. You may cancel your subscription at any time prior to the next billing date without penalty:\n\n• Using the Customer Portal link included in your order confirmation email from our authorized Merchant of Record.\n• Or by emailing info@logicindicators.com with your order email and purchase reference at least 24 hours before renewal.\n\nOnce canceled, you will not be charged for future billing cycles and your software license remains active through the end of the current paid period."
+    },
+    {
+      "id": "how-to-request",
+      "title": "5. How to Request a Refund",
+      "content": "To submit a refund request or cancel a recurring plan, write to info@logicindicators.com from the email used at checkout, including your order number and a brief description of your request (or screenshots/logs if reporting a technical issue). Approved refunds are processed to the original payment method through our authorized payment processor / Merchant of Record."
+    }
+  ]
+}

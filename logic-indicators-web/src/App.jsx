@@ -47,6 +47,7 @@ const Contact = lazy(() => import('./pages/Contact').then((m) => ({ default: m.C
 const Faq = lazy(() => import('./pages/Faq').then((m) => ({ default: m.Faq })));
 const Privacy = lazy(() => import('./pages/Privacy').then((m) => ({ default: m.Privacy })));
 const Terms = lazy(() => import('./pages/Terms').then((m) => ({ default: m.Terms })));
+const RefundPolicy = lazy(() => import('./pages/RefundPolicy').then((m) => ({ default: m.RefundPolicy })));
 const NotFound = lazy(() => import('./pages/NotFound').then((m) => ({ default: m.NotFound })));
 const Indicators = lazy(() => import('./pages/Indicators').then((m) => ({ default: m.Indicators })));
 const Pricing = lazy(() => import('./pages/Pricing').then((m) => ({ default: m.Pricing })));
@@ -103,6 +104,8 @@ function App() {
               <Route path="/faq" element={<Faq />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="/refund-policy" element={<RefundPolicy />} />
+              <Route path="/refund" element={<Navigate to="/refund-policy" replace />} />
 
               {/* Redirecciones de URLs legadas (compatibilidad histórica) */}
               <Route path="/buy" element={<Navigate to="/pricing" replace />} />

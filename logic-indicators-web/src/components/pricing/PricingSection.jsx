@@ -41,7 +41,7 @@ const EXTRA_ICONS = {
 // PricingCard — card individual. No sabe si viene de un array (EN) o del toggle
 // (ES). Solo renderiza el `plan` que le pasan.
 // -----------------------------------------------------------------------------
-const PricingCard = ({ plan, t, bestValueText }) => {
+const PricingCard = ({ plan, t, bestValueText, currencyCode = 'USD' }) => {
   const highlighted = plan.highlighted === true;
   const borderClasses = highlighted
     ? 'border-2 border-accent-primary shadow-[0_0_30px_theme(colors.accent.primary/10%)]'
@@ -67,14 +67,15 @@ const PricingCard = ({ plan, t, bestValueText }) => {
       <h3 className="text-2xl font-bold text-text-main">{plan.name}</h3>
       <p className={`text-sm mt-0.5 ${accentText}`}>{plan.billingLabel}</p>
 
-      {/* Precio + tachado */}
-      <div className="mt-4 mb-2 flex items-baseline gap-3">
+      {/* Precio + moneda USD + tachado */}
+      <div className="mt-4 mb-2 flex items-baseline gap-2.5 flex-wrap">
         <span className="text-4xl font-extrabold text-text-main">
           {CURRENCY_SYMBOL}{plan.price}
+          <span className="text-sm font-bold text-text-muted ml-1.5">{currencyCode}</span>
         </span>
         {hasCrossed && (
           <span className="text-base text-text-muted line-through">
-            {CURRENCY_SYMBOL}{plan.crossedPrice}
+            {CURRENCY_SYMBOL}{plan.crossedPrice} {currencyCode}
           </span>
         )}
       </div>
@@ -231,43 +232,15 @@ export const PricingSection = ({
   const [isLifetime, setIsLifetime] = useState(defaultIsLifetime);
 
   const dataRequirementNote = section.dataRequirementNote;
+  const currencyCode = section.currencyCode || 'USD';
+  const morTaxNote = section.morTaxNote;
 
-  // EN: plans = [Annual, Lifetime] (array plano, sin toggle)
-  if (Array.isArray(plans)) {
-    return (
-      <section className="px-6 container mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4">
-            {t(titleKey)}
-          </h2>
-        </div>
-        <div className="flex flex-col md:flex-row justify-center items-stretch gap-8 max-w-5xl mx-auto">
-          {plans.map((plan) => (
-            <PricingCard
-              key={plan.id}
-              plan={plan}
-              t={t}
-              bestValueText={bestValueText}
-            />
-          ))}
-        </div>
-        {dataRequirementNote && (
-          <div className="mt-8 text-center">
-            <p className="text-xs md:text-sm text-text-muted flex items-center justify-center gap-1.5 max-w-2xl mx-auto">
-              <Info size={14} className="text-purple-400 shrink-0" />
-              <span>*{dataRequirementNote}</span>
-            </p>
-          </div>
-        )}
-      </section>
-    );
-  }
-
-  // ES: plans = { yearly:{basic,plus}, lifetime:{basic,plus} } con toggle
-  const currentPlans = isLifetime
-    ? [plans.lifetime.basic, plans.lifetime.plus]
-    : [plans.yearly.basic, plans.yearly.plus];
-  const toggleLabels = section.billingToggle;
+  const isArrayLayout = Array.isArray(plans);
+  const currentPlans = isArrayLayout
+    ? plans
+    : isLifetime
+      ? [plans.lifetime.basic, plans.lifetime.plus]
+      : [plans.yearly.basic, plans.yearly.plus];
 
   return (
     <section className="px-6 container mx-auto">
@@ -275,12 +248,15 @@ export const PricingSection = ({
         <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4">
           {t(titleKey)}
         </h2>
-        <ToggleSwitch
-          isLifetime={isLifetime}
-          onToggle={() => setIsLifetime(!isLifetime)}
-          labels={toggleLabels}
-        />
+        {!isArrayLayout && (
+          <ToggleSwitch
+            isLifetime={isLifetime}
+            onToggle={() => setIsLifetime(!isLifetime)}
+            labels={section.billingToggle}
+          />
+        )}
       </div>
+
       <div className="flex flex-col md:flex-row justify-center items-stretch gap-8 max-w-5xl mx-auto">
         {currentPlans.map((plan) => (
           <PricingCard
@@ -288,15 +264,24 @@ export const PricingSection = ({
             plan={plan}
             t={t}
             bestValueText={bestValueText}
+            currencyCode={currencyCode}
           />
         ))}
       </div>
-      {dataRequirementNote && (
-        <div className="mt-8 text-center">
-          <p className="text-xs md:text-sm text-text-muted flex items-center justify-center gap-1.5 max-w-2xl mx-auto">
-            <Info size={14} className="text-purple-400 shrink-0" />
-            <span>*{dataRequirementNote}</span>
-          </p>
+
+      {(dataRequirementNote || morTaxNote) && (
+        <div className="mt-8 text-center space-y-2 max-w-2xl mx-auto">
+          {dataRequirementNote && (
+            <p className="text-xs md:text-sm text-text-muted flex items-center justify-center gap-1.5">
+              <Info size={14} className="text-purple-400 shrink-0" />
+              <span>*{dataRequirementNote}</span>
+            </p>
+          )}
+          {morTaxNote && (
+            <p className="text-xs text-text-muted/85 leading-relaxed">
+              {morTaxNote}
+            </p>
+          )}
         </div>
       )}
     </section>

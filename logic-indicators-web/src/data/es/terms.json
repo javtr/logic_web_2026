@@ -16,8 +16,9 @@
       "content": "No puedes: (a) revender, redistribuir o compartir los archivos de los indicadores; (b) modificar, descompilar o realizar ingeniería inversa del código; (c) usar los indicadores para crear productos competidores; (d) compartir tu licencia o Machine ID con terceros. El incumplimiento de estas restricciones puede resultar en la terminación inmediata de tu licencia sin reembolso."
     },
     {
-      "title": "4. Pagos y reembolsos",
-      "content": "Los precios están expresados en dólares estadounidenses y se procesan a través de nuestro proveedor de pagos (Lemon Squeezy). Ofrecemos reembolsos completos dentro de los 14 días posteriores a la compra, siempre que el indicador no haya sido utilizado en una cuenta real o simulada. Pasado ese período, no se procesan reembolsos, salvo que la ley local lo exija."
+      "id": "refund-policy",
+      "title": "4. Pagos, entrega digital, reembolsos y cancelaciones",
+      "content": "Los precios están expresados en dólares estadounidenses (USD) y son procesados por nuestro Merchant of Record / procesador de pagos autorizado. Los productos se entregan digitalmente como archivos descargables NinjaScript Add-On (.zip) con activación de licencia vinculada a tu Machine ID de NinjaTrader® 8.\n\nOfrecemos reembolsos completos dentro de los 14 días calendario posteriores a la compra si la licencia aún no ha sido generada o activada para un Machine ID, o si existe un defecto técnico verificable que nuestro equipo no logre resolver. Una vez generada o activada la licencia tras la entrega digital inmediata, no aplica el derecho de desistimiento por cambio de opinión salvo lo exigido por ley. Las suscripciones recurrentes (como los planes anuales) pueden cancelarse en cualquier momento antes del siguiente cobro desde el Portal de Cliente o escribiendo a info@logicindicators.com. Consulta la Política de Reembolsos completa en /refund-policy."
     },
     {
       "title": "5. Propiedad intelectual",

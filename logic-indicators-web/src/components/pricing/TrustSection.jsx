@@ -32,7 +32,8 @@ import { Lock, ShieldCheck, CreditCard, Wallet } from 'lucide-react';
 
 // Mapeo de método de pago → ícono. Si el método no está acá, fallback a CreditCard.
 const methodIcons = {
-  'Lemon Squeezy': CreditCard,
+  'Authorized Merchant of Record': CreditCard,
+  'Merchant of Record Autorizado': CreditCard,
   'Visa': CreditCard,
   'Mastercard': CreditCard,
   'American Express': CreditCard,

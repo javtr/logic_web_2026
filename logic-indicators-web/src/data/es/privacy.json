@@ -17,7 +17,7 @@
     },
     {
       "title": "4. Servicios de terceros",
-      "content": "Para operar nuestro servicio utilizamos proveedores externos de confianza que pueden procesar datos personales en nuestro nombre: Lemon Squeezy (procesamiento de pagos), el proveedor de infraestructura de hosting y servicios de analítica. Todos estos proveedores cumplen con estándares de seguridad reconocidos y solo procesan los datos necesarios para prestar su servicio."
+      "content": "Para operar nuestro servicio utilizamos proveedores externos de confianza que pueden procesar datos personales en nuestro nombre: nuestro Merchant of Record autorizado (procesamiento de pagos y cumplimiento fiscal), el proveedor de infraestructura de hosting y servicios de analítica. Todos estos proveedores cumplen con estándares de seguridad reconocidos y solo procesan los datos necesarios para prestar su servicio."
     },
     {
       "title": "5. Tus derechos",

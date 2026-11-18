@@ -10,6 +10,8 @@
   "plusContentTitle": "Plus Content (Courses Included)",
   "plusContentUrl": "https://3ctrading.gumroad.com/l/logic-pack-plus",
   "installmentsTitle": "Installments",
+  "currencyCode": "USD",
+  "morTaxNote": "All prices are in USD. Applicable local sales tax / VAT is calculated at checkout by our authorized Merchant of Record.",
 
   "dataRequirementNote": "Depth Live and Depth Chart require a Level 2 (Market Depth) data subscription.",
 
@@ -21,7 +23,7 @@
     {
       "id": "annual",
       "name": "Annual",
-      "billingLabel": "per year",
+      "billingLabel": "USD — Billed annually (Recurring subscription · Cancel anytime)",
       "price": 584,
       "crossedPrice": 934,
       "highlighted": false,
@@ -47,7 +49,7 @@
     {
       "id": "lifetime",
       "name": "Lifetime",
-      "billingLabel": "one-time payment",
+      "billingLabel": "USD — One-time payment (Lifetime access)",
       "price": 884,
       "crossedPrice": 1341,
       "highlighted": true,

@@ -87,14 +87,17 @@ const ProductCard = ({ product, t, section }) => {
           </h3>
         </div>
 
-        <div className="flex items-baseline gap-1">
-          <span className="text-2xl font-extrabold text-text-main">
-            {/* Override por producto: si el JSON define `price` en un
-                product, ese gana. Si no, cae al defaultPrice global. */}
-            {section.currencySymbol}{product.price ?? section.defaultPrice}
-          </span>
-          <span className="text-xs text-text-muted">
-            / {section.defaultBillingPeriod}
+        <div className="flex flex-col gap-0.5">
+          <div className="flex items-baseline gap-1">
+            <span className="text-2xl font-extrabold text-text-main">
+              {/* Override por producto: si el JSON define `price` en un
+                  product, ese gana. Si no, cae al defaultPrice global. */}
+              {section.currencySymbol}{product.price ?? section.defaultPrice}
+            </span>
+            <span className="text-xs font-semibold text-text-muted">USD</span>
+          </div>
+          <span className="text-[11px] text-text-muted leading-tight">
+            {section.defaultBillingPeriod}
           </span>
         </div>
 
@@ -158,6 +161,12 @@ export const IndividualIndicatorsSection = () => {
             />
           ))}
         </div>
+      )}
+
+      {section.morTaxNote && (
+        <p className="mt-8 text-center text-xs text-text-muted/85 max-w-2xl mx-auto leading-relaxed">
+          {section.morTaxNote}
+        </p>
       )}
     </section>
   );

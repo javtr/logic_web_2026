@@ -16,8 +16,9 @@
       "content": "You may not: (a) resell, redistribute, or share the indicator files; (b) modify, decompile, or reverse-engineer the code; (c) use the indicators to create competing products; (d) share your license or Machine ID with third parties. Violation of these restrictions may result in the immediate termination of your license without refund."
     },
     {
-      "title": "4. Payments and Refunds",
-      "content": "Prices are stated in U.S. dollars and processed through our payment provider (Lemon Squeezy). We offer full refunds within 14 days of purchase, provided the indicator has not been used on a live or simulated account. After that period, no refunds are processed, unless required by local law."
+      "id": "refund-policy",
+      "title": "4. Payments, Digital Delivery, Refunds & Cancellations",
+      "content": "Prices are stated in U.S. dollars (USD) and processed by our authorized Merchant of Record payment processor. Products are delivered digitally as downloadable NinjaScript Add-On packages (.zip) with license activation linked to your NinjaTrader® 8 Machine ID.\n\nWe offer full refunds within 14 calendar days of purchase if the software license has not been generated/activated for a Machine ID, or if a verifiable technical defect cannot be resolved by our support team. Once a digital software license is generated/activated upon immediate delivery, the statutory right of withdrawal no longer applies unless required by law. Recurring subscriptions (such as Annual plans) may be canceled anytime before the next billing date via the Customer Portal or by emailing info@logicindicators.com. See our full Refund & Cancellation Policy at /refund-policy."
     },
     {
       "title": "5. Intellectual Property",

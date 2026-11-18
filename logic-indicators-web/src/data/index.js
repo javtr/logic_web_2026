@@ -25,6 +25,7 @@ import enPricingFaq from './en/pricingFaq.json';
 import enFaqPage from './en/faqPage.json';
 import enPrivacy from './en/privacy.json';
 import enTerms from './en/terms.json';
+import enRefund from './en/refund.json';
 import enHelp from './en/help.json';
 import enFooter from './en/footer.json';
 import enDashboard from './en/dashboard.json';
@@ -52,6 +53,7 @@ import esPricingFaq from './es/pricingFaq.json';
 import esFaqPage from './es/faqPage.json';
 import esPrivacy from './es/privacy.json';
 import esTerms from './es/terms.json';
+import esRefund from './es/refund.json';
 import esHelp from './es/help.json';
 import esFooter from './es/footer.json';
 import esDashboard from './es/dashboard.json';
@@ -123,6 +125,7 @@ const dictionaries = {
     faqPage: enFaqPage,
     privacy: enPrivacy,
     terms: enTerms,
+    refund: enRefund,
     help: enHelp,
     footer: enFooter,
     dashboard: enDashboard,
@@ -151,6 +154,7 @@ const dictionaries = {
     faqPage: esFaqPage,
     privacy: esPrivacy,
     terms: esTerms,
+    refund: esRefund,
     help: esHelp,
     footer: esFooter,
     dashboard: esDashboard,

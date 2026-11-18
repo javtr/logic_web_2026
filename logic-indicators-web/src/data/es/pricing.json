@@ -10,6 +10,8 @@
   "plusContentTitle": "Contenido Plus (cursos incluidos)",
   "plusContentUrl": "https://3ctrading.gumroad.com/l/logic-pack-plus",
   "installmentsTitle": "Diferir pagos",
+  "currencyCode": "USD",
+  "morTaxNote": "Todos los precios están en USD. Los impuestos locales o IVA aplicables se calculan al momento del pago por nuestro Merchant of Record autorizado.",
 
   "billingToggle": {
     "yearly": "Anual",
@@ -27,7 +29,7 @@
       "basic": {
         "id": "basic-yearly",
         "name": "Pack Básico",
-        "billingLabel": "por año",
+        "billingLabel": "USD — Facturación anual (Suscripción recurrente · Cancela cuando quieras)",
         "price": 584,
         "crossedPrice": 934,
         "highlighted": false,
@@ -53,7 +55,7 @@
       "plus": {
         "id": "plus-yearly",
         "name": "Pack Plus",
-        "billingLabel": "por año",
+        "billingLabel": "USD — Facturación anual (Suscripción recurrente · Cancela cuando quieras)",
         "price": 737,
         "crossedPrice": 1171,
         "highlighted": true,
@@ -99,7 +101,7 @@
       "basic": {
         "id": "basic-lifetime",
         "name": "Pack Básico",
-        "billingLabel": "pago único",
+        "billingLabel": "USD — Pago único (Acceso de por vida)",
         "price": 884,
         "crossedPrice": 1341,
         "highlighted": false,
@@ -130,7 +132,7 @@
       "plus": {
         "id": "plus-lifetime",
         "name": "Pack Plus",
-        "billingLabel": "pago único",
+        "billingLabel": "USD — Pago único (Acceso de por vida)",
         "price": 1184,
         "crossedPrice": 1894,
         "highlighted": true,
