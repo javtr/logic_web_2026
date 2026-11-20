@@ -15,13 +15,20 @@
   },
   "topBanner": {
     "enabled": true,
-    "finalDate": "2026-11-30T23:59:59-05:00",
+    "finalDate": "2026-11-21T23:59:59-05:00",
     "badgePrefix": "PRE",
     "badgeHighlight": "BLACK FRIDAY",
     "discount": "20% OFF",
     "description": "on all individual tools",
     "codeLabel": "Use code:",
     "code": "PREBLACK20",
+    "endsIn": "ENDS IN:",
+    "timeUnits": {
+      "d": "D",
+      "h": "H",
+      "m": "M",
+      "s": "S"
+    },
     "copied": "Copied!",
     "copyAria": "Copy discount code PREBLACK20",
     "link": "/pricing"

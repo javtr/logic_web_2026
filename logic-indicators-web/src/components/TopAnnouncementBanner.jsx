@@ -1,13 +1,13 @@
 // src/components/TopAnnouncementBanner.jsx
 // Banner superior de campaña (Pre-Black Friday y eventos especiales).
 // 100% data-driven desde t('common.topBanner') en los JSONs de idioma.
-// Se oculta automáticamente al superar la fecha límite configurada (finalDate)
-// y cuenta con botón interactivo para copiar el cupón con feedback visual.
+// Incluye contador regresivo en vivo hasta la fecha límite configurada (finalDate),
+// ocultamiento automático al vencer y botón de copiado del cupón con feedback visual.
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/languageContext';
-import { Check, Copy } from 'lucide-react';
+import { Check, Copy, Clock } from 'lucide-react';
 
 // Rayas diagonales decorativas en los extremos (///), con degradado de intensidad hacia afuera
 const SlantedStripes = ({ side = 'left', className = '' }) => {
@@ -27,12 +27,42 @@ const SlantedStripes = ({ side = 'left', className = '' }) => {
   );
 };
 
-// Verifica si la campaña ya superó su fecha límite final
-const isBannerExpired = (finalDateStr, nowMs) => {
-  if (!finalDateStr) return false;
-  const finalTime = new Date(finalDateStr).getTime();
-  if (Number.isNaN(finalTime)) return false;
-  return nowMs >= finalTime;
+// Calcula el desglose regresivo (D/H/M/S) hasta una fecha ISO-8601 objetivo.
+const calculateRemainingTime = (targetDateStr, nowMs) => {
+  if (!targetDateStr) {
+    return { isActive: false, isExpired: false };
+  }
+
+  const targetMs = new Date(targetDateStr).getTime();
+  if (Number.isNaN(targetMs)) {
+    return { isActive: false, isExpired: false };
+  }
+
+  const diffMs = targetMs - nowMs;
+  if (diffMs <= 0) {
+    return {
+      isActive: true,
+      isExpired: true,
+      days: '00',
+      hours: '00',
+      minutes: '00',
+      seconds: '00',
+    };
+  }
+
+  const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diffMs / (1000 * 60)) % 60);
+  const seconds = Math.floor((diffMs / 1000) % 60);
+
+  return {
+    isActive: true,
+    isExpired: false,
+    days: String(days).padStart(2, '0'),
+    hours: String(hours).padStart(2, '0'),
+    minutes: String(minutes).padStart(2, '0'),
+    seconds: String(seconds).padStart(2, '0'),
+  };
 };
 
 export const TopAnnouncementBanner = () => {
@@ -42,21 +72,38 @@ export const TopAnnouncementBanner = () => {
   const [nowMs, setNowMs] = useState(() => Date.now());
 
   const deadline = banner?.finalDate || banner?.targetDate;
-  const expired = isBannerExpired(deadline, nowMs);
+  const countdownTarget = banner?.countdownEndDate || deadline;
 
-  // Chequeo periódico por minuto para ocultar el banner en vivo al llegar a la fecha límite
+  const bannerExpiration = calculateRemainingTime(deadline, nowMs);
+  const countdown = calculateRemainingTime(countdownTarget, nowMs);
+
+  // Refresca cada segundo mientras exista una fecha límite activa (sin deriva de reloj)
   useEffect(() => {
-    if (!deadline) return undefined;
+    if (!deadline && !countdownTarget) return undefined;
     const interval = setInterval(() => {
       setNowMs(Date.now());
-    }, 60000);
+    }, 1000);
     return () => clearInterval(interval);
-  }, [deadline]);
+  }, [deadline, countdownTarget]);
 
   // Si no está configurado, está deshabilitado o ya venció la fecha límite, no renderiza nada
-  if (!banner || banner.enabled !== true || expired) {
+  if (!banner || banner.enabled !== true || bannerExpiration.isExpired) {
     return null;
   }
+
+  const units = {
+    d: banner.timeUnits?.d || 'D',
+    h: banner.timeUnits?.h || 'H',
+    m: banner.timeUnits?.m || 'M',
+    s: banner.timeUnits?.s || 'S',
+  };
+
+  const timeSegments = [
+    { key: 'd', value: countdown.days, label: units.d },
+    { key: 'h', value: countdown.hours, label: units.h },
+    { key: 'm', value: countdown.minutes, label: units.m },
+    { key: 's', value: countdown.seconds, label: units.s },
+  ];
 
   const handleCopyCode = (e) => {
     e.preventDefault();
@@ -121,95 +168,138 @@ export const TopAnnouncementBanner = () => {
         }}
       />
 
-      <div className="container mx-auto px-4 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between gap-3 relative z-10 font-sans">
-        {/* Rayas inclinadas izquierdas */}
-        <SlantedStripes side="left" className="hidden lg:block" />
+      <div className="container mx-auto px-3 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between gap-3 relative z-10 font-sans">
+        {/* Rayas inclinadas izquierdas (solo en pantallas muy anchas para no comprimir los 4 bloques) */}
+        <SlantedStripes side="left" className="hidden 2xl:block" />
 
-        {/* Contenido central responsive */}
-        <div className="flex-1 flex flex-wrap md:flex-nowrap items-center justify-center gap-x-3 sm:gap-x-4 lg:gap-x-6 gap-y-2 text-center">
-          {/* Bloque 1: Badge PRE BLACK FRIDAY */}
-          <Link
-            to={banner.link || '/pricing'}
-            className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1 rounded-full bg-[#2a0408]/85 border banner-badge-glow hover:brightness-110 transition-all shrink-0"
-          >
-            <span className="text-white font-black text-xs sm:text-sm tracking-wide uppercase leading-none">
-              {banner.badgePrefix || 'PRE'}
-            </span>
-            <span className="text-[#ff1a2b] font-black text-xs sm:text-sm tracking-wide uppercase leading-none">
-              {banner.badgeHighlight || 'BLACK FRIDAY'}
-            </span>
-          </Link>
-
-          {/* Separador */}
-          <span className="hidden md:inline-block h-5 w-px bg-white/25 shrink-0" aria-hidden="true" />
-
-          {/* Bloque 2: 20% OFF + swoosh rojo + descripción */}
-          <Link
-            to={banner.link || '/pricing'}
-            className="inline-flex items-center gap-2.5 sm:gap-3 hover:opacity-95 transition-opacity group"
-          >
-            <span className="relative inline-flex flex-col items-center shrink-0">
-              <span className="font-black text-white text-lg sm:text-xl md:text-[22px] tracking-tight leading-none whitespace-nowrap">
-                {banner.discount || '20% OFF'}
-              </span>
-              {/* Arco rojo decorativo debajo del descuento */}
-              <svg
-                viewBox="0 0 120 10"
-                fill="none"
-                className="w-full h-2 -mt-0.5 text-[#ff1a2b]"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M2 8.5 Q60 -0.8 118 7.5 Q60 3.4 2 8.5 Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-
-            {banner.description && (
-              <span className="text-white/95 font-medium text-xs sm:text-[13px] md:text-sm leading-tight text-center max-w-[190px] sm:max-w-[205px]">
-                {banner.description}
-              </span>
-            )}
-          </Link>
-
-          {/* Separador */}
-          <span className="hidden md:inline-block h-5 w-px bg-white/25 shrink-0" aria-hidden="true" />
-
-          {/* Bloque 3: Botón de código con copiado al portapapeles */}
-          {banner.code && (
-            <button
-              type="button"
-              onClick={handleCopyCode}
-              aria-label={banner.copyAria || `Copiar ${banner.code}`}
-              title={banner.copyAria || `Copiar ${banner.code}`}
-              className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-lg border border-white/55 hover:border-white/85 bg-black/25 hover:bg-black/40 active:scale-95 transition-all cursor-pointer group shadow-sm focus:outline-none focus:ring-1 focus:ring-white/60 shrink-0"
+        {/* Contenido central agrupado en 2 bloques lógicos: Oferta + Acción/Urgencia */}
+        <div className="flex-1 flex flex-wrap xl:flex-nowrap items-center justify-center gap-x-4 xl:gap-x-5 gap-y-1.5 text-center">
+          {/* Grupo 1: Badge + Descuento + Descripción */}
+          <div className="flex flex-wrap sm:flex-nowrap items-center justify-center gap-x-2.5 sm:gap-x-3.5 gap-y-1">
+            {/* Bloque 1: Badge PRE BLACK FRIDAY */}
+            <Link
+              to={banner.link || '/pricing'}
+              className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full bg-[#2a0408]/85 border banner-badge-glow hover:brightness-110 transition-all shrink-0"
             >
-              {copied ? (
-                <>
-                  <Check size={14} className="text-emerald-300 stroke-[2.5] shrink-0" />
-                  <span className="font-bold text-emerald-200 text-xs sm:text-sm whitespace-nowrap">
-                    {banner.copied || '¡Copiado!'}
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span className="text-white/90 font-normal text-xs sm:text-sm whitespace-nowrap">
-                    {banner.codeLabel}
-                  </span>
-                  <span className="font-black tracking-wider text-white text-xs sm:text-sm md:text-[15px] whitespace-nowrap">
-                    {banner.code}
-                  </span>
-                  <Copy size={14} className="text-white/80 group-hover:text-white transition-colors shrink-0" />
-                </>
+              <span className="text-white font-black text-[10px] sm:text-xs tracking-wide uppercase leading-none">
+                {banner.badgePrefix || 'PRE'}
+              </span>
+              <span className="text-[#ff1a2b] font-black text-[10px] sm:text-xs tracking-wide uppercase leading-none">
+                {banner.badgeHighlight || 'BLACK FRIDAY'}
+              </span>
+            </Link>
+
+            {/* Separador */}
+            <span className="hidden sm:inline-block h-4 w-px bg-white/25 shrink-0" aria-hidden="true" />
+
+            {/* Bloque 2: 20% OFF + swoosh rojo + descripción */}
+            <Link
+              to={banner.link || '/pricing'}
+              className="inline-flex items-center gap-2 sm:gap-2.5 hover:opacity-95 transition-opacity group"
+            >
+              <span className="relative inline-flex flex-col items-center shrink-0">
+                <span className="font-black text-white text-[15px] sm:text-xl xl:text-[22px] tracking-tight leading-none whitespace-nowrap">
+                  {banner.discount || '20% OFF'}
+                </span>
+                {/* Arco rojo decorativo debajo del descuento */}
+                <svg
+                  viewBox="0 0 120 10"
+                  fill="none"
+                  className="w-full h-1.5 sm:h-2 -mt-0.5 text-[#ff1a2b]"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M2 8.5 Q60 -0.8 118 7.5 Q60 3.4 2 8.5 Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+
+              {banner.description && (
+                <span className="text-white/95 font-medium text-[11px] sm:text-[13px] xl:text-sm leading-tight text-left sm:text-center max-w-[130px] sm:max-w-[205px]">
+                  {banner.description}
+                </span>
               )}
-            </button>
-          )}
+            </Link>
+          </div>
+
+          {/* Separador principal entre Grupo 1 y Grupo 2 en desktop ancho */}
+          <span className="hidden xl:inline-block h-5 w-px bg-white/25 shrink-0" aria-hidden="true" />
+
+          {/* Grupo 2: Código de descuento + Contador regresivo (juntos en fila 2 en móvil/tablet) */}
+          <div className="flex flex-wrap sm:flex-nowrap items-center justify-center gap-2 sm:gap-3.5 shrink-0">
+            {/* Bloque 3: Botón de código con copiado al portapapeles */}
+            {banner.code && (
+              <button
+                type="button"
+                onClick={handleCopyCode}
+                aria-label={banner.copyAria || `Copiar ${banner.code}`}
+                title={banner.copyAria || `Copiar ${banner.code}`}
+                className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1 rounded-lg border border-white/55 hover:border-white/85 bg-black/25 hover:bg-black/40 active:scale-95 transition-all cursor-pointer group shadow-sm focus:outline-none focus:ring-1 focus:ring-white/60 shrink-0"
+              >
+                {copied ? (
+                  <>
+                    <Check size={13} className="text-emerald-300 stroke-[2.5] shrink-0" />
+                    <span className="font-bold text-emerald-200 text-xs sm:text-sm whitespace-nowrap">
+                      {banner.copied || '¡Copiado!'}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    {banner.codeLabel && (
+                      <span className="hidden sm:inline text-white/90 font-normal text-xs sm:text-sm whitespace-nowrap">
+                        {banner.codeLabel}
+                      </span>
+                    )}
+                    <span className="font-black tracking-wider text-white text-xs sm:text-sm whitespace-nowrap">
+                      {banner.code}
+                    </span>
+                    <Copy size={13} className="text-white/80 group-hover:text-white transition-colors shrink-0" />
+                  </>
+                )}
+              </button>
+            )}
+
+            {/* Separador entre cupón y contador */}
+            {banner.code && countdown.isActive && !countdown.isExpired && (
+              <span className="inline-block h-4 w-px bg-white/25 shrink-0" aria-hidden="true" />
+            )}
+
+            {/* Bloque 4: Contador regresivo en vivo */}
+            {countdown.isActive && !countdown.isExpired && (
+              <div
+                aria-label={`${banner.endsIn || 'Ends in:'} ${countdown.days}${units.d} ${countdown.hours}${units.h} ${countdown.minutes}${units.m} ${countdown.seconds}${units.s}`}
+                title={`${banner.endsIn || 'Ends in:'} ${countdown.days}${units.d} ${countdown.hours}${units.h} ${countdown.minutes}${units.m} ${countdown.seconds}${units.s}`}
+                className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-lg border border-[#ff1a2b]/45 bg-[#1a0306]/85 shadow-inner shrink-0"
+              >
+                <Clock size={12} className="text-[#ff4d5a] shrink-0 sm:hidden" aria-hidden="true" />
+                <span className="hidden sm:inline-flex relative h-2 w-2 shrink-0" aria-hidden="true">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff1a2b] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#ff1a2b]" />
+                </span>
+
+                <span className="hidden sm:inline text-white/80 font-bold text-[10px] xl:text-[11px] tracking-wider uppercase whitespace-nowrap">
+                  {banner.endsIn || 'ENDS IN:'}
+                </span>
+
+                <div className="inline-flex items-center gap-1.5 font-mono tabular-nums text-xs sm:text-sm font-bold tracking-tight text-white whitespace-nowrap">
+                  {timeSegments.map(({ key, value, label }) => (
+                    <span key={key} className="inline-flex items-baseline">
+                      <span className="text-white">{value}</span>
+                      <span className="text-[9px] sm:text-[10px] text-white/65 font-sans font-semibold ml-0.5">
+                        {label}
+                      </span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Rayas inclinadas derechas */}
-        <SlantedStripes side="right" className="hidden lg:block" />
+        {/* Rayas inclinadas derechas (solo en pantallas muy anchas) */}
+        <SlantedStripes side="right" className="hidden 2xl:block" />
       </div>
     </aside>
   );
