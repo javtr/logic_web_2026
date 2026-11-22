@@ -61,17 +61,17 @@
       "basic-yearly": {
         "price": 350,
         "crossedPrice": 584,
-        "savingsText": "Ahorras $234 USD"
+        "savingsText": "Ahorras $234 USD en Black Friday"
       },
       "plus-yearly": {
         "price": 442,
         "crossedPrice": 737,
-        "savingsText": "Ahorras $295 USD"
+        "savingsText": "Ahorras $295 USD en Black Friday"
       },
       "basic-lifetime": {
         "price": 530,
         "crossedPrice": 884,
-        "savingsText": "Ahorras $353 USD",
+        "savingsText": "Ahorras $353 USD en Black Friday",
         "installments": {
           "text": "6 pagos de $104 USD",
           "disclaimer": "Valor final usando código BF30"
@@ -80,7 +80,7 @@
       "plus-lifetime": {
         "price": 710,
         "crossedPrice": 1184,
-        "savingsText": "Ahorras $473 USD",
+        "savingsText": "Ahorras $473 USD en Black Friday",
         "installments": {
           "text": "7 pagos de $118 USD",
           "disclaimer": "Valor final usando código BF30"
