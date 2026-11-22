@@ -11,8 +11,8 @@
 // - i18n: textos desde t('common.socialProof') (EN / ES).
 // =============================================================================
 
-import { useState, useEffect } from 'react';
-import { User, X } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { User, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../context/languageContext';
 
 const INITIAL_DELAY_MS = 2500;
@@ -41,6 +41,24 @@ export const SocialProofPopup = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isSwapping, setIsSwapping] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const swapTimerRef = useRef(null);
+
+  const navigateMessage = useCallback((step) => {
+    if (messages.length <= 1) return;
+    if (swapTimerRef.current) clearTimeout(swapTimerRef.current);
+    setIsSwapping(true);
+    swapTimerRef.current = setTimeout(() => {
+      setCurrentIndex((prev) => (prev + step + messages.length) % messages.length);
+      setIsSwapping(false);
+    }, SWAP_FADE_MS);
+  }, [messages.length]);
+
+  useEffect(() => {
+    return () => {
+      if (swapTimerRef.current) clearTimeout(swapTimerRef.current);
+    };
+  }, []);
 
   // Aparición suave tras el retardo inicial para no competir con el pintado principal
   useEffect(() => {
@@ -56,24 +74,16 @@ export const SocialProofPopup = () => {
     return () => clearTimeout(showTimer);
   }, [isDismissed, messages.length]);
 
-  // Rotación cada 30 segundos entre los mensajes disponibles
+  // Rotación cada 30 segundos entre los mensajes (se pausa mientras el usuario pasa el mouse)
   useEffect(() => {
-    if (!shouldRender || isDismissed || messages.length <= 1) return undefined;
+    if (!shouldRender || isDismissed || isHovered || messages.length <= 1) return undefined;
 
-    let swapTimer;
     const interval = setInterval(() => {
-      setIsSwapping(true);
-      swapTimer = setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % messages.length);
-        setIsSwapping(false);
-      }, SWAP_FADE_MS);
+      navigateMessage(1);
     }, ROTATION_INTERVAL_MS);
 
-    return () => {
-      clearInterval(interval);
-      if (swapTimer) clearTimeout(swapTimer);
-    };
-  }, [shouldRender, isDismissed, messages.length]);
+    return () => clearInterval(interval);
+  }, [shouldRender, isDismissed, isHovered, messages.length, navigateMessage]);
 
   const handleClose = () => {
     setIsVisible(false);
@@ -92,8 +102,10 @@ export const SocialProofPopup = () => {
   return (
     <aside
       aria-label={socialProof?.sender || 'Logic User'}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       className={`
-        fixed bottom-[136px] right-4 sm:bottom-[156px] sm:right-6 z-30
+        group fixed bottom-[136px] right-4 sm:bottom-[156px] sm:right-6 z-30
         w-[232px] sm:w-[276px] md:w-[296px] max-w-[calc(100vw-2rem)]
         rounded-xl overflow-hidden
         shadow-[0_12px_32px_rgba(0,0,0,0.5)] border border-black/30
@@ -126,14 +138,54 @@ export const SocialProofPopup = () => {
         </button>
       </div>
 
-      {/* Cuerpo beige con textura y burbuja de mensaje entrante */}
+      {/* Cuerpo beige con textura, burbuja entrante y flechas laterales en hover */}
       <div
-        className="bg-[#ECE5DD] p-2 sm:p-3"
+        className="relative bg-[#ECE5DD] px-2.5 py-2 sm:px-3.5 sm:py-3"
         style={{
           backgroundImage: `url("data:image/svg+xml,${CHAT_WALLPAPER_SVG}")`,
           backgroundSize: '84px 84px',
         }}
       >
+        {messages.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={() => navigateMessage(-1)}
+              aria-label={socialProof?.prevAria || 'Previous message'}
+              title={socialProof?.prevAria || 'Previous message'}
+              className="
+                absolute left-1 top-1/2 -translate-y-1/2 z-10
+                w-6 h-6 rounded-full bg-black/60 hover:bg-[#075E54] text-white
+                shadow-md flex items-center justify-center cursor-pointer
+                opacity-0 scale-90 pointer-events-none
+                group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto
+                group-focus-within:opacity-100 group-focus-within:scale-100 group-focus-within:pointer-events-auto
+                transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-[#075E54]
+              "
+            >
+              <ChevronLeft size={14} strokeWidth={2.5} />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => navigateMessage(1)}
+              aria-label={socialProof?.nextAria || 'Next message'}
+              title={socialProof?.nextAria || 'Next message'}
+              className="
+                absolute right-1 top-1/2 -translate-y-1/2 z-10
+                w-6 h-6 rounded-full bg-black/60 hover:bg-[#075E54] text-white
+                shadow-md flex items-center justify-center cursor-pointer
+                opacity-0 scale-90 pointer-events-none
+                group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto
+                group-focus-within:opacity-100 group-focus-within:scale-100 group-focus-within:pointer-events-auto
+                transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-[#075E54]
+              "
+            >
+              <ChevronRight size={14} strokeWidth={2.5} />
+            </button>
+          </>
+        )}
+
         <div
           className={`
             relative ml-1.5 bg-white text-[#111b21]

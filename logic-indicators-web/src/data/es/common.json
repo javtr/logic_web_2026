@@ -72,6 +72,8 @@
   "socialProof": {
     "sender": "Logic User",
     "closeAria": "Cerrar mensaje",
+    "prevAria": "Mensaje anterior",
+    "nextAria": "Siguiente mensaje",
     "messages": [
       "Son unas excelentes herramientas de Logic Indicators, llevaba 4 años sin ser rentable, lo que me faltaba era el Order Flow, gracias por esas herramientas 🙏",
       "Venía de usar otras herramientas pero el lag me hacía perder operaciones. Logic es muy suave y NO ralentiza el equipo y detecta todo con total exactitud, me quedo con ustedes.",
