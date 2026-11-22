@@ -15,22 +15,58 @@
   },
   "topBanner": {
     "enabled": true,
-    "finalDate": "2026-11-21T23:59:59-05:00",
-    "badgePrefix": "PRE",
-    "badgeHighlight": "BLACK FRIDAY",
-    "discount": "20% OFF",
-    "description": "on all individual tools",
-    "codeLabel": "Use code:",
-    "code": "PREBLACK20",
-    "endsIn": "ENDS IN:",
-    "timeUnits": {
-      "d": "D",
-      "h": "H",
-      "m": "M",
-      "s": "S"
-    },
-    "copied": "Copied!",
-    "copyAria": "Copy discount code PREBLACK20",
-    "link": "/pricing"
+    "campaigns": [
+      {
+        "id": "pre-black-friday",
+        "theme": "pre-black-friday",
+        "enabled": true,
+        "finalDate": "2026-11-21T23:59:59.999-05:00",
+        "badgePrefix": "PRE",
+        "badgeHighlight": "BLACK FRIDAY",
+        "discount": "20% OFF",
+        "description": "on all individual tools",
+        "codeLabel": "Use code:",
+        "code": "PREBLACK20",
+        "endsIn": "ENDS IN:",
+        "timeUnits": {
+          "d": "D",
+          "h": "H",
+          "m": "M",
+          "s": "S"
+        },
+        "copied": "Copied!",
+        "copyAria": "Copy discount code PREBLACK20",
+        "link": "/pricing"
+      },
+      {
+        "id": "black-friday",
+        "theme": "black-friday-gold",
+        "enabled": true,
+        "startDate": "2026-11-22T00:00:00-05:00",
+        "finalDate": "2026-11-28T23:59:59.999-05:00",
+        "offerPrefix": "UP TO",
+        "discount": "-40%",
+        "descriptionLine1": "ON ANNUAL &",
+        "descriptionLine2": "LIFETIME PACKS",
+        "titlePrefix": "BLACK",
+        "titleHighlight": "FRIDAY",
+        "endsIn": "Ends in:",
+        "timeLabels": {
+          "d": "days",
+          "h": "hours",
+          "m": "minutes",
+          "s": "seconds"
+        },
+        "timeLabelsCompact": {
+          "d": "days",
+          "h": "hrs",
+          "m": "min",
+          "s": "sec"
+        },
+        "endDateLabel": "November 28",
+        "endDateLabelCompact": "Nov 28",
+        "link": "/pricing"
+      }
+    ]
   }
 }

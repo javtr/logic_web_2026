@@ -15,22 +15,58 @@
   },
   "topBanner": {
     "enabled": true,
-    "finalDate": "2026-11-21T23:59:59-05:00",
-    "badgePrefix": "PRE",
-    "badgeHighlight": "BLACK FRIDAY",
-    "discount": "20% OFF",
-    "description": "en todas las herramientas individuales",
-    "codeLabel": "Usa el código:",
-    "code": "PREBLACK20",
-    "endsIn": "TERMINA EN:",
-    "timeUnits": {
-      "d": "D",
-      "h": "H",
-      "m": "M",
-      "s": "S"
-    },
-    "copied": "¡Copiado!",
-    "copyAria": "Copiar código de descuento PREBLACK20",
-    "link": "/pricing"
+    "campaigns": [
+      {
+        "id": "pre-black-friday",
+        "theme": "pre-black-friday",
+        "enabled": true,
+        "finalDate": "2026-11-21T23:59:59.999-05:00",
+        "badgePrefix": "PRE",
+        "badgeHighlight": "BLACK FRIDAY",
+        "discount": "20% OFF",
+        "description": "en todas las herramientas individuales",
+        "codeLabel": "Usa el código:",
+        "code": "PREBLACK20",
+        "endsIn": "TERMINA EN:",
+        "timeUnits": {
+          "d": "D",
+          "h": "H",
+          "m": "M",
+          "s": "S"
+        },
+        "copied": "¡Copiado!",
+        "copyAria": "Copiar código de descuento PREBLACK20",
+        "link": "/pricing"
+      },
+      {
+        "id": "black-friday",
+        "theme": "black-friday-gold",
+        "enabled": true,
+        "startDate": "2026-11-22T00:00:00-05:00",
+        "finalDate": "2026-11-28T23:59:59.999-05:00",
+        "offerPrefix": "HASTA",
+        "discount": "-40%",
+        "descriptionLine1": "EN PACKS ANUALES",
+        "descriptionLine2": "Y DE POR VIDA",
+        "titlePrefix": "BLACK",
+        "titleHighlight": "FRIDAY",
+        "endsIn": "Termina en:",
+        "timeLabels": {
+          "d": "días",
+          "h": "horas",
+          "m": "minutos",
+          "s": "segundos"
+        },
+        "timeLabelsCompact": {
+          "d": "días",
+          "h": "hrs",
+          "m": "min",
+          "s": "seg"
+        },
+        "endDateLabel": "28 de noviembre",
+        "endDateLabelCompact": "28 nov",
+        "link": "/pricing"
+      }
+    ]
   }
 }
