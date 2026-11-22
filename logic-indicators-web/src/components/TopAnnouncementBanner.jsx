@@ -349,22 +349,31 @@ const BlackFridayGoldBanner = ({ banner, countdown }) => {
         }
       `}</style>
 
-      {/* Luz dorada inferior (aura + haz horizontal) con desplazamiento lento izquierda-derecha */}
-      <div className="pointer-events-none absolute inset-0 flex justify-center overflow-hidden" aria-hidden="true">
-        <div className="relative h-full w-80 sm:w-[460px] md:w-[560px] bf-horizon-drift">
+      {/* Luz dorada inferior de lado a lado (aura + destello difuso + barra horizontal sin cortes) */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute inset-y-0 -inset-x-20 bf-horizon-drift">
+          {/* Aura radial centrada amplia */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                'radial-gradient(ellipse 68% 92% at 50% 100%, rgba(245, 185, 50, 0.24) 0%, rgba(168, 108, 14, 0.09) 50%, rgba(5, 5, 5, 0) 82%)',
+                'radial-gradient(ellipse 36% 95% at 50% 100%, rgba(245, 185, 50, 0.24) 0%, rgba(168, 108, 14, 0.09) 46%, rgba(5, 5, 5, 0) 78%)',
             }}
           />
+          {/* Halo difuso en la base (sin box-shadow rectangular para evitar bordes cortados) */}
           <div
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 sm:w-80 md:w-[420px] h-[2px]"
+            className="absolute bottom-0 inset-x-0 h-2 blur-[5px]"
             style={{
               background:
-                'linear-gradient(90deg, transparent 0%, rgba(245, 185, 50, 0.5) 22%, #ffe28a 50%, rgba(245, 185, 50, 0.5) 78%, transparent 100%)',
-              boxShadow: '0 0 18px 2px rgba(245, 185, 50, 0.6)',
+                'linear-gradient(90deg, transparent 15%, rgba(245, 185, 50, 0.35) 36%, rgba(255, 226, 138, 0.9) 50%, rgba(245, 185, 50, 0.35) 64%, transparent 85%)',
+            }}
+          />
+          {/* Barra horizontal dorada continua de extremo a extremo */}
+          <div
+            className="absolute bottom-0 inset-x-0 h-[1.5px]"
+            style={{
+              background:
+                'linear-gradient(90deg, rgba(212, 154, 36, 0.14) 0%, rgba(245, 185, 50, 0.45) 32%, #ffe699 50%, rgba(245, 185, 50, 0.45) 68%, rgba(212, 154, 36, 0.14) 100%)',
             }}
           />
         </div>
