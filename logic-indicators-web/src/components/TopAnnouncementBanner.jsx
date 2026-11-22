@@ -27,50 +27,6 @@ const SlantedStripes = ({ side = 'left', className = '' }) => {
   );
 };
 
-// Silueta sutil de velas de trading en los extremos para el banner Black Friday (negro/dorado)
-const CandlestickWatermark = ({ side = 'left' }) => {
-  const candles = [
-    { x: 8, y: 20, h: 24, wickTop: 10, wickBottom: 52 },
-    { x: 24, y: 12, h: 30, wickTop: 4, wickBottom: 50 },
-    { x: 40, y: 24, h: 18, wickTop: 14, wickBottom: 48 },
-    { x: 56, y: 8, h: 32, wickTop: 2, wickBottom: 46 },
-    { x: 72, y: 18, h: 22, wickTop: 8, wickBottom: 48 },
-    { x: 88, y: 14, h: 26, wickTop: 6, wickBottom: 50 },
-  ];
-
-  return (
-    <svg
-      viewBox="0 0 104 56"
-      fill="none"
-      className={`pointer-events-none hidden lg:block absolute inset-y-0 h-full w-28 xl:w-36 opacity-[0.07] ${
-        side === 'left' ? 'left-2' : 'right-2 -scale-x-100'
-      }`}
-      aria-hidden="true"
-    >
-      {candles.map((c) => (
-        <g key={c.x}>
-          <line
-            x1={c.x + 3.5}
-            y1={c.wickTop}
-            x2={c.x + 3.5}
-            y2={c.wickBottom}
-            stroke="#f6b82d"
-            strokeWidth="1.4"
-          />
-          <rect
-            x={c.x}
-            y={c.y}
-            width="7"
-            height={c.h}
-            rx="1"
-            fill="#ffffff"
-          />
-        </g>
-      ))}
-    </svg>
-  );
-};
-
 const parseTimestamp = (dateStr) => {
   if (!dateStr) return null;
   const ms = new Date(dateStr).getTime();
@@ -375,13 +331,13 @@ const BlackFridayGoldBanner = ({ banner, countdown }) => {
       className="w-full relative border-b border-[#d49a24]/30 text-white shadow-lg select-none overflow-hidden bg-[#050505]"
     >
       <style>{`
-        @keyframes bfGoldPulse {
-          0%, 100% { opacity: 0.72; transform: scaleX(0.96); }
-          50% { opacity: 1; transform: scaleX(1.04); }
+        @keyframes bfFastSweep {
+          0% { transform: translate3d(-160%, 0, 0); }
+          16%, 100% { transform: translate3d(440%, 0, 0); }
         }
-        .bf-horizon-glow {
-          animation: bfGoldPulse 5s ease-in-out infinite;
-          will-change: transform, opacity;
+        .bf-gold-sweep {
+          animation: bfFastSweep 4.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+          will-change: transform;
         }
       `}</style>
 
@@ -395,13 +351,20 @@ const BlackFridayGoldBanner = ({ banner, countdown }) => {
         aria-hidden="true"
       />
 
-      {/* Siluetas sutiles de velas japonesas en los extremos */}
-      <CandlestickWatermark side="left" />
-      <CandlestickWatermark side="right" />
+      {/* Destello dorado rápido de izquierda a derecha */}
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 -skew-x-12 z-0 bf-gold-sweep"
+        style={{
+          width: '32%',
+          background:
+            'linear-gradient(90deg, transparent 0%, rgba(246, 184, 45, 0.04) 24%, rgba(255, 224, 130, 0.19) 50%, rgba(246, 184, 45, 0.04) 76%, transparent 100%)',
+        }}
+        aria-hidden="true"
+      />
 
       {/* Haz luminoso horizontal dorado centrado en la base */}
       <div
-        className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-64 sm:w-80 md:w-[420px] h-[2px] bf-horizon-glow"
+        className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-64 sm:w-80 md:w-[420px] h-[2px]"
         style={{
           background:
             'linear-gradient(90deg, transparent 0%, rgba(245, 185, 50, 0.45) 22%, #ffe28a 50%, rgba(245, 185, 50, 0.45) 78%, transparent 100%)',
