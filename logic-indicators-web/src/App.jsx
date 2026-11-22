@@ -28,6 +28,7 @@ import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
 import { ScrollToTopButton } from './components/ScrollToTopButton';
 import { HelpWidget } from './components/HelpWidget';
+import { SocialProofPopup } from './components/SocialProofPopup';
 import { CookieBanner } from './components/CookieBanner';
 import { PrivateRoute } from './components/PrivateRoute';
 import { PageLoader } from './components/PageLoader';
@@ -79,6 +80,7 @@ function App() {
         <ScrollToTop />
         <ScrollToTopButton />
         <HelpWidget />
+        <SocialProofPopup />
         <CookieBanner />
         <Suspense fallback={<PageLoader />}>
           <Routes>
