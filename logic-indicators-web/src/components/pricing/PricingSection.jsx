@@ -22,19 +22,173 @@
 // lifetime. Home lo usa y por defecto muestra el lifetime (el highlight).
 // =============================================================================
 
-import { useState } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { useLanguage } from '../../context/languageContext';
 import { Button } from '../Button';
 import { ToggleSwitch } from '../ToggleSwitch';
-import { CheckCircle2, GraduationCap, Headphones, Info, ExternalLink } from 'lucide-react';
+import { CheckCircle2, GraduationCap, Headphones, Info, ExternalLink, Tag, Copy, Check } from 'lucide-react';
 
 const CURRENCY_SYMBOL = '$';
+
+const formatPrice = (value) =>
+  typeof value === 'number' ? new Intl.NumberFormat('en-US').format(value) : value;
+
+const parseTimestamp = (dateStr) => {
+  if (!dateStr) return null;
+  const ms = new Date(dateStr).getTime();
+  return Number.isNaN(ms) ? null : ms;
+};
+
+const isBlackFridayActive = (bfConfig, nowMs) => {
+  if (!bfConfig || bfConfig.enabled !== true) return false;
+
+  if (import.meta.env.DEV && typeof window !== 'undefined') {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('promo') === 'black-friday' || params.get('banner') === 'black-friday') {
+      return true;
+    }
+  }
+
+  const startMs = parseTimestamp(bfConfig.startDate);
+  const finalMs = parseTimestamp(bfConfig.finalDate);
+  if (startMs !== null && nowMs < startMs) return false;
+  if (finalMs !== null && nowMs >= finalMs) return false;
+  return true;
+};
+
+const applyPlanPromo = (plan, bfConfig, promoActive) => {
+  if (!promoActive || !plan?.id) return plan;
+  const override = bfConfig?.overrides?.[plan.id];
+  if (!override) return plan;
+
+  return {
+    ...plan,
+    price: override.price ?? plan.price,
+    crossedPrice: override.crossedPrice ?? plan.crossedPrice,
+    savingsText: override.savingsText ?? plan.savingsText,
+    installments: override.installments
+      ? { ...plan.installments, ...override.installments }
+      : plan.installments,
+  };
+};
 
 // Mapa de iconos para los "extras" del plan (features que no son
 // indicadores, p.ej. soporte tecnico). Si agregas un extra nuevo en
 // pricing.json con un icon nuevo, agregalo aca tambien.
 const EXTRA_ICONS = {
   support: Headphones,
+};
+
+// -----------------------------------------------------------------------------
+// BlackFridayHeader — franja BLACK FRIDAY + píldoras de descuento y copiado
+// -----------------------------------------------------------------------------
+const BlackFridayHeader = ({ bfConfig, items }) => {
+  const [copiedCode, setCopiedCode] = useState(null);
+
+  if (!Array.isArray(items) || items.length === 0) return null;
+
+  const handleCopy = (code) => {
+    if (!code) return;
+    navigator.clipboard.writeText(code).then(() => {
+      setCopiedCode(code);
+      setTimeout(() => setCopiedCode(null), 2200);
+    }).catch(() => {
+      setCopiedCode(code);
+      setTimeout(() => setCopiedCode(null), 2200);
+    });
+  };
+
+  return (
+    <div className="mt-4 mb-2 flex flex-col items-center gap-4">
+      {/* Título BLACK FRIDAY con líneas doradas laterales */}
+      <div className="flex items-center justify-center gap-3 sm:gap-5 w-full max-w-xl">
+        <span
+          className="h-[1.5px] flex-1 max-w-[120px] bg-gradient-to-r from-transparent via-[#d49a24]/60 to-[#f6b82d]"
+          aria-hidden="true"
+        />
+        <div className="inline-flex items-center gap-2 shrink-0">
+          <span className="italic font-black uppercase tracking-tight text-white text-2xl sm:text-3xl md:text-[34px] leading-none">
+            {bfConfig.titlePrefix || 'BLACK'}
+          </span>
+          <span
+            className="italic font-black uppercase tracking-tight text-[#f6b82d] text-2xl sm:text-3xl md:text-[34px] leading-none"
+            style={{ textShadow: '0 0 18px rgba(246, 184, 45, 0.35)' }}
+          >
+            {bfConfig.titleHighlight || 'FRIDAY'}
+          </span>
+        </div>
+        <span
+          className="h-[1.5px] flex-1 max-w-[120px] bg-gradient-to-l from-transparent via-[#d49a24]/60 to-[#f6b82d]"
+          aria-hidden="true"
+        />
+      </div>
+
+      {/* Fila de promociones y botones de código copiable */}
+      <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5">
+        {items.map((item, idx) => {
+          const isCopied = copiedCode === item.code;
+          const copyLabel = (bfConfig.copyAriaTemplate || 'Copy code {code}').replace('{code}', item.code);
+
+          return (
+            <Fragment key={`${item.code}-${idx}`}>
+              {idx > 0 && (
+                <span className="hidden md:inline-block h-5 w-px bg-white/20 shrink-0" aria-hidden="true" />
+              )}
+
+              <div className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+                <div className="inline-flex items-center gap-2">
+                  {item.badgeStyle === 'solid' ? (
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-[#f6b82d] text-[#0b0e14] font-black italic text-sm sm:text-[15px] tracking-tight leading-snug shadow-[0_0_14px_rgba(246,184,45,0.28)]">
+                      {item.badge}
+                    </span>
+                  ) : (
+                    <span className="font-black italic text-[#f6b82d] text-sm sm:text-base tracking-tight">
+                      {item.badge}
+                    </span>
+                  )}
+                  <span className="text-text-main font-medium text-sm sm:text-[15px]">
+                    {item.label}
+                  </span>
+                </div>
+
+                {item.code && (
+                  <>
+                    <span className="h-4 w-px bg-white/20 shrink-0" aria-hidden="true" />
+                    <div className="inline-flex items-center gap-2">
+                      <span className="text-text-muted text-sm">{bfConfig.codeLabel || 'Code:'}</span>
+                      <button
+                        type="button"
+                        onClick={() => handleCopy(item.code)}
+                        aria-label={copyLabel}
+                        title={copyLabel}
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-[#d49a24]/75 bg-[#1a1204]/60 hover:border-[#f6b82d] hover:bg-[#2a1d06]/75 active:scale-95 transition-all cursor-pointer group focus:outline-none focus:ring-1 focus:ring-[#f6b82d]"
+                      >
+                        {isCopied ? (
+                          <>
+                            <Check size={14} className="text-emerald-400 stroke-[2.5]" />
+                            <span className="text-xs sm:text-sm font-bold text-emerald-300">
+                              {bfConfig.copiedLabel || 'Copied!'}
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            <span className="font-black tracking-wide text-white text-sm">
+                              {item.code}
+                            </span>
+                            <Copy size={14} className="text-[#f6b82d] group-hover:text-[#ffd86b] transition-colors" />
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
+            </Fragment>
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 // -----------------------------------------------------------------------------
@@ -70,15 +224,23 @@ const PricingCard = ({ plan, t, bestValueText, currencyCode = 'USD' }) => {
       {/* Precio + moneda USD + tachado */}
       <div className="mt-4 mb-2 flex items-baseline gap-2.5 flex-wrap">
         <span className="text-4xl font-extrabold text-text-main">
-          {CURRENCY_SYMBOL}{plan.price}
+          {CURRENCY_SYMBOL}{formatPrice(plan.price)}
           <span className="text-sm font-bold text-text-muted ml-1.5">{currencyCode}</span>
         </span>
         {hasCrossed && (
           <span className="text-base text-text-muted line-through">
-            {CURRENCY_SYMBOL}{plan.crossedPrice} {currencyCode}
+            {CURRENCY_SYMBOL}{formatPrice(plan.crossedPrice)} {currencyCode}
           </span>
         )}
       </div>
+
+      {/* Etiqueta de ahorro promocional (ej. Black Friday) */}
+      {plan.savingsText && (
+        <div className="mb-3 inline-flex items-center gap-2 text-emerald-400 font-bold text-sm sm:text-base">
+          <Tag size={15} className="shrink-0" aria-hidden="true" />
+          <span>{plan.savingsText}</span>
+        </div>
+      )}
 
       {/* Indicators (los 7 del suite, o el subset que defina cada plan) */}
       <ul className={`space-y-3 mt-4 flex-grow ${accentText}`}>
@@ -230,16 +392,39 @@ export const PricingSection = ({
   // Solo lo usamos cuando el shape lo requiere (ES con toggle), pero
   // declararlo igual mantiene el orden estable entre renders de EN y ES.
   const [isLifetime, setIsLifetime] = useState(defaultIsLifetime);
+  const [nowMs, setNowMs] = useState(() => Date.now());
 
+  const bfConfig = section.blackFriday;
+
+  // Chequeo periódico para activar/desactivar la promo Black Friday al cruzar 00:00
+  useEffect(() => {
+    if (!bfConfig || bfConfig.enabled !== true) return undefined;
+    const interval = setInterval(() => {
+      setNowMs(Date.now());
+    }, 30000);
+    return () => clearInterval(interval);
+  }, [bfConfig]);
+
+  const promoActive = isBlackFridayActive(bfConfig, nowMs);
   const dataRequirementNote = section.dataRequirementNote;
   const currencyCode = section.currencyCode || 'USD';
 
   const isArrayLayout = Array.isArray(plans);
-  const currentPlans = isArrayLayout
+  const rawPlans = isArrayLayout
     ? plans
     : isLifetime
       ? [plans.lifetime.basic, plans.lifetime.plus]
       : [plans.yearly.basic, plans.yearly.plus];
+
+  const currentPlans = rawPlans.map((plan) => applyPlanPromo(plan, bfConfig, promoActive));
+
+  const activeBannerItems = promoActive
+    ? isArrayLayout
+      ? bfConfig?.banners?.all
+      : isLifetime
+        ? bfConfig?.banners?.lifetime
+        : bfConfig?.banners?.yearly
+    : null;
 
   return (
     <section className="px-6 container mx-auto">
@@ -247,6 +432,9 @@ export const PricingSection = ({
         <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4">
           {t(titleKey)}
         </h2>
+        {promoActive && (
+          <BlackFridayHeader bfConfig={bfConfig} items={activeBannerItems} />
+        )}
         {!isArrayLayout && (
           <ToggleSwitch
             isLifetime={isLifetime}

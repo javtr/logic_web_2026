@@ -19,6 +19,49 @@
     "support": "Technical Support"
   },
 
+  "blackFriday": {
+    "enabled": true,
+    "startDate": "2026-11-22T00:00:00-05:00",
+    "finalDate": "2026-11-28T23:59:59.999-05:00",
+    "titlePrefix": "BLACK",
+    "titleHighlight": "FRIDAY",
+    "codeLabel": "Code:",
+    "copiedLabel": "Copied!",
+    "copyAriaTemplate": "Copy code {code}",
+    "banners": {
+      "all": [
+        {
+          "badge": "40% OFF",
+          "badgeStyle": "solid",
+          "label": "on Annual & Lifetime",
+          "code": "BF40"
+        },
+        {
+          "badge": "30% OFF",
+          "badgeStyle": "text",
+          "label": "on installments",
+          "code": "BF30"
+        }
+      ]
+    },
+    "overrides": {
+      "annual": {
+        "price": 350,
+        "crossedPrice": 584,
+        "savingsText": "Save $234 USD"
+      },
+      "lifetime": {
+        "price": 530,
+        "crossedPrice": 884,
+        "savingsText": "Save $353 USD",
+        "installments": {
+          "text": "6 payments of $104 USD",
+          "disclaimer": "Final price using code BF30"
+        }
+      }
+    }
+  },
+
   "plans": [
     {
       "id": "annual",

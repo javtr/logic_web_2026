@@ -24,6 +24,71 @@
     "support": "Soporte técnico"
   },
 
+  "blackFriday": {
+    "enabled": true,
+    "startDate": "2026-11-22T00:00:00-05:00",
+    "finalDate": "2026-11-28T23:59:59.999-05:00",
+    "titlePrefix": "BLACK",
+    "titleHighlight": "FRIDAY",
+    "codeLabel": "Código:",
+    "copiedLabel": "¡Copiado!",
+    "copyAriaTemplate": "Copiar código {code}",
+    "banners": {
+      "yearly": [
+        {
+          "badge": "40% OFF",
+          "badgeStyle": "solid",
+          "label": "en plan anual",
+          "code": "BF40"
+        }
+      ],
+      "lifetime": [
+        {
+          "badge": "40% OFF",
+          "badgeStyle": "solid",
+          "label": "en pago único",
+          "code": "BF40"
+        },
+        {
+          "badge": "30% OFF",
+          "badgeStyle": "text",
+          "label": "en pagos a plazos",
+          "code": "BF30"
+        }
+      ]
+    },
+    "overrides": {
+      "basic-yearly": {
+        "price": 350,
+        "crossedPrice": 584,
+        "savingsText": "Ahorras $234 USD"
+      },
+      "plus-yearly": {
+        "price": 442,
+        "crossedPrice": 737,
+        "savingsText": "Ahorras $295 USD"
+      },
+      "basic-lifetime": {
+        "price": 530,
+        "crossedPrice": 884,
+        "savingsText": "Ahorras $353 USD",
+        "installments": {
+          "text": "6 pagos de $104 USD",
+          "disclaimer": "Valor final usando código BF30"
+        }
+      },
+      "plus-lifetime": {
+        "price": 710,
+        "crossedPrice": 1184,
+        "savingsText": "Ahorras $473 USD",
+        "installments": {
+          "text": "7 pagos de $118 USD",
+          "disclaimer": "Valor final usando código BF30"
+        }
+      }
+    }
+  },
+
   "plans": {
     "yearly": {
       "basic": {
