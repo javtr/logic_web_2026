@@ -6,8 +6,8 @@
 //   (`bottom-[138px] right-4 sm:bottom-[156px] sm:right-6 z-30`).
 //   HelpWidget usa `z-40` para que al abrir su menú quede por encima sin solaparse.
 // - Rotación: muestra cada mensaje durante 30 segundos y rota entre los 6.
-// - Cierre: botón X en la esquina superior derecha; persiste en sessionStorage
-//   para no volver a mostrarse tras cerrarlo en la misma sesión.
+// - Cierre: botón X en la esquina superior derecha; permanece cerrado mientras
+//   navega entre páginas, y al recargar la web vuelve a aparecer.
 // - i18n: textos desde t('common.socialProof') (EN / ES).
 // =============================================================================
 
@@ -15,7 +15,6 @@ import { useState, useEffect } from 'react';
 import { User, X } from 'lucide-react';
 import { useLanguage } from '../context/languageContext';
 
-const DISMISS_STORAGE_KEY = 'logic_social_proof_dismissed';
 const INITIAL_DELAY_MS = 2500;
 const ROTATION_INTERVAL_MS = 30000;
 const SWAP_FADE_MS = 220;
@@ -32,20 +31,12 @@ const CHAT_WALLPAPER_SVG = encodeURIComponent(
   </svg>`
 );
 
-const readSessionDismissed = () => {
-  try {
-    return sessionStorage.getItem(DISMISS_STORAGE_KEY) === 'true';
-  } catch {
-    return false;
-  }
-};
-
 export const SocialProofPopup = () => {
   const { t } = useLanguage();
   const socialProof = t('common.socialProof');
   const messages = Array.isArray(socialProof?.messages) ? socialProof.messages : [];
 
-  const [isDismissed, setIsDismissed] = useState(readSessionDismissed);
+  const [isDismissed, setIsDismissed] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -86,11 +77,6 @@ export const SocialProofPopup = () => {
 
   const handleClose = () => {
     setIsVisible(false);
-    try {
-      sessionStorage.setItem(DISMISS_STORAGE_KEY, 'true');
-    } catch {
-      // Ignorar si sessionStorage está restringido
-    }
     setTimeout(() => {
       setIsDismissed(true);
       setShouldRender(false);
