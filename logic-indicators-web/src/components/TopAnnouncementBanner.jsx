@@ -335,40 +335,48 @@ const BlackFridayGoldBanner = ({ banner, countdown }) => {
           0% { transform: translate3d(-160%, 0, 0); }
           16%, 100% { transform: translate3d(440%, 0, 0); }
         }
+        @keyframes bfHorizonDrift {
+          0%, 100% { transform: translate3d(-44px, 0, 0); }
+          50% { transform: translate3d(44px, 0, 0); }
+        }
         .bf-gold-sweep {
           animation: bfFastSweep 4.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
           will-change: transform;
         }
+        .bf-horizon-drift {
+          animation: bfHorizonDrift 8.5s ease-in-out infinite;
+          will-change: transform;
+        }
       `}</style>
 
-      {/* Fondo negro con tenue aura dorada central */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 46% 90% at 50% 100%, rgba(245, 185, 50, 0.22) 0%, rgba(168, 108, 14, 0.08) 48%, rgba(5, 5, 5, 0) 80%)',
-        }}
-        aria-hidden="true"
-      />
+      {/* Luz dorada inferior (aura + haz horizontal) con desplazamiento lento izquierda-derecha */}
+      <div className="pointer-events-none absolute inset-0 flex justify-center overflow-hidden" aria-hidden="true">
+        <div className="relative h-full w-80 sm:w-[460px] md:w-[560px] bf-horizon-drift">
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'radial-gradient(ellipse 68% 92% at 50% 100%, rgba(245, 185, 50, 0.24) 0%, rgba(168, 108, 14, 0.09) 50%, rgba(5, 5, 5, 0) 82%)',
+            }}
+          />
+          <div
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 sm:w-80 md:w-[420px] h-[2px]"
+            style={{
+              background:
+                'linear-gradient(90deg, transparent 0%, rgba(245, 185, 50, 0.5) 22%, #ffe28a 50%, rgba(245, 185, 50, 0.5) 78%, transparent 100%)',
+              boxShadow: '0 0 18px 2px rgba(245, 185, 50, 0.6)',
+            }}
+          />
+        </div>
+      </div>
 
       {/* Destello dorado rápido de izquierda a derecha */}
       <div
         className="pointer-events-none absolute inset-y-0 left-0 -skew-x-12 z-0 bf-gold-sweep"
         style={{
-          width: '32%',
+          width: '34%',
           background:
-            'linear-gradient(90deg, transparent 0%, rgba(246, 184, 45, 0.04) 24%, rgba(255, 224, 130, 0.19) 50%, rgba(246, 184, 45, 0.04) 76%, transparent 100%)',
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Haz luminoso horizontal dorado centrado en la base */}
-      <div
-        className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-64 sm:w-80 md:w-[420px] h-[2px]"
-        style={{
-          background:
-            'linear-gradient(90deg, transparent 0%, rgba(245, 185, 50, 0.45) 22%, #ffe28a 50%, rgba(245, 185, 50, 0.45) 78%, transparent 100%)',
-          boxShadow: '0 0 18px 2px rgba(245, 185, 50, 0.55)',
+            'linear-gradient(90deg, transparent 0%, rgba(246, 184, 45, 0.08) 24%, rgba(255, 231, 158, 0.28) 50%, rgba(246, 184, 45, 0.08) 76%, transparent 100%)',
         }}
         aria-hidden="true"
       />
