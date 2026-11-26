@@ -22,7 +22,7 @@
 // lifetime. Home lo usa y por defecto muestra el lifetime (el highlight).
 // =============================================================================
 
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect, useRef, Fragment } from 'react';
 import { useLanguage } from '../../context/languageContext';
 import { Button } from '../Button';
 import { ToggleSwitch } from '../ToggleSwitch';
@@ -66,10 +66,72 @@ const applyPlanPromo = (plan, bfConfig, promoActive) => {
     price: override.price ?? plan.price,
     crossedPrice: override.crossedPrice ?? plan.crossedPrice,
     savingsText: override.savingsText ?? plan.savingsText,
+    promoCode: override.promoCode ?? plan.promoCode,
     installments: override.installments
       ? { ...plan.installments, ...override.installments }
       : plan.installments,
   };
+};
+
+// Botón reutilizable para copiar códigos promocionales (BF40 / BF30) al portapapeles
+const CouponCopyButton = ({
+  code,
+  copiedLabel = 'Copied!',
+  copyAriaTemplate = 'Copy code {code}',
+  className = 'px-2.5 py-1',
+}) => {
+  const [copied, setCopied] = useState(false);
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
+
+  if (!code) return null;
+
+  const copyLabel = copyAriaTemplate.replace('{code}', code);
+
+  const handleCopy = () => {
+    const showFeedback = () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      setCopied(true);
+      timerRef.current = setTimeout(() => setCopied(false), 2200);
+    };
+
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(code).then(showFeedback).catch(showFeedback);
+    } else {
+      showFeedback();
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={handleCopy}
+      aria-label={copyLabel}
+      title={copyLabel}
+      className={`inline-flex items-center justify-center gap-1.5 rounded-lg border border-[#d49a24]/75 bg-[#1a1204]/60 hover:border-[#f6b82d] hover:bg-[#2a1d06]/75 active:scale-95 transition-all cursor-pointer group focus:outline-none focus:ring-1 focus:ring-[#f6b82d] shrink-0 ${className}`}
+    >
+      {copied ? (
+        <>
+          <Check size={14} className="text-emerald-400 stroke-[2.5]" />
+          <span className="text-xs sm:text-sm font-bold text-emerald-300 whitespace-nowrap">
+            {copiedLabel}
+          </span>
+        </>
+      ) : (
+        <>
+          <span className="font-black tracking-wide text-white text-sm whitespace-nowrap">
+            {code}
+          </span>
+          <Copy size={14} className="text-[#f6b82d] group-hover:text-[#ffd86b] transition-colors shrink-0" />
+        </>
+      )}
+    </button>
+  );
 };
 
 // Mapa de iconos para los "extras" del plan (features que no son
@@ -83,20 +145,7 @@ const EXTRA_ICONS = {
 // BlackFridayHeader — franja BLACK FRIDAY + píldoras de descuento y copiado
 // -----------------------------------------------------------------------------
 const BlackFridayHeader = ({ bfConfig, items }) => {
-  const [copiedCode, setCopiedCode] = useState(null);
-
   if (!Array.isArray(items) || items.length === 0) return null;
-
-  const handleCopy = (code) => {
-    if (!code) return;
-    navigator.clipboard.writeText(code).then(() => {
-      setCopiedCode(code);
-      setTimeout(() => setCopiedCode(null), 2200);
-    }).catch(() => {
-      setCopiedCode(code);
-      setTimeout(() => setCopiedCode(null), 2200);
-    });
-  };
 
   return (
     <div className="mt-4 mb-2 flex flex-col items-center gap-4">
@@ -125,67 +174,44 @@ const BlackFridayHeader = ({ bfConfig, items }) => {
 
       {/* Fila de promociones y botones de código copiable */}
       <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5">
-        {items.map((item, idx) => {
-          const isCopied = copiedCode === item.code;
-          const copyLabel = (bfConfig.copyAriaTemplate || 'Copy code {code}').replace('{code}', item.code);
+        {items.map((item, idx) => (
+          <Fragment key={`${item.code}-${idx}`}>
+            {idx > 0 && (
+              <span className="hidden md:inline-block h-5 w-px bg-white/20 shrink-0" aria-hidden="true" />
+            )}
 
-          return (
-            <Fragment key={`${item.code}-${idx}`}>
-              {idx > 0 && (
-                <span className="hidden md:inline-block h-5 w-px bg-white/20 shrink-0" aria-hidden="true" />
-              )}
-
-              <div className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
-                <div className="inline-flex items-center gap-2">
-                  {item.badgeStyle === 'solid' ? (
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-[#f6b82d] text-[#0b0e14] font-black italic text-sm sm:text-[15px] tracking-tight leading-snug shadow-[0_0_14px_rgba(246,184,45,0.28)]">
-                      {item.badge}
-                    </span>
-                  ) : (
-                    <span className="font-black italic text-[#f6b82d] text-sm sm:text-base tracking-tight">
-                      {item.badge}
-                    </span>
-                  )}
-                  <span className="text-text-main font-medium text-sm sm:text-[15px]">
-                    {item.label}
+            <div className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+              <div className="inline-flex items-center gap-2">
+                {item.badgeStyle === 'solid' ? (
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-[#f6b82d] text-[#0b0e14] font-black italic text-sm sm:text-[15px] tracking-tight leading-snug shadow-[0_0_14px_rgba(246,184,45,0.28)]">
+                    {item.badge}
                   </span>
-                </div>
-
-                {item.code && (
-                  <>
-                    <span className="h-4 w-px bg-white/20 shrink-0" aria-hidden="true" />
-                    <div className="inline-flex items-center gap-2">
-                      <span className="text-text-muted text-sm">{bfConfig.codeLabel || 'Code:'}</span>
-                      <button
-                        type="button"
-                        onClick={() => handleCopy(item.code)}
-                        aria-label={copyLabel}
-                        title={copyLabel}
-                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-[#d49a24]/75 bg-[#1a1204]/60 hover:border-[#f6b82d] hover:bg-[#2a1d06]/75 active:scale-95 transition-all cursor-pointer group focus:outline-none focus:ring-1 focus:ring-[#f6b82d]"
-                      >
-                        {isCopied ? (
-                          <>
-                            <Check size={14} className="text-emerald-400 stroke-[2.5]" />
-                            <span className="text-xs sm:text-sm font-bold text-emerald-300">
-                              {bfConfig.copiedLabel || 'Copied!'}
-                            </span>
-                          </>
-                        ) : (
-                          <>
-                            <span className="font-black tracking-wide text-white text-sm">
-                              {item.code}
-                            </span>
-                            <Copy size={14} className="text-[#f6b82d] group-hover:text-[#ffd86b] transition-colors" />
-                          </>
-                        )}
-                      </button>
-                    </div>
-                  </>
+                ) : (
+                  <span className="font-black italic text-[#f6b82d] text-sm sm:text-base tracking-tight">
+                    {item.badge}
+                  </span>
                 )}
+                <span className="text-text-main font-medium text-sm sm:text-[15px]">
+                  {item.label}
+                </span>
               </div>
-            </Fragment>
-          );
-        })}
+
+              {item.code && (
+                <>
+                  <span className="h-4 w-px bg-white/20 shrink-0" aria-hidden="true" />
+                  <div className="inline-flex items-center gap-2">
+                    <span className="text-text-muted text-sm">{bfConfig.codeLabel || 'Code:'}</span>
+                    <CouponCopyButton
+                      code={item.code}
+                      copiedLabel={bfConfig.copiedLabel}
+                      copyAriaTemplate={bfConfig.copyAriaTemplate}
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+          </Fragment>
+        ))}
       </div>
     </div>
   );
@@ -195,7 +221,7 @@ const BlackFridayHeader = ({ bfConfig, items }) => {
 // PricingCard — card individual. No sabe si viene de un array (EN) o del toggle
 // (ES). Solo renderiza el `plan` que le pasan.
 // -----------------------------------------------------------------------------
-const PricingCard = ({ plan, t, bestValueText, currencyCode = 'USD' }) => {
+const PricingCard = ({ plan, t, bestValueText, currencyCode = 'USD', bfConfig }) => {
   const highlighted = plan.highlighted === true;
   const borderClasses = highlighted
     ? 'border-2 border-accent-primary shadow-[0_0_30px_theme(colors.accent.primary/10%)]'
@@ -328,19 +354,29 @@ const PricingCard = ({ plan, t, bestValueText, currencyCode = 'USD' }) => {
 
       {/* CTA — siempre antes de installments (installments es info
           complementaria, no compite con la acción principal). */}
-      <a
-        href={plan.checkoutUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block mt-6"
-      >
-        <Button
-          variant={highlighted ? 'primary' : 'outline'}
-          className="w-full"
+      <div className="mt-6 flex items-stretch gap-2.5">
+        <a
+          href={plan.checkoutUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 min-w-0"
         >
-          {plan.cta}
-        </Button>
-      </a>
+          <Button
+            variant={highlighted ? 'primary' : 'outline'}
+            className="w-full h-full"
+          >
+            {plan.cta}
+          </Button>
+        </a>
+        {plan.promoCode && (
+          <CouponCopyButton
+            code={plan.promoCode}
+            copiedLabel={bfConfig?.copiedLabel}
+            copyAriaTemplate={bfConfig?.copyAriaTemplate}
+            className="px-3 py-2"
+          />
+        )}
+      </div>
 
       {/* Installments — solo en planes Lifetime. Caja destacada DEBAJO
           del botón, con título "Diferir pagos" / "Installments" para
@@ -350,21 +386,31 @@ const PricingCard = ({ plan, t, bestValueText, currencyCode = 'USD' }) => {
           <p className="text-xs uppercase tracking-wider text-accent-secondary font-bold mb-2">
             {t('pricing.installmentsTitle')}
           </p>
-          {plan.installments.checkoutUrl ? (
-            <a
-              href={plan.installments.checkoutUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-accent-secondary hover:text-accent-secondary/80 transition-colors py-1 px-3 rounded-lg bg-accent-secondary/10 hover:bg-accent-secondary/20 border border-accent-secondary/30 group/inst"
-            >
-              <span>{plan.installments.text}</span>
-              <span className="transition-transform group-hover/inst:translate-x-0.5" aria-hidden="true">&rarr;</span>
-            </a>
-          ) : (
-            <p className="text-sm font-semibold text-accent-secondary">
-              {plan.installments.text}
-            </p>
-          )}
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {plan.installments.checkoutUrl ? (
+              <a
+                href={plan.installments.checkoutUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-accent-secondary hover:text-accent-secondary/80 transition-colors py-1 px-3 rounded-lg bg-accent-secondary/10 hover:bg-accent-secondary/20 border border-accent-secondary/30 group/inst"
+              >
+                <span>{plan.installments.text}</span>
+                <span className="transition-transform group-hover/inst:translate-x-0.5" aria-hidden="true">&rarr;</span>
+              </a>
+            ) : (
+              <p className="text-sm font-semibold text-accent-secondary">
+                {plan.installments.text}
+              </p>
+            )}
+            {plan.installments.promoCode && (
+              <CouponCopyButton
+                code={plan.installments.promoCode}
+                copiedLabel={bfConfig?.copiedLabel}
+                copyAriaTemplate={bfConfig?.copyAriaTemplate}
+                className="px-2.5 py-1"
+              />
+            )}
+          </div>
           <p className="text-xs text-text-muted mt-1 leading-snug">
             {plan.installments.disclaimer}
           </p>
@@ -452,6 +498,7 @@ export const PricingSection = ({
             t={t}
             bestValueText={bestValueText}
             currencyCode={currencyCode}
+            bfConfig={bfConfig}
           />
         ))}
       </div>

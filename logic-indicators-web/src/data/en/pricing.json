@@ -48,15 +48,18 @@
       "annual": {
         "price": 350,
         "crossedPrice": 584,
-        "savingsText": "Save $234 USD on Black Friday"
+        "savingsText": "Save $234 USD on Black Friday",
+        "promoCode": "BF40"
       },
       "lifetime": {
         "price": 530,
         "crossedPrice": 884,
         "savingsText": "Save $353 USD on Black Friday",
+        "promoCode": "BF40",
         "installments": {
           "text": "6 payments of $104 USD",
-          "disclaimer": "Final price using code BF30"
+          "disclaimer": "Final price using code BF30",
+          "promoCode": "BF30"
         }
       }
     }
